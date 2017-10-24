@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Home</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+    <h1>Welcome Spring Boot</h1>
+    <div class="container">
+
+        <h1>Bismillahirrahmanirrahim</h1>
+        <div th:if="${not #lists.isEmpty(member)}">
+            <table class="table table-striped">
+                <tr>
+                    <th>ID Member</th>
+                    <th>Nama</th>
+                    <th>Alamat</th>
+                    <th>Password</th>
+                    <th>Action</th>
+                </tr>
+                <tr th:each="members : ${member}">
+                    <td th:text="${members.id_member}"></td>
+                    <td th:text="${members.nama_member}"></td>
+                    <td th:text="${members.alamat}"></td>
+                    <td th:text="${members.pass}"></td>
+                    <td th:text="${members.version}"></td>
+                    <td>
+                        <a th:href="${'member/edit/'+members.id_member}">Edit</a>
+                        <a th:href="${'member/hapus/'+members.id_member}">Hapus</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div>
+            <a href="/member/create" class="btn btn-default"> Add Member</a>
+        </div>
+
+
+
+    </div>
+</body>
+</html>

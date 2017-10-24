@@ -1,0 +1,41 @@
+		
+@media (min-width:768px) {
+		
+	.set-nav{
+		position: fixed;
+		width: 240px;
+		left: 0px;
+		top: 60px;
+		height: calc(100% - 60px);
+		background-color: #D9D9D9;
+	}
+	.set-nav li{
+		width: 100%;
+	}
+	.set-nav li:hover{
+		background: #666666;
+	}
+	.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover{
+		background: #919191;
+	}
+	.active-user{
+	background-color: #D9D9D9;
+	padding: 10px 10px 10px 10px; 
+	}	
+	.body{
+		margin-left: 240px;
+		margin-top: 70px;
+	}
+}
+	.page-header{
+		margin-top: 0px;
+	}
+	.page-header h2{
+		margin-top: 10px;
+	}
+	.btn{
+		padding: 0px 15px;
+	}
+	a{
+		color: black;
+	}
