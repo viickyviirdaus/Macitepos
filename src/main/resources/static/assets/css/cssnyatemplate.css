@@ -1,6 +1,6 @@
-		
+
 @media (min-width:768px) {
-		
+
 	.set-nav{
 		position: fixed;
 		width: 240px;
@@ -19,23 +19,25 @@
 		background: #919191;
 	}
 	.active-user{
-	background-color: #D9D9D9;
-	padding: 10px 10px 10px 10px; 
-	}	
+		background-color: #D9D9D9;
+		padding: 10px 10px 10px 10px;
+	}
 	.body{
 		margin-left: 240px;
 		margin-top: 70px;
 	}
 }
-	.page-header{
-		margin-top: 0px;
-	}
-	.page-header h2{
-		margin-top: 10px;
-	}
-	.btn{
-		padding: 0px 15px;
-	}
-	a{
-		color: black;
-	}
+.page-header{
+	margin-top: 0px;
+}
+.page-header h2{
+	margin-top: 10px;
+}
+
+.panel-body.manajerpanel{
+	padding-top: 0px;
+}
+
+a{
+	color: black;
+}
