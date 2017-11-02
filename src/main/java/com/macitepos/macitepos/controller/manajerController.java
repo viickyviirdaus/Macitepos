@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = "/kasir")
-public class KasirController {
+@RequestMapping(value = "/manajer")
+public class manajerController {
 
     @RequestMapping(method = RequestMethod.GET)
-    public String dashboardKasir(){
-        return "kasir/dashboard";
+    public String dashboardManajer(){
+        return "manajer/dashboard";
     }
 
 }

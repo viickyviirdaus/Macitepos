@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head>
+    <title>Manajer - Dashboard | MacitePos.com</title>
+    <div th:replace="manajer/header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="manajer/header :: header"/>
+
+<!-- COntent web -->
+<div class="body">
+    <div class="container-fluid">
+        <div class="page-header">
+            <h2 class="text-center">Dashboard</h2>
+        </div>
+        <!-- CODE HERE -->
+        <div class="row">
+            <div class="col-md-3" style="color: white">
+                <div class="panel panel-default" style="margin-top: 0px;">
+                    <div class="panel-body manajerpanel" style="background-color: #6AABFC; height: 100px">
+                        <h4>Orders</h4>
+                        <h4>150</h4>
+                        <i class="fa fa-shopping-bag fa-5x" style=" position: absolute; right: 30px; top:15px;" aria-hidden="true"></i>
+                    </div>
+                    <a href="" style="color: white;">
+                        <div class="panel-footer text-center" style="background-color: #699CFC">More Info
+                            <i class="fa fa-arrow-right fa-fw"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3" style="color: white">
+                <div class="panel panel-default" style="margin-top: 0px;">
+                    <div class="panel-body manajerpanel" style="background-color: #6AD126; height: 100px">
+                        <h4>Orders</h4>
+                        <h4>150</h4>
+                        <i class="fa fa-line-chart  fa-5x" style=" position: absolute; right: 30px; top:15px;" aria-hidden="true"></i>
+                    </div>
+                    <a href="" style="color: white;">
+                        <div class="panel-footer text-center" style="background-color: #67971A">More Info
+                            <i class="fa fa-arrow-right fa-fw"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3" style="color: white">
+                <div class="panel panel-default" style="margin-top: 0px;">
+                    <div class="panel-body manajerpanel" style="background-color: #FEBF2D; height: 100px">
+                        <h4>Orders</h4>
+                        <h4>150</h4>
+                        <span class="fa-stack fa-lg" style=" position: absolute; right: 85px; top:35px;">
+ 									<i class="fa fa-list-alt fa-stack-1x fa-5x" ></i>
+ 									<i class="fa fa-thumbs-o-up fa-stack-3x fa-3x" style="color: #cccccc"></i>
+ 								</span>
+                    </div>
+                    <a href="" style="color: white;">
+                        <div class="panel-footer text-center" style="background-color: #FD9927">More Info
+                            <i class="fa fa-arrow-right fa-fw"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3" style="color: white">
+                <div class="panel panel-default" style="margin-top: 0px;">
+                    <div class="panel-body manajerpanel" style="background-color: #FD4D1F; height: 100px">
+                        <h4>Orders</h4>
+                        <h4>150</h4>
+                        <i class="fa fa-user fa-5x" style=" position: absolute; right: 30px; top:15px;" aria-hidden="true"></i>
+                    </div>
+                    <a href="" style="color: white;">
+                        <div class="panel-footer text-center" style="background-color: #FC361D">More Info
+                            <i class="fa fa-arrow-right fa-fw"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load c3.css -->
+        <link th:href="@{assets/c3/c3.css}" rel="stylesheet"/>
+
+        <!-- Load d3.js and c3.js -->
+        <script th:src="@{assets/c3/d3.min.js}" charset="utf-8"></script>
+        <script th:src="@{assets/c3/c3.min.js}"></script>
+
+        <canvas id="myChart"></canvas>
+        <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js}"></script>
+        <script type="text/javascript">
+
+
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+
+                // The data for our dataset
+                data: {
+                    labels: ["January", "February", "March", "April", "May", "June", "July"],
+                    datasets: [{
+                        label: "My First dataset",
+                        backgroundColor: 'rgba(74, 142, 249 , 0.5)',
+                        borderColor: 'red',
+                        data: [0, 10, 5, 2, 20, 30, 45],
+                    }]
+                },
+
+                // Configuration options go here
+                options: {}
+            });
+        </script>
+    </div>
+</div>
+</body>
+</html>
