@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head>
+    <title>Kasir - Produk</title>
+    <div th:replace="kasir/header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="kasir/header :: header"/>
+
+<!-- COntent web -->
+<div class="body">
+    <div class="container-fluid">
+        <div class="page-header">
+            <h2 class="text-center">PRODUCTS</h2>
+        </div>
+        <!-- Code Here --><!-- Code Here --><!-- Code Here --><!-- Code Here --><!-- Code Here -->
+        <!-- Search -->
+        <form class="form-inline text-center">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" style="width: 300px" class="form-control" aria-label="..." placeholder="Search"/>
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default dropdown-toggle text-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="caret"></span> Category</button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#">Makanan</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </div><!-- /btn-group -->
+                </div>
+                <a href="kasirprodukmap.html"><button type="button" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false" ><i class="fa fa-map fa-fw" aria-hiden="true"></i>Item Map</button></a>
+            </div>
+        </form>
+    </div>
+    <!-- Table -->
+    <div class="container-fluid">
+        <table class="table table-striped " style="margin-top: 20px">
+            <thead>
+            <tr style="background-color: #FEA72C">
+                <th>Image</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Category</th>
+                <th>Last Update</th>
+                <th>Update By</th>
+                <th>Created at</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><img th:src="@{assets/image/defaultBarang.png}" style="max-height: 30px"/></td>
+                <td>081441292838</td>
+                <td>Teh Pucuk Harum</td>
+                <td>Rp. 999999</td>
+                <td>150</td>
+                <td>Drink</td>
+                <td>10/08/2017 <br/>09:45</td>
+                <td>Lukman</td>
+                <td>01/07/2017 <br/>07:42</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
