@@ -10,7 +10,7 @@ public class KasirController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String dashboardKasir(){
-        return "kasir/editProfil";
+        return "kasir/orders";
     }
 
 }
