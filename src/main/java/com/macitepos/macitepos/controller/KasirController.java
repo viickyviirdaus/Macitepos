@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class KasirController {
 
     @RequestMapping(method = RequestMethod.GET)
-    public String dashboardKasir(){
-        return "kasir/dashboard";
-    }
+    public String dashboardKasir(){ return "kasir/Dashboard"; }
 
 }

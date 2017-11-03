@@ -4,64 +4,74 @@
 
   <title>Login | Macite</title>
   <!-- Bootstrap core CSS-->
-  <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+  <link th:href="@{assets/css/bootstrap.min.css}" rel="stylesheet" />
   <!-- Custom fonts for this template-->
-  <link th:href="@{vendor/font-awesome/css/font-awesome.min.css}" rel="stylesheet" type="text/css" />
+  <link th:href="@{assets/css/font-awesome.min.css}" rel="stylesheet" type="text/css" />
   <!-- Custom styles for this template-->
-  <link th:href="@{css/sb-admin.css}" rel="stylesheet" />
+  <link th:href="@{assets/css/sb-admin.css}" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" th:href="@{assets/css/background.css}" />
 </head>
+<!--th:style="'background-image: url('+ @{assets/image/a.jpg} +');'"-->
+<body class="bg-dark" >
 
-<body class="bg-dark" th:style="'background-image: url('+ @{image/a.jpg} +');'">
+
+
+<!-- particles.js container -->
+<div id="particles-js"></div>
+
+<!-- scripts -->
+<script th:src="@{assets/js/particles.js}"></script>
+<script th:src="@{assets/bootstrap/js/app.js}"></script>
 
   <div class="container" >
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-4" style="margin-top: 120px;">
-        <img style="width: 350px; height: 100px" th:src="@{image/logo.png}" />
+        <img style="margin-bottom: 10px; width: 350px; height: 100px" th:src="@{assets/image/logo.png}" />
+        <div class="row text-center" style="background:rgba(0,0,0,0.02);" >
+            <form th:action="@{/login}" method="post">
+              <fieldset style="margin:10px 40px 20px 40px; ">
+                <h4>Please Sign In</h4>
+                <div class="form-group">
+                  <input type="text" name="username" id="username" class="form-control input-lg"
+                         placeholder="Enter Username" required="true" autofocus="true"/>
+                </div>
+                <div class="form-group">
+                  <input type="password" name="password" id="password" class="form-control input-lg"
+                         placeholder="Enter Password" required="true"/>
+                </div>
+
+                <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign In"/>
+                <div th:if="${param.error}">
+                  <div class="alert alert-danger">
+                    Invalid username and password.
+                  </div>
+                </div>
+                <div th:if="${param.logout}">
+                  <div class="alert alert-info">
+                    You have been logged out.
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+        </div>
+
       </div>
       <div class="col-md-4"></div>
-    </div>
-    <div class="card card-login mx-auto mt-5" style="background:rgba(255,255,255,0.2);">
-      <div class="card-header text-center"  >Sign In</div>
-      <div class="card-body" style="background:rgba(255,255,255,0.1);">
 
-        <form th:action="@{/login}" th:object="${pengguna}" method="post" class="form-signin" >
-          <div class="form-group">
 
-            <input type="" id="username" name="username" placeholder="Enter Username"  class="form-control" th:field="*{username}" />
-
-          </div>
-          <div class="form-group">
-
-            <input type="" id="password" name="password" placeholder="Enter Password"  class="form-control" th:field="*{password}" />
-            <i class="fa fa-key fa-fw" aria-hidden="true"></i>
-          </div>
-          <div class="form-group">
-            <!--<div class="form-check">-->
-              <!--<label class="form-check-label">-->
-                <!--<input class="form-check-input" type="checkbox"> Remember Password</label>-->
-            <!--</div>-->
-
-          </div>
-          <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" style="    padding: .2rem 1rem;" th:text="Login"></button>
-          <div align="center" >
-                <p style="font-size: 20; color: #FF1C19;" th:text="${errors}"></p>
-          </div>
-        </form>
-
-        <!--<div class="text-center">-->
-          <!--<a class="d-block small mt-3" href="register.html">Register an Account</a>-->
-          <!--<a class="d-block small" href="forgot-password.html">Forgot Password?</a>-->
-        <!--</div>-->
-      </div>
     </div>
   </div>
+
+
+
   <!-- Bootstrap core JavaScript-->
-  <script th:src="@{vendor/jquery/jquery.min.js}"></script>
-  <script th:src="@{vendor/popper/popper.min.js}"></script>
-  <script th:src="@{vendor/bootstrap/js/bootstrap.min.js}"></script>
+  <script th:src="@{assets/jquery/jquery.min.js}"></script>
+  <script th:src="@{assets/popper/popper.min.js}"></script>
+  <script th:src="@{assets/bootstrap/js/bootstrap.min.js}"></script>
   <!-- Core plugin JavaScript-->
-  <script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+  <script th:src="@{assets/jquery-easing/jquery.easing.min.js}"></script>
+
 </body>
 
 </html>
