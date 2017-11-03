@@ -20,7 +20,7 @@ public class manajerController {
 
         session.setAttribute("nama", pengguna.getUsername());
         model.addAttribute("pengguna", akunService.listPengguna());
-        return "/manajer/masterManajer";
+        return "/manajer/dashboard";
     }
 
 }

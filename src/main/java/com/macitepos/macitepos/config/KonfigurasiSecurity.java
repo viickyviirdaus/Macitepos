@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
 import javax.sql.DataSource;
 
@@ -22,6 +23,8 @@ public class KonfigurasiSecurity extends WebSecurityConfigurerAdapter {
             + " join role r on ur.role_id = r.role_id"
             + " where p.username = ? ";
 
+    @Autowired
+    private AccessDeniedHandler accessDeniedHandler;
 
     @Qualifier("dataSource")
     @Autowired DataSource ds;
@@ -43,8 +46,8 @@ public class KonfigurasiSecurity extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/home", "/member").permitAll()
-                .antMatchers("/kasir").hasAnyRole("MANAJER")
-                .antMatchers("/member").hasAnyRole("MANAJER")
+                .antMatchers("/manajer/**").hasAnyRole("MANAJER")
+                .antMatchers("/kasir/**").hasAnyRole("KASIR")
                 .antMatchers("/member/create").hasAnyRole("KASIR","MANAJER")
                 .anyRequest().authenticated()
 
@@ -56,6 +59,8 @@ public class KonfigurasiSecurity extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .permitAll()
+                .and()
+                .exceptionHandling().accessDeniedHandler(accessDeniedHandler)
                 ;
 
     }

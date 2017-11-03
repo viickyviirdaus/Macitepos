@@ -32,12 +32,9 @@ public class AkunController {
         return "/home";
     }
 
-//    @GetMapping("/manajer")
-//    public String manajer(HttpSession session, Pengguna pengguna, Model model) {
-//
-//        session.setAttribute("nama", pengguna.getUsername());
-//        model.addAttribute("pengguna", akunService.listPengguna());
-//        return "/manajer/masterManajer";
-//
-//    }
+    @GetMapping("/403")
+    public String error403() {
+        return "/403";
+    }
+
 }
