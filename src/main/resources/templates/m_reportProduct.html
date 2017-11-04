@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.com">
 <head>
-    <title>Kasir - Report Products | MacitePos.com</title>
-    <div th:replace="kasir/header :: header-css"/>
+    <title>Manajer - Report Products | MacitePos.com</title>
+    <div th:replace="m_header :: header-css"/>
 </head>
 <body>
 
-<div th:replace="kasir/header :: header"/>
+<div th:replace="m_header :: header"/>
 
 <!-- COntent web -->
 <div class="body">
@@ -18,8 +18,8 @@
         <!-- Search -->
         <form class="form-inline text-center">
             <div class="form-group">
-                <a href=""><button type="button" class="btn btn-primary text-center active" aria-haspopup="true" aria-expanded="false" >Product</button></a>
-                <a href="kasirReportPayment.html"><button type="button" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false" >Payments</button></a>
+                <a th:href="@{/reportProduct}"><button type="button" class="btn btn-primary text-center active" aria-haspopup="true" aria-expanded="false" >Product</button></a>
+                <a th:href="@{/reportPayment}"><button type="button" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false" >Payments</button></a>
             </div>
         </form>
     </div>

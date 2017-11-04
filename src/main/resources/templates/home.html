@@ -9,7 +9,7 @@
 
     <h1>Welcome Spring Boot</h1>
     <div class="container">
-
+        <img style="margin-bottom: 10px; width: 350px; height: 100px" th:src="@{assets/image/logo.png}" />
         <h1>Bismillahirrahmanirrahim</h1>
         <div th:if="${not #lists.isEmpty(member)}">
             <table class="table table-striped">
@@ -36,6 +36,7 @@
 
         <div>
             <a href="/member/create" class="btn btn-default"> Add Member</a>
+            <a th:href="@{/logout}" methods="post">Logout</a>
         </div>
 
 

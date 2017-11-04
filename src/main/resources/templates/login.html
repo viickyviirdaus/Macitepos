@@ -44,7 +44,7 @@
                 <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign In" style="margin-bottom: 15px;" />
                 <div th:if="${param.error}">
                   <div class="alert alert-danger">
-                    Invalid username and password.
+                    Invalid username or password.
                   </div>
                 </div>
                 <div th:if="${param.logout}">

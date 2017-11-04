@@ -9,7 +9,7 @@
 <div class="container text-center">
 
     <div class="starter-template text-center">
-
+        <img style="margin-bottom: 10px; width: 350px; height: 100px" th:src="@{assets/image/logo.png}" />
         <h1>403 - Access is denied</h1>
         <div th:inline="text">Hello '[[${#httpServletRequest.remoteUser}]]'.</div>
         <div>You do not have permission to access this page.</div>

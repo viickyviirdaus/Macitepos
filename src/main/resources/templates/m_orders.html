@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head>
+    <title>Manajer - Orders | MacitePos.com</title>
+    <div th:replace="m_header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="m_header :: header"/>
+
+<!-- COntent web -->
+<div class="body">
+    <div class="container-fluid">
+        <div class="page-header">
+            <h2 class="text-center">ORDERS</h2>
+        </div>
+    </div>
+    <!-- Table -->
+    <div class="container-fluid">
+        <table class="table table-striped " style="margin-top: 20px">
+            <thead>
+            <tr style="background-color: #6871FC">
+                <th>No</th>
+                <th>Customer</th>
+                <th>Discount</th>
+                <th>Total Item</th>
+                <th>Total</th>
+                <th>Paid</th>
+                <th>Change</th>
+                <th>Cashier</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>000001</td>
+                <td>Abdullah Andi Syaifullah</td>
+                <td>0</td>
+                <td>3</td>
+                <td>Rp. 999999</td>
+                <td>Rp. 999999</td>
+                <td>Rp. 0</td>
+                <td>Lukman</td>
+                <td>01/07/2017 <br/>07:42</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
