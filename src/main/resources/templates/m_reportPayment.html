@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head>
+    <title>Manajer - Report Products | MacitePos.com</title>
+    <div th:replace="m_header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="m_header :: header"/>
+
+<!-- COntent web -->
+<div class="body">
+    <div class="container-fluid">
+        <div class="page-header">
+            <h2 class="text-center">REPORT</h2>
+        </div>
+        <!-- Code Here --><!-- Code Here --><!-- Code Here --><!-- Code Here --><!-- Code Here -->
+        <!-- Search -->
+        <form class="form-inline text-center">
+            <div class="form-group">
+                <a th:href="@{/reportProduct}"><button type="button" class="btn btn-primary text-center active" aria-haspopup="true" aria-expanded="false" >Product</button></a>
+                <a th:href="@{/reportPayment}"><button type="button" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false" >Payments</button></a>
+            </div>
+        </form>
+    </div>
+    <!-- Table -->
+    <div class="container-fluid">
+        <table class="table table-striped " style="margin-top: 20px">
+            <thead>
+            <tr style="background-color: #4F7F3F">
+                <th>Customer Name</th>
+                <th>Order Number</th>
+                <th>Recieved By</th>
+                <th>Date</th>
+                <th>Amounts</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Mukidi</td>
+                <td>#003</td>
+                <td>Lukman</td>
+                <td>08/092017 08:30:33</td>
+                <td>Rp. 50000</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="text-right">Total = </td>
+                <td>Rp. 50000</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

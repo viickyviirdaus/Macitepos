@@ -14,8 +14,6 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/")
 public class AkunController {
 
-    @Autowired
-    private AkunService akunService;
 
     @GetMapping("/login")
     public String login() {

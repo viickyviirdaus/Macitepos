@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.com">
 <head>
     <title>Manajer - Dashboard | MacitePos.com</title>
-    <div th:replace="manajer/header :: header-css"/>
+    <div th:replace="m_header :: header-css"/>
 </head>
 <body>
 
-<div th:replace="manajer/header :: header"/>
+<div th:replace="m_header :: header"/>
 
 <!-- COntent web -->
 <div class="body">
@@ -20,10 +20,10 @@
                 <div class="panel panel-default" style="margin-top: 0px;">
                     <div class="panel-body manajerpanel" style="background-color: #6AABFC; height: 100px">
                         <h4>Orders</h4>
-                        <h4>150</h4>
-                        <i class="fa fa-shopping-bag fa-5x" style=" position: absolute; right: 30px; top:15px;" aria-hidden="true"></i>
+                        <h3><b>30150</b></h3>
+                        <i class="fa fa-shopping-bag fa-5x" style=" position: absolute; right: 30px; top:15px; color: rgba(0, 0, 0, 0.16)" aria-hidden="true"></i>
                     </div>
-                    <a href="" style="color: white;">
+                    <a th:href="@{/order}" style="color: white;">
                         <div class="panel-footer text-center" style="background-color: #699CFC">More Info
                             <i class="fa fa-arrow-right fa-fw"></i>
                         </div>
@@ -33,11 +33,12 @@
             <div class="col-md-3" style="color: white">
                 <div class="panel panel-default" style="margin-top: 0px;">
                     <div class="panel-body manajerpanel" style="background-color: #6AD126; height: 100px">
-                        <h4>Orders</h4>
-                        <h4>150</h4>
-                        <i class="fa fa-line-chart  fa-5x" style=" position: absolute; right: 30px; top:15px;" aria-hidden="true"></i>
+                        <h4>Payments</h4>
+
+                        <i class="fa fa-line-chart  fa-5x" style=" position: absolute; right: 30px; top:15px; color: rgba(0, 0, 0, 0.16)" aria-hidden="true"></i>
+                        <h3><b>Rp.150.000.000</b></h3>
                     </div>
-                    <a href="" style="color: white;">
+                    <a th:href="@{/report}" style="color: white;">
                         <div class="panel-footer text-center" style="background-color: #67971A">More Info
                             <i class="fa fa-arrow-right fa-fw"></i>
                         </div>
@@ -47,14 +48,14 @@
             <div class="col-md-3" style="color: white">
                 <div class="panel panel-default" style="margin-top: 0px;">
                     <div class="panel-body manajerpanel" style="background-color: #FEBF2D; height: 100px">
-                        <h4>Orders</h4>
-                        <h4>150</h4>
+                        <h4>Products</h4>
+                        <h3><b>5150</b></h3>
                         <span class="fa-stack fa-lg" style=" position: absolute; right: 85px; top:35px;">
- 									<i class="fa fa-list-alt fa-stack-1x fa-5x" ></i>
- 									<i class="fa fa-thumbs-o-up fa-stack-3x fa-3x" style="color: #cccccc"></i>
+ 									<i class="fa fa-list-alt fa-stack-1x fa-5x" style="color: rgba(0, 0, 0, 0.16)"></i>
+ 									<i class="fa fa-thumbs-o-up fa-stack-3x fa-3x" style="color: rgba(0, 0, 0, 0.16)"></i>
  								</span>
                     </div>
-                    <a href="" style="color: white;">
+                    <a th:href="@{/product}" style="color: white;">
                         <div class="panel-footer text-center" style="background-color: #FD9927">More Info
                             <i class="fa fa-arrow-right fa-fw"></i>
                         </div>
@@ -64,11 +65,11 @@
             <div class="col-md-3" style="color: white">
                 <div class="panel panel-default" style="margin-top: 0px;">
                     <div class="panel-body manajerpanel" style="background-color: #FD4D1F; height: 100px">
-                        <h4>Orders</h4>
-                        <h4>150</h4>
-                        <i class="fa fa-user fa-5x" style=" position: absolute; right: 30px; top:15px;" aria-hidden="true"></i>
+                        <h4>Customers</h4>
+                        <h3><b>1530</b></h3>
+                        <i class="fa fa-user fa-5x" style=" position: absolute; right: 30px; top:15px; color: rgba(0, 0, 0, 0.16)" aria-hidden="true"></i>
                     </div>
-                    <a href="" style="color: white;">
+                    <a th:href="@{/customer}" style="color: white;">
                         <div class="panel-footer text-center" style="background-color: #FC361D">More Info
                             <i class="fa fa-arrow-right fa-fw"></i>
                         </div>
@@ -96,12 +97,12 @@
 
                 // The data for our dataset
                 data: {
-                    labels: ["January", "February", "March", "April", "May", "June", "July"],
+                    labels: ["January", "February", "March", "April", "May", "June", "July", "Augustus", "September", "October", "November", "December"],
                     datasets: [{
-                        label: "My First dataset",
+                        label: "Statistic Macitepos",
                         backgroundColor: 'rgba(74, 142, 249 , 0.5)',
-                        borderColor: 'red',
-                        data: [0, 10, 5, 2, 20, 30, 45],
+                        borderColor: 'green',
+                        data: [5, 10, 0, 4, 20, 28, 20, 34, 30, 40, 18, 33],
                     }]
                 },
 

@@ -41,13 +41,16 @@ public class KonfigurasiSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http)throws Exception{
 
         http
-                .authorizeRequests().antMatchers("/assets/**").permitAll();
+                .authorizeRequests().antMatchers("/assets/**").permitAll()
+                ;
 
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/home", "/member").permitAll()
-                .antMatchers("/manajer/**").hasAnyRole("MANAJER")
-                .antMatchers("/kasir/**").hasAnyRole("KASIR")
+                .antMatchers("/manajer", "/customer","/edit","/m_header","/order","/product","reportPayment","reportProduct","user")
+                .hasAnyRole("MANAJER")
+                .antMatchers("/kasir", "/customers","/edits","/c_header","/orders","/products","c_reportPayment","c_reportProduct","c_user")
+                .hasAnyRole("KASIR")
                 .antMatchers("/member/create").hasAnyRole("KASIR","MANAJER")
                 .anyRequest().authenticated()
 

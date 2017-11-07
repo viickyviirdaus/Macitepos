@@ -1,8 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:fragment="header-css">
-        <link th:href="@{assets/image/icon.png}" rel="shortcut icon"/>
-        <link th:href="@{assets/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/assets/image/icon.png}" rel="shortcut icon"/>
+        <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" type="text/css" th:href="@{assets/css/cssnyatemplate.css}"/>
         <link rel="stylesheet" th:href="@{assets/font-awesome-4.7.0/css/font-awesome.min.css}"/>
         <script  th:src="@{assets/js/jquery-3.1.1.min.js}"></script>
@@ -35,57 +35,57 @@
                             <div class="row">
                                 <div class="col-sm-5"><img th:src="@{assets/image/profil.png}" class="img-circle" style="max-width: 100%"/></div>
                                 <div class="col-md-7">
-                                    <h5 style="margin-bottom: 0px"><b th:inline="text">[[${#httpServletRequest.remoteUser}]]</b></h5>
+                                    <h4 style="margin-bottom: 0px"><b th:inline="text">[[${#httpServletRequest.remoteUser}]]</b></h4>
                                     <span> <span style="color: #00B900; font-size: 20px;" >&#9679;</span> Online</span>
                                 </div>
                             </div>
                         </div>
                     </li>
                     <li class="active">
-                        <a href="#">
+                        <a th:href="@{/manajer}">
                             <i class="fa fa-tachometer fa-fw" aria-hidden="true"></i>
                             Dashboard
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
+                    <li >
+                        <a th:href="@{/product}">
                             <i class="fa fa-cubes fa-fw" aria-hidden="true"></i>
                             Products
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a th:href="@{/order}">
                             <i class="fa fa-shopping-bag fa-fw" aria-hidden="true"></i>
                             Orders
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a th:href="@{/customer}">
                             <i class="fa fa-users fa-fw" aria-hidden="true"></i>
-                            Customer
+                            Customers
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a th:href="@{/reportProduct}">
                             <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>
                             Report
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a th:href="@{/user}">
                             <i class="fa fa-user fa-fw" aria-hidden="true"></i>
                             User
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a th:href="@{/edit}">
                             <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
                             Edit Profile
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a th:href="@{/logout}" methods="post">
                             <i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>
                             Logout
                         </a>
@@ -96,9 +96,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b th:inline="text">[[${#httpServletRequest.remoteUser}]]</b><span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-tachometer fa-fw" aria-hidden="true"></i> Dashboard</a></li>
-                            <li><a href="#"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> Profile</a></li>
-                            <li><a href="#"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i> Logout</a></li>
+                            <li><a th:href="@{/manajer}"><i class="fa fa-tachometer fa-fw" aria-hidden="true"></i> Dashboard</a></li>
+                            <li><a th:href="@{/edit}"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> Profile</a></li>
+                            <li><a th:href="@{/logout}" methods="post"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i> Logout</a></li>
                         </ul>
                     </li>
                 </ul>
