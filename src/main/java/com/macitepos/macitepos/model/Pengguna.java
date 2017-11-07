@@ -60,8 +60,8 @@ public class Pengguna implements java.io.Serializable{
     @Column(name = "created_at")
     private Date created_at;
 
-    @Column(name = "level_pengguna")
-    private String level_pengguna;
+    @Column(name = "level")
+    private String level;
 
 
 
@@ -125,18 +125,18 @@ public class Pengguna implements java.io.Serializable{
     }
 
     public void setPassword(String password) throws NoSuchAlgorithmException {
-        //this.password = password;
+        this.password = password;
 
-        MessageDigest md = MessageDigest.getInstance("MD5");
-        md.update(password.getBytes());
-
-        byte byteData[] = md.digest();
-
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < byteData.length; i++){
-            sb.append(Integer.toString((byteData[i] & 0xff) + 0xff, 16).substring(1));
-        }
-        this.password = sb.toString();
+//        MessageDigest md = MessageDigest.getInstance("MD5");
+//        md.update(password.getBytes());
+//
+//        byte byteData[] = md.digest();
+//
+//        StringBuffer sb = new StringBuffer();
+//        for (int i = 0; i < byteData.length; i++){
+//            sb.append(Integer.toString((byteData[i] & 0xff) + 0xff, 16).substring(1));
+//        }
+//        this.password = sb.toString();
     }
 
     public String getStatus_pengguna() {
@@ -171,12 +171,12 @@ public class Pengguna implements java.io.Serializable{
         this.created_at = created_at;
     }
 
-    public String getLevel_pengguna() {
-        return level_pengguna;
+    public String getLevel() {
+        return level;
     }
 
-    public void setLevel_pengguna(String level_pengguna) {
-        this.level_pengguna = level_pengguna;
+    public void setLevel(String level) {
+        this.level = level;
     }
 
 }
