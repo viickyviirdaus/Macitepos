@@ -1,7 +1,7 @@
 package com.macitepos.macitepos.controller;
 
 import com.macitepos.macitepos.model.Member;
-import com.macitepos.macitepos.dao.MemberDao;
+import com.macitepos.macitepos.services.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,16 +13,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 
-    private MemberDao memberDao;
+    private MemberService memberService;
 
         @Autowired
-    public void setMemberDao(MemberDao memberDao) {
-        this.memberDao = memberDao;
+    public void setMemberDao(MemberService memberService) {
+        this.memberService = memberService;
     }
 
     @RequestMapping("/member")
     public String home(Model model){
-        model.addAttribute("member", memberDao.listMember());
+        model.addAttribute("member", memberService.listMember());
         return "home"   ;
     }
 
@@ -34,19 +34,19 @@ public class HomeController {
 
     @RequestMapping(value = "/member/create", method = RequestMethod.POST)
     public String simpanDataMember(Model model, Member member){
-        model.addAttribute("member", memberDao.saveOrUpdate(member));
+        model.addAttribute("member", memberService.saveOrUpdate(member));
         return "redirect:/member";
     }
 
     @RequestMapping(value = "/member/edit/{id}", method = RequestMethod.GET)
     public String editDataMember(@PathVariable Integer id, Model model){
-        model.addAttribute("member", memberDao.getIdMember(id));
+        model.addAttribute("member", memberService.getIdMember(id));
         return "formMember";
     }
 
     @RequestMapping(value = "/member/hapus/{id}")
     public String hapus(@PathVariable Integer id){
-          memberDao.hapus(id);
+          memberService.hapus(id);
         return "redirect:/member";
     }
 }

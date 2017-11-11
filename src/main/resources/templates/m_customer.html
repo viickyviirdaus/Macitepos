@@ -83,12 +83,12 @@
         </div>
     </div>
     <!-- Table -->
-    <div class="container-fluid" th:if="${not #lists.isEmpty(member)}">
-
-        <table class="table table-striped " style="margin-top: 20px">
+    <!--<div class="container-fluid" th:if="${not #lists.isEmpty(member)}">-->
+    <div class="container-fluid">
+        <table class="table table-striped " id="memberTable" style="margin-top: 20px">
             <thead>
             <tr style="background-color: #FC161B">
-                <th>No</th>
+
                 <th>ID Member</th>
                 <th>Nama</th>
                 <th>TL</th>
@@ -98,19 +98,19 @@
                 <th>Created at</th>
             </tr>
             </thead>
-            <tbody>
-            <tr th:each="members : ${member}">
-                <td>1</td>
-                <td th:text="${members.id_member}"></td>
-                <td th:text="${members.nama_member}"></td>
-                <td th:text="${members.tanggal_lahir}"></td>
-                <td th:text="${members.jenis_kelamin}"></td>
-                <td th:text="${members.alamat}"></td>
-                <td th:text="${members.count}"></td>
-                <td th:text="${members.created_at}"></td>
+            <!--<tbody>-->
+            <!--<tr th:each="members : ${member}">-->
+                <!--<td>1</td>-->
+                <!--<td th:text="${members.id_member}"></td>-->
+                <!--<td th:text="${members.nama_member}"></td>-->
+                <!--<td th:text="${members.tanggal_lahir}"></td>-->
+                <!--<td th:text="${members.jenis_kelamin}"></td>-->
+                <!--<td th:text="${members.alamat}"></td>-->
+                <!--<td th:text="${members.count}"></td>-->
+                <!--<td th:text="${members.created_at}"></td>-->
 
-            </tr>
-            </tbody>
+            <!--</tr>-->
+            <!--</tbody>-->
         </table>
     </div>
 </div>

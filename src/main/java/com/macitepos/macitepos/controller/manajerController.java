@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 
 @Controller
-//@RequestMapping(value = "/manajer")
+
 public class manajerController {
     @Autowired
     private AkunService akunService;
@@ -28,7 +28,7 @@ public class manajerController {
 
     @GetMapping(value = "/product")
     public String product(ModelMap modelMap){
-        modelMap.put("actice", "active");
+
         return "m_product";
     }
 
@@ -37,10 +37,10 @@ public class manajerController {
         return "m_orders";
     }
 
-//    @GetMapping(value = "/customer")
-//    public String customer(){
-//        return "m_customer";
-//    }
+    @GetMapping(value = "/customer")
+    public String customer(){
+        return "m_customer";
+    }
 
     @GetMapping(value = "/reportProduct")
     public String reportProduct(){

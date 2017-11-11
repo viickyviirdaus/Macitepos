@@ -1,24 +1,26 @@
 package com.macitepos.macitepos.controller;
 
-import com.macitepos.macitepos.dao.MemberDao;
+import com.macitepos.macitepos.model.Member;
+import com.macitepos.macitepos.services.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class MemberController {
-    private MemberDao memberDao;
+    private MemberService memberService;
 
     @Autowired
-    public void setMemberDao(MemberDao memberDao) {
-        this.memberDao = memberDao;
+    public void setMemberDao(MemberService memberDao) {
+        this.memberService = memberDao;
     }
 
-    @GetMapping("/customer")
-    public String customer(Model model){
-        model.addAttribute("member", memberDao.listMember());
-        return "m_customer"   ;
+    @RequestMapping(path="/api/customer", method = RequestMethod.GET)
+    public Iterable<Member> customer(Model model){
+//        model.addAttribute("member", memberService.listMember());
+//        return "m_customer"   ;
+         return memberService.listMember();
     }
 }
