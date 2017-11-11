@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:fragment="header-css">
-        <link th:href="@{assets/image/icon.png}" rel="shortcut icon"/>
+        <link rel="shortcut icon" th:href="@{assets/image/icon.png}"/>
         <link th:href="@{assets/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" type="text/css" th:href="@{assets/css/cssnyatemplate.css}"/>
         <link rel="stylesheet" th:href="@{assets/font-awesome-4.7.0/css/font-awesome.min.css}"/>
@@ -23,7 +23,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#">
-                        <img alt="Brand" th:src="@{image/logo.png}" style="max-height: 100%"/>
+                        <img alt="Brand" th:src="@{assets/image/logo.png}" style="max-height: 100%"/>
                     </a>
                 </div>
 
