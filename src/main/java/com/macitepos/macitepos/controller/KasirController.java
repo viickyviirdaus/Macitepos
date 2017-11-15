@@ -24,8 +24,34 @@ public class KasirController {
         return "c_dashboard";
     }
 
-    @RequestMapping(value = "/kasir-edit", method = RequestMethod.GET)
+    @RequestMapping(value = "/kasir-product")
+    public String product(){
+        return "c_product";
+    }
+
+    @RequestMapping(value = "/kasir-orders")
+    public String orders(){
+        return "c_orders";
+    }
+
+    @RequestMapping(value = "/kasir-customer")
+    public String customer(){
+        return "c_customer";
+    }
+
+    @RequestMapping(value = "/kasir-report")
+    public String report(){
+        return "c_reportProduct";
+    }
+
+    @RequestMapping(value = "/kasir-user")
+    public String user(){
+        return "c_user";
+    }
+
+    @RequestMapping(value = "/kasir-profile", method = RequestMethod.GET)
     public String edit (){
         return "c_editProfil";
     }
+
 }

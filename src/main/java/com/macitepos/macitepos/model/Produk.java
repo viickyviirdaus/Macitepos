@@ -1,0 +1,244 @@
+package com.macitepos.macitepos.model;
+
+import org.springframework.boot.autoconfigure.web.ResourceProperties;
+
+import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.List;
+
+@Entity
+@Table(name = "produk")
+public class Produk {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id_produk;
+
+    @Column(name = "nama_produk")
+    private String nama_produk;
+
+    @Column(name = "kategori")
+    private String kategori;
+
+    @Column(name = "harga_beli")
+    private int harga_beli;
+
+    @Column(name = "harga_penjualan")
+    private int harga_penjualan;
+
+    @Column(name = "stok_ulang")
+    private int stok_ulang;
+
+    @Column(name = "stok_total")
+    private int stok_total;
+
+    @Column(name = "stok_gudang")
+    private int stok_gudang;
+
+    @Column(name = "stok_toko")
+    private int stok_toko;
+
+    @Column(name = "foto_produk")
+    private String foto_produk;
+
+    @Column(name = "no_rak_gudang")
+    private String no_rak_gudang;
+
+    @Column(name = "no_rak_toko")
+    private String no_rak_toko;
+
+    @Column(name = "last_updated")
+    private Timestamp last_updated;
+
+    @Column(name = "updated_by")
+    private String updated_by;
+
+    @Column(name = "status_produk")
+    private String status_produk;
+
+    @Column(name = "created_at")
+    private Timestamp created_at;
+
+    @OneToMany(mappedBy = "produk")
+    private List<Detil_penjualan> detil_penjualans;
+
+    @OneToMany(mappedBy = "produk")
+    private List<Transaksi_pembelian> transaksi_pembelians;
+
+    public Produk(
+             String nama_produk,
+             int harga_beli,
+             int harga_penjualan,
+             int stok_ulang,
+             int stok_total,
+             int stok_gudang,
+             int stok_toko,
+             String foto_produk,
+             String no_rak_gudang,
+             String no_rak_toko,
+             String updated_by,
+             String status_produk){
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        this.nama_produk = nama_produk;
+        this.harga_beli = harga_beli;
+        this.harga_penjualan = harga_penjualan;
+        this.stok_ulang = stok_ulang;
+        this.stok_total = stok_total;
+        this.stok_gudang = stok_gudang;
+        this.stok_toko = stok_toko;
+        this.foto_produk = foto_produk;
+        this.no_rak_gudang = no_rak_gudang;
+        this.no_rak_toko = no_rak_toko;
+        this.last_updated = timestamp;
+        this.updated_by = updated_by;
+        this.status_produk = status_produk;
+        this.created_at = timestamp;
+    }
+
+    public int getId_produk() {
+        return id_produk;
+    }
+
+    public void setId_produk(int id_produk) {
+        this.id_produk = id_produk;
+    }
+
+    public String getNama_produk() {
+        return nama_produk;
+    }
+
+    public void setNama_produk(String nama_produk) {
+        this.nama_produk = nama_produk;
+    }
+
+    public int getHarga_beli() {
+        return harga_beli;
+    }
+
+    public void setHarga_beli(int harga_beli) {
+        this.harga_beli = harga_beli;
+    }
+
+    public int getHarga_penjualan() {
+        return harga_penjualan;
+    }
+
+    public void setHarga_penjualan(int harga_penjualan) {
+        this.harga_penjualan = harga_penjualan;
+    }
+
+    public int getStok_ulang() {
+        return stok_ulang;
+    }
+
+    public void setStok_ulang(int stok_ulang) {
+        this.stok_ulang = stok_ulang;
+    }
+
+    public int getStok_total() {
+        return stok_total;
+    }
+
+    public void setStok_total(int stok_total) {
+        this.stok_total = stok_total;
+    }
+
+    public int getStok_gudang() {
+        return stok_gudang;
+    }
+
+    public void setStok_gudang(int stok_gudang) {
+        this.stok_gudang = stok_gudang;
+    }
+
+    public int getStok_toko() {
+        return stok_toko;
+    }
+
+    public void setStok_toko(int stok_toko) {
+        this.stok_toko = stok_toko;
+    }
+
+    public String getFoto_produk() {
+        return foto_produk;
+    }
+
+    public void setFoto_produk(String foto_produk) {
+        this.foto_produk = foto_produk;
+    }
+
+    public String getNo_rak_gudang() {
+        return no_rak_gudang;
+    }
+
+    public void setNo_rak_gudang(String no_rak_gudang) {
+        this.no_rak_gudang = no_rak_gudang;
+    }
+
+    public String getNo_rak_toko() {
+        return no_rak_toko;
+    }
+
+    public void setNo_rak_toko(String no_rak_toko) {
+        this.no_rak_toko = no_rak_toko;
+    }
+
+    public Timestamp getLast_updated() {
+        return last_updated;
+    }
+
+    public void setLast_updated() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        this.last_updated = timestamp;
+    }
+
+    public String getUpdated_by() {
+        return updated_by;
+    }
+
+    public void setUpdated_by(String updated_by) {
+        this.updated_by = updated_by;
+    }
+
+    public String getStatus_produk() {
+        return status_produk;
+    }
+
+    public void setStatus_produk(String status_produk) {
+        this.status_produk = status_produk;
+    }
+
+    public Timestamp getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        this.created_at = timestamp;
+    }
+
+    public List<Detil_penjualan> getDetil_penjualans() {
+        return detil_penjualans;
+    }
+
+    public void setDetil_penjualans(List<Detil_penjualan> detil_penjualans) {
+        this.detil_penjualans = detil_penjualans;
+    }
+
+    public List<Transaksi_pembelian> getTransaksi_pembelians() {
+        return transaksi_pembelians;
+    }
+
+    public void setTransaksi_pembelians(List<Transaksi_pembelian> transaksi_pembelians) {
+        this.transaksi_pembelians = transaksi_pembelians;
+    }
+
+    public String getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
+    }
+}
+

@@ -1,11 +1,7 @@
 package com.macitepos.macitepos.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.sql.Timestamp;
 
 import java.security.MessageDigest;
 
@@ -15,7 +11,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Transient;
 
 import java.security.NoSuchAlgorithmException;
+import java.sql.Time;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -29,8 +27,6 @@ public class Pengguna implements java.io.Serializable{
     @Column(name = "nama_pengguna")
     private String nama_pengguna;
 
-
-
     @Column(name = "username")
     private String username;
 
@@ -38,7 +34,7 @@ public class Pengguna implements java.io.Serializable{
     private String alamat_pengguna;
 
     @Column(name = "tanggal_lahir")
-    private String tanggal_lahir;
+    private Date tanggal_lahir;
 
     @Column(name = "email")
     private String email;
@@ -47,21 +43,25 @@ public class Pengguna implements java.io.Serializable{
     private String password;
 
     @Column(name = "status_pengguna")
-    private String status_pengguna;
+    private boolean status_pengguna;
 
     @Column(name = "foto_pengguna")
     private String foto_pengguna;
 
-
-
     @Column(name = "last_modified")
-    private Date last_modified;
+    private Timestamp last_modified;
 
     @Column(name = "created_at")
-    private Date created_at;
+    private Timestamp created_at;
 
     @Column(name = "level")
     private String level;
+
+    @OneToMany(mappedBy = "pengguna")
+    private List<Transaksi_penjualan> transaksi_penjualans;
+
+    @OneToMany(mappedBy = "pengguna")
+    private List<Transaksi_pembelian> transaksi_pembelians;
 
 
 
@@ -84,8 +84,6 @@ public class Pengguna implements java.io.Serializable{
 
     public void setNama_pengguna(String nama_pengguna) {
         this.nama_pengguna = nama_pengguna;
-
-
     }
 
     public String getUsername() {
@@ -104,13 +102,11 @@ public class Pengguna implements java.io.Serializable{
         this.alamat_pengguna = alamat_pengguna;
     }
 
-    public String getTanggal_lahir() {
+    public Date getTanggal_lahir() {
         return tanggal_lahir;
     }
 
-    public void setTanggal_lahir(String tanggal_lahir) {
-        this.tanggal_lahir = tanggal_lahir;
-    }
+    public void setTanggal_lahir(Date tanggal_lahir) { this.tanggal_lahir = tanggal_lahir; }
 
     public String getEmail() {
         return email;
@@ -139,11 +135,11 @@ public class Pengguna implements java.io.Serializable{
 //        this.password = sb.toString();
     }
 
-    public String getStatus_pengguna() {
+    public boolean getStatus_pengguna() {
         return status_pengguna;
     }
 
-    public void setStatus_pengguna(String status_pengguna) {
+    public void setStatus_pengguna(boolean status_pengguna) {
         this.status_pengguna = status_pengguna;
     }
 
@@ -155,20 +151,22 @@ public class Pengguna implements java.io.Serializable{
         this.foto_pengguna = foto_pengguna;
     }
 
-    public Date getLast_modified() {
+    public Timestamp getLast_modified() {
         return last_modified;
     }
 
     public void setLast_modified(Date last_modified) {
-        this.last_modified = last_modified;
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        this.last_modified = timestamp;
     }
 
-    public Date getCreated_at() {
+    public Timestamp getCreated_at() {
         return created_at;
     }
 
     public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        this.created_at = timestamp;
     }
 
     public String getLevel() {
@@ -179,4 +177,27 @@ public class Pengguna implements java.io.Serializable{
         this.level = level;
     }
 
+    public void setLast_modified(Timestamp last_modified) {
+        this.last_modified = last_modified;
+    }
+
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
+    }
+
+    public List<Transaksi_penjualan> getTransaksi_penjualans() {
+        return transaksi_penjualans;
+    }
+
+    public void setTransaksi_penjualans(List<Transaksi_penjualan> transaksi_penjualans) {
+        this.transaksi_penjualans = transaksi_penjualans;
+    }
+
+    public List<Transaksi_pembelian> getTransaksi_pembelians() {
+        return transaksi_pembelians;
+    }
+
+    public void setTransaksi_pembelians(List<Transaksi_pembelian> transaksi_pembelians) {
+        this.transaksi_pembelians = transaksi_pembelians;
+    }
 }

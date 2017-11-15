@@ -49,6 +49,5 @@ public class MemberDao implements MemberService {
         em.getTransaction().begin();
         em.remove(em.find(Member.class, id));
         em.getTransaction().commit();
-
     }
 }

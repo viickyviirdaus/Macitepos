@@ -3,7 +3,9 @@ package com.macitepos.macitepos.model;
 import javax.persistence.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Member {
@@ -13,7 +15,7 @@ public class Member {
     private Integer id_member;
     @Column(name = "nama_member")
     private String nama_member;
-    @Column(name = "alamat")
+    @Column(name = "alamat_member")
     private String alamat;
     @Column(name = "tanggal_lahir")
     private Date tanggal_lahir;
@@ -24,7 +26,7 @@ public class Member {
     @Column(name = "count")
     private Integer count;
     @Column(name = "last_visit")
-    private Date last_visit;
+    private Timestamp last_visit;
     @Column(name = "created_by")
     private String created_by;
     @Column(name = "created_at")
@@ -35,6 +37,9 @@ public class Member {
     @Version
     @Column(name="opt_version", columnDefinition = "integer DEFAULT 0")
     private Integer version;
+
+    @OneToMany(mappedBy = "member")
+    private List<Transaksi_penjualan> transaksi_penjualans;
 
     public Integer getId_member() {
         return id_member;
@@ -123,7 +128,7 @@ public class Member {
         return last_visit;
     }
 
-    public void setLast_visit(Date last_visit) {
+    public void setLast_visit(Timestamp last_visit) {
         this.last_visit = last_visit;
     }
 
@@ -143,4 +148,11 @@ public class Member {
         this.created_at = created_at;
     }
 
+    public List<Transaksi_penjualan> getTransaksi_penjualans() {
+        return transaksi_penjualans;
+    }
+
+    public void setTransaksi_penjualans(List<Transaksi_penjualan> transaksi_penjualans) {
+        this.transaksi_penjualans = transaksi_penjualans;
+    }
 }

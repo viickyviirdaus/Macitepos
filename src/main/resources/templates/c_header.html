@@ -42,44 +42,44 @@
                             </div>
                         </li>
                         <li class="active">
-                            <a href="#">
+                            <a th:href="@{/kasir}">
                                 <i class="fa fa-tachometer fa-fw" aria-hidden="true"></i>
                                 Dashboard
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a th:href="@{/kasir-product}">
                                 <i class="fa fa-cubes fa-fw" aria-hidden="true"></i>
                                 Products
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a th:href="@{/kasir-orders}">
                                 <i class="fa fa-shopping-bag fa-fw" aria-hidden="true"></i>
                                 Orders
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a th:href="@{/kasir-customer}">
                                 <i class="fa fa-users fa-fw" aria-hidden="true"></i>
                                 Customer
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a th:href="@{/kasir-report}">
                                 <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>
                                 Report
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a th:href="@{/kasir-user}">
                                 <i class="fa fa-user fa-fw" aria-hidden="true"></i>
                                 User
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a th:href="@{/kasir-profile}">
                                 <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
                                 Edit Profile
                             </a>
@@ -96,8 +96,8 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b th:inline="text">[[${#httpServletRequest.remoteUser}]]</b><span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#"><i class="fa fa-tachometer fa-fw" aria-hidden="true"></i> Dashboard</a></li>
-                                <li><a href="#"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> Profile</a></li>
+                                <li><a th:href="@{/kasir}"><i class="fa fa-tachometer fa-fw" aria-hidden="true"></i> Dashboard</a></li>
+                                <li><a th:href="@{/kasir-profile}"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> Profile</a></li>
                                 <li><a th:href="@{/logout}" methods="post"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i> Logout</a></li>
                             </ul>
                         </li>
