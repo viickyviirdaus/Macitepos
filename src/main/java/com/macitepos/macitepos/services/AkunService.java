@@ -9,6 +9,6 @@ public interface AkunService {
     public Pengguna findByUsernameAndPassword(String username, String password);
     List<Pengguna> listPengguna();
     Object findBylevel(String level_pengguna);
-
+    Pengguna findByUsername(String username);
 
 }

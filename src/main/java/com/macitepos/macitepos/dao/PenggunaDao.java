@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface PenggunaDao extends CrudRepository<Pengguna, Integer> {
 
     Pengguna findByUsernameAndPassword(String username, String password);
-
+    Pengguna findByUsername(String username);
 }

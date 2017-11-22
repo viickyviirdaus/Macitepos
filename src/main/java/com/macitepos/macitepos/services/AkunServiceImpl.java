@@ -43,8 +43,11 @@ public class AkunServiceImpl implements AkunService {
     @Override
     public Pengguna findBylevel(String level_pengguna) {
         EntityManager em = emf.createEntityManager();
-
-
         return null;
+    }
+
+    @Override
+    public Pengguna findByUsername(String username) {
+        return penggunaDao.findByUsername(username);
     }
 }

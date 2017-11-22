@@ -3,6 +3,8 @@ package com.macitepos.macitepos.controller;
 import com.macitepos.macitepos.model.Pengguna;
 import com.macitepos.macitepos.services.AkunService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -20,9 +22,10 @@ public class manajerController {
     private AkunService akunService;
 
     @RequestMapping(value = "/manajer")
-    public String manajer(HttpSession session, Pengguna pengguna, Model model) {
-        session.setAttribute("nama", pengguna.getUsername());
-        model.addAttribute("pengguna", akunService.listPengguna());
+    public String manajer(HttpSession session, Pengguna pengguna, ModelMap model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
         return "m_dashboard";
     }
 

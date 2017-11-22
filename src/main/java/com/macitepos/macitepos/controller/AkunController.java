@@ -3,6 +3,8 @@ package com.macitepos.macitepos.controller;
 import com.macitepos.macitepos.model.Pengguna;
 import com.macitepos.macitepos.services.AkunService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -14,10 +16,19 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/")
 public class AkunController {
 
+@Autowired
+AkunService akunService;
 
     @GetMapping("/login")
     public String login() {
-        return "/login";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (!authentication.getPrincipal().equals("anonymousUser")) {
+            System.out.println("Nama " + akunService.findByUsername(authentication.getName()).getNama_pengguna());
+            return "/home";
+        }else {
+            return "/login";
+        }
     }
 
     @GetMapping("/")
