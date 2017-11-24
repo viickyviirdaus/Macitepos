@@ -51,17 +51,17 @@
                 <th>Created at</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td><img th:src="@{assets/image/defaultBarang.png}" style="max-height: 30px"/></td>
-                <td>081441292838</td>
-                <td>Teh Pucuk Harum</td>
-                <td>Rp. 999999</td>
-                <td>150</td>
-                <td>Drink</td>
-                <td>10/08/2017 <br/>09:45</td>
-                <td>Lukman</td>
-                <td>01/07/2017 <br/>07:42</td>
+            <tbody >
+            <tr th:each="produks : ${produk}">
+                <td><img th:src="@{${'assets/image/'+produks.foto_produk}}" style="max-height: 30px"/></td>
+                <td th:text="${produks.id_produk}"></td>
+                <td th:text="${produks.nama_produk}"></td>
+                <td th:text="${produks.harga_penjualan}"></td>
+                <td th:text="${produks.stok_total}"></td>
+                <td th:text="${produks.kategori}"></td>
+                <td th:text="${produks.last_updated}"></td>
+                <td th:text="${produks.updated_by}"></td>
+                <td th:text="${produks.created_at}"></td>
             </tr>
             </tbody>
         </table>

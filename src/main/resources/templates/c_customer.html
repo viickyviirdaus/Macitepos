@@ -32,37 +32,38 @@
     <div class="modal fade" id="tambahCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+            <form th:object="${memberBaru}" th:action="@{/kasir-customer/createMember}" method="post">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Tambah Customer</h4>
                 </div>
-                <div class="modal-body">
+
                     <div class="row">
                         <div class="col-md-6">
-                            <form>
-                                <div class="form-group">
-                                    <label for="fullName">Full Name</label>
-                                    <input type="email" class="form-control" id="fullName" placeholder="Full Name"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Address">Address</label>
-                                    <input type="password" class="form-control" id="Address" placeholder="Address"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="DOB">Date Of Birth</label>
-                                    <input type="email" class="form-control" id="DOB" placeholder="Date Of Birth"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="password" class="form-control" id="email" placeholder="Email"/>
-                                </div>
-                                <label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="L"/> Laki Laki
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="P"/> Perempuan
-                                </label>
-                            </form>
+                            <input type="hidden" th:field="*{id_member}"/>
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" class="form-control" id="fullName" placeholder="Full Name" th:field="*{nama_member}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="Address">Address</label>
+                                <input type="text" class="form-control" id="Address" placeholder="Address" th:field="*{alamat}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="DOB">Date Of Birth</label>
+                                <input type="date" class="form-control" id="DOB" placeholder="Date Of Birth" th:field="*{tanggal_lahir}" />
+                            </div>
+                            <!--<div class="form-group">-->
+                            <!--<label for="email">Email</label>-->
+                            <!--<input type="password" class="form-control" id="email" placeholder="Email" th:field="*{email}" />-->
+                            <!--</div>-->
+                            <label class="radio-inline">
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="L" th:field="*{jenis_kelamin}" /> Laki Laki
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="P" th:field="*{jenis_kelamin}" /> Perempuan
+                            </label>
+
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -74,11 +75,13 @@
                             </div>
                         </div>
                     </div>
+                <div class="modal-body">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
+            </form>
             </div>
         </div>
     </div>
@@ -98,52 +101,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>No</td>
-                <td>ID Member</td>
-                <td>Nama</td>
-                <td>TL</td>
-                <td>L/P</td>
-                <td>Alamat</td>
-                <td><button type="button" class="btn btn-info">Edit</button></td>
-            </tr>
-            <tr>
-                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.No</td>
-                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.ID Member</td>
-                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Nama</td>
-                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.TL</td>
-                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.L/P</td>
-                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Alamat</td>
+            <tr th:each="members : ${member}">
+                <td>1</td>
+                <td th:text="${members.id_member}">ID Member</td>
+                <td th:text="${members.nama_member}">Nama</td>
+                <td th:text="${members.tanggal_lahir}">TL</td>
+                <td th:text="${members.jenis_kelamin}">L/P</td>
+                <td th:text="${members.alamat}">Alamat</td>
                 <td><button type="button" class="btn btn-info">Edit</button></td>
             </tr>
             </tbody>

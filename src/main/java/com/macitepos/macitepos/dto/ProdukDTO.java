@@ -1,86 +1,44 @@
-package com.macitepos.macitepos.model;
-
-import org.springframework.boot.autoconfigure.web.ResourceProperties;
-
-import javax.persistence.*;
+package com.macitepos.macitepos.dto;
 import java.sql.Timestamp;
-import java.util.List;
 
-@Entity
-@Table(name = "produk")
-public class Produk {
+public class ProdukDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id_produk;
-
-    @Column(name = "nama_produk")
     private String nama_produk;
-
-    @Column(name = "kategori")
     private String kategori;
-
-    @Column(name = "harga_beli")
     private int harga_beli;
-
-    @Column(name = "harga_penjualan")
     private int harga_penjualan;
-
-    @Column(name = "stok_ulang")
     private int stok_ulang;
-
-    @Column(name = "stok_total")
     private int stok_total;
-
-    @Column(name = "stok_gudang")
     private int stok_gudang;
-
-    @Column(name = "stok_toko")
     private int stok_toko;
-
-    @Column(name = "foto_produk")
     private String foto_produk;
-
-    @Column(name = "no_rak_gudang")
     private String no_rak_gudang;
-
-    @Column(name = "no_rak_toko")
     private String no_rak_toko;
-
-    @Column(name = "last_updated")
     private Timestamp last_updated;
-
-    @Column(name = "updated_by")
     private String updated_by;
-
-    @Column(name = "status_produk")
     private String status_produk;
-
-    @Column(name = "created_at")
     private Timestamp created_at;
+//    private List<Detil_penjualanDTO> detil_penjualans;
+//    private List<Transaksi_pembelianDTO> transaksi_pembelians;
 
-    @OneToMany(mappedBy = "produk")
-    private List<Detil_penjualan> detil_penjualans;
-
-    @OneToMany(mappedBy = "produk")
-    private List<Transaksi_pembelian> transaksi_pembelians;
-
-    public Produk(){}
-    public Produk(
-             String nama_produk,
-             String kategori,
-             int harga_beli,
-             int harga_penjualan,
-             int stok_ulang,
-             int stok_total,
-             int stok_gudang,
-             int stok_toko,
-             String foto_produk,
-             String no_rak_gudang,
-             String no_rak_toko,
-             String updated_by,
-             String status_produk){
+    public ProdukDTO(
+            int id_produk,
+            String nama_produk,
+            String kategori,
+            int harga_beli,
+            int harga_penjualan,
+            int stok_ulang,
+            int stok_total,
+            int stok_gudang,
+            int stok_toko,
+            String foto_produk,
+            String no_rak_gudang,
+            String no_rak_toko,
+            String updated_by,
+            String status_produk){
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        this.id_produk = id_produk;
         this.nama_produk = nama_produk;
         this.kategori = kategori;
         this.harga_beli = harga_beli;
@@ -98,6 +56,41 @@ public class Produk {
         this.created_at = timestamp;
     }
 
+    public ProdukDTO(
+            int id_produk,
+            String nama_produk,
+            int harga_beli,
+            int harga_penjualan,
+            int stok_ulang,
+            int stok_total,
+            int stok_gudang,
+            int stok_toko,
+            String foto_produk,
+            String no_rak_gudang,
+            String no_rak_toko,
+            Timestamp last_updated,
+            String updated_by,
+            String status_produk,
+            Timestamp created_at){
+        this.id_produk = id_produk;
+        this.nama_produk = nama_produk;
+        this.harga_beli = harga_beli;
+        this.harga_penjualan = harga_penjualan;
+        this.stok_ulang = stok_ulang;
+        this.stok_total = stok_total;
+        this.stok_gudang = stok_gudang;
+        this.stok_toko = stok_toko;
+        this.foto_produk = foto_produk;
+        this.no_rak_gudang = no_rak_gudang;
+        this.no_rak_toko = no_rak_toko;
+        this.last_updated = last_updated;
+        this.updated_by = updated_by;
+        this.status_produk = status_produk;
+        this.created_at = created_at;
+    }
+
+
+
     public int getId_produk() {
         return id_produk;
     }
@@ -112,6 +105,14 @@ public class Produk {
 
     public void setNama_produk(String nama_produk) {
         this.nama_produk = nama_produk;
+    }
+
+    public String getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
     }
 
     public int getHarga_beli() {
@@ -190,9 +191,8 @@ public class Produk {
         return last_updated;
     }
 
-    public void setLast_updated() {
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        this.last_updated = timestamp;
+    public void setLast_updated(Timestamp last_updated) {
+        this.last_updated = last_updated;
     }
 
     public String getUpdated_by() {
@@ -215,34 +215,25 @@ public class Produk {
         return created_at;
     }
 
-    public void setCreated_at() {
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        this.created_at = timestamp;
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
     }
 
-
-    public List<Transaksi_pembelian> getTransaksi_pembelians() {
-        return transaksi_pembelians;
-    }
-
-    public void setTransaksi_pembelians(List<Transaksi_pembelian> transaksi_pembelians) {
-        this.transaksi_pembelians = transaksi_pembelians;
-    }
-
-    public List<Detil_penjualan> getDetil_penjualans() {
-        return detil_penjualans;
-    }
-
-    public void setDetil_penjualans(List<Detil_penjualan> detil_penjualans) {
-        this.detil_penjualans = detil_penjualans;
-    }
-
-    public String getKategori() {
-        return kategori;
-    }
-
-    public void setKategori(String kategori) {
-        this.kategori = kategori;
-    }
+//    public List<Detil_penjualanDTO> getDetil_penjualans() {
+//        return detil_penjualans;
+//    }
+//
+//    public void setDetil_penjualans(List<Detil_penjualanDTO> detil_penjualans) {
+//        this.detil_penjualans = detil_penjualans;
+//    }
+//
+//    public List<Transaksi_pembelianDTO> getTransaksi_pembelians() {
+//        return transaksi_pembelians;
+//    }
+//
+//    public void setTransaksi_pembelians(List<Transaksi_pembelianDTO> transaksi_pembelians) {
+//        this.transaksi_pembelians = transaksi_pembelians;
+//    }
 }
+
 

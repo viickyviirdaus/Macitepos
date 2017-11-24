@@ -1,48 +1,25 @@
-package com.macitepos.macitepos.model;
+package com.macitepos.macitepos.dto;
 
-import javax.persistence.*;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.sql.Timestamp;
 import java.sql.Date;
-import java.util.List;
+import java.sql.Timestamp;
 
-@Entity
-public class Member {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class MemberDTO {
     private Integer id_member;
-    @Column(name = "nama_member")
     private String nama_member;
-    @Column(name = "alamat_member")
     private String alamat;
-    @Column(name = "tanggal_lahir")
     private Date tanggal_lahir;
-    @Column(name = "jenis_kelamin")
     private String jenis_kelamin;
-    @Column(name = "diskon")
     private Float diskon;
-    @Column(name = "count")
     private Integer count;
-    @Column(name = "last_visit")
     private Timestamp last_visit;
-    @Column(name = "created_by")
     private String created_by;
-    @Column(name = "created_at")
     private Timestamp created_at;
-
-    @Version
-    @Column(name="opt_version", columnDefinition = "integer DEFAULT 0")
     private Integer version;
 
-    @OneToMany(mappedBy = "member")
-    private List<Transaksi_penjualan> transaksi_penjualans;
-
-    public Member(){}
-    public Member(Integer id_member, String nama_member, String alamat, Date tanggal_lahir, String jenis_kelamin, Float diskon, Integer count,
-                  String created_by, Integer version) {
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+    public MemberDTO(){};
+    public MemberDTO(Integer id_member, String nama_member, String alamat, Date tanggal_lahir, String jenis_kelamin,
+                     Float diskon, Integer count, Timestamp last_visit, String created_by, Timestamp created_at,
+                     Integer version) {
         this.id_member = id_member;
         this.nama_member = nama_member;
         this.alamat = alamat;
@@ -50,9 +27,9 @@ public class Member {
         this.jenis_kelamin = jenis_kelamin;
         this.diskon = diskon;
         this.count = count;
-        this.last_visit = timestamp;
+        this.last_visit = last_visit;
         this.created_by = created_by;
-        this.created_at = timestamp;
+        this.created_at = created_at;
         this.version = version;
     }
 
@@ -78,14 +55,6 @@ public class Member {
 
     public void setAlamat(String alamat) {
         this.alamat = alamat;
-    }
-
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
     }
 
     public Date getTanggal_lahir() {
@@ -144,11 +113,11 @@ public class Member {
         this.created_at = created_at;
     }
 
-    public List<Transaksi_penjualan> getTransaksi_penjualans() {
-        return transaksi_penjualans;
+    public Integer getVersion() {
+        return version;
     }
 
-    public void setTransaksi_penjualans(List<Transaksi_penjualan> transaksi_penjualans) {
-        this.transaksi_penjualans = transaksi_penjualans;
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 }
