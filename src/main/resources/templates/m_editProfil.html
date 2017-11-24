@@ -68,7 +68,7 @@
         </div>
     </div>
     <!-- Table -->
-    <div class="container-fluid">
+    <div th:if="${not #lists.isEmpty(pengguna)}">
         <table class="table table-striped " style="margin-top: 20px">
             <thead>
             <tr style="background-color: #71BACF">
@@ -85,18 +85,30 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td><img th:src="@{assets/image/defaultProfile.png}" style="max-height: 40px"/></td>
-                <td>1</td>
-                <td>Lukman Swiseteger</td>
-                <td>Jalan in Aja</td>
-                <td>01/07/2017</td>
-                <td>lukman@gmail.com</td>
-                <td>Kasir</td>
-                <td>01/07/2017 <br/>07:42</td>
-                <td>01/07/2017 <br/>07:42</td>
+            <tr th:each="penggunas : ${pengguna}">
+                <td><img th:src="@{${'/assets/image/' + penggunas.foto_pengguna}}" style="max-height: 40px"/></td>
+                <td th:text="${penggunas.id_pengguna}"></td>
+                <td th:text="${penggunas.nama_pengguna}"></td>
+                <td th:text="${penggunas.alamat_pengguna}"></td>
+                <td th:text="${penggunas.tanggal_lahir}"></td>
+                <td th:text="${penggunas.email}"></td>
+                <td th:text="${penggunas.level}"></td>
+                <td th:text="${penggunas.created_at}"></td>
+                <td th:text="${penggunas.last_modified}"></td>
                 <td><button type="button" data-toggle="modal" data-target="#tambahCustomer" class="btn btn-info">Edit</button></td>
             </tr>
+            <!--<tr>-->
+                <!--<td><img th:src="@{assets/image/defaultProfile.png}" style="max-height: 40px"/></td>-->
+                <!--<td>1</td>-->
+                <!--<td>Lukman Swiseteger</td>-->
+                <!--<td>Jalan in Aja</td>-->
+                <!--<td>01/07/2017</td>-->
+                <!--<td>lukman@gmail.com</td>-->
+                <!--<td>Kasir</td>-->
+                <!--<td>01/07/2017 <br/>07:42</td>-->
+                <!--<td>01/07/2017 <br/>07:42</td>-->
+                <!--<td><button type="button" data-toggle="modal" data-target="#tambahCustomer" class="btn btn-info">Edit</button></td>-->
+            <!--</tr>-->
             </tbody>
         </table>
     </div>

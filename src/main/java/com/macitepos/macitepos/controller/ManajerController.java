@@ -8,24 +8,20 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
 @Controller
 
-public class manajerController {
+public class ManajerController {
     @Autowired
     private AkunService akunService;
 
     @RequestMapping(value = "/manajer")
-    public String manajer(HttpSession session, Pengguna pengguna, ModelMap model) {
+    public String manajer(HttpSession session) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
         return "m_dashboard";
     }
 
@@ -55,14 +51,33 @@ public class manajerController {
         return "m_reportPayment";
     }
 
-    @GetMapping(value = "/user")
+    @RequestMapping(value = "/user", method=RequestMethod.GET)
     public String user(Model model) {
-            model.addAttribute("pengguna", akunService.listPengguna());
+        model.addAttribute("penggunaBaru",new Pengguna() );
+        model.addAttribute("pengguna", akunService.listPengguna());
         return "m_user";
     }
 
+//    @RequestMapping(value="/user/create", method=RequestMethod.GET)
+//    public String tampiUser(Model model){
+//        model.addAttribute("pengguna", akunService.listPengguna());
+//        return "m_user";
+//    }
+
+    @RequestMapping(value="/user/create", method=RequestMethod.POST)
+    public String simpan(Pengguna penggunaa, Model model){
+        System.out.println("simpan");
+        Pengguna pengguna = akunService.saveOrUpdate(penggunaa);
+        model.addAttribute("pengguna", akunService.listPengguna());
+        return "redirect:/m_user";
+    }
+
     @GetMapping(value = "/edit")
-    public String edit(){
+    public String edit(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("pengguna", akunService.listPengguna());
+        Object a = akunService.findByUsername(authentication.getName()).getId_pengguna();
+        model.addAttribute("id", a);
         return "m_editProfil";
     }
 

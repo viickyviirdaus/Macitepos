@@ -20,12 +20,14 @@ public class AkunController {
 AkunService akunService;
 
     @GetMapping("/login")
-    public String login() {
+    public String login(ModelMap modelMap) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (!authentication.getPrincipal().equals("anonymousUser")) {
             System.out.println("Nama " + akunService.findByUsername(authentication.getName()).getNama_pengguna());
-            return "/home";
+
+            modelMap.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+            return "/m_header";
         }else {
             return "/login";
         }

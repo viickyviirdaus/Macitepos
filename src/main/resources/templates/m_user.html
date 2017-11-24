@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.com">
+<html xmlns:th="http://www.thymeleaf.com" xmlns:form="http://www.w3.org/1999/xhtml"
+      xmlns:path="http://www.w3.org/1999/xhtml">
 <head>
     <title>Manajer - User | MacitePos</title>
     <div th:replace="m_header :: header-css"/>
@@ -17,19 +18,102 @@
         <!-- Code Here --><!-- Code Here --><!-- Code Here --><!-- Code Here --><!-- Code Here -->
         <!-- Search -->
         <form class="form-inline text-center">
-            <div class="form-group">
+            <div id="user-form" class="form-group">
                 <div class="input-group">
                     <input type="text" style="width: 300px" class="form-control" aria-label="..." placeholder="Search"/>
                     <div class="input-group-btn">
                         <button type="button" class="btn btn-default text-center" aria-haspopup="true" aria-expanded="false"><i class="fa fa-search fa-fw" aria-hiden="true"></i>Search</button>
                     </div><!-- /btn-group -->
                 </div>
+                <button type="button" data-toggle="modal" data-target="#tambahCustomer" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus fa-fw" aria-hiden="true"></i>Tambah</button>
             </div>
         </form>
     </div>
+
+    <!--<form:form commandName="user">-->
+    <!-- MODAL TAMBAH CUSTOMER -->
+    <div class="modal fade" id="tambahCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Tambah Customer</h4>
+                </div>
+                <form class="form-horizontal" th:object="${penggunaBaru}" th:action="@{/user/create}" method="post">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                                <input type="hidden" th:field="*{id_pengguna}"/>
+                                <div class="form-group">
+                                    <label for="fullName">Full Name</label>
+                                    <input type="text" class="form-control" id="fullName" th:field="*{nama_pengguna}" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <input type="text" class="form-control" th:field="*{username}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Address">Address</label>
+                                    <input type="text" class="form-control" id="Address" th:field="*{alamat_pengguna}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="DOB">Date Of Birth</label>
+                                    <input type="date" class="form-control" id="DOB" th:field="*{tanggal_lahir}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" th:field="*{email}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="text" class="form-control" th:field="*{password}" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Status Pengguna</label>
+                                    <input type="text" class="form-control" th:field="*{status_pengguna}" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Kategori</label>
+                                    <label class="radio-inline">
+                                        <input  type="radio" value="Kasir" name="inlineRadioOptions" id="inlineRadio1" th:field="*{level}"/> Kasir
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input  type="radio" value="Warehouse Admin" name="inlineRadioOptions" id="inlineRadio2" th:field="*{level}"/> Warehouse Admin
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>Created At</label>
+                                    <input type="date" class="form-control" th:field="*{created_at}" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Last Modified</label>
+                                    <input type="date" class="form-control" th:field="*{last_modified}" />
+                                </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputFile">Photo</label>
+                                <div >
+                                    <img style="width: 200px; margin-bottom:10px;" th:src="@{assets/image/defaultProfile.png}"/>
+                                </div>
+                                <input type="file" id="exampleInputFile" th:field="*{foto_pengguna}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--</form:form>-->
     <!-- Table -->
-    <div th:if="${not #lists.isEmpty(pengguna)}">
-        <table class="table table-striped " style="margin-top: 20px">
+    <!--<div th:if="${not #lists.isEmpty(pengguna)}">-->
+    <div>
+        <table class="table table-striped " style="margin-top: 20px" id="userTable">
             <thead>
             <tr style="background-color: #71BACF">
                 <th>Image</th>
@@ -43,19 +127,19 @@
                 <th>Last Modified</th>
             </tr>
             </thead>
-            <tbody>
-            <tr th:each="penggunas : ${pengguna}">
-                <td><img th:src="@{assets/image/defaultProfile.png}" style="max-height: 40px"/></td>
-                <td th:text="${penggunas.id_pengguna}"></td>
-                <td th:text="${penggunas.nama_pengguna}"></td>
-                <td th:text="${penggunas.alamat_pengguna}"></td>
-                <td th:text="${penggunas.tanggal_lahir}"></td>
-                <td th:text="${penggunas.email}"></td>
-                <td th:text="${penggunas.level}"></td>
-                <td th:text="${penggunas.created_at}"></td>
-                <td th:text="${penggunas.last_modified}"></td>
-            </tr>
-            </tbody>
+            <!--<tbody>-->
+            <!--<tr th:each="penggunas : ${pengguna}">-->
+                <!--<td><img th:src="@{assets/image/defaultProfile.png}" style="max-height: 40px"/></td>-->
+                <!--<td th:text="${penggunas.id_pengguna}"></td>-->
+                <!--<td th:text="${penggunas.nama_pengguna}"></td>-->
+                <!--<td th:text="${penggunas.alamat_pengguna}"></td>-->
+                <!--<td th:text="${penggunas.tanggal_lahir}"></td>-->
+                <!--<td th:text="${penggunas.email}"></td>-->
+                <!--<td th:text="${penggunas.level}"></td>-->
+                <!--<td th:text="${penggunas.created_at}"></td>-->
+                <!--<td th:text="${penggunas.last_modified}"></td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
         </table>
     </div>
 </div>

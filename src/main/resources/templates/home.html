@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head lang="en">
 
     <title>Home</title>
@@ -12,6 +12,12 @@
     <div class="container">
         <img style="margin-bottom: 10px; width: 350px; height: 100px" th:src="@{assets/image/logo.png}" />
         <h1>Bismillahirrahmanirrahim</h1>
+
+
+        <a th:href="@{/manajer}">Manajer</a>
+        <a th:href="@{/kasir}">Kasir</a>
+        <a th:href="@{/warehouse}">Warehouse</a>
+
             <div th:if="${not #lists.isEmpty(member)}">
             <table class="table table-striped">
                 <tr>
@@ -35,6 +41,21 @@
             </table>
         </div>
 
+
+        <div sec:authorize="isAuthenticated()">
+            <div sec:authorize="hasRole('ROLE_MANAJER')">
+                Masuk sebagai Manajer
+            </div>
+            <div sec:authorize="hasRole('ROLE_KASIR')">
+                Masuk sebagai Kasir
+            </div>
+
+            Sudah Login dan terautentikasi.
+        </div>
+        <div sec:authorize="isAnonymous()">
+            Belum terautentikasi.
+            <a th:href="@{/login}" methods="post">Login</a>
+        </div>
         <div>
             <a href="/member/create" class="btn btn-default"> Add Member</a>
             <a th:href="@{/logout}" methods="post">Logout</a>
