@@ -6,6 +6,8 @@ import com.macitepos.macitepos.services.AkunService;
 import com.macitepos.macitepos.services.MembersService;
 import com.macitepos.macitepos.services.ProdukService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
@@ -29,9 +31,9 @@ public class KasirController {
     ProdukService produkService;
 
     @RequestMapping(value = "/kasir", method = RequestMethod.GET)
-    public String kasir(HttpSession session, Pengguna pengguna, Model model){
-        session.setAttribute("nama", pengguna.getUsername());
-        session.setAttribute("pengguna", akunService.listPengguna());
+    public String kasir(HttpSession session) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
         return "c_dashboard";
     }
 

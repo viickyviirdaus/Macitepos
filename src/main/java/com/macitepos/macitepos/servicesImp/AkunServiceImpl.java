@@ -1,7 +1,9 @@
-package com.macitepos.macitepos.services;
+package com.macitepos.macitepos.servicesImp;
 
 import com.macitepos.macitepos.dao.PenggunaDao;
+import com.macitepos.macitepos.model.Member;
 import com.macitepos.macitepos.model.Pengguna;
+import com.macitepos.macitepos.services.AkunService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,10 +43,35 @@ public class AkunServiceImpl implements AkunService {
     }
 
     @Override
-    public Pengguna findBylevel(String level_pengguna) {
+    public Pengguna findByUsername(String username) {
+        return penggunaDao.findByUsername(username);
+    }
+
+    @Override
+    public Pengguna saveOrUpdate(Pengguna pengguna) {
         EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
 
+        Pengguna saved = em.merge(pengguna);
 
+        em.getTransaction().commit();
+
+        return saved;
+    }
+
+    @Override
+    public Pengguna getIdMember(Integer id) {
         return null;
+    }
+
+    @Override
+    public void hapus(Integer id) {
+
+    }
+
+    @Override
+    public void save(Pengguna pengguna, String name) {
+        return ;
+
     }
 }
