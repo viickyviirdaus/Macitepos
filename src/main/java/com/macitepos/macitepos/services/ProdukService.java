@@ -16,6 +16,18 @@ public class ProdukService {
     @Autowired
     private ProdukDAO produkDAO;
 
+    public ProdukDTO saveOrUpdated(ProdukDTO produkDTO){
+        try{
+            Produk produk = new Produk(produkDTO.getId_produk(),produkDTO.getNama_produk(),produkDTO.getKategori());
+
+            produk = produkDAO.saveOrUpdate(produk);
+            return convertToDto(produk);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
     public List<ProdukDTO> showAll(){
         System.out.println("SHOW ALL JALAN");
         List<Produk> p  = produkDAO.showAll();
