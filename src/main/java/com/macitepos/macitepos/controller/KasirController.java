@@ -35,6 +35,7 @@ public class KasirController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("produk", produkService.showAll());
         session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "c_dashboard";
     }
 

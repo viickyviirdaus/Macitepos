@@ -10,7 +10,7 @@ $(document).ready (function() {
             { "mData": "tanggal_lahir" },
             { "mData": "jenis_kelamin" },
             { "mData": "alamat" },
-            { "mData": "count" },
+            { "mData": "diskon" },
             { "mData": "created_at",
                 "render": function (mData) {
                     var date = new Date(mData);

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.transaction.Transactional;
+import java.awt.print.Pageable;
 import java.util.List;
 
 @Service("akunService")
@@ -37,9 +38,11 @@ public class AkunServiceImpl implements AkunService {
     }
 
     @Override
-    public List<Pengguna> listPengguna() {
-        EntityManager em = emf.createEntityManager();
-        return em.createQuery("from Pengguna", Pengguna.class).getResultList();
+    public Iterable<Pengguna> listPengguna() {
+//        EntityManager em = emf.createEntityManager();
+//        return em.createQuery("from Pengguna", Pengguna.class).getResultList();
+        penggunaDao.findAll();
+        return penggunaDao.findAllPengguna();
     }
 
     @Override
@@ -55,7 +58,7 @@ public class AkunServiceImpl implements AkunService {
         Pengguna saved = em.merge(pengguna);
 
         em.getTransaction().commit();
-
+        penggunaDao.save(pengguna);
         return saved;
     }
 

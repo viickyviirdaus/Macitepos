@@ -10,6 +10,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.15/js/jquery.dataTables.min.js"></script>
         <script th:src="@{assets/js/member.js}"></script>
         <script th:src="@{assets/js/user.js}"></script>
+        <script th:src="@{assets/js/produk.js}"></script>
         <link rel="stylesheet" href=
                 "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
         <link rel="stylesheet"
@@ -41,7 +42,7 @@
                     <li>
                         <div class="container-fluid active-user">
                             <div class="row">
-                                <div class="col-sm-5"><img th:src="@{assets/image/profil.png}" class="img-circle" style="max-width: 100%"/></div>
+                                <div class="col-sm-5"><img th:src="@{${'/assets/image/' + session.foto}}" class="img-circle" style="max-width: 100%"/></div>
                                 <div class="col-md-7">
                                     <h4 style="margin-bottom: 0px" th:text="${session.nama}"></h4>
                                     <span> <span style="color: #00B900; font-size: 20px;" >&#9679;</span> Online</span>

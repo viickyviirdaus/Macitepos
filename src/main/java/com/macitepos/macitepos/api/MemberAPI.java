@@ -16,7 +16,7 @@ public class MemberAPI {
     @Autowired
     MembersService membersService;
 
-    @RequestMapping(path="/api/produk/create", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(path="/api/member/create", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public void ProdukCreate(@RequestBody MemberDTO memberDTO){
         MemberDTO mDTO = membersService.saveOrUpdated(memberDTO);
 

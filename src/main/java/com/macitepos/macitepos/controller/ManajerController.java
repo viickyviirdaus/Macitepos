@@ -22,6 +22,7 @@ public class ManajerController {
     public String manajer(HttpSession session) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "m_dashboard";
     }
 
@@ -75,9 +76,10 @@ public class ManajerController {
     @GetMapping(value = "/edit")
     public String edit(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("pengguna", akunService.listPengguna());
-        Object a = akunService.findByUsername(authentication.getName()).getId_pengguna();
-        model.addAttribute("id", a);
+
+        //Object a = akunService.findByUsername(authentication.getName()).getId_pengguna();
+        //model.addAttribute("id", a);
+        model.addAttribute("pengguna", akunService.findByUsername(authentication.getName()));
         return "m_editProfil";
     }
 
