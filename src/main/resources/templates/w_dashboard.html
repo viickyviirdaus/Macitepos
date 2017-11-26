@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head>
+    <title>Warehouse Admin - Dashboard | MacitePos.com</title>
+    <div th:replace="w_header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="w_header :: header"/>
+
+<!-- COntent web -->
+<div class="body">
+    <div class="container-fluid">
+        <div class="page-header">
+            <h2 class="text-center">DASHBOARD</h2>
+        </div>
+        <!-- Code Here --><!-- Code Here --><!-- Code Here --><!-- Code Here --><!-- Code Here -->
+        <!-- Search -->
+        <form class="form-inline text-center">
+            <div class="form-group">
+                <button type="button" data-toggle="modal" data-target="#tambahBarang" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus fa-fw" aria-hiden="true"></i>Tambah</button>
+                <button type="button" data-toggle="modal" data-target="#restock" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus fa-fw" aria-hiden="true"></i>Re-Stock</button>
+                <div class="input-group">
+                    <input type="text" style="width: 300px" class="form-control" aria-label="..." placeholder="Search"/>
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default dropdown-toggle text-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="caret"></span> Category</button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#">Food</a></li>
+                            <li><a href="#">Drink</a></li>
+                            <li><a href="#">Drugs</a></li>
+                            <li><a href="#">Cosmetic</a></li>
+                            <li><a href="#">Office</a></li>
+                            <li><a href="#">Household Equipment</a></li>
+                        </ul>
+                    </div><!-- /btn-group -->
+                </div>
+                <a href=""><button type="button" class="btn btn-success text-center active" aria-haspopup="true" aria-expanded="false">Approved</button></a>
+                <a href="warehouseAdminDashboardDisapproved.html"><button type="button" class="btn btn-warning text-center" aria-haspopup="true" aria-expanded="false" >Disapproved</button></a>
+            </div>
+        </form>
+    </div>
+    <!-- MODAL TAMBAH BARANG -->
+    <div class="modal fade" id="tambahBarang" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Tambah Barang</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Code Product</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Code Product"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Name Product</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Name Product"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Price (buy)</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Rp. 999999"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Price (sell)</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Rp . 999999"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Stock</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="0"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Category</label>
+                                    <select class="form-control">
+                                        <option>Food</option>
+                                        <option>Drink</option>
+                                        <option>Drugs</option>
+                                        <option>Cosmetic</option>
+                                        <option>Office</option>
+                                        <option>Household Equipment</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputFile">Photo</label>
+                                <div >
+                                    <img style="width: 200px; margin-bottom:10px;" src="assets/image/defaultBarang.png">
+                                </div>
+                                <input type="file" id="exampleInputFile"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL RESTOCK -->
+    <div class="modal fade" id="restock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Re-Stock</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Code Product</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Code Product"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Re-stock</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="0"/>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <div >
+                                <img style="width: 180px; margin-bottom:10px; margin-left: 40PX" src="assets/image/defaultBarang.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Table -->
+    <div class="container-fluid">
+        <table class="table table-striped " style="margin-top: 20px">
+            <thead>
+            <tr style="background-color: #FEA72C">
+                <th>Image</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Category</th>
+                <th>Last Update</th>
+                <th>Update By</th>
+                <th>Created at</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><img src="assets/image/defaultBarang.png" style="max-height: 30px"></td>
+                <td>081441292838</td>
+                <td>Teh Pucuk Harum</td>
+                <td>Rp. 999999</td>
+                <td>150</td>
+                <td>Drink</td>
+                <td>10/08/2017 <br>09:45</td>
+                <td>Lukman</td>
+                <td>01/07/2017 <br>07:42</td>
+                <td><span style="background-color: #5CB85C">Approved</span></td>
+                <td><button type="button" data-toggle="modal" data-target="#editBarang" class="btn btn-info text-center" aria-haspopup="true" aria-expanded="false">Edit</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- MODAL EDIT -->
+    <div class="modal fade" id="editBarang" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit Barang</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Code Product</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Code Product"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Name Product</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Name Product"/>
+                                </div>
+                                <div class="form-group readonly">
+                                    <label for="exampleInputPassword1">Stock</label>
+                                    <input type="text" readonly="" class="form-control" id="exampleInputPassword1" placeholder="0"/>
+                                </div>
+                                <div class="form-group readonly">
+                                    <label for="exampleInputPassword1">Category</label>
+                                    <input type="text" readonly="" class="form-control" id="exampleInputPassword1" placeholder="Category"/>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">No Rak Gudang</label>
+                                <select class="form-control">
+                                    <option>A1</option>
+                                    <option>A2</option>
+                                    <option>A3</option>
+                                    <option>A4</option>
+                                    <option>A5</option>
+                                    <option>A6</option>
+                                    <option>A7</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">No Rak Toko</label>
+                                <select class="form-control">
+                                    <option>A1</option>
+                                    <option>A2</option>
+                                    <option>A3</option>
+                                    <option>A4</option>
+                                    <option>A5</option>
+                                    <option>A6</option>
+                                    <option>A7</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Stock Toko</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="0"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
