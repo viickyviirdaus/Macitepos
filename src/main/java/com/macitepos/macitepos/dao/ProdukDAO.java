@@ -37,6 +37,8 @@ public class ProdukDAO {
         return p;
     }
 
+
+
     public List<Produk> findByKategori(String kategori){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();

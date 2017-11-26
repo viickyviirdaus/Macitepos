@@ -8,7 +8,9 @@ import java.util.List;
 public interface AkunService {
 
     public Pengguna findByUsernameAndPassword(String username, String password);
-    List<Pengguna> listPengguna();
+
+    Iterable<Pengguna> listPengguna();
+
     Pengguna findByUsername(String username);
 
     Pengguna saveOrUpdate(Pengguna pengguna);

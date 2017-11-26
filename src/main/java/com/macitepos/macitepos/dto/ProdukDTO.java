@@ -22,6 +22,13 @@ public class ProdukDTO {
 //    private List<Detil_penjualanDTO> detil_penjualans;
 //    private List<Transaksi_pembelianDTO> transaksi_pembelians;
 
+
+    public ProdukDTO(int id_produk, String nama_produk, String kategori) {
+        this.id_produk = id_produk;
+        this.nama_produk = nama_produk;
+        this.kategori = kategori;
+    }
+
     public ProdukDTO(
             int id_produk,
             String nama_produk,

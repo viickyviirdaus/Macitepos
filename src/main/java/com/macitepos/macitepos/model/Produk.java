@@ -98,6 +98,12 @@ public class Produk {
         this.created_at = timestamp;
     }
 
+    public Produk(int id_produk,String nama_produk, String kategori) {
+        this.id_produk = id_produk;
+        this.nama_produk = nama_produk;
+        this.kategori = kategori;
+    }
+
     public int getId_produk() {
         return id_produk;
     }

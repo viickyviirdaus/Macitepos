@@ -233,7 +233,7 @@
 					<div class="panel panel-default" style="width:548px; height: 300px; overflow: auto;">
 						<div class="panel-body">
 							<div class="row">
-								<a href="">
+								<a th:each="produks : ${produk}" href="">
 									<div class="col-sm-3">
 										<div class="panel panel-default">
 											<div class="panel-body">
@@ -241,63 +241,14 @@
 													<img style="width: 100%; padding-bottom: 5px;" th:src="@{assets/image/defaultBarang.png}"/>
 												</div>
 												<div class="text-center">
-													<span>Teh Pucuk</span>
+													<span th:text="${produks.nama_produk}"></span>
 													<br/>
-													<span style="font-size: 12px">Rp. 999999</span>
+													<span th:text="${produks.harga_penjualan}" style="font-size: 12px">Rp. 999999</span>
 												</div>
 											</div>
 										</div>
 									</div>
 								</a>
-								<a href="">
-									<div class="col-sm-3">
-										<div class="panel panel-default">
-											<div class="panel-body">
-												<div>
-													<img style="width: 100%; padding-bottom: 5px;" th:src="@{assets/image/defaultBarang.png}"/>
-												</div>
-												<div class="text-center">
-													<span>Teh Pucuk</span>
-													<br/>
-													<span style="font-size: 12px">Rp. 999999</span>
-												</div>
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="">
-									<div class="col-sm-3">
-										<div class="panel panel-default">
-											<div class="panel-body">
-												<div>
-													<img style="width: 100%; padding-bottom: 5px;" th:src="@{assets/image/defaultBarang.png}"/>
-												</div>
-												<div class="text-center">
-													<span>Teh Pucuk</span>
-													<br/>
-													<span style="font-size: 12px">Rp. 999999</span>
-												</div>
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="">
-									<div class="col-sm-3">
-										<div class="panel panel-default">
-											<div class="panel-body">
-												<div>
-													<img style="width: 100%; padding-bottom: 5px;" th:src="@{assets/image/defaultBarang.png}"/>
-												</div>
-												<div class="text-center">
-													<span>Teh Pucuk</span>
-													<br/>
-													<span style="font-size: 12px">Rp. 999999</span>
-												</div>
-											</div>
-										</div>
-									</div>
-								</a>
-
 							</div>
 						</div>
 					</div>

@@ -31,9 +31,11 @@ public class KasirController {
     ProdukService produkService;
 
     @RequestMapping(value = "/kasir", method = RequestMethod.GET)
-    public String kasir(HttpSession session) {
+    public String kasir(HttpSession session, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("produk", produkService.showAll());
         session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "c_dashboard";
     }
 

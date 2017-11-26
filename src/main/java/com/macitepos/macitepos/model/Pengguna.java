@@ -63,7 +63,7 @@ public class Pengguna implements java.io.Serializable{
     @OneToMany(mappedBy = "pengguna")
     private List<Transaksi_pembelian> transaksi_pembelians;
 
-
+    @ManyToMany()
 
 
     public void setId(int id){
