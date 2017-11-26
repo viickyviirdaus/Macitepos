@@ -22,7 +22,6 @@ public class ProdukAPI {
     @RequestMapping(path="/api/produk/create", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public void ProdukCreate(@RequestBody ProdukDTO produkDTO){
         ProdukDTO pDTO = produkService.saveOrUpdated(produkDTO);
-
     }
 
 

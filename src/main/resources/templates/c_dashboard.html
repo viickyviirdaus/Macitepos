@@ -3,6 +3,8 @@
 <head>
 	<title>Kasir - POS | MacitePos.com</title>
 	<div th:replace="c_header :: header-css"/>
+	<script  th:src="@{assets/js/c_dashboard.js}"></script>
+
 </head>
 <body>
 
@@ -31,10 +33,10 @@
 					</div>
 				</form>
 				<!-- daftar belanjaan -->
-				<div>
+				<div id="hasil">
 					<div class="panel panel-default" style="height: 300px; overflow: auto;">
 						<div class="panel-body">
-							<table class="table table-striped">
+							<table class="table table-striped" id="productTable">
 								<thead>
 								<tr>
 									<th>No</th>
@@ -45,15 +47,15 @@
 									<th>Action</th>
 								</tr>
 								</thead>
-								<tbody>
-								<tr>
-									<td>1</td>
-									<td><img style="width: 40px; padding-bottom: 5px;" th:src="@{assets/image/defaultBarang.png}"/></td>
-									<td>Teh Pucuk Harum</td>
-									<td>Rp. 999999</td>
-									<td>5</td>
-									<td><button type="button" class="btn btn-danger">Delete</button></td>
-								</tr>
+								<tbody id="listTableProductCustumer">
+								<!--<tr>-->
+									<!--<td>1</td>-->
+									<!--<td><img style="width: 40px; padding-bottom: 5px;" th:src="@{assets/image/defaultBarang.png}"/></td>-->
+									<!--<td>Teh Pucuk Harum</td>-->
+									<!--<td>Rp. 999999</td>-->
+									<!--<td>5</td>-->
+									<!--<td><button type="button" class="btn btn-danger">Delete</button></td>-->
+								<!--</tr>-->
 								</tbody>
 							</table>
 						</div>
@@ -126,7 +128,7 @@
 							</div>
 							<hr/>
 							<div style="height: 300px; overflow: auto;">
-								<table class="table table-striped">
+								<table class="table table-striped" id="RecieptTable">
 									<thead>
 									<tr>
 										<th>NO</th>
@@ -137,13 +139,13 @@
 									</tr>
 									</thead>
 									<tbody>
-									<tr>
-										<td>1</td>
-										<td>Teh Pucuk Wangi</td>
-										<td>Rp. 5500</td>
-										<td>5</td>
-										<td>Rp. 27500</td>
-									</tr>
+									<!--<tr>-->
+										<!--<td>1</td>-->
+										<!--<td>Teh Pucuk Wangi</td>-->
+										<!--<td>Rp. 5500</td>-->
+										<!--<td>5</td>-->
+										<!--<td>Rp. 27500</td>-->
+									<!--</tr>-->
 									</tbody>
 								</table>
 							</div>
@@ -152,34 +154,34 @@
 									<span>Sub Total :</span>
 								</div>
 								<div class="col-sm-3 text-right">
-									<span>Rp. 88888</span>
+									<span id="SubTotalReciept">Rp. 88888</span>
 								</div>
 								<div class="col-sm-8 text-right">
-									<span>Sub Total :</span>
+									<span>Discount :</span>
 								</div>
 								<div class="col-sm-3 text-right">
-									<span>Rp. 88888</span>
+									<span id="DiscountReciept">Rp. 88888</span>
 								</div>
 								<div class="col-sm-8 text-right">
-									<span>Sub Total :</span>
+									<span>Total :</span>
 								</div>
 								<div class="col-sm-3 text-right">
-									<span>Rp. 88888</span>
+									<span id="TotalReciept">Rp. 88888</span>
 								</div>
 							</div>
 							<hr style="margin-top: 5px; margin-bottom: 5px;"/>
 							<div class="row">
 								<div class="col-sm-8 text-right">
-									<span>Sub Total :</span>
+									<span>Amount :</span>
 								</div>
 								<div class="col-sm-3 text-right">
-									<span>Rp. 88888</span>
+									<span id="AmountReciept">Rp. 88888</span>
 								</div>
 								<div class="col-sm-8 text-right">
-									<span>Sub Total :</span>
+									<span>Cash :</span>
 								</div>
 								<div class="col-sm-3 text-right">
-									<span>Rp. 88888</span>
+									<span id="CashReciept">Rp. 88888</span>
 								</div>
 							</div>
 							<hr/>
@@ -213,7 +215,7 @@
 				<form class="form-inline text-center" style="margin-bottom: 5px">
 					<div class="form-group">
 						<div class="input-group">
-							<input type="text" style="width: 300px" class="form-control" aria-label="..." placeholder="Search"/>
+							<input id="serachProduk" type="text" style="width: 300px" class="form-control" aria-label="..." placeholder="Search"/>
 							<div class="input-group-btn">
 								<button type="button" class="btn btn-default dropdown-toggle text-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="caret"></span> Category</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -231,24 +233,24 @@
 				<!-- Item Produk -->
 				<div class="row">
 					<div class="panel panel-default" style="width:548px; height: 300px; overflow: auto;">
-						<div class="panel-body">
-							<div class="row">
-								<a th:each="produks : ${produk}" href="">
-									<div class="col-sm-3">
-										<div class="panel panel-default">
-											<div class="panel-body">
-												<div>
-													<img style="width: 100%; padding-bottom: 5px;" th:src="@{assets/image/defaultBarang.png}"/>
-												</div>
-												<div class="text-center">
-													<span th:text="${produks.nama_produk}"></span>
-													<br/>
-													<span th:text="${produks.harga_penjualan}" style="font-size: 12px">Rp. 999999</span>
-												</div>
-											</div>
-										</div>
-									</div>
-								</a>
+						<div class="panel-body" id="showAvailableProduk">
+							<div class="row" id="showAvailbleProduct">
+								<!--<a th:each="produks : ${produk}" href="">-->
+									<!--<div class="col-sm-3">-->
+										<!--<div class="panel panel-default">-->
+											<!--<div class="panel-body">-->
+												<!--<div>-->
+													<!--<img style="width: 100%; padding-bottom: 5px;" th:src="@{assets/image/defaultBarang.png}"/>-->
+												<!--</div>-->
+												<!--<div class="text-center">-->
+													<!--<span th:text="${produks.nama_produk}"></span>-->
+													<!--<br/>-->
+													<!--<span th:text="${produks.harga_penjualan}" style="font-size: 12px">Rp. 999999</span>-->
+												<!--</div>-->
+											<!--</div>-->
+										<!--</div>-->
+									<!--</div>-->
+								<!--</a>-->
 							</div>
 						</div>
 					</div>
@@ -257,12 +259,12 @@
 					<div class="row">
 						<div class="col-md-6" style="padding-left: 0px">
 							<div class="form-group" >
-								<label for="exampleInputEmail1">Recieved Amount</label>
-								<input type="email" class="form-control" readonly="" id="exampleInputEmail1" placeholder="Rp. "/>
+								<label for="RecievedAmount">Recieved Amount</label>
+								<input type="email" class="form-control" id="RecievedAmount" placeholder="Rp. "/>
 							</div>
 							<div class="row">
 								<div class="col-md-6">
-									<button type="button" data-toggle="modal" data-target="#submit" class="btn btn-info btn-block" style="height: 32px;">Submit</button>
+									<button type="button" id="submitButton" data-toggle="modal"  data-target="#submit" class="btn btn-info btn-block" style="height: 32px;">Submit</button>
 								</div>
 								<div class="col-md-6">
 									<button class="btn btn-danger btn-block" style="height: 32px;">Cancel</button>
