@@ -39,11 +39,33 @@ public class ProdukDAO {
 
 
 
-    public List<Produk> findByKategori(String kategori){
+    public List<Produk> findByCategori(String category){
+        System.out.println("parameter category di Produk Dao find by Category" + category);
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Query q = em.createNativeQuery("SELECT * FROM Produk p WHERE p.kategori=:kategori", Produk.class);
-        q.setParameter("kategori", kategori);
+        Query q = em.createNativeQuery("SELECT * FROM Produk p WHERE p.kategori=:category", Produk.class);
+        q.setParameter("category", category);
+        List<Produk> p = (List<Produk>)q.getResultList();
+        em.close();
+        return  p;
+    }
+
+    public List<Produk> findByID(int ID){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query q = em.createNativeQuery("SELECT * FROM Produk p WHERE p.id_produk=:ID", Produk.class);
+        q.setParameter("ID", ID);
+        List<Produk> p = (List<Produk>)q.getResultList();
+        em.close();
+        return  p;
+    }
+
+    public List<Produk> findByKey(String keySearch){
+        System.out.println("parameter key di ProdukDao findByKey "+keySearch);
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query q = em.createNativeQuery("SELECT * FROM Produk p WHERE p.nama_produk LIKE :keySearch", Produk.class);
+        q.setParameter("keySearch", "%"+ keySearch +"%");
         List<Produk> p = (List<Produk>)q.getResultList();
         em.close();
         return  p;
