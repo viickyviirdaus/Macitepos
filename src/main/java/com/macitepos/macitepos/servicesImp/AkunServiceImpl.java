@@ -1,7 +1,6 @@
 package com.macitepos.macitepos.servicesImp;
 
 import com.macitepos.macitepos.dao.PenggunaDao;
-import com.macitepos.macitepos.model.Member;
 import com.macitepos.macitepos.model.Pengguna;
 import com.macitepos.macitepos.services.AkunService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,6 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.transaction.Transactional;
-import java.awt.print.Pageable;
-import java.util.List;
 
 @Service("akunService")
 @Transactional
@@ -41,7 +38,7 @@ public class AkunServiceImpl implements AkunService {
     public Iterable<Pengguna> listPengguna() {
 //        EntityManager em = emf.createEntityManager();
 //        return em.createQuery("from Pengguna", Pengguna.class).getResultList();
-        penggunaDao.findAll();
+//        return penggunaDao.findAll();
         return penggunaDao.findAllPengguna();
     }
 

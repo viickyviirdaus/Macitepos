@@ -3,18 +3,10 @@ package com.macitepos.macitepos.model;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-import java.security.MessageDigest;
-
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.data.annotation.Transient;
 
 import java.security.NoSuchAlgorithmException;
-import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "pengguna")
@@ -22,7 +14,7 @@ public class Pengguna implements java.io.Serializable{
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id_pengguna;
+    private Integer id_pengguna;
 
     @Column(name = "nama_pengguna")
     private String nama_pengguna;
@@ -63,18 +55,35 @@ public class Pengguna implements java.io.Serializable{
     @OneToMany(mappedBy = "pengguna")
     private List<Transaksi_pembelian> transaksi_pembelians;
 
-    @ManyToMany()
+    public Pengguna(){}
+    public Pengguna(Integer id_pengguna, String nama_pengguna, String username, String alamat_pengguna, Date tanggal_lahir, String email, String password, boolean status_pengguna, String foto_pengguna, Timestamp last_modified, Timestamp created_at, String level) {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        this.id_pengguna = id_pengguna;
+        this.nama_pengguna = nama_pengguna;
+        this.username = username;
+        this.alamat_pengguna = alamat_pengguna;
+        this.tanggal_lahir = tanggal_lahir;
+        this.email = email;
+        this.password = password;
+        this.status_pengguna = status_pengguna;
+        this.foto_pengguna = foto_pengguna;
+        this.last_modified = timestamp;
+        this.created_at = created_at;
+        this.level = level;
+    }
 
 
-    public void setId(int id){
+
+
+    public void setId(Integer id){
         this.id_pengguna  = id;
     }
 
-    public int getId_pengguna() {
+    public Integer getId_pengguna() {
         return id_pengguna;
     }
 
-    public void setId_pengguna(int id_pengguna) {
+    public void setId_pengguna(Integer id_pengguna) {
         this.id_pengguna = id_pengguna;
     }
 
@@ -129,7 +138,7 @@ public class Pengguna implements java.io.Serializable{
 //        byte byteData[] = md.digest();
 //
 //        StringBuffer sb = new StringBuffer();
-//        for (int i = 0; i < byteData.length; i++){
+//        for (Integer i = 0; i < byteData.length; i++){
 //            sb.append(Integer.toString((byteData[i] & 0xff) + 0xff, 16).substring(1));
 //        }
 //        this.password = sb.toString();

@@ -35,11 +35,11 @@
     <div class="modal fade" id="tambahCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+                <form class="form-horizontal" th:object="${penggunaBaru}" th:action="@{/user/create}" method="post" enctype="multipart/form-data">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Tambah Customer</h4>
                 </div>
-                <form class="form-horizontal" th:object="${penggunaBaru}" th:action="@{/user/create}" method="post">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
@@ -75,28 +75,49 @@
                                 <div class="form-group">
                                     <label>Kategori</label>
                                     <label class="radio-inline">
-                                        <input  type="radio" value="Kasir" name="inlineRadioOptions" id="inlineRadio1" th:field="*{level}"/> Kasir
+                                        <input  type="radio" value="kasir" name="inlineRadioOptions" id="inlineRadio1" th:field="*{level}"/> Kasir
                                     </label>
                                     <label class="radio-inline">
-                                        <input  type="radio" value="Warehouse Admin" name="inlineRadioOptions" id="inlineRadio2" th:field="*{level}"/> Warehouse Admin
+                                        <input  type="radio" value="warehouse" name="inlineRadioOptions" id="inlineRadio2" th:field="*{level}"/> Warehouse Admin
                                     </label>
                                 </div>
                                 <div class="form-group">
                                     <label>Created At</label>
-                                    <input type="date" class="form-control" th:field="*{created_at}" />
+                                    <input type="hidden" name="startdate" id="todayDate" th:field="*{created_at}"/>
+                                    <script type="text/javascript">
+                                        function getDates()
+                                        {
+                                            var today = new Date();
+                                            var dd = today.getDate();
+                                            var mm = today.getMonth()+1; //January is 0!
+                                            var yyyy = today.getFullYear();
+                                            var hh = today.getHours();
+                                            var m = today.getMinutes();
+                                            var ss = today.getSeconds();
+                                            today = yyyy+"-"+mm+"-"+dd+" "+hh+":"+m+":"+ss;
+
+                                            document.getElementById("todayDate").value = today;
+                                        }
+
+                                        //call getDate() when loading the page
+                                        getDates();
+                                    </script>
                                 </div>
-                                <div class="form-group">
-                                    <label>Last Modified</label>
-                                    <input type="date" class="form-control" th:field="*{last_modified}" />
-                                </div>
+
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputFile">Photo</label>
+                                <label >Photo</label>
                                 <div >
-                                    <img style="width: 200px; margin-bottom:10px;" th:src="@{assets/image/defaultProfile.png}"/>
+                                    <img style="width: 200px; margin-bottom:10px;" id="output" alt="Preview Image"/>
                                 </div>
-                                <input type="file" id="exampleInputFile" th:field="*{foto_pengguna}"/>
+                                <input type="file" name="image"  accept="image/*" onchange="loadFile(event)"  th:field="*{foto_pengguna}"/>
+                                <script>
+                                    var loadFile = function(event) {
+                                        var output = document.getElementById('output');
+                                        output.src = URL.createObjectURL(event.target.files[0]);
+                                    };
+                                </script>
                             </div>
                         </div>
                     </div>
