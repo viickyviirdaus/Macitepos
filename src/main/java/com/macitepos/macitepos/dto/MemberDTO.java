@@ -1,5 +1,7 @@
 package com.macitepos.macitepos.dto;
 
+import com.macitepos.macitepos.model.Member;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 
