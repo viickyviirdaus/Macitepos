@@ -1,10 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.com">
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Warehouse Admin - Edit Profile | MacitePos.com</title>
+    <div th:replace="w_header :: header-css"/>
 </head>
 <body>
-$END$
+
+<div th:replace="w_header :: header"/>
+
+<!-- COntent web -->
+<div class="body">
+    <div class="container-fluid">
+        <div class="page-header">
+            <h2 class="text-center">Header<!-- <small>Subtext for header</small> --></h2>
+        </div>
+    </div>
+    <!-- MODAL EDIT PROFILE -->
+    <div class="modal fade" id="tambahCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Full Name</label>
+                                    <input type="email" class="form-control" id="fullname" placeholder="Full Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Address</label>
+                                    <input type="password" class="form-control" id="address" placeholder="Address">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Date Of Birth</label>
+                                    <input type="email" class="form-control" id="DOB" placeholder="Date Of Birth">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Email</label>
+                                    <input type="password" class="form-control" id="email" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">New Password</label>
+                                    <input type="password" class="form-control" id="password" placeholder="Email">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputFile">Photo</label>
+                                <div >
+                                    <img style="width: 200px; margin-bottom:10px;" src="assets/image/defaultProfile.png">
+                                </div>
+                                <input type="file" id="exampleInputFile">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Table -->
+    <div class="container-fluid">
+        <table class="table table-striped " style="margin-top: 20px">
+            <thead>
+            <tr style="background-color: #71BACF">
+                <th>Image</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Date of Birth</th>
+                <th>Email</th>
+                <th>Category</th>
+                <th>Created at</th>
+                <th>Last Modified</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><img src="assets/image/defaultProfile.png" style="max-height: 40px"></td>
+                <td>1</td>
+                <td>Lukman Swiseteger</td>
+                <td>Jalan in Aja</td>
+                <td>01/07/2017</td>
+                <td>lukman@gmail.com</td>
+                <td>Kasir</td>
+                <td>01/07/2017 <br>07:42</td>
+                <td>01/07/2017 <br>07:42</td>
+                <td><button type="button" data-toggle="modal" data-target="#tambahCustomer" class="btn btn-info">Edit</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>

@@ -1,10 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.com">
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Warehouse Admin - Dashboard | MacitePos.com</title>
+    <div th:replace="w_header :: header-css"/>
 </head>
 <body>
-$END$
+
+<div th:replace="w_header :: header"/>
+
+<!-- COntent web -->
+<div class="body">
+    <div class="container-fluid">
+        <div class="page-header">
+            <h2 class="text-center">SUPLIERS<!-- <small>Subtext for header</small> --></h2>
+        </div>
+        <!-- Code Here --><!-- Code Here --><!-- Code Here --><!-- Code Here --><!-- Code Here -->
+        <!-- Search -->
+        <form class="form-inline text-center">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" style=" width: 300px" class="form-control" aria-label="..." placeholder="Search">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default text-center" aria-haspopup="true" aria-expanded="false"><i class="fa fa-search fa-fw" aria-hiden="true"></i>Search</button>
+                    </div><!-- /btn-group -->
+                </div>
+                <button type="button" data-toggle="modal" data-target="#tambahSuplier" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus fa-fw" aria-hiden="true"></i>Tambah</button>
+            </div>
+        </form>
+    </div>
+    <!-- MODAL TAMBAH Suplier -->
+    <div class="modal fade" id="tambahSuplier" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Tambah Customer</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Full Name</label>
+                                    <input type="email" class="form-control" id="fullname" placeholder="Full Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Address</label>
+                                    <input type="password" class="form-control" id="address" placeholder="Jalan">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Phone Number</label>
+                                    <input type="email" class="form-control" id="DOB" placeholder="+628xxxxxxxxxx">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputFile">Photo</label>
+                                <div >
+                                    <img style="width: 200px; margin-bottom:10px;" src="assets/image/defaultProfile.png">
+                                </div>
+                                <input type="file" id="exampleInputFile">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL EDIT PROFILE -->
+    <div class="modal fade" id="tambahCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Full Name</label>
+                                    <input type="email" class="form-control" id="fullname" placeholder="Full Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Address</label>
+                                    <input type="password" class="form-control" id="address" placeholder="Jalan">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Phone Number</label>
+                                    <input type="email" class="form-control" id="DOB" placeholder="+628xxxxxxxxxx">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputFile">Photo</label>
+                                <div >
+                                    <img style="width: 200px; margin-bottom:10px;" src="assets/image/defaultProfile.png">
+                                </div>
+                                <input type="file" id="exampleInputFile">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Table -->
+    <div class="container-fluid">
+        <table class="table table-striped " style="margin-top: 20px">
+            <thead>
+            <tr style="background-color: #71BACF">
+                <th>Image</th>
+                <th>ID Suplier</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th>Update By</th>
+                <th>Created at</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><img src="assets/image/defaultProfile.png" style="max-height: 40px"></td>
+                <td>1</td>
+                <td>Joko Tingkir</td>
+                <td>Jalan in Aja</td>
+                <td>087446389567</td>
+                <td>lukman</td>
+                <td>01/07/2017 <br>07:42</td>
+                <td><button type="button" data-toggle="modal" data-target="#tambahCustomer" class="btn btn-info">Edit</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>
