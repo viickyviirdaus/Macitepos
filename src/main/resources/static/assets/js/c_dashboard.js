@@ -9,6 +9,9 @@ var grandTotal = 0;
 var recievedAmount = 0;
 var cash = 0;
 var totalPerProduk = [];
+var sendJSON=[];
+var idMember = 1;
+var visit_count =[];
 $(document).ready(function () {
     productList();
 });
@@ -252,21 +255,42 @@ function showTableRowInvoice(no,id,name,price,count) {
 // Change Diskon By Input ID
 $(function () {
     $('#searchIdMember').click(function () {
-        id = $('#InputIdMember').val();
-        $.ajax({
-            url: '/api/member/'+id,
-            type: 'GET',
-            dataType: 'json',
-            success: function (member) {
-                pembeli = member;
-                if(pembeli.length>0){
-                    alert("Member ditemukan, Nama Member = "+ pembeli[0].nama_member)
+        idMember = $('#InputIdMember').val();
+        idMember = idMember*1;
+        if (idMember == 1){
+            alert("Member tidak ditemukan");
+            $.ajax({
+                url: '/api/member/'+idMember,
+                type: 'GET',
+                dataType: 'json',
+                success: function (member) {
+                    pembeli = member;
                     setDiskon();
-                } else {
-                    alert("Member tidak")
+                    $.each(pembeli, function (index, p) {
+                        visit_count[0] = p.visitCount;
+                    });
                 }
-            }
-        })
+            })
+        } else {
+            $.ajax({
+                url: '/api/member/'+idMember,
+                type: 'GET',
+                dataType: 'json',
+                success: function (member) {
+                    pembeli = member;
+                    $.each(pembeli, function (index, p) {
+                        visit_count[0] = p.visitCount;
+                        alert(visit_count);
+                    });
+                    if(pembeli.length>0){
+                        alert("Member ditemukan, Nama Member = "+ pembeli[0].nama_member)
+                        setDiskon();
+                    } else {
+                        alert("Member tidak ditemukan")
+                    }
+                }
+            })
+        }
     })
 });
 
@@ -276,7 +300,7 @@ function setDiskon() {
     });
     $('#discountShow').attr("placeholder", discount+"%");
     calculate();
-    recievedAmount = recievedAmount;
+    recievedAmount = recievedAmount*1;
 }
 
 function calculate() {
@@ -288,6 +312,7 @@ function calculate() {
 $(function(){
     $('#submitButton').click(function(){
         recievedAmount = $('#RecievedAmount').val();
+        recievedAmount = recievedAmount*1;
         if(recievedAmount > 0 && recievedAmount >= grandTotal){
             $("#submitButton").attr("data-toggle", "modal");
             calculateRecievedAmount();
@@ -324,6 +349,7 @@ function calculateRpDiscount() {
 
 function calculateRecievedAmount() {
     recievedAmount = $('#RecievedAmount').val();
+    recievedAmount = recievedAmount*1;
     $("#AmountInvoice").text("Rp. "+recievedAmount+"");
 }
 
@@ -333,4 +359,53 @@ function calculateCash() {
         $("#CashInvoice").text("Rp. "+ cash +"");
 }
 
+$(function(){
+    $('#printInvoice').click(function(){
+        // alert("PRINT");
+        if(visit_count == 0){
+            alert("VISIT COUNT 0")
+            $.ajax({
+                url: '/api/member/'+idMember,
+                type: 'GET',
+                dataType: 'json',
+                success: function (member) {
+                    pembeli = member;
+                    setDiskon();
+                    $.each(pembeli, function (index, p) {
+                        visit_count[0] = p.visitCount;
+                        visit_count[0] +=1;
+                        alert(visit_count[0]);
+                        createJson(visit_count[0]);
+                    });
+                }
+            });
+        } else {
+            visit_count[0] += 1;
+            createJson(visit_count[0]);
+        }
+        // sendJSON = [];
+        // sendJSON[0] = new Object();
+        // sendJSON[0].id_produk = "hehehe";
+        // sendJSON[0].jumlahBeli = 1;
+        // sendJSON[1] = new Object();
+        // sendJSON[1].id_produk = 'Dua';
+        // sendJSON[1].jumlah_beli = 2;
+        // sendJSON[1].jumlah_beli = 9;
+        // sendJSON[0].jumlahBeli = 3;
+        console.log(sendJSON);
+    });
+});
 
+function createJson(v) {
+    $.each(selectedProducts , function (index,product) {
+        sendJSON[index] = new Object();
+        sendJSON[index].id_produk = product.id_produk;
+        sendJSON[index].count_product = jumlahBeli[product.id_produk]*1;
+        sendJSON[index].discount = discount;
+        sendJSON[index].cash = cash;
+        sendJSON[index].recievedAmount = recievedAmount;
+        sendJSON[index].total = subTotal;
+        sendJSON[index].id_member = idMember;
+        sendJSON[index].visit_count = v;
+    });
+}

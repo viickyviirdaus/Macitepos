@@ -19,7 +19,7 @@ public class MembersService {
     public MemberDTO saveOrUpdated(MemberDTO memberDTO){
         try{
             Member member = new Member(memberDTO.getId_member(),memberDTO.getNama_member(),memberDTO.getAlamat()
-                    ,memberDTO.getTanggal_lahir(),memberDTO.getJenis_kelamin(),memberDTO.getDiskon(),memberDTO.getCount(),memberDTO.getCreated_by(),
+                    ,memberDTO.getTanggal_lahir(),memberDTO.getJenis_kelamin(),memberDTO.getDiskon(),memberDTO.getVisitCount(),memberDTO.getCreated_by(),
                     memberDTO.getVersion());
 
             member = membersDAO.saveOrUpdate(member);
@@ -47,6 +47,10 @@ public class MembersService {
     public List<MemberDTO> findByID(int ID){
         System.out.println("Parameter ID di member service find ID " + ID);
         List<Member> m = membersDAO.findById(ID);
+        for (Member member:
+             m) {
+            System.out.println("member service fintById visit count = "+member.getVisitCount());
+        }
         return convertToDTOAPI(m);
     }
 
@@ -59,8 +63,9 @@ public class MembersService {
     }
 
     MemberDTO convertToDto(Member member){
+//        System.out.println(member.getVisitCount());
         MemberDTO dto = new MemberDTO(member.getId_member(), member.getNama_member(), member.getAlamat(), member.getTanggal_lahir(),
-                member.getJenis_kelamin(),member.getDiskon(), member.getCount(),member.getLast_visit(), member.getCreated_by(),
+                member.getJenis_kelamin(),member.getDiskon(), member.getVisitCount(),member.getLast_visit(), member.getCreated_by(),
                 member.getCreated_at(), member.getVersion());
         return dto;
     }
