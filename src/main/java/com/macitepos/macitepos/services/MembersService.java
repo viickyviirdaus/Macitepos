@@ -6,6 +6,7 @@ import com.macitepos.macitepos.model.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class MembersService {
     public MemberDTO saveOrUpdated(MemberDTO memberDTO){
         try{
             Member member = new Member(memberDTO.getId_member(),memberDTO.getNama_member(),memberDTO.getAlamat()
-                    ,memberDTO.getTanggal_lahir(),memberDTO.getJenis_kelamin(),memberDTO.getDiskon(),memberDTO.getCount(),memberDTO.getCreated_by(),
+                    ,memberDTO.getTanggal_lahir(),memberDTO.getJenis_kelamin(),memberDTO.getDiskon(),memberDTO.getVisitCount(),memberDTO.getCreated_by(),
                     memberDTO.getVersion());
 
             member = membersDAO.saveOrUpdate(member);
@@ -44,6 +45,16 @@ public class MembersService {
         return convertToDTOAPI(m);
     }
 
+    public List<MemberDTO> findByID(int ID){
+        System.out.println("Parameter ID di member service find ID " + ID);
+        List<Member> m = membersDAO.findById(ID);
+        for (Member member:
+             m) {
+            System.out.println("member service fintById visit count = "+member.getVisitCount());
+        }
+        return convertToDTOAPI(m);
+    }
+
     List<MemberDTO> convertToDTOAPI(List<Member> members){
         List<MemberDTO> dto = new ArrayList<>();
         for(Member member : members){
@@ -52,10 +63,11 @@ public class MembersService {
         return dto;
     }
 
-    MemberDTO convertToDto(Member produk){
-        MemberDTO dto = new MemberDTO(produk.getId_member(), produk.getNama_member(), produk.getAlamat(), produk.getTanggal_lahir(),
-                produk.getJenis_kelamin(),produk.getDiskon(), produk.getCount(),produk.getLast_visit(), produk.getCreated_by(),
-                produk.getCreated_at(), produk.getVersion());
+    MemberDTO convertToDto(Member member){
+//        System.out.println(member.getVisitCount());
+        MemberDTO dto = new MemberDTO(member.getId_member(), member.getNama_member(), member.getAlamat(), member.getTanggal_lahir(),
+                member.getJenis_kelamin(),member.getDiskon(), member.getVisitCount(),member.getLast_visit(), member.getCreated_by(),
+                member.getCreated_at(), member.getVersion());
         return dto;
     }
 

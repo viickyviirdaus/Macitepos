@@ -1,5 +1,7 @@
 package com.macitepos.macitepos.dto;
 
+import com.macitepos.macitepos.model.Member;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -10,7 +12,7 @@ public class MemberDTO {
     private Date tanggal_lahir;
     private String jenis_kelamin;
     private Float diskon;
-    private Integer count;
+    private Integer visit_count;
     private Timestamp last_visit;
     private String created_by;
     private Timestamp created_at;
@@ -18,7 +20,7 @@ public class MemberDTO {
 
     public MemberDTO(){};
     public MemberDTO(Integer id_member, String nama_member, String alamat, Date tanggal_lahir, String jenis_kelamin,
-                     Float diskon, Integer count, Timestamp last_visit, String created_by, Timestamp created_at,
+                     Float diskon, Integer visit_count, Timestamp last_visit, String created_by, Timestamp created_at,
                      Integer version) {
         this.id_member = id_member;
         this.nama_member = nama_member;
@@ -26,7 +28,7 @@ public class MemberDTO {
         this.tanggal_lahir = tanggal_lahir;
         this.jenis_kelamin = jenis_kelamin;
         this.diskon = diskon;
-        this.count = count;
+        this.visit_count = visit_count;
         this.last_visit = last_visit;
         this.created_by = created_by;
         this.created_at = created_at;
@@ -81,12 +83,12 @@ public class MemberDTO {
         this.diskon = diskon;
     }
 
-    public Integer getCount() {
-        return count;
+    public Integer getVisitCount() {
+        return visit_count;
     }
 
-    public void setCount(Integer count) {
-        this.count = count;
+    public void setVisitCount(Integer visit_count) {
+        this.visit_count = visit_count;
     }
 
     public Timestamp getLast_visit() {

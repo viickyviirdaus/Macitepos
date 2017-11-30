@@ -44,6 +44,18 @@ public class ProdukService {
         return convertToDtoAPI(p);
     }
 
+    public List<ProdukDTO> findByCategory(String category){
+        System.out.println("Parameter Category di product service find " + category);
+        List<Produk> p = produkDAO.findByCategori(category);
+        return convertToDtoAPI(p);
+    }
+
+    public List<ProdukDTO> search(String key){
+        System.out.println("Parameter Key di product service search " + key);
+        List<Produk> p = produkDAO.findByKey(key);
+        return convertToDtoAPI(p);
+    }
+
     List<ProdukDTO> convertToDtoAPI(List<Produk> products){
         List<ProdukDTO> dto = new ArrayList<>();
         for(Produk produk : products){
