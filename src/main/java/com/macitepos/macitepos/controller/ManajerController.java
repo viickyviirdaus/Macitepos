@@ -4,6 +4,7 @@ import com.macitepos.macitepos.dto.PenggunaDTO;
 import com.macitepos.macitepos.services.AkunService;
 import com.macitepos.macitepos.services.PenggunaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -99,9 +100,9 @@ public class ManajerController {
     //Save the uploaded file to this folder
     private static String UPLOADED_FOLDER = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\src\\main\\resources\\static\\assets\\image\\";
 
-    @PostMapping("/user/create")
-    //@RequestMapping(value = "/user/create",method = RequestMethod.POST)
-    public String buatUser(@RequestParam("image") MultipartFile file,  RedirectAttributes redirectAttributes, @Valid PenggunaDTO penggunaDTO, BindingResult bindingResult
+
+    @RequestMapping(value = "/user/create",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String buatUser(@RequestParam("file") MultipartFile file,  RedirectAttributes redirectAttributes, @Valid PenggunaDTO penggunaDTO, BindingResult bindingResult
     ){
         System.out.println("ini "+bindingResult.toString());
 

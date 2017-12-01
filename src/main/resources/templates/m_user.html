@@ -111,7 +111,7 @@
                                 <div >
                                     <img style="width: 200px; margin-bottom:10px;" id="output" alt="Preview Image"/>
                                 </div>
-                                <input type="file" name="image"  accept="image/*" onchange="loadFile(event)"  th:field="*{foto_pengguna}"/>
+                                <input type="file" name="file"  accept="image/*" onchange="loadFile(event)"  th:field="*{foto_pengguna}"/>
                                 <script>
                                     var loadFile = function(event) {
                                         var output = document.getElementById('output');
