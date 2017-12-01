@@ -36,4 +36,15 @@ public class MembersDAO {
         System.out.println("Member Service Show All");
         return m;
     }
+
+    public List<Member> findById(int id) {
+	System.out.println("ID di get Diskon Member DAO = "+ID);
+        em.getTransaction().begin();
+        Query q = em.createNativeQuery("SELECT * FROM Member m WHERE m.id_Member:ID", Member.class);
+	q.setParameter("ID", ID);
+        List<Member> m = (List<Member>) q.getResultList();
+        em.close();
+        System.out.println("Member Service Show All");
+        return m;
+    }
 }
