@@ -49,11 +49,11 @@ public class Pengguna implements java.io.Serializable{
     @Column(name = "level")
     private String level;
 
-    @OneToMany(mappedBy = "pengguna")
-    private List<Transaksi_penjualan> transaksi_penjualans;
-
-    @OneToMany(mappedBy = "pengguna")
-    private List<Transaksi_pembelian> transaksi_pembelians;
+//    @OneToMany(mappedBy = "pengguna")
+//    private List<Transaksi_penjualan> transaksi_penjualans;
+//
+//    @OneToMany(mappedBy = "pengguna")
+//    private List<Transaksi_pembelian> transaksi_pembelians;
 
     public Pengguna(){}
     public Pengguna(Integer id_pengguna, String nama_pengguna, String username, String alamat_pengguna, Date tanggal_lahir, String email, String password, boolean status_pengguna, String foto_pengguna, Timestamp last_modified, Timestamp created_at, String level) {
@@ -194,19 +194,19 @@ public class Pengguna implements java.io.Serializable{
         this.created_at = created_at;
     }
 
-    public List<Transaksi_penjualan> getTransaksi_penjualans() {
-        return transaksi_penjualans;
-    }
-
-    public void setTransaksi_penjualans(List<Transaksi_penjualan> transaksi_penjualans) {
-        this.transaksi_penjualans = transaksi_penjualans;
-    }
-
-    public List<Transaksi_pembelian> getTransaksi_pembelians() {
-        return transaksi_pembelians;
-    }
-
-    public void setTransaksi_pembelians(List<Transaksi_pembelian> transaksi_pembelians) {
-        this.transaksi_pembelians = transaksi_pembelians;
-    }
+//    public List<Transaksi_penjualan> getTransaksi_penjualans() {
+//        return transaksi_penjualans;
+//    }
+//
+//    public void setTransaksi_penjualans(List<Transaksi_penjualan> transaksi_penjualans) {
+//        this.transaksi_penjualans = transaksi_penjualans;
+//    }
+//
+//    public List<Transaksi_pembelian> getTransaksi_pembelians() {
+//        return transaksi_pembelians;
+//    }
+//
+//    public void setTransaksi_pembelians(List<Transaksi_pembelian> transaksi_pembelians) {
+//        this.transaksi_pembelians = transaksi_pembelians;
+//    }
 }

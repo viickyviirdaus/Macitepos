@@ -33,8 +33,6 @@ public class ManajerController {
 
 
 
-    //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\src\\main\\resources\\static\\assets\\image\\";
 
     @RequestMapping(value = "/manajer")
     public String manajer(HttpSession session) {
@@ -97,7 +95,12 @@ public class ManajerController {
         }
     }
 
-    @RequestMapping(value = "/user/create",method = RequestMethod.POST)
+
+    //Save the uploaded file to this folder
+    private static String UPLOADED_FOLDER = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\src\\main\\resources\\static\\assets\\image\\";
+
+    @PostMapping("/user/create")
+    //@RequestMapping(value = "/user/create",method = RequestMethod.POST)
     public String buatUser(@RequestParam("image") MultipartFile file,  RedirectAttributes redirectAttributes, @Valid PenggunaDTO penggunaDTO, BindingResult bindingResult
     ){
         System.out.println("ini "+bindingResult.toString());

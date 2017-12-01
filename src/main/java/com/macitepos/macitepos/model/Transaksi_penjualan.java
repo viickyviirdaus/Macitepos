@@ -10,6 +10,7 @@ import java.util.List;
 @Table(name = "transaksi_penjualan")
 public class Transaksi_penjualan {
 
+    public Transaksi_penjualan(){}
     public Transaksi_penjualan(Integer id_penjualan, Pengguna pengguna, Member member, Integer total_penjualan, Integer pembayaran_penjualan, Float diskon, Integer kembalian_penjualan, Timestamp created_at, List<Detil_penjualan> detil_penjualans) {
         this.id_penjualan = id_penjualan;
         this.pengguna = pengguna;

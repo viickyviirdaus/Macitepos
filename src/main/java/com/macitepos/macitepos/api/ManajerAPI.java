@@ -40,4 +40,5 @@ public class ManajerAPI {
         Iterable<Pengguna> test = akunService.listPengguna();
         return test;
     }
+
 }

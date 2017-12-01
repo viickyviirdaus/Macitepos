@@ -24,7 +24,7 @@ public class OrderDAO {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         System.out.println("show order in");
-        Query q = em.createNativeQuery("SELECT diskon FROM Transaksi_penjualan", Transaksi_penjualan.class);
+        Query q = em.createNativeQuery("SELECT * FROM Transaksi_penjualan", Transaksi_penjualan.class);
         //Query q = em.createNativeQuery("select tp.member_id_member, m.nama_member, tp.diskon, tp.total_penjualan, tp.pembayaran_penjualan, tp.kembalian_penjualan, p.id_pengguna, p.created_at from transaksi_penjualan tp  JOIN member m ON tp.member_id_member = m.id_member LEFT JOIN pengguna p ON tp.pengguna_id_pengguna = p.id_pengguna", Transaksi_penjualan.class);
         List<Transaksi_penjualan> p = (List<Transaksi_penjualan>) q.getResultList();
         System.out.println("show order out");
