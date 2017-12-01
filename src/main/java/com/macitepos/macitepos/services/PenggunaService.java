@@ -15,13 +15,15 @@ public class PenggunaService {
     @Autowired
     private PenggunasDAO penggunasDAO;
 
-    public PenggunaDTO saveOrUpdated(PenggunaDTO penggunaDTO){
+
+
+    public PenggunaDTO saveOrUpdated(PenggunaDTO penggunaDTO, String foto){
         try{
             Pengguna pengguna = new Pengguna(penggunaDTO.getId_pengguna(), penggunaDTO.getNama_pengguna(),
                                             penggunaDTO.getUsername(),
                                             penggunaDTO.getAlamat_pengguna(), penggunaDTO.getTanggal_lahir(),
                                             penggunaDTO.getEmail(), penggunaDTO.getPassword(),
-                                            penggunaDTO.isStatus_pengguna(), penggunaDTO.getFoto_pengguna(),
+                                            penggunaDTO.isStatus_pengguna(), foto,
                                             penggunaDTO.getLast_modified(), penggunaDTO.getCreated_at(),
                                             penggunaDTO.getLevel()
                                             );
@@ -35,6 +37,7 @@ public class PenggunaService {
         }
         return null;
     }
+
 
     public List<PenggunaDTO> showAll(){
         System.out.println("Show All user DAO Jalan");
@@ -64,6 +67,7 @@ public class PenggunaService {
                 pengguna.getStatus_pengguna(),pengguna.getFoto_pengguna(), pengguna.getLast_modified(), pengguna.getCreated_at(), pengguna.getLevel());
         return dto;
     }
+
 
 
 }

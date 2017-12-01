@@ -1,6 +1,7 @@
 package com.macitepos.macitepos.controller;
 
 import com.macitepos.macitepos.dto.PenggunaDTO;
+import com.macitepos.macitepos.model.Pengguna;
 import com.macitepos.macitepos.services.AkunService;
 import com.macitepos.macitepos.services.PenggunaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,6 @@ public class ManajerController {
 
     @Autowired
     private AkunService akunService;
-
 
 
 
@@ -85,7 +85,11 @@ public class ManajerController {
 //    }
 
     @RequestMapping(value = "/user",method = RequestMethod.GET)
-    public String User(Model model){
+    public String User(Model model, HttpSession session){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+
         if (penggunaService.showAll().isEmpty()){
             return "m_user";
         } else {
@@ -101,15 +105,12 @@ public class ManajerController {
     private static String UPLOADED_FOLDER = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\src\\main\\resources\\static\\assets\\image\\";
 
 
-    @RequestMapping(value = "/user/create",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String buatUser(@RequestParam("file") MultipartFile file,  RedirectAttributes redirectAttributes, @Valid PenggunaDTO penggunaDTO, BindingResult bindingResult
+    @PostMapping("/user/create")
+    public String buatUser(@RequestParam("file") MultipartFile file, @Valid PenggunaDTO penggunaDTO, BindingResult bindingResult
     ){
-        System.out.println("ini "+bindingResult.toString());
 
-        if (file.isEmpty()) {
-            redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
-            return "redirect:uploadStatus";
-        }
+
+        System.out.println("ini "+bindingResult.toString());
 
         try {
 
@@ -118,15 +119,13 @@ public class ManajerController {
             Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
             Files.write(path, bytes);
 
-            redirectAttributes.addFlashAttribute("message",
-                    "You successfully uploaded '" + file.getOriginalFilename() + "'");
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        PenggunaDTO mDTO = penggunaService.saveOrUpdated(penggunaDTO);
+        //PenggunaDTO pDTO = new PenggunaDTO();
+
+        penggunaService.saveOrUpdated(penggunaDTO, file.getOriginalFilename());
         System.out.println("user create");
         return "redirect:/user";
     }
