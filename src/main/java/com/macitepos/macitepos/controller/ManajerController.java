@@ -99,21 +99,15 @@ public class ManajerController {
             return "m_user";
         }
     }
-
-
     //Save the uploaded file to this folder
     private static String UPLOADED_FOLDER = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\src\\main\\resources\\static\\assets\\image\\";
-
 
     @PostMapping("/user/create")
     public String buatUser(@RequestParam("file") MultipartFile file, @Valid PenggunaDTO penggunaDTO, BindingResult bindingResult
     ){
-
-
+        penggunaDTO.setFoto_pengguna(file.getOriginalFilename());
         System.out.println("ini "+bindingResult.toString());
-
         try {
-
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
             Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
@@ -123,22 +117,15 @@ public class ManajerController {
             e.printStackTrace();
         }
 
-        //PenggunaDTO pDTO = new PenggunaDTO();
-
-        penggunaService.saveOrUpdated(penggunaDTO, file.getOriginalFilename());
+        penggunaService.saveOrUpdated(penggunaDTO, penggunaDTO.getFoto_pengguna());
         System.out.println("user create");
         return "redirect:/user";
     }
 
     @GetMapping(value = "/edit")
-    public String edit(Model model){
+    public String edit(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        //Object a = penggunaService.findByUsername(authentication.getName()).getId_pengguna();
-        //model.addAttribute("id", a);
         model.addAttribute("pengguna", akunService.findByUsername(authentication.getName()));
         return "m_editProfil";
     }
-
-
 }

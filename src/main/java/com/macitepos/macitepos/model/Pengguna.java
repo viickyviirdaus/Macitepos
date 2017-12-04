@@ -6,7 +6,8 @@ import java.sql.Timestamp;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "pengguna")
@@ -49,6 +50,12 @@ public class Pengguna implements java.io.Serializable{
     @Column(name = "level")
     private String level;
 
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "id_pengguna"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+
 //    @OneToMany(mappedBy = "pengguna")
 //    private List<Transaksi_penjualan> transaksi_penjualans;
 //
@@ -73,6 +80,13 @@ public class Pengguna implements java.io.Serializable{
     }
 
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
 
     public void setId(Integer id){

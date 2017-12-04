@@ -18,6 +18,8 @@ public class PenggunaService {
 
 
     public PenggunaDTO saveOrUpdated(PenggunaDTO penggunaDTO, String foto){
+
+
         try{
             Pengguna pengguna = new Pengguna(penggunaDTO.getId_pengguna(), penggunaDTO.getNama_pengguna(),
                                             penggunaDTO.getUsername(),
@@ -27,7 +29,6 @@ public class PenggunaService {
                                             penggunaDTO.getLast_modified(), penggunaDTO.getCreated_at(),
                                             penggunaDTO.getLevel()
                                             );
-
             pengguna = penggunasDAO.saveOrUpdate(pengguna);
             System.out.println("save or update user sukses");
             return convertToDto(pengguna);
@@ -48,7 +49,7 @@ public class PenggunaService {
         for (Pengguna ms: m
              ) {
             System.out.println("alamat user di service");
-            System.out.println(ms.getAlamat_pengguna());
+            System.out.println(ms.getFoto_pengguna());
         }
         return convertToDTOAPI(m);
     }

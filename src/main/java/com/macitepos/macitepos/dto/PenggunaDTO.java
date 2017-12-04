@@ -102,9 +102,7 @@ public class PenggunaDTO {
         return foto_pengguna;
     }
 
-    public void setFoto_pengguna(String foto_pengguna) {
-        this.foto_pengguna = foto_pengguna;
-    }
+    public void setFoto_pengguna(String foto) {    this.foto_pengguna = foto;    }
 
     public Timestamp getLast_modified() {
         return last_modified;

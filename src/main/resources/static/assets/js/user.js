@@ -7,23 +7,23 @@ $(document).ready (function() {
         "order": [[ 0, "asc" ]],
         "columns": [
 
-            { "mData": 0,
+            { "mData": "foto_pengguna",
                 "render": function (mData) {
                     return '<img style="width: 100%" src="assets/image/'+mData+'"/>';
                 }},
-            { "mData": 1},
-            { "mData": 2 },
-            { "mData": 3 },
-            { "mData": 4 },
-            { "mData": 5 },
-            { "mData": 6 },
-            { "mData": 7,
+            { "mData": "id_pengguna"},
+            { "mData": "nama_pengguna" },
+            { "mData": "alamat_pengguna" },
+            { "mData": "tanggal_lahir" },
+            { "mData": "email" },
+            { "mData": "level" },
+            { "mData": "created_at",
                 "render": function (mData) {
                     var date = new Date(mData);
                     var month = date.getMonth() + 1;
                     return (month.length > 1 ? month : + month) + "/" + date.getMonth() + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds();
                 }},
-            { "mData": 8,
+            { "mData": "last_modified",
                 "render": function (mData) {
                     var date = new Date(mData);
                     var month = date.getMonth() + 1;
