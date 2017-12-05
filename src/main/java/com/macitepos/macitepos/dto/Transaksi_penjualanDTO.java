@@ -1,14 +1,11 @@
 package com.macitepos.macitepos.dto;
 
-<<<<<<< HEAD
-=======
 import com.macitepos.macitepos.model.Detil_penjualan;
 import com.macitepos.macitepos.model.Member;
 import com.macitepos.macitepos.model.Pengguna;
 
 import java.sql.Timestamp;
 import java.util.List;
->>>>>>> 9e144be6e73c19507568cba5c5e6ab4837e25f0f
 
 public class Transaksi_penjualanDTO {
 
