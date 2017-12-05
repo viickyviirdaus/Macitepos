@@ -23,6 +23,7 @@ public class MembersService {
                     memberDTO.getVersion());
 
             member = membersDAO.saveOrUpdate(member);
+            System.out.println("save or update customer  sukses");
             return convertToDto(member);
         } catch (Exception e){
             System.out.println(e.getMessage());

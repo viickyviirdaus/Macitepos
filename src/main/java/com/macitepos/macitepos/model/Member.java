@@ -36,8 +36,8 @@ public class Member {
     @Column(name="opt_version", columnDefinition = "integer DEFAULT 0")
     private Integer version;
 
-    @OneToMany(mappedBy = "member")
-    private List<Transaksi_penjualan> transaksi_penjualans;
+//    @OneToMany(mappedBy = "member")
+//    private List<Transaksi_penjualan> transaksi_penjualans;
 
     public Member(){}
     public Member(Integer id_member, String nama_member, String alamat, Date tanggal_lahir, String jenis_kelamin, Float diskon, Integer visit_count,
@@ -144,11 +144,11 @@ public class Member {
         this.created_at = created_at;
     }
 
-    public List<Transaksi_penjualan> getTransaksi_penjualans() {
-        return transaksi_penjualans;
-    }
-
-    public void setTransaksi_penjualans(List<Transaksi_penjualan> transaksi_penjualans) {
-        this.transaksi_penjualans = transaksi_penjualans;
-    }
+//    public List<Transaksi_penjualan> getTransaksi_penjualans() {
+//        return transaksi_penjualans;
+//    }
+//
+//    public void setTransaksi_penjualans(List<Transaksi_penjualan> transaksi_penjualans) {
+//        this.transaksi_penjualans = transaksi_penjualans;
+//    }
 }

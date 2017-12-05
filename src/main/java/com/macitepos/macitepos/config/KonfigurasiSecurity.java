@@ -40,9 +40,7 @@ public class KonfigurasiSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http)throws Exception{
 
-        http
-                .authorizeRequests().antMatchers("/assets/**").permitAll()
-                ;
+        http.authorizeRequests().antMatchers("/assets/**").permitAll();
 
         http.csrf().disable()
                 .authorizeRequests()
@@ -51,13 +49,15 @@ public class KonfigurasiSecurity extends WebSecurityConfigurerAdapter {
                 .hasAnyRole("MANAJER")
                 .antMatchers("/kasir", "/customers","/edits","/c_header","/orders","/products","c_reportPayment","c_reportProduct","c_user")
                 .hasAnyRole("KASIR")
-                .antMatchers("/member/create").hasAnyRole("KASIR","MANAJER")
+                .antMatchers("/w_dashboard", "w_header","/w_adminSuplier","/w_dashboarddisapproved","/w_editProfile")
+                .hasAnyRole("WAREHOUSE")
+                .antMatchers("/member/create").hasAnyRole("KASIR","MANAJER","WAREHOUSE")
                 .anyRequest().authenticated()
 
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/home"  )
+                .defaultSuccessUrl("/home")
                 .permitAll()
                 .and()
                 .logout()

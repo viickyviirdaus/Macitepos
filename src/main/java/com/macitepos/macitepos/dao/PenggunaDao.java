@@ -14,4 +14,6 @@ public interface PenggunaDao extends CrudRepository<Pengguna, Integer> {
 
     @Query("select foto_pengguna, id_pengguna, nama_pengguna, alamat_pengguna, tanggal_lahir, email, level, created_at, last_modified from Pengguna")
     Iterable<Pengguna> findAllPengguna();
+
 }
+
