@@ -363,7 +363,7 @@ $(function(){
     $('#printInvoice').click(function(){
         // alert("PRINT");
         if(visit_count == 0){
-            alert("VISIT COUNT 0")
+            // alert("VISIT COUNT 0")
             $.ajax({
                 url: '/api/member/'+idMember,
                 type: 'GET',
@@ -374,7 +374,7 @@ $(function(){
                     $.each(pembeli, function (index, p) {
                         visit_count[0] = p.visitCount;
                         visit_count[0] +=1;
-                        alert(visit_count[0]);
+                        // alert(visit_count[0]);
                         createJson(visit_count[0]);
                     });
                 }
@@ -407,5 +407,22 @@ function createJson(v) {
         sendJSON[index].total = subTotal;
         sendJSON[index].id_member = idMember;
         sendJSON[index].visit_count = v;
+    });
+    sendData(sendJSON);
+}
+
+function sendData(transaction) {
+    $.ajax({
+        url: "/api/transaksiPenjualan/create",
+        type: 'POST',
+        contentType: "application/json;charset=utf-8",
+        data: JSON.stringify(transaction),
+        success: function (transaction) {
+            productAddSuccess(transaction);
+        }
+        // ,
+        // error: function (request, message, error) {
+        //     handleException(request, message, error);
+        // }
     });
 }
