@@ -11,7 +11,7 @@ import java.util.Set;
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private Integer role_id;
 
     private String role;
@@ -19,6 +19,12 @@ public class Role {
 
     @ManyToMany(mappedBy = "roles")
     private Set<Pengguna> penggunaSet = new HashSet<>();
+
+    public Role(){}
+    public Role(Integer id_pengguna, String roles) {
+        this.role_id = id_pengguna;
+        this.role = roles;
+    }
 
     public Integer getRole_id() {
         return role_id;

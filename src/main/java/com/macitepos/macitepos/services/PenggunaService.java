@@ -1,8 +1,11 @@
 package com.macitepos.macitepos.services;
 
 import com.macitepos.macitepos.dao.PenggunasDAO;
+import com.macitepos.macitepos.dao.RoleDAO;
 import com.macitepos.macitepos.dto.PenggunaDTO;
+import com.macitepos.macitepos.dto.RoleDTO;
 import com.macitepos.macitepos.model.Pengguna;
+import com.macitepos.macitepos.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +18,17 @@ public class PenggunaService {
     @Autowired
     private PenggunasDAO penggunasDAO;
 
+    @Autowired
+    private RoleDAO roleDAO;
+
+    PenggunaDTO penggunaDTO;
 
 
-    public PenggunaDTO saveOrUpdated(PenggunaDTO penggunaDTO, String foto){
 
+    public PenggunaDTO saveOrUpdated(PenggunaDTO penggunaDTOO, String foto){
+
+    this.penggunaDTO = penggunaDTOO;
+        System.out.println("itu "+penggunaDTO.getId_pengguna());
 
         try{
             Pengguna pengguna = new Pengguna(penggunaDTO.getId_pengguna(), penggunaDTO.getNama_pengguna(),
@@ -29,8 +39,12 @@ public class PenggunaService {
                                             penggunaDTO.getLast_modified(), penggunaDTO.getCreated_at(),
                                             penggunaDTO.getLevel()
                                             );
+
+            System.out.println("save or update user sebelum sukses"+ pengguna.getId_pengguna());
             pengguna = penggunasDAO.saveOrUpdate(pengguna);
-            System.out.println("save or update user sukses");
+
+            System.out.println("save or update user sukses"+ pengguna.getId_pengguna());
+            saveToRole(pengguna.getId_pengguna());
             return convertToDto(pengguna);
         } catch (Exception e){
             System.out.println("pengguna service saveorupdte error");
@@ -38,6 +52,32 @@ public class PenggunaService {
         }
         return null;
     }
+
+    public Role saveToRole(int id){
+
+        System.out.println(penggunaDTO.getId_pengguna()+" ID 4 ");
+        System.out.println("level s1" + penggunaDTO.getLevel());
+        String roles;
+        System.out.println("level s2" + penggunaDTO.getLevel());
+        if(penggunaDTO.getLevel().equals("kasir")){
+            roles = "ROLE_KASIR";
+            System.out.println("level s3" + penggunaDTO.getLevel());
+        }else
+            roles = "ROLE_WAREHOUSE";
+
+        try{
+            System.out.println(id+"ini id pengguna terakhir dan rolenya "+roles);
+            Role role = new Role(id, roles);
+            System.out.println("roleeeeeeeeee "+role.getRole_id());
+            role = roleDAO.saveToRole(role);
+            return  role;
+
+        }catch (Exception e){
+            System.out.println(e.getMessage() + "save to Role in service error");
+        }
+        return null;
+    }
+
 
 
     public List<PenggunaDTO> showAll(){
@@ -48,8 +88,8 @@ public class PenggunaService {
         }
         for (Pengguna ms: m
              ) {
-            System.out.println("alamat user di service");
-            System.out.println(ms.getFoto_pengguna());
+            System.out.println("id user di service pengguna");
+            System.out.println(ms.getId_pengguna());
         }
         return convertToDTOAPI(m);
     }
@@ -69,6 +109,10 @@ public class PenggunaService {
         return dto;
     }
 
-
+//    RoleDTO convertRoleToDto(Role role){
+//        RoleDTO roleDTO = new  RoleDTO(role.getRole_id(), role.getRole());
+//        System.out.println(roleDTO.getRole_id()+" id roledto");
+//        return roleDTO;
+//    }
 
 }

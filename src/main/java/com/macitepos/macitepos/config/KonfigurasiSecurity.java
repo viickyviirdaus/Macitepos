@@ -18,10 +18,14 @@ public class KonfigurasiSecurity extends WebSecurityConfigurerAdapter {
             +" from pengguna p where username = ?";
 
     private static final String SQL_PERMISSION =
-            "select p.username, r.role as authority, ur.id_pengguna"
-            + " from pengguna p join user_role ur on p.id_pengguna = ur.id_pengguna"
-            + " join role r on ur.role_id = r.role_id"
-            + " where p.username = ? ";
+//            "select p.username, r.role as authority, ur.id_pengguna"
+//            + " from pengguna p join user_role ur on p.id_pengguna = ur.id_pengguna"
+//            + " join role r on ur.role_id = r.role_id"
+//            + " where p.username = ? ";
+            "select p.username, r.role as authority, p.id_pengguna"
+                    + " from pengguna p "
+                    + " join role r on p.id_pengguna = r.role_id"
+                    + " where p.username = ? ";
 
     @Autowired
     private AccessDeniedHandler accessDeniedHandler;
