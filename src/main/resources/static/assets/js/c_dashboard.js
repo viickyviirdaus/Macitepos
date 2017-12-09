@@ -11,7 +11,7 @@ var cash = 0;
 var totalPerProduk = [];
 var sendJSON=[];
 var idMember = 1;
-var visit_count =[];
+var visit_count =0;
 $(document).ready(function () {
     productList();
 });
@@ -33,15 +33,15 @@ function productList() {
 $(document).on("click", "[category]", function () {
     idSelected = $(this).attr('id');
     emptyproductListShow();
-        $.ajax({
-            url: '/api/produk/'+idSelected,
-            type: 'GET',
-            dataType: 'json',
-            success: function (products) {
-                allProduct = products;
-                productListSuccess(allProduct);
-            }
-        })
+    $.ajax({
+        url: '/api/produk/'+idSelected,
+        type: 'GET',
+        dataType: 'json',
+        success: function (products) {
+            allProduct = products;
+            productListSuccess(allProduct);
+        }
+    })
 });
 
 $(document).on("change","#serachProduk", function () {
@@ -83,22 +83,22 @@ function productAddList(product) {
 
 function productListShow(product) {
     productList =
-            '<a selected id="'+ product.id_produk +'" >' +
-                '<div class="col-sm-3">' +
-                    '<div class="panel panel-default">' +
-                        '<div class="panel-body">' +
-                            '<div>' +
-                                '<img style="width: 100%; padding-bottom: 5px;" src="assets/image/'+ product.foto_produk +'"/>' +
-                            '</div>'+
-                            '<div class="text-center">' +
-                                '<span>'+product.nama_produk+'</span>'+
-                                '<br/>' +
-                                '<span style="font-size: 12px">' + 'Rp '+product.harga_penjualan+'</span>' +
-                            '</div>' +
-                        '</div>' +
-                    '</div>' +
-                '</div>' +
-            '</a>';
+        '<a selected id="'+ product.id_produk +'" >' +
+        '<div class="col-sm-3">' +
+        '<div class="panel panel-default">' +
+        '<div class="panel-body">' +
+        '<div>' +
+        '<img style="width: 100%; padding-bottom: 5px;" src="assets/image/'+ product.foto_produk +'"/>' +
+        '</div>'+
+        '<div class="text-center">' +
+        '<span>'+product.nama_produk+'</span>'+
+        '<br/>' +
+        '<span style="font-size: 12px">' + 'Rp '+product.harga_penjualan+'</span>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</a>';
     return productList;
 }
 
@@ -115,11 +115,11 @@ function showCategoryDropDown(){
 
 function categoryDropDown() {
     cat =   '<li><a category id="all">All Product</a></li>' +
-            '<li><a category id="makanan">Makanan</a></li>' +
-            '<li><a category id="minuman">Minuman</a></li>' +
-            '<li><a category id="obat">Obat</a></li>' +
-            '<li role="separator" class="divider"></li>' +
-            '<li><a category id="rumahTangga">Rumah Tangga</a></li>';
+        '<li><a category id="makanan">Makanan</a></li>' +
+        '<li><a category id="minuman">Minuman</a></li>' +
+        '<li><a category id="obat">Obat</a></li>' +
+        '<li role="separator" class="divider"></li>' +
+        '<li><a category id="rumahTangga">Rumah Tangga</a></li>';
     return cat;
 }
 
@@ -185,12 +185,12 @@ function listProduct() {
     var id = '';
     var no ='', image='',name='',price='',count='',action='', recordMain ='', recordInvoice = '';
     $.each(selectedProducts, function (index, product) {
-            no = index+1;
-            id = product.id_produk;
-            image = product.foto_produk;
-            name = product.nama_produk;
-            price = product.harga_penjualan;
-            count = jumlahBeli[product.id_produk];
+        no = index+1;
+        id = product.id_produk;
+        image = product.foto_produk;
+        name = product.nama_produk;
+        price = product.harga_penjualan;
+        count = jumlahBeli[product.id_produk];
         recordMain+= showTableRow(no,id,image,name,price,count);
         recordInvoice += showTableRowInvoice(no,id,name,price,count)
     });
@@ -203,14 +203,14 @@ function showTableRow(no,id,image,name,price,count) {
     // $("#listTableProductCustumer").html(id+image+name+price+count);
     row =
         '<tr>' +
-            '<td>' + no + '</td>' +
-            '<td><img src="assets/image/'+ image +'" style="width: 40px; padding-bottom: 5px;" alt=""/></td>' +
-            '<td>' + name + '</td>' +
-            '<td>' + price + '</td>' +
-            '<td>' +
-                 '<input type="number" class="form-control" changeCount id="'+ id +'" value="'+ count +'" style="width: 60px"/>' +
-            '</td>' +
-            '<td> <button deleteButton class="btn btn-danger" id="'+ id +'">Delete</button></td>' +
+        '<td>' + no + '</td>' +
+        '<td><img src="assets/image/'+ image +'" style="width: 40px; padding-bottom: 5px;" alt=""/></td>' +
+        '<td>' + name + '</td>' +
+        '<td>' + price + '</td>' +
+        '<td>' +
+        '<input type="number" class="form-control" changeCount id="'+ id +'" value="'+ count +'" style="width: 60px"/>' +
+        '</td>' +
+        '<td> <button deleteButton class="btn btn-danger" id="'+ id +'">Delete</button></td>' +
         '</tr>';
     return row;
 }
@@ -243,11 +243,11 @@ function showTableRowInvoice(no,id,name,price,count) {
     // alert("total per product setelah ditampilkan"+totalPerProduk.length);
     var row =
         '<tr>' +
-            '<td>' + no + '</td>' +
-            '<td>' + name + '</td>' +
-            '<td>' + price + '</td>' +
-            '<td>' + count + '</td>' +
-            '<td>Rp. <span class="text-right">'+ totalPerProduk[id] + '</span></td>' +
+        '<td>' + no + '</td>' +
+        '<td>' + name + '</td>' +
+        '<td>' + price + '</td>' +
+        '<td>' + count + '</td>' +
+        '<td>Rp. <span class="text-right">'+ totalPerProduk[id] + '</span></td>' +
         '</tr>';
     return row;
 }
@@ -267,7 +267,7 @@ $(function () {
                     pembeli = member;
                     setDiskon();
                     $.each(pembeli, function (index, p) {
-                        visit_count[0] = p.visitCount;
+                        visit_count = p.visitCount;
                     });
                 }
             })
@@ -279,7 +279,7 @@ $(function () {
                 success: function (member) {
                     pembeli = member;
                     $.each(pembeli, function (index, p) {
-                        visit_count[0] = p.visitCount;
+                        visit_count = p.visitCount;
                         alert(visit_count);
                     });
                     if(pembeli.length>0){
@@ -296,7 +296,7 @@ $(function () {
 
 function setDiskon() {
     $.each(pembeli, function (index, pem) {
-       discount = pem.diskon;
+        discount = pem.diskon;
     });
     $('#discountShow').attr("placeholder", discount+"%");
     calculate();
@@ -356,7 +356,7 @@ function calculateRecievedAmount() {
 function calculateCash() {
     cash = 0;
     cash += recievedAmount - grandTotal;
-        $("#CashInvoice").text("Rp. "+ cash +"");
+    $("#CashInvoice").text("Rp. "+ cash +"");
 }
 
 $(function(){
@@ -372,16 +372,16 @@ $(function(){
                     pembeli = member;
                     setDiskon();
                     $.each(pembeli, function (index, p) {
-                        visit_count[0] = p.visitCount;
-                        visit_count[0] +=1;
+                        visit_count = p.visitCount;
+                        visit_count +=1;
                         // alert(visit_count[0]);
-                        createJson(visit_count[0]);
+                        createJson(visit_count);
                     });
                 }
             });
         } else {
-            visit_count[0] += 1;
-            createJson(visit_count[0]);
+            visit_count += 1;
+            createJson(visit_count);
         }
         // sendJSON = [];
         // sendJSON[0] = new Object();
@@ -413,7 +413,7 @@ function createJson(v) {
 
 function sendData(transaction) {
     $.ajax({
-        url: "/api/transaksiPenjualan/create",
+        url: "/api/create/transaksiPenjualan",
         type: 'POST',
         contentType: "application/json;charset=utf-8",
         data: JSON.stringify(transaction),

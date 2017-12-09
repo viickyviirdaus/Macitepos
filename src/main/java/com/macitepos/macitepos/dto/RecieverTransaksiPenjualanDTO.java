@@ -1,8 +1,9 @@
 package com.macitepos.macitepos.dto;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-public class recieverTransaksiPenjualanDTO {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class RecieverTransaksiPenjualanDTO {
 
     private int id_produk;
     private int count_product;
@@ -13,7 +14,8 @@ public class recieverTransaksiPenjualanDTO {
     private int id_member;
     private int visit_count;
 
-    public recieverTransaksiPenjualanDTO(int id_produk, int count_product, int discount, int cash, int recievedAmount, int total, int id_member, int visit_count) {
+    public RecieverTransaksiPenjualanDTO(){}
+    public RecieverTransaksiPenjualanDTO(int id_produk, int count_product, int discount, int cash, int recievedAmount, int total, int id_member, int visit_count) {
         this.id_produk = id_produk;
         this.count_product = count_product;
         this.discount = discount;
@@ -24,8 +26,8 @@ public class recieverTransaksiPenjualanDTO {
         this.visit_count = visit_count;
     }
 
-    public recieverTransaksiPenjualanDTO(List<recieverTransaksiPenjualanDTO> set){
-        this.id_produk = set.get(0).id_produk;
+    public RecieverTransaksiPenjualanDTO(RecieverTransaksiPenjualanDTO set){
+        this.id_produk = set.id_produk;
     }
 
     public int getId_produk() {

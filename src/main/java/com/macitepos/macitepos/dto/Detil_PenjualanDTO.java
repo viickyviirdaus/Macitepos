@@ -9,6 +9,7 @@ public class Detil_PenjualanDTO {
     private Transaksi_penjualan transaksi_penjualan;
     private Produk produk;
 
+    public Detil_PenjualanDTO(){}
     public Detil_PenjualanDTO(int id_detail_penjualan, Transaksi_penjualan transaksi_penjualan, Produk produk) {
         this.id_detail_penjualan = id_detail_penjualan;
         this.transaksi_penjualan = transaksi_penjualan;
