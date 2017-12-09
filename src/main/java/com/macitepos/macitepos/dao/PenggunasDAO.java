@@ -1,6 +1,7 @@
 package com.macitepos.macitepos.dao;
 
 import com.macitepos.macitepos.model.Pengguna;
+import com.macitepos.macitepos.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -23,11 +24,13 @@ public class PenggunasDAO {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         Pengguna saved = em.merge(pengguna);
+        System.out.println(pengguna.getId_pengguna()+"id pengguna");
         em.getTransaction().commit();
         em.close();
         System.out.println("user save or update out");
+        System.out.println(pengguna.getId_pengguna()+"id pengguna");
         return saved;
-    }
+     }
 
     public List<Pengguna> showAll(){
         EntityManager em = emf.createEntityManager();
@@ -38,5 +41,7 @@ public class PenggunasDAO {
         System.out.println("Pengguna Service Show All");
         return m;
     }
+
+
 
 }

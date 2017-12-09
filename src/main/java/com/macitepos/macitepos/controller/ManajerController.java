@@ -33,8 +33,6 @@ public class ManajerController {
     private AkunService akunService;
 
 
-
-
     @RequestMapping(value = "/manajer")
     public String manajer(HttpSession session) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -93,7 +91,7 @@ public class ManajerController {
         if (penggunaService.showAll().isEmpty()){
             return "m_user";
         } else {
-            model.addAttribute("pengguna",penggunaService.showAll());
+            model.addAttribute("pengguna", penggunaService.showAll());
             model.addAttribute("penggunaBaru", new PenggunaDTO());
             System.out.println("Controller user jalan");
             return "m_user";
@@ -108,16 +106,28 @@ public class ManajerController {
         penggunaDTO.setFoto_pengguna(file.getOriginalFilename());
         System.out.println("ini "+bindingResult.toString());
         try {
+            String filename;
+            System.out.println("nama foto" +file.getOriginalFilename().toString());
+            if(file.getOriginalFilename() == null || file.getOriginalFilename().toString().equalsIgnoreCase("")){
+                filename = "defaultProfile.png";
+            }else{
+                filename = file.getOriginalFilename();
+            }
+
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+            System.out.println("filename"+filename);
+            Path path = Paths.get(UPLOADED_FOLDER + filename);
+            System.out.println(path+" path");
             Files.write(path, bytes);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        System.out.println("level contr " + penggunaDTO.getLevel());
+        System.out.println(penggunaDTO.getId_pengguna()+" ID 1 ");
         penggunaService.saveOrUpdated(penggunaDTO, penggunaDTO.getFoto_pengguna());
+
         System.out.println("user create");
         return "redirect:/user";
     }
