@@ -48,4 +48,14 @@ public class OrderDAO {
         em.close();
         return p;
     }
+
+    public Long jumlahOrder(){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        System.out.println("show order in");
+        long q = (Long) em.createQuery("SELECT count(t) FROM Transaksi_penjualan t").getSingleResult();
+        System.out.println("show order out");
+        em.close();
+        return q;
+    }
 }
