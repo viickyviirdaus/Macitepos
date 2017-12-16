@@ -42,6 +42,15 @@ public class PenggunasDAO {
         return m;
     }
 
+    public Pengguna findById(int id_pengguna){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Pengguna p = em.find(Pengguna.class, id_pengguna);
+        em.getTransaction().commit();
+        em.close();
+        return p;
+    }
+
 
 
 }

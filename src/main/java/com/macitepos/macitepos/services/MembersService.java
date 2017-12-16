@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +30,13 @@ public class MembersService {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    public void updateJumlahBerkunjung(int id_member, int kunjungan, Timestamp timestamp){
+        Member member = membersDAO.findOneMemberById(id_member);
+        member.setVisitCount(kunjungan);
+        member.setLast_visit(timestamp);
+        membersDAO.saveOrUpdate(member);
     }
 
     public List<MemberDTO> showAll(){

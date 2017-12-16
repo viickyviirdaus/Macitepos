@@ -14,12 +14,12 @@ public class Transaksi_penjualanDTO {
     private Member member;
     private Integer total_penjualan;
     private Integer pembayaran_penjualan;
-    private Float diskon;
+    private Integer diskon;
     private Integer kembalian_penjualan;
     private Timestamp created_at;
     private List<Detil_penjualan> detil_penjualans;
 
-    public Transaksi_penjualanDTO(Integer id_penjualan, Pengguna pengguna, Member member, Integer total_penjualan, Integer pembayaran_penjualan, Float diskon, Integer kembalian_penjualan, Timestamp created_at, List<Detil_penjualan> detil_penjualans) {
+    public Transaksi_penjualanDTO(Integer id_penjualan, Pengguna pengguna, Member member, Integer total_penjualan, Integer pembayaran_penjualan, Integer diskon, Integer kembalian_penjualan, Timestamp created_at, List<Detil_penjualan> detil_penjualans) {
         this.id_penjualan = id_penjualan;
         this.pengguna = pengguna;
         this.member = member;
@@ -29,6 +29,17 @@ public class Transaksi_penjualanDTO {
         this.kembalian_penjualan = kembalian_penjualan;
         this.created_at = created_at;
         this.detil_penjualans = detil_penjualans;
+    }
+
+    public Transaksi_penjualanDTO(Integer id_penjualan, Pengguna pengguna, Member member, Integer total_penjualan, Integer pembayaran_penjualan, Integer diskon, Integer kembalian_penjualan, Timestamp created_at) {
+        this.id_penjualan = id_penjualan;
+        this.pengguna = pengguna;
+        this.member = member;
+        this.total_penjualan = total_penjualan;
+        this.pembayaran_penjualan = pembayaran_penjualan;
+        this.diskon = diskon;
+        this.kembalian_penjualan = kembalian_penjualan;
+        this.created_at = created_at;
     }
 
     public Integer getId_penjualan() {
@@ -71,11 +82,11 @@ public class Transaksi_penjualanDTO {
         this.pembayaran_penjualan = pembayaran_penjualan;
     }
 
-    public Float getDiskon() {
+    public Integer getDiskon() {
         return diskon;
     }
 
-    public void setDiskon(Float diskon) {
+    public void setDiskon(Integer diskon) {
         this.diskon = diskon;
     }
 

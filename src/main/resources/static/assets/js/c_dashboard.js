@@ -70,6 +70,14 @@ $(document).on("change","#serachProduk", function () {
     }
 });
 
+$(document).on("change","#InputIdMember", function () {
+    searchIdMember();
+});
+
+$(document).on("click","#cancelALL", function () {
+    resetAll();
+});
+
 function productListSuccess(allProduct) {
     $.each(allProduct, function (index, product) {
         productAddList(product);
@@ -173,9 +181,6 @@ $(document).on( "click", "[selected]", function(){
             jumlahBeli[select.id_produk] = 1;
         }
     }
-
-    // alert("jumlah beli setelah di klik panjangnya"+jumlahBeli.length);
-
     listProduct();
     calculate();
 
@@ -240,7 +245,6 @@ $(document).on("change","[changeCount]", function () {
 
 function showTableRowInvoice(no,id,name,price,count) {
     totalPerProduk[id] = price*count;
-    // alert("total per product setelah ditampilkan"+totalPerProduk.length);
     var row =
         '<tr>' +
         '<td>' + no + '</td>' +
@@ -255,44 +259,47 @@ function showTableRowInvoice(no,id,name,price,count) {
 // Change Diskon By Input ID
 $(function () {
     $('#searchIdMember').click(function () {
-        idMember = $('#InputIdMember').val();
-        idMember = idMember*1;
-        if (idMember == 1){
-            alert("Member tidak ditemukan");
-            $.ajax({
-                url: '/api/member/'+idMember,
-                type: 'GET',
-                dataType: 'json',
-                success: function (member) {
-                    pembeli = member;
-                    setDiskon();
-                    $.each(pembeli, function (index, p) {
-                        visit_count = p.visitCount;
-                    });
-                }
-            })
-        } else {
-            $.ajax({
-                url: '/api/member/'+idMember,
-                type: 'GET',
-                dataType: 'json',
-                success: function (member) {
-                    pembeli = member;
-                    $.each(pembeli, function (index, p) {
-                        visit_count = p.visitCount;
-                        alert(visit_count);
-                    });
-                    if(pembeli.length>0){
-                        alert("Member ditemukan, Nama Member = "+ pembeli[0].nama_member)
-                        setDiskon();
-                    } else {
-                        alert("Member tidak ditemukan")
-                    }
-                }
-            })
-        }
+
     })
 });
+
+function searchIdMember() {
+    idMember = $('#InputIdMember').val();
+    idMember = idMember*1;
+    if (idMember == 1){
+        alert("Member tidak ditemukan");
+        $.ajax({
+            url: '/api/member/'+idMember,
+            type: 'GET',
+            dataType: 'json',
+            success: function (member) {
+                pembeli = member;
+                setDiskon();
+                $.each(pembeli, function (index, p) {
+                    visit_count = p.visitCount;
+                });
+            }
+        })
+    } else {
+        $.ajax({
+            url: '/api/member/'+idMember,
+            type: 'GET',
+            dataType: 'json',
+            success: function (member) {
+                pembeli = member;
+                $.each(pembeli, function (index, p) {
+                    visit_count = p.visitCount;
+                });
+                if(pembeli.length>0){
+                    alert("Member ditemukan, Nama Member = "+ pembeli[0].nama_member)
+                    setDiskon();
+                } else {
+                    alert("Member tidak ditemukan")
+                }
+            }
+        })
+    }
+}
 
 function setDiskon() {
     $.each(pembeli, function (index, pem) {
@@ -311,19 +318,24 @@ function calculate() {
 }
 $(function(){
     $('#submitButton').click(function(){
-        recievedAmount = $('#RecievedAmount').val();
-        recievedAmount = recievedAmount*1;
-        if(recievedAmount > 0 && recievedAmount >= grandTotal){
-            $("#submitButton").attr("data-toggle", "modal");
-            calculateRecievedAmount();
-            calculateCash();
-        } else {
-            $("#submitButton").attr("data-toggle", "");
-            alert("Pembayaran Belum Diterima / Kurang");
-            $("#RecievedAmount").attr("class", "form-control active");
-        }
+        submitToInvoice();
     });
 });
+
+function submitToInvoice() {
+    recievedAmount = $('#RecievedAmount').val();
+    recievedAmount = recievedAmount*1;
+    if(recievedAmount > 0 && recievedAmount >= grandTotal){
+        $("#submitButton").attr("data-toggle", "modal");
+        calculateRecievedAmount();
+        calculateCash();
+    } else {
+        $("#submitButton").attr("data-toggle", "");
+        alert("Pembayaran Belum Diterima / Kurang");
+        $("#RecievedAmount").attr("class", "form-control active");
+    }
+}
+
 function calculateSubTotal() {
     subTotal = 0;
     $.each(selectedProducts, function (index,product) {
@@ -361,40 +373,41 @@ function calculateCash() {
 
 $(function(){
     $('#printInvoice').click(function(){
-        // alert("PRINT");
-        if(visit_count == 0){
-            // alert("VISIT COUNT 0")
-            $.ajax({
-                url: '/api/member/'+idMember,
-                type: 'GET',
-                dataType: 'json',
-                success: function (member) {
-                    pembeli = member;
-                    setDiskon();
-                    $.each(pembeli, function (index, p) {
-                        visit_count = p.visitCount;
-                        visit_count +=1;
-                        // alert(visit_count[0]);
-                        createJson(visit_count);
-                    });
-                }
-            });
-        } else {
-            visit_count += 1;
-            createJson(visit_count);
-        }
-        // sendJSON = [];
-        // sendJSON[0] = new Object();
-        // sendJSON[0].id_produk = "hehehe";
-        // sendJSON[0].jumlahBeli = 1;
-        // sendJSON[1] = new Object();
-        // sendJSON[1].id_produk = 'Dua';
-        // sendJSON[1].jumlah_beli = 2;
-        // sendJSON[1].jumlah_beli = 9;
-        // sendJSON[0].jumlahBeli = 3;
-        console.log(sendJSON);
+        printInvoiceMethod();
     });
 });
+
+function printInvoiceMethod() {
+    if(visit_count == 0){
+        $.ajax({
+            url: '/api/member/'+idMember,
+            type: 'GET',
+            dataType: 'json',
+            success: function (member) {
+                pembeli = member;
+                setDiskon();
+                $.each(pembeli, function (index, p) {
+                    visit_count = p.visitCount;
+                    visit_count +=1;
+                    createJson(visit_count);
+                });
+            }
+        });
+    } else {
+        visit_count += 1;
+        createJson(visit_count);
+    }
+    // sendJSON = [];
+    // sendJSON[0] = new Object();
+    // sendJSON[0].id_produk = "hehehe";
+    // sendJSON[0].jumlahBeli = 1;
+    // sendJSON[1] = new Object();
+    // sendJSON[1].id_produk = 'Dua';
+    // sendJSON[1].jumlah_beli = 2;
+    // sendJSON[1].jumlah_beli = 9;
+    // sendJSON[0].jumlahBeli = 3;
+    // console.log(sendJSON);
+}
 
 function createJson(v) {
     $.each(selectedProducts , function (index,product) {
@@ -425,4 +438,47 @@ function sendData(transaction) {
         //     handleException(request, message, error);
         // }
     });
+    resetAll();
+}
+
+//HAPUS SEMUANYA YANG ADA DI DASHBOARD
+
+function resetAll() {
+    selectedProducts=[];
+    pembeli=[];
+    jumlahBeli = [];
+    discount = 0;
+    RpDiscount = 0;
+    subTotal = 0;
+    grandTotal = 0;
+    recievedAmount = 0;
+    cash = 0;
+    totalPerProduk = [];
+    sendJSON=[];
+    idMember = 1;
+    visit_count =0;
+
+            //INVOICE//
+    //Hapus List di Invoice
+    $("#InvoiceTable tbody").html('');
+    $("#SubTotalInvoice").text("Rp. 88888");
+    $("#DiscountInvoice").text("Rp. 88888");
+    $("#TotalInvoice").text("Rp. 88888");
+    $("#AmountInvoice").text("Rp. 88888");
+    $("#CashInvoice").text("Rp. 88888");
+    $('#emailInvoice').val('');
+
+
+    //BODY//
+    //Hapus LIst Di kotak kiri
+    $("#productTable tbody").html('');
+    $('#InputIdMember').val('');
+    $('#serachProduk').val('');
+    $('#RecievedAmount').val('');
+    $('#subTotal').attr("placeholder",'Rp. 0');
+    $('#discountShow').attr("placeholder",'0%');
+    $('#grandTotal').attr("placeholder",'Rp. 0');
+
+
+
 }

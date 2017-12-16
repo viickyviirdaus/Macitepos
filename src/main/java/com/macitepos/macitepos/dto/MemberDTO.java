@@ -11,7 +11,7 @@ public class MemberDTO {
     private String alamat;
     private Date tanggal_lahir;
     private String jenis_kelamin;
-    private Float diskon;
+    private Integer diskon;
     private Integer visit_count;
     private Timestamp last_visit;
     private String created_by;
@@ -20,7 +20,7 @@ public class MemberDTO {
 
     public MemberDTO(){};
     public MemberDTO(Integer id_member, String nama_member, String alamat, Date tanggal_lahir, String jenis_kelamin,
-                     Float diskon, Integer visit_count, Timestamp last_visit, String created_by, Timestamp created_at,
+                     Integer diskon, Integer visit_count, Timestamp last_visit, String created_by, Timestamp created_at,
                      Integer version) {
         this.id_member = id_member;
         this.nama_member = nama_member;
@@ -75,11 +75,11 @@ public class MemberDTO {
         this.jenis_kelamin = jenis_kelamin;
     }
 
-    public Float getDiskon() {
+    public Integer getDiskon() {
         return diskon;
     }
 
-    public void setDiskon(Float diskon) {
+    public void setDiskon(Integer diskon) {
         this.diskon = diskon;
     }
 

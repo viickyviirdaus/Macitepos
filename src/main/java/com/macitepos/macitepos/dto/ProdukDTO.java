@@ -12,6 +12,7 @@ public class ProdukDTO {
     private int stok_total;
     private int stok_gudang;
     private int stok_toko;
+    private int terjual;
     private String foto_produk;
     private String no_rak_gudang;
     private String no_rak_toko;
@@ -39,6 +40,7 @@ public class ProdukDTO {
             int stok_total,
             int stok_gudang,
             int stok_toko,
+            int terjual,
             String foto_produk,
             String no_rak_gudang,
             String no_rak_toko,
@@ -54,6 +56,7 @@ public class ProdukDTO {
         this.stok_total = stok_total;
         this.stok_gudang = stok_gudang;
         this.stok_toko = stok_toko;
+        this.terjual = terjual;
         this.foto_produk = foto_produk;
         this.no_rak_gudang = no_rak_gudang;
         this.no_rak_toko = no_rak_toko;
@@ -72,6 +75,7 @@ public class ProdukDTO {
             int stok_total,
             int stok_gudang,
             int stok_toko,
+            int terjual,
             String foto_produk,
             String no_rak_gudang,
             String no_rak_toko,
@@ -88,6 +92,7 @@ public class ProdukDTO {
         this.stok_gudang = stok_gudang;
         this.stok_toko = stok_toko;
         this.foto_produk = foto_produk;
+        this.terjual = terjual;
         this.no_rak_gudang = no_rak_gudang;
         this.no_rak_toko = no_rak_toko;
         this.last_updated = last_updated;
@@ -168,6 +173,14 @@ public class ProdukDTO {
 
     public void setStok_toko(int stok_toko) {
         this.stok_toko = stok_toko;
+    }
+
+    public int getTerjual() {
+        return terjual;
+    }
+
+    public void setTerjual(int terjual) {
+        this.terjual = terjual;
     }
 
     public String getFoto_produk() {

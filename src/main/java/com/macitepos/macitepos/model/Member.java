@@ -22,7 +22,7 @@ public class Member {
     @Column(name = "jenis_kelamin")
     private String jenis_kelamin;
     @Column(name = "diskon")
-    private Float diskon;
+    private Integer diskon;
     @Column(name = "visit_count")
     private Integer visit_count;
     @Column(name = "last_visit")
@@ -40,7 +40,7 @@ public class Member {
 //    private List<Transaksi_penjualan> transaksi_penjualans;
 
     public Member(){}
-    public Member(Integer id_member, String nama_member, String alamat, Date tanggal_lahir, String jenis_kelamin, Float diskon, Integer visit_count,
+    public Member(Integer id_member, String nama_member, String alamat, Date tanggal_lahir, String jenis_kelamin, Integer diskon, Integer visit_count,
                   String created_by, Integer version) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         this.id_member = id_member;
@@ -104,11 +104,11 @@ public class Member {
         this.jenis_kelamin = jenis_kelamin;
     }
 
-    public Float getDiskon() {
+    public Integer getDiskon() {
         return diskon;
     }
 
-    public void setDiskon(Float diskon) {
+    public void setDiskon(Integer diskon) {
         this.diskon = diskon;
     }
 

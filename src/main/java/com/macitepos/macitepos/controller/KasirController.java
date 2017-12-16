@@ -13,9 +13,15 @@ import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Controller
 
@@ -64,6 +70,11 @@ public class KasirController {
 
     @RequestMapping(value = "/kasir-customer/createMember", method = RequestMethod.POST)
     public String buatMember(Model model, MemberDTO memberDTO, RedirectAttributes redirectAttributes){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        memberDTO.setCreated_by(authentication.getName());
+        memberDTO.setDiskon(5);
+        memberDTO.setVisitCount(1);
         MemberDTO mDTO = membersService.saveOrUpdated(memberDTO);
         return "redirect:/kasir-customer";
     }

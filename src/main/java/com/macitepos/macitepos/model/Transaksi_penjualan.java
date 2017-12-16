@@ -10,19 +10,6 @@ import java.util.List;
 @Table(name = "transaksi_penjualan")
 public class Transaksi_penjualan {
 
-    public Transaksi_penjualan(){}
-    public Transaksi_penjualan(Integer id_penjualan, Pengguna pengguna, Member member, Integer total_penjualan, Integer pembayaran_penjualan, Float diskon, Integer kembalian_penjualan, Timestamp created_at, List<Detil_penjualan> detil_penjualans) {
-        this.id_penjualan = id_penjualan;
-        this.pengguna = pengguna;
-        this.member = member;
-        this.total_penjualan = total_penjualan;
-        this.pembayaran_penjualan = pembayaran_penjualan;
-        this.diskon = diskon;
-        this.kembalian_penjualan = kembalian_penjualan;
-        this.created_at = created_at;
-        this.detil_penjualans = detil_penjualans;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id_penjualan;
@@ -37,15 +24,50 @@ public class Transaksi_penjualan {
 
     private Integer pembayaran_penjualan;
 
-    private Float diskon;
+    private Integer diskon;
 
     private Integer kembalian_penjualan;
 
     private Timestamp created_at;
 
-    @OneToMany(mappedBy = "transaksi_penjualan")
-    private List<Detil_penjualan> detil_penjualans;
+//    @OneToMany(mappedBy = "transaksi_penjualan")
+//    private List<Detil_penjualan> detil_penjualans;
 
+    public Transaksi_penjualan(){}
+    public Transaksi_penjualan(Integer id_penjualan, Pengguna pengguna, Member member, Integer total_penjualan, Integer pembayaran_penjualan, Integer diskon, Integer kembalian_penjualan, Timestamp created_at, List<Detil_penjualan> detil_penjualans) {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+        this.id_penjualan = id_penjualan;
+        this.pengguna = pengguna;
+        this.member = member;
+        this.total_penjualan = total_penjualan;
+        this.pembayaran_penjualan = pembayaran_penjualan;
+        this.diskon = diskon;
+        this.kembalian_penjualan = kembalian_penjualan;
+        this.created_at = timestamp ;
+//        this.detil_penjualans = detil_penjualans;
+    }
+
+    public Transaksi_penjualan(int id_penjualan, Pengguna pengguna, Member member, Integer total_penjualan, Integer pembayaran_penjualan, Integer diskon, Integer kembalian_penjualan, Timestamp timestamp) {
+        this.id_penjualan = id_penjualan;
+        this.pengguna = pengguna;
+        this.member = member;
+        this.total_penjualan = total_penjualan;
+        this.pembayaran_penjualan = pembayaran_penjualan;
+        this.diskon = diskon;
+        this.kembalian_penjualan = kembalian_penjualan;
+        this.created_at = timestamp;
+    }
+
+    public Transaksi_penjualan(Pengguna pengguna, Member member, Integer total_penjualan, Integer pembayaran_penjualan, Integer diskon, Integer kembalian_penjualan, Timestamp timestamp) {
+        this.pengguna = pengguna;
+        this.member = member;
+        this.total_penjualan = total_penjualan;
+        this.pembayaran_penjualan = pembayaran_penjualan;
+        this.diskon = diskon;
+        this.kembalian_penjualan = kembalian_penjualan;
+        this.created_at = timestamp;
+    }
 
     public Integer getId_penjualan() {
         return id_penjualan;
@@ -87,11 +109,11 @@ public class Transaksi_penjualan {
         this.pembayaran_penjualan = pembayaran_penjualan;
     }
 
-    public Float getDiskon() {
+    public Integer getDiskon() {
         return diskon;
     }
 
-    public void setDiskon(Float diskon) {
+    public void setDiskon(Integer diskon) {
         this.diskon = diskon;
     }
 
@@ -112,11 +134,11 @@ public class Transaksi_penjualan {
         this.created_at = timestamp;
     }
 
-    public List<Detil_penjualan> getDetil_penjualans() {
-        return detil_penjualans;
-    }
-
-    public void setDetil_penjualans(List<Detil_penjualan> detil_penjualans) {
-        this.detil_penjualans = detil_penjualans;
-    }
+//    public List<Detil_penjualan> getDetil_penjualans() {
+//        return detil_penjualans;
+//    }
+//
+//    public void setDetil_penjualans(List<Detil_penjualan> detil_penjualans) {
+//        this.detil_penjualans = detil_penjualans;
+//    }
 }

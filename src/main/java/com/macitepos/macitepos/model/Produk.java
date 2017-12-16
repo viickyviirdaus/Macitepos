@@ -38,6 +38,9 @@ public class Produk {
     @Column(name = "stok_toko")
     private int stok_toko;
 
+    @Column(name = "terjual")
+    private int terjual;
+
     @Column(name = "foto_produk")
     private String foto_produk;
 
@@ -75,6 +78,7 @@ public class Produk {
              int stok_total,
              int stok_gudang,
              int stok_toko,
+             int terjual,
              String foto_produk,
              String no_rak_gudang,
              String no_rak_toko,
@@ -89,6 +93,7 @@ public class Produk {
         this.stok_total = stok_total;
         this.stok_gudang = stok_gudang;
         this.stok_toko = stok_toko;
+        this.terjual = terjual;
         this.foto_produk = foto_produk;
         this.no_rak_gudang = no_rak_gudang;
         this.no_rak_toko = no_rak_toko;
@@ -166,6 +171,14 @@ public class Produk {
 
     public void setStok_toko(int stok_toko) {
         this.stok_toko = stok_toko;
+    }
+
+    public int getTerjual() {
+        return terjual;
+    }
+
+    public void setTerjual(int terjual) {
+        this.terjual = terjual;
     }
 
     public String getFoto_produk() {

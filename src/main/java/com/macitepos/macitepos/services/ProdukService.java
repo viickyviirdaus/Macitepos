@@ -28,12 +28,23 @@ public class ProdukService {
         return null;
     }
 
+    public void updateStokToko(int id_produk, int jumlahBeli){
+        Produk produk = produkDAO.findByIdSingle(id_produk);
+        int stokToko = produk.getStok_toko() - jumlahBeli;
+        produk.setStok_toko(stokToko);
+        produkDAO.saveOrUpdate(produk);
+    }
+
+    public void updateTerjual(int id_produk, int jumlahBeli){
+        Produk produk = produkDAO.findByIdSingle(id_produk);
+        int terjual = produk.getTerjual() + jumlahBeli;
+        produk.setTerjual(terjual);
+        produkDAO.saveOrUpdate(produk);
+    }
+
     public List<ProdukDTO> showAll(){
-        System.out.println("SHOW ALL JALAN");
         List<Produk> p  = produkDAO.showAll();
-        System.out.println("Show ALl");
         if (p.isEmpty()==false){
-            System.out.println("Produk Services");
             for (Produk pro:p) {
                 System.out.println(pro.getNama_produk());
                 System.out.println(pro.getKategori());
@@ -66,7 +77,7 @@ public class ProdukService {
 
     ProdukDTO convertToDto(Produk produk){
         ProdukDTO dto = new ProdukDTO(produk.getId_produk(),produk.getNama_produk(),produk.getKategori(),produk.getHarga_beli(),produk.getHarga_penjualan(),produk.getStok_ulang(),
-                produk.getStok_total(),produk.getStok_gudang(),produk.getStok_toko(),produk.getFoto_produk(), produk.getNo_rak_gudang(), produk.getNo_rak_toko(),
+                produk.getStok_total(),produk.getStok_gudang(),produk.getStok_toko(),produk.getTerjual(),produk.getFoto_produk(), produk.getNo_rak_gudang(), produk.getNo_rak_toko(),
                 produk.getUpdated_by(),produk.getStatus_produk());
         return dto;
     }

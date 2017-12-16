@@ -19,6 +19,23 @@ public class OrderDAO {
         this.emf = emf;
     }
 
+    public Transaksi_penjualan saveOrUpdate(Transaksi_penjualan transaksi_penjualan){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Transaksi_penjualan saved = em.merge(transaksi_penjualan);
+        em.getTransaction().commit();
+        em.close();
+        return saved;
+    }
+
+    public Transaksi_penjualan findById(int id_transaksi_penjualan){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Transaksi_penjualan t = em.find(Transaksi_penjualan.class, id_transaksi_penjualan);
+        em.getTransaction().commit();
+        em.close();
+        return t;
+    }
 
     public List<Transaksi_penjualan> showOrder(){
         EntityManager em = emf.createEntityManager();

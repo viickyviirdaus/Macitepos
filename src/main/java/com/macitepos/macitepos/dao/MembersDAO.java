@@ -37,6 +37,15 @@ public class MembersDAO {
         return m;
     }
 
+    public Member findOneMemberById(int id_member){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Member m = em.find(Member.class, id_member);
+        em.getTransaction().commit();
+        em.close();
+        return m;
+    }
+
     public List<Member> findById(int ID) {
 	System.out.println("ID di get Diskon Member DAO = "+ID);
         EntityManager em = emf.createEntityManager();

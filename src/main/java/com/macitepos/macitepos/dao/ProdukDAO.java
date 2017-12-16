@@ -31,7 +31,7 @@ public class ProdukDAO {
     public List<Produk> showAll(){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Query q = em.createNativeQuery("SELECT * FROM Produk", Produk.class);
+        Query q = em.createNativeQuery("SELECT * FROM Produk WHERE Produk.stok_toko > 0", Produk.class);
         List<Produk> p = (List<Produk>) q.getResultList();
         em.close();
         return p;
@@ -43,7 +43,7 @@ public class ProdukDAO {
         System.out.println("parameter category di Produk Dao find by Category" + category);
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Query q = em.createNativeQuery("SELECT * FROM Produk p WHERE p.kategori=:category", Produk.class);
+        Query q = em.createNativeQuery("SELECT * FROM Produk p WHERE p.stok_toko > 0 AND p.kategori=:category", Produk.class);
         q.setParameter("category", category);
         List<Produk> p = (List<Produk>)q.getResultList();
         em.close();
@@ -59,6 +59,16 @@ public class ProdukDAO {
         em.close();
         return  p;
     }
+
+    public Produk findByIdSingle(int ID){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Produk p = em.find(Produk.class, ID);
+        em.getTransaction().commit();
+        em.close();
+        return p;
+    }
+
 
     public List<Produk> findByKey(String keySearch){
         System.out.println("parameter key di ProdukDao findByKey "+keySearch);

@@ -16,6 +16,13 @@ public class Detil_penjualan {
     private Produk produk;
 
     int jumlah_penjualan;
+    public Detil_penjualan(){};
+    public Detil_penjualan(int id, Transaksi_penjualan transaksi_penjualan, Produk produk, int jumlah_penjualan) {
+        this.id_detail_penjualan = id;
+        this.transaksi_penjualan = transaksi_penjualan;
+        this.produk = produk;
+        this.jumlah_penjualan = jumlah_penjualan;
+    }
 
     public int getId_detail_penjualan() {
         return id_detail_penjualan;
