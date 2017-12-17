@@ -23,8 +23,6 @@ public class TransaksiPenjualanAPI {
     @Autowired
     private AkunService akunService;
     @Autowired
-    private TransaksiPenjualanService transaksiPenjualanService;
-    @Autowired
     private OrdersService ordersService;
     @Autowired
     private MemberService memberService;
@@ -44,8 +42,13 @@ public class TransaksiPenjualanAPI {
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
+        int totalBarangDijual = 0;
+        for (int i = 0; i<recieverTransaksiPenjualanDTO.length; i++){
+            totalBarangDijual += recieverTransaksiPenjualanDTO[i].getCount_product();
+        }
+
         //Save Penjualan
-        Transaksi_penjualanDTO t = ordersService.saveOrUpdated(recieverTransaksiPenjualanDTO[0], id_pengguna, timestamp);
+        Transaksi_penjualanDTO t = ordersService.saveOrUpdated(recieverTransaksiPenjualanDTO[0], id_pengguna,totalBarangDijual, timestamp);
 
         //Save Detil Penjualan
         for (int i=0; i<recieverTransaksiPenjualanDTO.length;i++){

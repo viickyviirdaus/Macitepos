@@ -3,6 +3,7 @@
 <head>
     <title>Kasir - Produk | MacitePos.com</title>
     <div th:replace="c_header :: header-css"/>
+    <script th:src="@{assets/js/produk.js}"></script>
 </head>
 <body>
 
@@ -10,34 +11,35 @@
 
 <!-- COntent web -->
 <div class="body">
-    <div class="container-fluid">
+    <div class="container-fluid text-center">
         <div class="page-header">
-            <h2 class="text-center">PRODUCTS</h2>
+            <h2>PRODUCTS</h2>
         </div>
         <!-- Code Here --><!-- Code Here --><!-- Code Here --><!-- Code Here --><!-- Code Here -->
         <!-- Search -->
-        <form class="form-inline text-center">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" style="width: 300px" class="form-control" aria-label="..." placeholder="Search"/>
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-default dropdown-toggle text-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="caret"></span> Category</button>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="#">Makanan</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </div><!-- /btn-group -->
-                </div>
+
+        <!--<form class="form-inline text-center">-->
+            <!--<div class="form-group">-->
+                <!--<div class="input-group">-->
+                    <!--<input type="text" style="width: 300px" class="form-control" aria-label="..." placeholder="Search"/>-->
+                    <!--<div class="input-group-btn">-->
+                        <!--<button type="button" class="btn btn-default dropdown-toggle text-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="caret"></span> Category</button>-->
+                        <!--<ul class="dropdown-menu dropdown-menu-right">-->
+                            <!--<li><a href="#">Makanan</a></li>-->
+                            <!--<li><a href="#">Another action</a></li>-->
+                            <!--<li><a href="#">Something else here</a></li>-->
+                            <!--<li role="separator" class="divider"></li>-->
+                            <!--<li><a href="#">Separated link</a></li>-->
+                        <!--</ul>-->
+                    <!--</div>&lt;!&ndash; /btn-group &ndash;&gt;-->
+                <!--</div>-->
                 <a href="kasirprodukmap.html"><button type="button" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false" ><i class="fa fa-map fa-fw" aria-hiden="true"></i>Item Map</button></a>
-            </div>
-        </form>
+            <!--</div>-->
+        <!--</form>-->
     </div>
     <!-- Table -->
     <div class="container-fluid">
-        <table class="table table-striped " style="margin-top: 20px">
+        <table class="table table-striped " style="margin-top: 20px" id="produkTable">
             <thead>
             <tr style="background-color: #FEA72C">
                 <th>Image</th>
@@ -51,19 +53,19 @@
                 <th>Created at</th>
             </tr>
             </thead>
-            <tbody >
-            <tr th:each="produks : ${produk}">
-                <td><img th:src="@{${'assets/image/'+produks.foto_produk}}" style="max-height: 30px"/></td>
-                <td th:text="${produks.id_produk}"></td>
-                <td th:text="${produks.nama_produk}"></td>
-                <td th:text="${produks.harga_penjualan}"></td>
-                <td th:text="${produks.stok_total}"></td>
-                <td th:text="${produks.kategori}"></td>
-                <td th:text="${produks.last_updated}"></td>
-                <td th:text="${produks.updated_by}"></td>
-                <td th:text="${produks.created_at}"></td>
-            </tr>
-            </tbody>
+            <!--<tbody >-->
+            <!--<tr th:each="produks : ${produk}">-->
+                <!--<td><img th:src="@{${'assets/image/'+produks.foto_produk}}" style="max-height: 30px"/></td>-->
+                <!--<td th:text="${produks.id_produk}"></td>-->
+                <!--<td th:text="${produks.nama_produk}"></td>-->
+                <!--<td th:text="${produks.harga_penjualan}"></td>-->
+                <!--<td th:text="${produks.stok_total}"></td>-->
+                <!--<td th:text="${produks.kategori}"></td>-->
+                <!--<td th:text="${produks.last_updated}"></td>-->
+                <!--<td th:text="${produks.updated_by}"></td>-->
+                <!--<td th:text="${produks.created_at}"></td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
         </table>
     </div>
 </div>

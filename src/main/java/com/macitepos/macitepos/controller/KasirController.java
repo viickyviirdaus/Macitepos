@@ -4,6 +4,7 @@ import com.macitepos.macitepos.dto.MemberDTO;
 import com.macitepos.macitepos.model.Pengguna;
 import com.macitepos.macitepos.services.AkunService;
 import com.macitepos.macitepos.services.MembersService;
+import com.macitepos.macitepos.services.PenggunaService;
 import com.macitepos.macitepos.services.ProdukService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -36,6 +37,8 @@ public class KasirController {
     @Autowired
     ProdukService produkService;
 
+    private static String UPLOADED_FOLDER = "D:\\blibli\\PROJECT\\Macitepos\\src\\main\\resources\\upload\\photoProfile";
+
     @RequestMapping(value = "/kasir", method = RequestMethod.GET)
     public String kasir(HttpSession session, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -47,7 +50,7 @@ public class KasirController {
 
     @RequestMapping(value = "/kasir-product" , method = RequestMethod.GET)
     public String product(Model model){
-        model.addAttribute("produk",produkService.showAll());
+//        model.addAttribute("produk",produkService.showAll());
         return "c_product";
     }
 
@@ -90,8 +93,14 @@ public class KasirController {
     }
 
     @RequestMapping(value = "/kasir-profile", method = RequestMethod.GET)
-    public String edit (){
+    public String edit (Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("user",akunService.findByUsername(authentication.getName()));
         return "c_editProfil";
     }
 
+    @RequestMapping(value = "/kasir-profile/edit")
+    public String editProfile(){
+        return "redirect:/c_user";
+    }
 }
