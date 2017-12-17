@@ -69,4 +69,8 @@ public class OrdersService {
         Transaksi_penjualanDTO dto = new Transaksi_penjualanDTO(tp.getId_penjualan(), tp.getPengguna(), tp.getMember(), tp.getTotal_penjualan(), tp.getPembayaran_penjualan(), tp.getDiskon(), tp.getKembalian_penjualan(), tp.getCreated_at());
         return dto;
     }
+
+    public Long jumlahOrder(){
+        return orderDAO.jumlahOrder();
+    }
 }

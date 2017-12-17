@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
     <div th:fragment="header-css">
         <link th:href="@{/assets/image/icon.png}" rel="shortcut icon"/>
         <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
@@ -13,6 +11,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.15/js/jquery.dataTables.min.js"></script>
         <script th:src="@{assets/js/member.js}"></script>
         <script th:src="@{assets/js/user.js}"></script>
+        <script th:src="@{assets/js/produk.js}"></script>
+        <script th:src="@{assets/js/order.js}"></script>
         <link rel="stylesheet" href=
                 "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
         <link rel="stylesheet"
@@ -21,6 +21,7 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     </div>
 </head>
+
 <body>
 <div th:fragment="header">
 <nav class="navbar navbar-default navbar-fixed-top" style="height: 60px">
@@ -34,7 +35,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">
-                <img alt="Brand" src="assets/image/logo.png" style="max-height: 100%">
+                <img alt="Brand" th:src="@{assets/image/logo.png}" style="max-height: 100%"/>
             </a>
         </div>
 
@@ -44,9 +45,9 @@
                 <li>
                     <div class="container-fluid active-user">
                         <div class="row">
-                            <div class="col-sm-5"><img src="assets/image/profil.png" class="img-circle" style="max-width: 100%"></div>
+                            <div class="col-sm-5"><img th:src="@{${'/assets/image/' + session.foto}}" class="img-circle" style="max-width: 100%"/></div>
                             <div class="col-md-7">
-                                <h5 style="margin-bottom: 0px"><b>Habridio Kurniawan Putra</b></h5>
+                                <h5 style="margin-bottom: 0px"><b th:text="${session.nama}"></b></h5>
                                 <span> <span style="color: #00B900; font-size: 20px;" >&#9679;</span> Online</span>
                             </div>
                         </div>

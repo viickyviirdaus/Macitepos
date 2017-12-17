@@ -20,7 +20,7 @@
                 <div class="panel panel-default" style="margin-top: 0px;">
                     <div class="panel-body manajerpanel" style="background-color: #6AABFC; height: 100px">
                         <h4>Orders</h4>
-                        <h3><b>30150</b></h3>
+                        <h3><b th:text="${session.jumlahOrder}"></b></h3>
                         <i class="fa fa-shopping-bag fa-5x" style=" position: absolute; right: 30px; top:15px; color: rgba(0, 0, 0, 0.16)" aria-hidden="true"></i>
                     </div>
                     <a th:href="@{/order}" style="color: white;">
