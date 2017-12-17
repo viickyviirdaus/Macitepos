@@ -29,10 +29,10 @@ public class OrdersService {
     @Autowired
     private MembersDAO membersDAO;
 
-    public Transaksi_penjualanDTO saveOrUpdated(RecieverTransaksiPenjualanDTO rtp, int id_pengguna, Timestamp timestamp){
+    public Transaksi_penjualanDTO saveOrUpdated(RecieverTransaksiPenjualanDTO rtp, int id_pengguna, int totalBarangDIjual, Timestamp timestamp){
         Pengguna p = penggunasDAO.findById(id_pengguna);
         Member m  = membersDAO.findOneMemberById(rtp.getId_member());
-        Transaksi_penjualan transaksi_penjualan = new Transaksi_penjualan(p, m, rtp.getTotal(), rtp.getRecievedAmount(), rtp.getDiscount(), rtp.getCash(),timestamp);
+        Transaksi_penjualan transaksi_penjualan = new Transaksi_penjualan(p, m, rtp.getTotal(), totalBarangDIjual, rtp.getRecievedAmount(), rtp.getDiscount(), rtp.getCash(),timestamp);
         transaksi_penjualan = orderDAO.saveOrUpdate(transaksi_penjualan);
         System.out.println(transaksi_penjualan.getId_penjualan());
         return convertToDto(transaksi_penjualan);
@@ -61,12 +61,12 @@ public class OrdersService {
     }
 
     Transaksi_penjualanDTO convertToDto(Transaksi_penjualan tp){
-        Transaksi_penjualanDTO dto = new Transaksi_penjualanDTO(tp.getId_penjualan(), tp.getPengguna(), tp.getMember(), tp.getTotal_penjualan(), tp.getPembayaran_penjualan(), tp.getDiskon(), tp.getKembalian_penjualan(), tp.getCreated_at());
+        Transaksi_penjualanDTO dto = new Transaksi_penjualanDTO(tp.getId_penjualan(), tp.getPengguna(), tp.getMember(), tp.getTotal_penjualan(), tp.getTotal_barang_dijual(), tp.getPembayaran_penjualan(), tp.getDiskon(), tp.getKembalian_penjualan(), tp.getCreated_at());
         return dto;
     }
 
     Transaksi_penjualanDTO convertToDtoSingle(Transaksi_penjualan tp){
-        Transaksi_penjualanDTO dto = new Transaksi_penjualanDTO(tp.getId_penjualan(), tp.getPengguna(), tp.getMember(), tp.getTotal_penjualan(), tp.getPembayaran_penjualan(), tp.getDiskon(), tp.getKembalian_penjualan(), tp.getCreated_at());
+        Transaksi_penjualanDTO dto = new Transaksi_penjualanDTO(tp.getId_penjualan(), tp.getPengguna(), tp.getMember(), tp.getTotal_penjualan(), tp.getTotal_barang_dijual(), tp.getPembayaran_penjualan(), tp.getDiskon(), tp.getKembalian_penjualan(), tp.getCreated_at());
         return dto;
     }
 

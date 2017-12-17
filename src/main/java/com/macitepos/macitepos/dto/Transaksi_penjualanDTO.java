@@ -13,17 +13,19 @@ public class Transaksi_penjualanDTO {
     private Pengguna pengguna;
     private Member member;
     private Integer total_penjualan;
+    private Integer total_barang_dijual;
     private Integer pembayaran_penjualan;
     private Integer diskon;
     private Integer kembalian_penjualan;
     private Timestamp created_at;
     private List<Detil_penjualan> detil_penjualans;
 
-    public Transaksi_penjualanDTO(Integer id_penjualan, Pengguna pengguna, Member member, Integer total_penjualan, Integer pembayaran_penjualan, Integer diskon, Integer kembalian_penjualan, Timestamp created_at, List<Detil_penjualan> detil_penjualans) {
+    public Transaksi_penjualanDTO(Integer id_penjualan, Pengguna pengguna, Member member, Integer total_penjualan, Integer total_barang_dijual, Integer pembayaran_penjualan, Integer diskon, Integer kembalian_penjualan, Timestamp created_at, List<Detil_penjualan> detil_penjualans) {
         this.id_penjualan = id_penjualan;
         this.pengguna = pengguna;
         this.member = member;
         this.total_penjualan = total_penjualan;
+        this.total_barang_dijual = total_barang_dijual;
         this.pembayaran_penjualan = pembayaran_penjualan;
         this.diskon = diskon;
         this.kembalian_penjualan = kembalian_penjualan;
@@ -31,11 +33,12 @@ public class Transaksi_penjualanDTO {
         this.detil_penjualans = detil_penjualans;
     }
 
-    public Transaksi_penjualanDTO(Integer id_penjualan, Pengguna pengguna, Member member, Integer total_penjualan, Integer pembayaran_penjualan, Integer diskon, Integer kembalian_penjualan, Timestamp created_at) {
+    public Transaksi_penjualanDTO(Integer id_penjualan, Pengguna pengguna, Member member, Integer total_penjualan, Integer total_barang_dijual, Integer pembayaran_penjualan, Integer diskon, Integer kembalian_penjualan, Timestamp created_at) {
         this.id_penjualan = id_penjualan;
         this.pengguna = pengguna;
         this.member = member;
         this.total_penjualan = total_penjualan;
+        this.total_barang_dijual = total_barang_dijual;
         this.pembayaran_penjualan = pembayaran_penjualan;
         this.diskon = diskon;
         this.kembalian_penjualan = kembalian_penjualan;
@@ -72,6 +75,14 @@ public class Transaksi_penjualanDTO {
 
     public void setTotal_penjualan(Integer total_penjualan) {
         this.total_penjualan = total_penjualan;
+    }
+
+    public Integer getTotal_barang_dijual() {
+        return total_barang_dijual;
+    }
+
+    public void setTotal_barang_dijual(Integer total_barang_dijual) {
+        this.total_barang_dijual = total_barang_dijual;
     }
 
     public Integer getPembayaran_penjualan() {

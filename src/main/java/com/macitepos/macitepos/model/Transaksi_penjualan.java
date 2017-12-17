@@ -22,6 +22,8 @@ public class Transaksi_penjualan {
 
     private Integer total_penjualan;
 
+    private Integer total_barang_dijual;
+
     private Integer pembayaran_penjualan;
 
     private Integer diskon;
@@ -34,13 +36,14 @@ public class Transaksi_penjualan {
 //    private List<Detil_penjualan> detil_penjualans;
 
     public Transaksi_penjualan(){}
-    public Transaksi_penjualan(Integer id_penjualan, Pengguna pengguna, Member member, Integer total_penjualan, Integer pembayaran_penjualan, Integer diskon, Integer kembalian_penjualan, Timestamp created_at, List<Detil_penjualan> detil_penjualans) {
+    public Transaksi_penjualan(Integer id_penjualan, Pengguna pengguna, Member member, Integer total_penjualan, Integer total_barang_dijual, Integer pembayaran_penjualan, Integer diskon, Integer kembalian_penjualan, Timestamp created_at) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
         this.id_penjualan = id_penjualan;
         this.pengguna = pengguna;
         this.member = member;
         this.total_penjualan = total_penjualan;
+        this.total_barang_dijual = total_barang_dijual;
         this.pembayaran_penjualan = pembayaran_penjualan;
         this.diskon = diskon;
         this.kembalian_penjualan = kembalian_penjualan;
@@ -48,21 +51,23 @@ public class Transaksi_penjualan {
 //        this.detil_penjualans = detil_penjualans;
     }
 
-    public Transaksi_penjualan(int id_penjualan, Pengguna pengguna, Member member, Integer total_penjualan, Integer pembayaran_penjualan, Integer diskon, Integer kembalian_penjualan, Timestamp timestamp) {
+    public Transaksi_penjualan(int id_penjualan, Pengguna pengguna, Member member, Integer total_penjualan, Integer total_barang_dijual, Integer pembayaran_penjualan, Integer diskon, Integer kembalian_penjualan, Timestamp timestamp) {
         this.id_penjualan = id_penjualan;
         this.pengguna = pengguna;
         this.member = member;
         this.total_penjualan = total_penjualan;
+        this.total_barang_dijual = total_barang_dijual;
         this.pembayaran_penjualan = pembayaran_penjualan;
         this.diskon = diskon;
         this.kembalian_penjualan = kembalian_penjualan;
         this.created_at = timestamp;
     }
 
-    public Transaksi_penjualan(Pengguna pengguna, Member member, Integer total_penjualan, Integer pembayaran_penjualan, Integer diskon, Integer kembalian_penjualan, Timestamp timestamp) {
+    public Transaksi_penjualan(Pengguna pengguna, Member member, Integer total_penjualan, Integer total_barang_dijual, Integer pembayaran_penjualan, Integer diskon, Integer kembalian_penjualan, Timestamp timestamp) {
         this.pengguna = pengguna;
         this.member = member;
         this.total_penjualan = total_penjualan;
+        this.total_barang_dijual = total_barang_dijual;
         this.pembayaran_penjualan = pembayaran_penjualan;
         this.diskon = diskon;
         this.kembalian_penjualan = kembalian_penjualan;
@@ -99,6 +104,14 @@ public class Transaksi_penjualan {
 
     public void setTotal_penjualan(Integer total_penjualan) {
         this.total_penjualan = total_penjualan;
+    }
+
+    public Integer getTotal_barang_dijual() {
+        return total_barang_dijual;
+    }
+
+    public void setTotal_barang_dijual(Integer total_barang_dijual) {
+        this.total_barang_dijual = total_barang_dijual;
     }
 
     public Integer getPembayaran_penjualan() {
