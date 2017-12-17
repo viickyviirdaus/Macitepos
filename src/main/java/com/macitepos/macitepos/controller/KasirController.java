@@ -47,7 +47,7 @@ public class KasirController {
 
     @RequestMapping(value = "/kasir-product" , method = RequestMethod.GET)
     public String product(Model model){
-        model.addAttribute("produk",produkService.showAll());
+//        model.addAttribute("produk",produkService.showAll());
         return "c_product";
     }
 

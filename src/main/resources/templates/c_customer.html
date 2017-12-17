@@ -3,7 +3,8 @@
 <head>
     <title>Kasir - Customer | MacitePos</title>
     <div th:replace="c_header :: header-css"/>
-    <script  th:src="@{assets/js/c_customer.js}"></script>
+    <!--<script  th:src="@{assets/js/c_customer.js}"></script>-->
+    <script th:src="@{assets/js/member.js}"></script>
 
 </head>
 <body>
@@ -12,23 +13,23 @@
 
 <!-- COntent web -->
 <div class="body">
-    <div class="container-fluid">
+    <div class="container-fluid text-center">
         <div class="page-header">
-            <h2 class="text-center">CUSTOMER</h2>
+            <h2>CUSTOMER</h2>
         </div>
         <!-- Code Here --><!-- Code Here --><!-- Code Here --><!-- Code Here --><!-- Code Here -->
         <!-- Search -->
-        <form class="form-inline text-center">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" style=" width: 300px" class="form-control" aria-label="..." placeholder="Search"/>
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-default text-center" aria-haspopup="true" aria-expanded="false"><i class="fa fa-search fa-fw" aria-hiden="true"></i>Search</button>
-                    </div><!-- /btn-group -->
-                </div>
+        <!--<form class="form-inline text-center">-->
+            <!--<div class="form-group">-->
+                <!--<div class="input-group">-->
+                    <!--<input type="text" style=" width: 300px" class="form-control" aria-label="..." placeholder="Search"/>-->
+                    <!--<div class="input-group-btn">-->
+                        <!--<button type="button" class="btn btn-default text-center" aria-haspopup="true" aria-expanded="false"><i class="fa fa-search fa-fw" aria-hiden="true"></i>Search</button>-->
+                    <!--</div>&lt;!&ndash; /btn-group &ndash;&gt;-->
+                <!--</div>-->
                 <button type="button" data-toggle="modal" data-target="#tambahCustomer" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus fa-fw" aria-hiden="true"></i>Tambah</button>
-            </div>
-        </form>
+            <!--</div>-->
+        <!--</form>-->
     </div>
     <!-- MODAL TAMBAH CUSTOMER -->
     <div class="modal fade" id="tambahCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -81,7 +82,7 @@
     <!-- Table -->
     <div class="container-fluid">
 
-        <table class="table table-striped " style="margin-top: 20px">
+        <table class="table table-striped " style="margin-top: 20px" id="memberTable">
             <thead>
             <tr style="background-color: #FC161B">
                 <th>No</th>
@@ -93,17 +94,17 @@
                 <th>Action</th>
             </tr>
             </thead>
-            <tbody>
-            <tr th:each="members : ${member}">
-                <td>1</td>
-                <td th:text="${members.id_member}">ID Member</td>
-                <td th:text="${members.nama_member}">Nama</td>
-                <td th:text="${members.tanggal_lahir}">TL</td>
-                <td th:text="${members.jenis_kelamin}">L/P</td>
-                <td th:text="${members.alamat}">Alamat</td>
-                <td><button type="button" class="btn btn-info">Edit</button></td>
-            </tr>
-            </tbody>
+            <!--<tbody>-->
+            <!--<tr th:each="members : ${member}">-->
+                <!--<td>1</td>-->
+                <!--<td th:text="${members.id_member}">ID Member</td>-->
+                <!--<td th:text="${members.nama_member}">Nama</td>-->
+                <!--<td th:text="${members.tanggal_lahir}">TL</td>-->
+                <!--<td th:text="${members.jenis_kelamin}">L/P</td>-->
+                <!--<td th:text="${members.alamat}">Alamat</td>-->
+                <!--<td><button type="button" class="btn btn-info">Edit</button></td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
         </table>
     </div>
 </div>
