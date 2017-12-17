@@ -417,7 +417,7 @@ function createJson(v) {
         sendJSON[index].discount = discount;
         sendJSON[index].cash = cash;
         sendJSON[index].recievedAmount = recievedAmount;
-        sendJSON[index].total = subTotal;
+        sendJSON[index].total = grandTotal;
         sendJSON[index].id_member = idMember;
         sendJSON[index].visit_count = v;
     });
