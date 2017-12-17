@@ -1,7 +1,7 @@
 package com.macitepos.macitepos.services;
 
 import com.macitepos.macitepos.dao.MembersDAO;
-import com.macitepos.macitepos.dao.OrderDAO;
+import com.macitepos.macitepos.dao.OrdersDAO;
 import com.macitepos.macitepos.dao.PenggunasDAO;
 import com.macitepos.macitepos.dto.Transaksi_penjualanDTO;
 
@@ -21,7 +21,7 @@ public class OrdersService {
 
 
     @Autowired
-    private OrderDAO orderDAO;
+    private OrdersDAO ordersDAO;
 
     @Autowired
     private PenggunasDAO penggunasDAO;
@@ -33,14 +33,14 @@ public class OrdersService {
         Pengguna p = penggunasDAO.findById(id_pengguna);
         Member m  = membersDAO.findOneMemberById(rtp.getId_member());
         Transaksi_penjualan transaksi_penjualan = new Transaksi_penjualan(p, m, rtp.getTotal(), totalBarangDIjual, rtp.getRecievedAmount(), rtp.getDiscount(), rtp.getCash(),timestamp);
-        transaksi_penjualan = orderDAO.saveOrUpdate(transaksi_penjualan);
+        transaksi_penjualan = ordersDAO.saveOrUpdate(transaksi_penjualan);
         System.out.println(transaksi_penjualan.getId_penjualan());
         return convertToDto(transaksi_penjualan);
     }
 
     public List<Transaksi_penjualanDTO> showOrder(){
         System.out.println("Show All DAO Jalan");
-        List<Transaksi_penjualan> m  = orderDAO.showOrder();
+        List<Transaksi_penjualan> m  = ordersDAO.showOrder();
         if(m.isEmpty()){
             System.out.println("Kosong");
         }
@@ -71,6 +71,6 @@ public class OrdersService {
     }
 
     public Long jumlahOrder(){
-        return orderDAO.jumlahOrder();
+        return ordersDAO.jumlahOrder();
     }
 }

@@ -11,7 +11,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository
-public class OrderDAO {
+public class OrdersDAO {
 
     private EntityManagerFactory emf;
     @Autowired
