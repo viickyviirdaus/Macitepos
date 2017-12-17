@@ -11,7 +11,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository
-public class OrderDAO {
+public class OrdersDAO {
 
     private EntityManagerFactory emf;
     @Autowired
@@ -54,6 +54,16 @@ public class OrderDAO {
         em.getTransaction().begin();
         System.out.println("show order in");
         long q = (Long) em.createQuery("SELECT count(t) FROM Transaksi_penjualan t").getSingleResult();
+        System.out.println("show order out");
+        em.close();
+        return q;
+    }
+
+    public Long jumlahPayment(){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        System.out.println("show order in");
+        long q = (Long) em.createQuery("SELECT sum(t.total_penjualan) FROM Transaksi_penjualan t").getSingleResult();
         System.out.println("show order out");
         em.close();
         return q;

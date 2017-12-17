@@ -1,11 +1,13 @@
 package com.macitepos.macitepos.services;
 
+import com.macitepos.macitepos.dao.Detil_PenjualanDAO;
 import com.macitepos.macitepos.dao.MembersDAO;
-import com.macitepos.macitepos.dao.OrderDAO;
+import com.macitepos.macitepos.dao.OrdersDAO;
 import com.macitepos.macitepos.dao.PenggunasDAO;
 import com.macitepos.macitepos.dto.Transaksi_penjualanDTO;
 
 import com.macitepos.macitepos.dto.RecieverTransaksiPenjualanDTO;
+import com.macitepos.macitepos.model.Detil_penjualan;
 import com.macitepos.macitepos.model.Member;
 import com.macitepos.macitepos.model.Pengguna;
 import com.macitepos.macitepos.model.Transaksi_penjualan;
@@ -21,7 +23,7 @@ public class OrdersService {
 
 
     @Autowired
-    private OrderDAO orderDAO;
+    private OrdersDAO ordersDAO;
 
     @Autowired
     private PenggunasDAO penggunasDAO;
@@ -29,18 +31,22 @@ public class OrdersService {
     @Autowired
     private MembersDAO membersDAO;
 
+    @Autowired
+    private Detil_PenjualanDAO detil_penjualanDAO;
+
     public Transaksi_penjualanDTO saveOrUpdated(RecieverTransaksiPenjualanDTO rtp, int id_pengguna, Timestamp timestamp){
         Pengguna p = penggunasDAO.findById(id_pengguna);
         Member m  = membersDAO.findOneMemberById(rtp.getId_member());
+        //Detil_penjualan dp = detil_penjualanDAO.findById();
         Transaksi_penjualan transaksi_penjualan = new Transaksi_penjualan(p, m, rtp.getTotal(), rtp.getRecievedAmount(), rtp.getDiscount(), rtp.getCash(),timestamp);
-        transaksi_penjualan = orderDAO.saveOrUpdate(transaksi_penjualan);
+        transaksi_penjualan = ordersDAO.saveOrUpdate(transaksi_penjualan);
         System.out.println(transaksi_penjualan.getId_penjualan());
         return convertToDto(transaksi_penjualan);
     }
 
     public List<Transaksi_penjualanDTO> showOrder(){
         System.out.println("Show All DAO Jalan");
-        List<Transaksi_penjualan> m  = orderDAO.showOrder();
+        List<Transaksi_penjualan> m  = ordersDAO.showOrder();
         if(m.isEmpty()){
             System.out.println("Kosong");
         }
@@ -71,6 +77,11 @@ public class OrdersService {
     }
 
     public Long jumlahOrder(){
-        return orderDAO.jumlahOrder();
+        return ordersDAO.jumlahOrder();
     }
+
+    public Long jumlahPayment(){
+        return  ordersDAO.jumlahPayment();
+    }
+
 }

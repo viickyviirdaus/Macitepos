@@ -79,5 +79,8 @@ public class MembersService {
         return dto;
     }
 
+    public long jumlahMember(){
+        return membersDAO.jumlahMember();
+    }
 
 }

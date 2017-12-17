@@ -34,8 +34,8 @@
                         </ul>
                     </div><!-- /btn-group -->
                 </div>
-                <a href=""><button type="button" class="btn btn-success text-center active" aria-haspopup="true" aria-expanded="false">Approved</button></a>
-                <a href="warehouseAdminDashboardDisapproved.html"><button type="button" class="btn btn-warning text-center" aria-haspopup="true" aria-expanded="false" >Disapproved</button></a>
+                <a data-toggle="tab" href="#approved"><button type="button" class="btn btn-success text-center active" aria-haspopup="true" aria-expanded="false">Approved</button></a>
+                <a data-toggle="tab" href="#dissapproved"><button type="button" class="btn btn-warning text-center" aria-haspopup="true" aria-expanded="false" >Disapproved</button></a>
             </div>
         </form>
     </div>
@@ -139,7 +139,8 @@
         </div>
     </div>
     <!-- Table -->
-    <div class="container-fluid">
+    <div class="tab-content">
+    <div class="container-fluid tab-pane fade in active" id="approved">
         <table class="table table-striped " style="margin-top: 20px">
             <thead>
             <tr style="background-color: #FEA72C">
@@ -172,6 +173,43 @@
             </tr>
             </tbody>
         </table>
+    </div>
+
+    <!-- Table -->
+    <div class="container-fluid tab-pane fade" id="dissapproved">
+        <table class="table table-striped " style="margin-top: 20px">
+            <thead>
+            <tr style="background-color: #FEA72C">
+                <th>Image</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Category</th>
+                <th>Last Update</th>
+                <th>Update By</th>
+                <th>Created at</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><img th:src="@{assets/image/defaultBarang.png}" style="max-height: 30px"/></td>
+                <td>081441292838</td>
+                <td>Teh Pucuk Harum</td>
+                <td>Rp. 999999</td>
+                <td>150</td>
+                <td>Drink</td>
+                <td>10/08/2017 09:45</td>
+                <td>Lukman</td>
+                <td>01/07/2017 07:42</td>
+                <td><span style="background-color: #FFFF00">Disapproved</span></td>
+                <td><button type="button" data-toggle="modal" data-target="#editBarang" class="btn btn-info text-center" aria-haspopup="true" aria-expanded="false">Edit</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     </div>
     <!-- MODAL EDIT -->
     <div class="modal fade" id="editBarang" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

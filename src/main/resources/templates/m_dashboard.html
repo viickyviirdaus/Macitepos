@@ -36,9 +36,9 @@
                         <h4>Payments</h4>
 
                         <i class="fa fa-line-chart  fa-5x" style=" position: absolute; right: 30px; top:15px; color: rgba(0, 0, 0, 0.16)" aria-hidden="true"></i>
-                        <h3><b>Rp.150.000.000</b></h3>
+                        <h3><b th:text="${session.jumlahPayment}"></b></h3>
                     </div>
-                    <a th:href="@{/report}" style="color: white;">
+                    <a th:href="@{/reportProduct}" style="color: white;">
                         <div class="panel-footer text-center" style="background-color: #67971A">More Info
                             <i class="fa fa-arrow-right fa-fw"></i>
                         </div>
@@ -49,7 +49,7 @@
                 <div class="panel panel-default" style="margin-top: 0px;">
                     <div class="panel-body manajerpanel" style="background-color: #FEBF2D; height: 100px">
                         <h4>Products</h4>
-                        <h3><b>5150</b></h3>
+                        <h3><b th:text="${session.jumlahProduk}"></b></h3>
                         <span class="fa-stack fa-lg" style=" position: absolute; right: 85px; top:35px;">
  									<i class="fa fa-list-alt fa-stack-1x fa-5x" style="color: rgba(0, 0, 0, 0.16)"></i>
  									<i class="fa fa-thumbs-o-up fa-stack-3x fa-3x" style="color: rgba(0, 0, 0, 0.16)"></i>
@@ -66,7 +66,7 @@
                 <div class="panel panel-default" style="margin-top: 0px;">
                     <div class="panel-body manajerpanel" style="background-color: #FD4D1F; height: 100px">
                         <h4>Customers</h4>
-                        <h3><b>1530</b></h3>
+                        <h3><b th:text="${session.jumlahMember}"></b></h3>
                         <i class="fa fa-user fa-5x" style=" position: absolute; right: 30px; top:15px; color: rgba(0, 0, 0, 0.16)" aria-hidden="true"></i>
                     </div>
                     <a th:href="@{/customer}" style="color: white;">

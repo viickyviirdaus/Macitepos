@@ -90,4 +90,7 @@ public class ProdukService {
         return dto;
     }
 
+    public Long jumlahProduk(){
+        return produkDAO.jumlahProduk();
+    }
 }

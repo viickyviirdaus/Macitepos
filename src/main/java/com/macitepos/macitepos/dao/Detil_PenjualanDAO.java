@@ -25,4 +25,12 @@ public class Detil_PenjualanDAO {
         em.close();
     }
 
+    public Detil_penjualan findById(int id_detil){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Detil_penjualan p = em.find(Detil_penjualan.class, id_detil);
+        em.getTransaction().commit();
+        em.close();
+        return p;
+    }
 }

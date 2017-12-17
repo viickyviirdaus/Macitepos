@@ -20,6 +20,9 @@ public class Transaksi_penjualan {
     @ManyToOne
     private Member member;
 
+//    @ManyToMany
+//    private Detil_penjualan detil_penjualan;
+
     private Integer total_penjualan;
 
     private Integer pembayaran_penjualan;

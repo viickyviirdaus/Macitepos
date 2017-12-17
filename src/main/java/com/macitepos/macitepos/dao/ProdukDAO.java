@@ -81,13 +81,15 @@ public class ProdukDAO {
         return  p;
     }
 
-//    public Produk findByID(int id_produk){
-//        EntityManager em = emf.createEntityManager();
-//        em.getTransaction().begin();
-//        Query q = em.createNativeQuery("SELECT * from Produk p  WHERE p.id_produk=:id",Produk.class);
-//        q.setParameter("id", id_produk);
-//        Produk produk = produk
-//    }
+    public Long jumlahProduk(){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        System.out.println("show order in");
+        long q = (Long) em.createQuery("SELECT sum(p.stok_total) FROM Produk p").getSingleResult();
+        System.out.println("show order out");
+        em.close();
+        return q;
+    }
 
 
 

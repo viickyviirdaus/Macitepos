@@ -58,7 +58,7 @@
                             <div class="form-group">
                                 <label for="exampleInputFile">Photo</label>
                                 <div >
-                                    <img style="width: 200px; margin-bottom:10px;" src="assets/image/defaultProfile.png"/>
+                                    <img style="width: 200px; margin-bottom:10px;" th:src="@{assets/image/defaultProfile.png}"/>
                                 </div>
                                 <input type="file" id="exampleInputFile"/>
                             </div>
@@ -102,7 +102,7 @@
                             <div class="form-group">
                                 <label for="exampleInputFile">Photo</label>
                                 <div >
-                                    <img style="width: 200px; margin-bottom:10px;" src="assets/image/defaultProfile.png"/>
+                                    <img style="width: 200px; margin-bottom:10px;" th:src="@{assets/image/defaultProfile.png}"/>
                                 </div>
                                 <input type="file" id="exampleInputFile"/>
                             </div>
@@ -133,13 +133,13 @@
             </thead>
             <tbody>
             <tr>
-                <td><img src="assets/image/defaultProfile.png" style="max-height: 40px"/></td>
+                <td><img th:src="@{assets/image/defaultProfile.png}" style="max-height: 40px"/></td>
                 <td>1</td>
                 <td>Joko Tingkir</td>
                 <td>Jalan in Aja</td>
                 <td>087446389567</td>
                 <td>lukman</td>
-                <td>01/07/2017 <br>07:42</td>
+                <td>01/07/2017 07:42</td>
                 <td><button type="button" data-toggle="modal" data-target="#tambahCustomer" class="btn btn-info">Edit</button></td>
             </tr>
             </tbody>

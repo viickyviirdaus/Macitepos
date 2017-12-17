@@ -2,9 +2,7 @@ package com.macitepos.macitepos.controller;
 
 import com.macitepos.macitepos.dto.PenggunaDTO;
 import com.macitepos.macitepos.model.Pengguna;
-import com.macitepos.macitepos.services.AkunService;
-import com.macitepos.macitepos.services.OrdersService;
-import com.macitepos.macitepos.services.PenggunaService;
+import com.macitepos.macitepos.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
@@ -36,12 +34,21 @@ public class ManajerController {
     @Autowired
     private OrdersService ordersService;
 
+    @Autowired
+    private ProdukService produkService;
+
+    @Autowired
+    private MembersService membersService;
+
     @RequestMapping(value = "/manajer")
     public String manajer(HttpSession session) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
         session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         session.setAttribute("jumlahOrder", ordersService.jumlahOrder());
+        session.setAttribute("jumlahPayment", ordersService.jumlahPayment());
+        session.setAttribute("jumlahProduk", produkService.jumlahProduk());
+        session.setAttribute("jumlahMember", membersService.jumlahMember());
         return "m_dashboard";
     }
 

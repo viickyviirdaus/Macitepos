@@ -57,4 +57,14 @@ public class MembersDAO {
         System.out.println("Member Service Show All");
         return m;
     }
+
+    public Long jumlahMember(){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        System.out.println("show order in");
+        long q = (Long) em.createQuery("SELECT count (m) FROM Member m").getSingleResult();
+        System.out.println("show order out");
+        em.close();
+        return q;
+    }
 }
