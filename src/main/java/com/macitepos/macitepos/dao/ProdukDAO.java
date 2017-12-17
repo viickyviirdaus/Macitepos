@@ -34,6 +34,7 @@ public class ProdukDAO {
         Query q = em.createNativeQuery("SELECT * FROM Produk WHERE Produk.stok_toko > 0", Produk.class);
         List<Produk> p = (List<Produk>) q.getResultList();
         em.close();
+        System.out.println("halo");
         return p;
     }
 

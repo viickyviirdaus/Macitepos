@@ -8,7 +8,7 @@ $(document).ready (function() {
             { "mData": "id_penjualan"},
             { label : "member", "mData": "member.nama_member"},
             { "mData": "diskon" },
-            { "mData": "diskon" },
+            { "mData": "total_barang_dijual" },
             { "mData": "total_penjualan" },
             { "mData": "pembayaran_penjualan" },
             { "mData": "kembalian_penjualan" },
