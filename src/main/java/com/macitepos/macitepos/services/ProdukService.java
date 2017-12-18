@@ -28,10 +28,12 @@ public class ProdukService {
         return null;
     }
 
-    public void updateStokToko(int id_produk, int jumlahBeli){
+    public void updateStokTokodanTotal(int id_produk, int jumlahBeli){
         Produk produk = produkDAO.findByIdSingle(id_produk);
         int stokToko = produk.getStok_toko() - jumlahBeli;
+        int stokTotal = produk.getStok_total() - jumlahBeli;
         produk.setStok_toko(stokToko);
+        produk.setStok_total(stokTotal);
         produkDAO.saveOrUpdate(produk);
     }
 

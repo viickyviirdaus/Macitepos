@@ -25,8 +25,6 @@ public class TransaksiPenjualanAPI {
     @Autowired
     private OrdersService ordersService;
     @Autowired
-    private MemberService memberService;
-    @Autowired
     private MembersService membersService;
 
 
@@ -58,10 +56,11 @@ public class TransaksiPenjualanAPI {
         //Update Jumlah Berkunjung
         membersService.updateJumlahBerkunjung(recieverTransaksiPenjualanDTO[0].getId_member(),recieverTransaksiPenjualanDTO[0].getVisit_count(),timestamp);
 
-        //Update Jumlah Produk
+        //Update Stok Toko dan Stok Total
         for (int i = 0; i<recieverTransaksiPenjualanDTO.length;i++){
-            produkService.updateStokToko(recieverTransaksiPenjualanDTO[i].getId_produk(), recieverTransaksiPenjualanDTO[0].getCount_product());
+            produkService.updateStokTokodanTotal(recieverTransaksiPenjualanDTO[i].getId_produk(), recieverTransaksiPenjualanDTO[0].getCount_product());
         }
+
 
         //Update Jumlah Terjual
         for (int i = 0; i<recieverTransaksiPenjualanDTO.length;i++){
