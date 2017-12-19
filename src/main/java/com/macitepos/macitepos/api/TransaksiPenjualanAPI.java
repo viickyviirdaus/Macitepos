@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 
 @RestController
@@ -24,8 +25,6 @@ public class TransaksiPenjualanAPI {
     private AkunService akunService;
     @Autowired
     private OrdersService ordersService;
-    @Autowired
-    private MemberService memberService;
     @Autowired
     private MembersService membersService;
 
@@ -58,17 +57,24 @@ public class TransaksiPenjualanAPI {
         //Update Jumlah Berkunjung
         membersService.updateJumlahBerkunjung(recieverTransaksiPenjualanDTO[0].getId_member(),recieverTransaksiPenjualanDTO[0].getVisit_count(),timestamp);
 
-        //Update Jumlah Produk
+        //Update Stok Toko dan Stok Total
         for (int i = 0; i<recieverTransaksiPenjualanDTO.length;i++){
-            produkService.updateStokToko(recieverTransaksiPenjualanDTO[i].getId_produk(), recieverTransaksiPenjualanDTO[0].getCount_product());
+            produkService.updateStokTokodanTotal(recieverTransaksiPenjualanDTO[i].getId_produk(), recieverTransaksiPenjualanDTO[0].getCount_product());
         }
+
 
         //Update Jumlah Terjual
         for (int i = 0; i<recieverTransaksiPenjualanDTO.length;i++){
             produkService.updateTerjual(recieverTransaksiPenjualanDTO[i].getId_produk(), recieverTransaksiPenjualanDTO[0].getCount_product());
         }
 
-
     }
+
+    @RequestMapping(path="/api/order", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Transaksi_penjualanDTO> order()
+    {
+        return ordersService.showOrder();
+    }
+
 
 }

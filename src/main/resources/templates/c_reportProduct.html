@@ -3,6 +3,7 @@
 <head>
     <title>Kasir - Report Products | MacitePos.com</title>
     <div th:replace="c_header :: header-css"/>
+    <script th:src="@{assets/js/report.js}"></script>
 </head>
 <body>
 
@@ -18,15 +19,15 @@
         <!-- Search -->
         <form class="text-center">
             <div class="form-group">
-                <a data-toggle="tab" href="#rProduct"><button type="button" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false" >Product</button></a>
-                <a data-toggle="tab" href="#rPayment"><button type="button" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false" >Payments</button></a>
+                <a data-toggle="tab" id="productButton" href="#rProduct"><button type="button" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false" >Product</button></a>
+                <a data-toggle="tab" id="paymentButton" href="#rPayment"><button type="button" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false" >Payments</button></a>
             </div>
         </form>
     </div>
     <div class="tab-content">
         <!-- Table Report Product-->
         <div class="container-fluid tab-pane fade in active" id="rProduct">
-            <table class="table table-striped " style="margin-top: 20px">
+            <table class="table table-striped " style="margin-top: 20px" id="produkTable">
                 <thead>
                 <tr style="background-color: #4F7F3F">
                     <th>Image</th>
@@ -37,22 +38,29 @@
                     <th>Sold</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td><img th:src="@{assets/image/defaultBarang.png}" style="max-height: 30px"/></td>
-                    <td>081441292838</td>
-                    <td>Teh Pucuk Harum</td>
-                    <td>150</td>
-                    <td>Drink</td>
-                    <td>50</td>
-                </tr>
-                </tbody>
+                <!--<tbody>-->
+                <!--<tr>-->
+                    <!--<td><img th:src="@{assets/image/defaultBarang.png}" style="max-height: 30px"/></td>-->
+                    <!--<td>081441292838</td>-->
+                    <!--<td>Teh Pucuk Harum</td>-->
+                    <!--<td>150</td>-->
+                    <!--<td>Drink</td>-->
+                    <!--<td>50</td>-->
+                <!--</tr>-->
+                <!--</tbody>-->
             </table>
         </div>
 
         <!-- Table Report Payment -->
         <div class="container-fluid tab-pane fade" id="rPayment">
-            <table class="table table-striped " style="margin-top: 20px">
+            <div class="row container-fluid text-center">
+                <b>
+                    <h3>Total =
+                        <span id="totalShow"></span>
+                    </h3>
+                </b>
+            </div>
+            <table class="table table-striped " style="margin-top: 20px" id="paymentsTable">
                 <thead>
                 <tr style="background-color: #4F7F3F">
                     <th>Customer Name</th>
@@ -62,22 +70,15 @@
                     <th>Amounts</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>Mukidi</td>
-                    <td>#003</td>
-                    <td>Lukman</td>
-                    <td>08/092017 08:30:33</td>
-                    <td>Rp. 50000</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="text-right">Total = </td>
-                    <td>Rp. 50000</td>
-                </tr>
-                </tbody>
+                <!--<tbody>-->
+                <!--<tr>-->
+                    <!--<td>Mukidi</td>-->
+                    <!--<td>#003</td>-->
+                    <!--<td>Lukman</td>-->
+                    <!--<td>08/092017 08:30:33</td>-->
+                    <!--<td>Rp. 50000</td>-->
+                <!--</tr>-->
+                <!--</tbody>-->
             </table>
         </div>
     </div>

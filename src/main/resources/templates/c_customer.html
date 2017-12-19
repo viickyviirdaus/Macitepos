@@ -46,22 +46,22 @@
                             <input type="hidden" />
                             <div class="form-group">
                                 <label for="nama_member">Full Name</label>
-                                <input type="text" class="form-control" id="nama_member" placeholder="Full Name"  th:field="*{nama_member}" />
+                                <input type="text" class="form-control" required="" id="nama_member" placeholder="Full Name"  th:field="*{nama_member}" />
                             </div>
                             <div class="form-group">
                                 <label for="alamat">Address</label>
-                                <input type="text" class="form-control" id="alamat" placeholder="Address" th:field="*{alamat}"/>
+                                <input type="text" class="form-control" required="" id="alamat" placeholder="Address" th:field="*{alamat}"/>
                             </div>
                             <div class="form-group">
                                 <label for="tanggal_lahir">Date Of Birth</label>
-                                <input type="date" class="form-control" id="tanggal_lahir" placeholder="Date Of Birth" th:field="*{tanggal_lahir}" />
+                                <input type="date" class="form-control" required="" id="tanggal_lahir" placeholder="Date Of Birth" th:field="*{tanggal_lahir}" />
                             </div>
                             <!--<div class="form-group">-->
                             <!--<label for="email">Email</label>-->
                             <!--<input type="password" class="form-control" id="email" placeholder="Email" th:field="*{email}" />-->
                             <!--</div>-->
-                            <label class="radio-inline">
-                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="L" th:field="*{jenis_kelamin}"/> Laki Laki
+                            <label class="radio-inline" required="">
+                                <input type="radio" name="inlineRadioOptions" required="" id="inlineRadio1" value="L" th:field="*{jenis_kelamin}"/> Laki Laki
                             </label>
                             <label class="radio-inline">
                                 <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="P"  th:field="*{jenis_kelamin}"/> Perempuan
@@ -85,13 +85,13 @@
         <table class="table table-striped " style="margin-top: 20px" id="memberTable">
             <thead>
             <tr style="background-color: #FC161B">
-                <th>No</th>
                 <th>ID Member</th>
                 <th>Nama</th>
                 <th>TL</th>
                 <th>L/P</th>
                 <th>Alamat</th>
-                <th>Action</th>
+                <th>Count</th>
+                <th>Created at</th>
             </tr>
             </thead>
             <!--<tbody>-->

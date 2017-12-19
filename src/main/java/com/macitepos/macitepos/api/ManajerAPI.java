@@ -27,24 +27,24 @@ public class ManajerAPI {
     private OrdersService ordersService;
 
 
-    @RequestMapping(path="/api/order", method = RequestMethod.GET)
-    public List<Transaksi_penjualanDTO> order()
-    {
-        return ordersService.showOrder();
-    }
+//    @RequestMapping(path="/api/order", method = RequestMethod.GET)
+//    public List<Transaksi_penjualanDTO> order()
+//    {
+//        return ordersService.showOrder();
+//    }
 
-    @RequestMapping(path="/api/customer", method = RequestMethod.GET)
-    public Iterable<MemberDTO> customer(){
-    return membersService.showAll();
-    }
+//    @RequestMapping(path="/api/customer", method = RequestMethod.GET)
+//    public Iterable<MemberDTO> customer(){
+//    return membersService.showAll();
+//    }
 
-    @RequestMapping(path="/api/pengguna", method = RequestMethod.GET)
-    public List<PenggunaDTO> user(){
-        return penggunaService.showAll();
-
-
-//        Iterable<Pengguna> test = akunService.listPengguna();
-//        return test;
-    }
+//    @RequestMapping(path="/api/pengguna", method = RequestMethod.GET)
+//    public List<PenggunaDTO> user(){
+//        return penggunaService.showAll();
+//
+//
+////        Iterable<Pengguna> test = akunService.listPengguna();
+////        return test;
+//    }
 
 }
