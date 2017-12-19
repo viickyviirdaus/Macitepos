@@ -44,7 +44,7 @@ public class KasirController {
     @Autowired
     PenggunaService penggunaService;
 
-    private static String UPLOADED_FOLDER = "D:\\blibli\\PROJECT\\Macitepos\\src\\main\\resources\\upload\\photoProfile\\";
+    private static String UPLOADED_FOLDER = "D:\\blibli\\PROJECT\\Macitepos\\src\\main\\resources\\static\\assets\\image\\";
 
     @RequestMapping(value = "/kasir", method = RequestMethod.GET)
     public String kasir(HttpSession session, Model model) {
@@ -119,29 +119,34 @@ public class KasirController {
 
     @RequestMapping(value = "/kasir-profile/save", method = RequestMethod.POST)
     public String editAction(@RequestParam("file") MultipartFile file, @Valid PenggunaDTO penggunaDTO, BindingResult bindingResult){
-        String fileName = file.getOriginalFilename();
+//        String fileName = file.getOriginalFilename();
+
         try {
             if(!file.getOriginalFilename().equalsIgnoreCase("")){
                 long name = System.currentTimeMillis();
-                String extensi = fileName.substring(fileName.lastIndexOf(".")+1);
-                System.out.println(name+"."+extensi);
-                fileName = name+"."+extensi;
-                penggunaDTO.setFoto_pengguna(fileName);
-
+//                String extensi = fileName.substring(fileName.lastIndexOf(".")+1);
+//                System.out.println(name+"."+extensi);
+//                fileName = name+"."+extensi;
+                penggunaDTO.setFoto_pengguna(file.getOriginalFilename());
+                String fileName = file.getOriginalFilename();
                 byte[] bytes = file.getBytes();
                 Path path = Paths.get(UPLOADED_FOLDER + fileName);
                 Files.write(path,bytes);
     //                session.setAttribute("foto", fileName);
     //                session.setAttribute("nama", penggunaDTO.getNama_pengguna());
+                penggunaService.saveOrUpdated(penggunaDTO, penggunaDTO.getFoto_pengguna());
+
+            } else{
+                penggunaService.Updated(penggunaDTO);
             }
-            penggunaService.Updated(penggunaDTO);
+
+
 
         } catch (IOException e){
             e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return "redirect:/kasir-profile";
     }
 

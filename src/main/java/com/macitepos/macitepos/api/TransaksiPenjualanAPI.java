@@ -76,5 +76,9 @@ public class TransaksiPenjualanAPI {
         return ordersService.showOrder();
     }
 
+    @RequestMapping(path = "/api/order/day", method =RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Transaksi_penjualanDTO> orderDay(){
+        return  ordersService.showOrderDay();
+    }
 
 }
