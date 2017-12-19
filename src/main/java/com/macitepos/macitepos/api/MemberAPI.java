@@ -13,6 +13,11 @@ public class MemberAPI {
     @Autowired
     MembersService membersService;
 
+    @RequestMapping(path="/api/customer", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<MemberDTO> customer(){
+        return membersService.showAll();
+    }
+
     @RequestMapping(path="/api/member/create", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public void ProdukCreate(@RequestBody MemberDTO memberDTO){
         MemberDTO mDTO = membersService.saveOrUpdated(memberDTO);

@@ -53,7 +53,14 @@
 
         <!-- Table Report Payment -->
         <div class="container-fluid tab-pane fade" id="rPayment">
-            <table class="table table-striped " style="margin-top: 20px">
+            <div class="row container-fluid text-center">
+                <b>
+                    <h3>Total =
+                        <span id="totalShow"></span>
+                    </h3>
+                </b>
+            </div>
+            <table class="table table-striped " style="margin-top: 20px" id="paymentsTable">
                 <thead>
                 <tr style="background-color: #4F7F3F">
                     <th>Customer Name</th>
@@ -63,22 +70,15 @@
                     <th>Amounts</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>Mukidi</td>
-                    <td>#003</td>
-                    <td>Lukman</td>
-                    <td>08/092017 08:30:33</td>
-                    <td>Rp. 50000</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="text-right">Total = </td>
-                    <td>Rp. 50000</td>
-                </tr>
-                </tbody>
+                <!--<tbody>-->
+                <!--<tr>-->
+                    <!--<td>Mukidi</td>-->
+                    <!--<td>#003</td>-->
+                    <!--<td>Lukman</td>-->
+                    <!--<td>08/092017 08:30:33</td>-->
+                    <!--<td>Rp. 50000</td>-->
+                <!--</tr>-->
+                <!--</tbody>-->
             </table>
         </div>
     </div>

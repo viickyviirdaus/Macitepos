@@ -56,26 +56,30 @@ public class KasirController {
     }
 
     @RequestMapping(value = "/kasir-product" , method = RequestMethod.GET)
-    public String product(Model model){
+    public String product(Model model,HttpSession session){
 //        model.addAttribute("produk",produkService.showAll());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "c_product";
     }
 
     @RequestMapping(value = "/kasir-orders")
-    public String orders(){
+    public String orders(HttpSession session){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "c_orders";
     }
 
     @RequestMapping(value = "/kasir-customer",method = RequestMethod.GET)
-    public String customer(Model model){
-        if (membersService.showAll().isEmpty()){
-            return "c_customer";
-        } else {
-            model.addAttribute("member",membersService.showAll());
-            model.addAttribute("memberBaru", new MemberDTO());
-            System.out.println("Controller jalan");
-            return "c_customer";
-        }
+    public String customer(Model model,HttpSession session){
+        model.addAttribute("memberBaru", new MemberDTO());
+        System.out.println("Controller jalan");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        return "c_customer";
     }
 
     @RequestMapping(value = "/kasir-customer/createMember", method = RequestMethod.POST)
@@ -89,24 +93,32 @@ public class KasirController {
     }
 
     @RequestMapping(value = "/kasir-report")
-    public String report(){
+    public String report(HttpSession session){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "c_reportProduct";
     }
 
     @RequestMapping(value = "/kasir-user")
-    public String user(){
+    public String user(HttpSession session){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "c_user";
     }
 
     @RequestMapping(value = "/kasir-profile", method = RequestMethod.GET)
-    public String edit (Model model){
+    public String edit (Model model,HttpSession session){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("pengguna",akunService.findByUsername(authentication.getName()));
+        model.addAttribute("pengguna", akunService.findByUsername(authentication.getName()));
+        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "c_editProfil";
     }
 
     @RequestMapping(value = "/kasir-profile/save", method = RequestMethod.POST)
-    public String editAction(@RequestParam("file") MultipartFile file, @Valid PenggunaDTO penggunaDTO, BindingResult bindingResult, HttpSession session){
+    public String editAction(@RequestParam("file") MultipartFile file, @Valid PenggunaDTO penggunaDTO, BindingResult bindingResult){
         String fileName = file.getOriginalFilename();
         try {
             if(!file.getOriginalFilename().equalsIgnoreCase("")){
@@ -130,8 +142,6 @@ public class KasirController {
             e.printStackTrace();
         }
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
-        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "redirect:/kasir-profile";
     }
 

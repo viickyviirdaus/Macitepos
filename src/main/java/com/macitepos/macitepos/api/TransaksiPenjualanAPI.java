@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 
 @RestController
@@ -67,7 +68,13 @@ public class TransaksiPenjualanAPI {
             produkService.updateTerjual(recieverTransaksiPenjualanDTO[i].getId_produk(), recieverTransaksiPenjualanDTO[0].getCount_product());
         }
 
-
     }
+
+    @RequestMapping(path="/api/order", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Transaksi_penjualanDTO> order()
+    {
+        return ordersService.showOrder();
+    }
+
 
 }
