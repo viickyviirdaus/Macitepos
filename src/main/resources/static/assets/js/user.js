@@ -9,7 +9,7 @@ $(document).ready (function() {
 
             { "mData": "foto_pengguna",
                 "render": function (mData) {
-                    return '<img style="width: 100%" src="assets/image/'+mData+'"/>';
+                    return '<img style="width: 100%" src="assets/image/user/'+mData+'"/>';
                 }},
             { "mData": "id_pengguna"},
             { "mData": "nama_pengguna" },

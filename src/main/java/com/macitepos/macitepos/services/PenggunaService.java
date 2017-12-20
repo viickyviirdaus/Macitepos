@@ -26,7 +26,7 @@ public class PenggunaService {
 
 
 
-    public PenggunaDTO saveOrUpdated(PenggunaDTO penggunaDTOO, String foto){
+    public PenggunaDTO saveOrUpdated(PenggunaDTO penggunaDTOO){
 
     this.penggunaDTO = penggunaDTOO;
         System.out.println("itu "+penggunaDTO.getId_pengguna());
@@ -36,7 +36,7 @@ public class PenggunaService {
                                             penggunaDTO.getUsername(),
                                             penggunaDTO.getAlamat_pengguna(), penggunaDTO.getTanggal_lahir(),
                                             penggunaDTO.getEmail(), penggunaDTO.getPassword(),
-                                            penggunaDTO.isStatus_pengguna(), foto,
+                                            penggunaDTO.isStatus_pengguna(), penggunaDTOO.getFoto_pengguna(),
                                             penggunaDTO.getLast_modified(), penggunaDTO.getCreated_at(),
                                             penggunaDTO.getLevel()
                                             );

@@ -19,7 +19,7 @@
     <div class="modal fade" id="tambahCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form class="form-horizontal" th:object="${pengguna}" th:action="@{/user/create}" method="post" enctype="multipart/form-data">
+                <form class="form-horizontal" th:object="${pengguna}" th:action="@{/user/edit/create}" method="post" enctype="multipart/form-data">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
@@ -132,7 +132,7 @@
             </thead>
             <tbody>
             <tr th:each="penggunas : ${pengguna}">
-                <td><img th:src="@{${'/assets/image/' + penggunas.foto_pengguna}}" style="max-height: 40px"/></td>
+                <td><img th:src="@{${'/assets/image/user/' + penggunas.foto_pengguna}}" style="max-height: 40px"/></td>
                 <td th:text="${penggunas.id_pengguna}"></td>
                 <td th:text="${penggunas.nama_pengguna}"></td>
                 <td th:text="${penggunas.alamat_pengguna}"></td>

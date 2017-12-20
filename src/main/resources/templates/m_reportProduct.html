@@ -3,6 +3,7 @@
 <head>
     <title>Manajer - Report Products | MacitePos.com</title>
     <div th:replace="m_header :: header-css"/>
+    <script th:src="@{assets/js/report.js}"></script>
 </head>
 <body>
 
@@ -26,7 +27,7 @@
     <!-- Table -->
     <div class="tab-content">
     <div class="container-fluid tab-pane fade in active" id="rProduct">
-        <table class="table table-striped " style="margin-top: 20px">
+        <table class="table table-striped " style="margin-top: 20px" id="produkTable">
             <thead>
             <tr style="background-color: #4F7F3F">
                 <th>Image</th>
@@ -37,21 +38,38 @@
                 <th>Sold</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td><img th:src="@{assets/image/defaultBarang.png}" style="max-height: 30px"/></td>
-                <td>081441292838</td>
-                <td>Teh Pucuk Harum</td>
-                <td>150</td>
-                <td>Drink</td>
-                <td>50</td>
+            <!--<tbody>-->
+            <!--<tr>-->
+                <!--<td><img th:src="@{assets/image/defaultBarang.png}" style="max-height: 30px"/></td>-->
+                <!--<td>081441292838</td>-->
+                <!--<td>Teh Pucuk Harum</td>-->
+                <!--<td>150</td>-->
+                <!--<td>Drink</td>-->
+                <!--<td>50</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+            <tfoot>
+            <tr style="background-color: #4F7F3F">
+                <th>Image</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Stock</th>
+                <th>Category</th>
+                <th>Sold</th>
             </tr>
-            </tbody>
+            </tfoot>
         </table>
     </div>
     <!-- Table -->
-    <div class="container-fluid tab-pane fade" id="rPayment">
-        <table class="table table-striped " style="margin-top: 20px">
+    <div class="container-fluid tab-pane fade in active" id="rPayment">
+        <div class="row container-fluid text-center">
+            <b>
+                <h3>Total =
+                    <span id="totalShow"></span>
+                </h3>
+            </b>
+        </div>
+        <table class="table table-striped " style="margin-top: 20px" id="paymentsTable">
             <thead>
             <tr style="background-color: #4F7F3F">
                 <th>Customer Name</th>
@@ -61,22 +79,31 @@
                 <th>Amounts</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>Mukidi</td>
-                <td>#003</td>
-                <td>Lukman</td>
-                <td>08/092017 08:30:33</td>
-                <td>Rp. 50000</td>
+            <!--<tbody>-->
+            <!--<tr>-->
+                <!--<td>Mukidi</td>-->
+                <!--<td>#003</td>-->
+                <!--<td>Lukman</td>-->
+                <!--<td>08/092017 08:30:33</td>-->
+                <!--<td>Rp. 50000</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td></td>-->
+                <!--<td></td>-->
+                <!--<td></td>-->
+                <!--<td class="text-right">Total = </td>-->
+                <!--<td>Rp. 50000</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+            <tfoot>
+            <tr style="background-color: #4F7F3F">
+                <th>Customer Name</th>
+                <th>Order Number</th>
+                <th>Recieved By</th>
+                <th>Date</th>
+                <th>Amounts</th>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="text-right">Total = </td>
-                <td>Rp. 50000</td>
-            </tr>
-            </tbody>
+            </tfoot>
         </table>
     </div>
     </div>

@@ -45,7 +45,7 @@
                 <li>
                     <div class="container-fluid active-user">
                         <div class="row">
-                            <div class="col-sm-5"><img th:src="@{${'/assets/image/' + session.foto}}" class="img-circle" style="max-width: 100%"/></div>
+                            <div class="col-sm-5"><img th:src="@{${'/assets/image/user/' + session.foto}}" class="img-circle" style="max-width: 100%"/></div>
                             <div class="col-md-7">
                                 <h5 style="margin-bottom: 0px"><b th:text="${session.nama}"></b></h5>
                                 <span> <span style="color: #00B900; font-size: 20px;" >&#9679;</span> Online</span>
@@ -55,6 +55,12 @@
                 </li>
                 <li class="active"><a th:href="@{/warehouse}"><i class="fa fa-tachometer fa-fw" aria-hidden="true"></i>
                     Dashboard <span class="sr-only">(current)</span></a></li>
+                <li >
+                    <a th:href="@{/productWA}">
+                        <i class="fa fa-cubes fa-fw" aria-hidden="true"></i>
+                        Products
+                    </a>
+                </li>
                 <li><a th:href="@{/suplier}"><i class="fa fa-users fa-fw" aria-hidden="true"></i>
                     Supliers</a></li>
                 <li><a th:href="@{/editProfileWA}"><i class="fa fa-cog fa-fw" aria-hidden="true"></i>

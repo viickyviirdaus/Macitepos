@@ -26,21 +26,21 @@ function showTableProducts() {
 }
 
 function showTablePayments () {
-    var table = $('#paymentsTable').DataTable({
+    var tables = $('#paymentsTable').DataTable({
         "sAjaxSource": "/api/order/",
         "sAjaxDataProp": "",
         "order": [[ 0, "asc" ]],
         "columns": [
             { "mData": "member.nama_member"},
-            { "mData": "id_penjualan" },
-            { "mData": "pengguna.nama_pengguna" },
+            { "mData": "id_penjualan"},
+            { "mData": "pengguna.nama_pengguna"},
             { "mData": "created_at",
                 "render": function (mData) {
                     var date = new Date(mData);
                     var month = date.getMonth() + 1;
                     return (month.length > 1 ? month : + month) + "/" + date.getMonth() + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds();
                 }},
-            { "mData": "total_penjualan"},
+            { "mData": "total_penjualan"}
         ]
     });
 }
@@ -48,7 +48,7 @@ function showTablePayments () {
 function totalPayments(){
     var total =0;
     $.ajax({
-        url: '/api/transaksiPenjualan/',
+        url: '/api/order/',
         type: 'GET',
         dataType: 'json',
         success: function (transaksi) {

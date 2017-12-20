@@ -30,6 +30,7 @@ public class ProdukDTO {
         this.kategori = kategori;
     }
 
+    public ProdukDTO(){}
     public ProdukDTO(
             int id_produk,
             String nama_produk,
