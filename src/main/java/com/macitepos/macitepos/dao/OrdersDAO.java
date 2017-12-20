@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
+import java.sql.Date;
 import java.util.List;
 
 @Repository
@@ -47,6 +48,17 @@ public class OrdersDAO {
         System.out.println("show order out");
         em.close();
         return p;
+    }
+
+    public List<Transaksi_penjualan> showOrderDay(Date today){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query q = em.createNativeQuery("SELECT * FROM Transaksi_penjualan t WHERE t.created_at >=:today", Transaksi_penjualan.class);
+        System.out.println(today);
+        q.setParameter("today", today);
+        List<Transaksi_penjualan> t = (List<Transaksi_penjualan>) q.getResultList();
+        em.close();
+        return t;
     }
 
     public Long jumlahOrder(){

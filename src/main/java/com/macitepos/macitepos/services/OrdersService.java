@@ -13,7 +13,10 @@ import com.macitepos.macitepos.model.Transaksi_penjualan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +55,18 @@ public class OrdersService {
         }
         return convertToDTOAPI(m);
     }
+
+    public List<Transaksi_penjualanDTO> showOrderDay(){
+//        List<Transaksi_penjualan> t =
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        Date date = new Date(System.currentTimeMillis());
+        String d = dateFormat.format(date).toString();
+        System.out.println(d);
+        List<Transaksi_penjualan> t = ordersDAO.showOrderDay(date);
+        System.out.println(t);
+        return convertToDTOAPI(t);
+    }
+
 
     List<Transaksi_penjualanDTO> convertToDTOAPI(List<Transaksi_penjualan> tps){
         List<Transaksi_penjualanDTO> dto = new ArrayList<>();

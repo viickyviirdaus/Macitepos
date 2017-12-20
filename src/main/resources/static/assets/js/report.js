@@ -26,8 +26,8 @@ function showTableProducts() {
 }
 
 function showTablePayments () {
-    var tables = $('#paymentsTable').DataTable({
-        "sAjaxSource": "/api/order/",
+    var table = $('#paymentsTable').DataTable({
+        "sAjaxSource": "/api/order/day",
         "sAjaxDataProp": "",
         "order": [[ 0, "asc" ]],
         "columns": [
@@ -48,7 +48,7 @@ function showTablePayments () {
 function totalPayments(){
     var total =0;
     $.ajax({
-        url: '/api/order/',
+        url: '/api/order/day',
         type: 'GET',
         dataType: 'json',
         success: function (transaksi) {
