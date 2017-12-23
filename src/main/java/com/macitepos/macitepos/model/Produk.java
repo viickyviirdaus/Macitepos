@@ -32,20 +32,17 @@ public class Produk {
     @Column(name = "stok_total")
     private int stok_total;
 
-    @Column(name = "stok_gudang")
-    private int stok_gudang;
-
     @Column(name = "stok_toko")
     private int stok_toko;
+
+    @Column(name = "stok_gudang")
+    private int stok_gudang;
 
     @Column(name = "terjual")
     private int terjual;
 
     @Column(name = "foto_produk")
     private String foto_produk;
-
-    @Column(name = "no_rak_gudang")
-    private String no_rak_gudang;
 
     @Column(name = "no_rak_toko")
     private String no_rak_toko;
@@ -70,32 +67,32 @@ public class Produk {
 
     public Produk(){}
     public Produk(
+             int id_produk,
              String nama_produk,
              String kategori,
              int harga_beli,
              int harga_penjualan,
              int stok_ulang,
              int stok_total,
-             int stok_gudang,
              int stok_toko,
+             int stok_gudang,
              int terjual,
              String foto_produk,
-             String no_rak_gudang,
              String no_rak_toko,
              String updated_by,
              String status_produk){
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        this.id_produk = id_produk;
         this.nama_produk = nama_produk;
         this.kategori = kategori;
         this.harga_beli = harga_beli;
         this.harga_penjualan = harga_penjualan;
         this.stok_ulang = stok_ulang;
         this.stok_total = stok_total;
-        this.stok_gudang = stok_gudang;
         this.stok_toko = stok_toko;
+        this.stok_gudang = stok_gudang;
         this.terjual = terjual;
         this.foto_produk = foto_produk;
-        this.no_rak_gudang = no_rak_gudang;
         this.no_rak_toko = no_rak_toko;
         this.last_updated = timestamp;
         this.updated_by = updated_by;
@@ -107,6 +104,15 @@ public class Produk {
         this.id_produk = id_produk;
         this.nama_produk = nama_produk;
         this.kategori = kategori;
+    }
+
+    public Produk(int id_produk, int stok_ulang, int stok_gudang, int stok_total, String updated_by, Timestamp last_updated) {
+                 this.id_produk = id_produk;
+                 this.stok_ulang = stok_ulang;
+                 this.stok_gudang = stok_gudang;
+                 this.stok_total = stok_total;
+                 this.updated_by = updated_by;
+                 this.last_updated = last_updated;
     }
 
     public int getId_produk() {
@@ -157,14 +163,6 @@ public class Produk {
         this.stok_total = stok_total;
     }
 
-    public int getStok_gudang() {
-        return stok_gudang;
-    }
-
-    public void setStok_gudang(int stok_gudang) {
-        this.stok_gudang = stok_gudang;
-    }
-
     public int getStok_toko() {
         return stok_toko;
     }
@@ -187,14 +185,6 @@ public class Produk {
 
     public void setFoto_produk(String foto_produk) {
         this.foto_produk = foto_produk;
-    }
-
-    public String getNo_rak_gudang() {
-        return no_rak_gudang;
-    }
-
-    public void setNo_rak_gudang(String no_rak_gudang) {
-        this.no_rak_gudang = no_rak_gudang;
     }
 
     public String getNo_rak_toko() {
@@ -239,6 +229,21 @@ public class Produk {
         this.created_at = timestamp;
     }
 
+    public int getStok_gudang() {
+        return stok_gudang;
+    }
+
+    public void setStok_gudang(int stok_gudang) {
+        this.stok_gudang = stok_gudang;
+    }
+
+    public void setLast_updated(Timestamp last_updated) {
+        this.last_updated = last_updated;
+    }
+
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
+    }
 
     public List<Transaksi_pembelian> getTransaksi_pembelians() {
         return transaksi_pembelians;

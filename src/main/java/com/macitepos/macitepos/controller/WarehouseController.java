@@ -33,11 +33,19 @@ public class WarehouseController {
     private ProdukService produkService;
 
     @RequestMapping(value = "/warehouse")
-    public String warehouse(HttpSession session) {
+    public String warehouse(Model model, HttpSession session) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
         session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
-        return "w_dashboard";
+
+        if (produkService.showAll().isEmpty()) {
+            return "w_product";
+        } else {
+            model.addAttribute("produk", produkService.showAll());
+            model.addAttribute("produkBaru", new ProdukDTO());
+            System.out.println("Controller user jalan");
+            return "w_dashboard";
+        }
     }
 
     @RequestMapping(value = "/suplier")
@@ -45,27 +53,14 @@ public class WarehouseController {
         return "w_adminSuplier";
     }
 
-    @RequestMapping(value = "/productWA",method = RequestMethod.GET)
-    public String produk(Model model, HttpSession session){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
-        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        //Save the uploaded file to this folder
+    private static String UPLOADED_FOLDER_PRODUK = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\src\\main\\resources\\static\\assets\\image\\product\\";
 
-        if (produkService.showAll().isEmpty()){
-            return "w_product";
-        } else {
-            model.addAttribute("produk", produkService.showAll());
-            model.addAttribute("produkBaru", new ProdukDTO());
-            System.out.println("Controller user jalan");
-            return "w_product";
-        }
-    }
-    //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER_PRODUK = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\src\\main\\resources\\static\\assets\\image\\produk\\";
-
-    @PostMapping("/productWA/create")
+    @PostMapping("/warehouse-product/create")
     public String buatProduk(@RequestParam("file") MultipartFile file, @Valid ProdukDTO produkDTO
     ){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        produkDTO.setUpdated_by(authentication.getName());
         produkDTO.setFoto_produk(file.getOriginalFilename());
         try {
             String filename;
@@ -88,13 +83,20 @@ public class WarehouseController {
         }
         produkService.saveOrUpdated(produkDTO);
 
-        System.out.println("user create");
-        return "redirect:/productWA";
+        System.out.println("produk create");
+        return "redirect:/warehouse";
     }
 
+    @PostMapping("/warehouse-product/restock")
+    public String restock(ProdukDTO produkDTO){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String updated_by = akunService.findByUsername(authentication.getName()).toString();
+        produkDTO.setUpdated_by(updated_by);
+        produkService.restock(produkDTO);
+        return "redirect:/warehouse";
+    }
 
-
-    @GetMapping(value = "/editProfileWA")
+    @GetMapping(value = "/warehouse-editProfile")
     public String editProfileWA(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("pengguna", akunService.findByUsername(authentication.getName()));

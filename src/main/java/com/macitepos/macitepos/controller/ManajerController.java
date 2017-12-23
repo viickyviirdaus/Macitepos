@@ -64,6 +64,7 @@ public class ManajerController {
     @PostMapping("/product/create")
     public String buatProduk(@RequestParam("file") MultipartFile file, @Valid ProdukDTO produkDTO, BindingResult bindingResult
     ){
+
         produkDTO.setFoto_produk(file.getOriginalFilename());
         System.out.println("ini "+bindingResult.toString());
         try {
@@ -88,7 +89,7 @@ public class ManajerController {
         produkService.saveOrUpdated(produkDTO);
 
         System.out.println("user create");
-        return "redirect:/user";
+        return "redirect:/product";
     }
 
     @GetMapping(value = "/order")

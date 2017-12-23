@@ -10,11 +10,10 @@ public class ProdukDTO {
     private int harga_penjualan;
     private int stok_ulang;
     private int stok_total;
-    private int stok_gudang;
     private int stok_toko;
+    private int stok_gudang;
     private int terjual;
     private String foto_produk;
-    private String no_rak_gudang;
     private String no_rak_toko;
     private Timestamp last_updated;
     private String updated_by;
@@ -24,10 +23,10 @@ public class ProdukDTO {
 //    private List<Transaksi_pembelianDTO> transaksi_pembelians;
 
 
-    public ProdukDTO(int id_produk, String nama_produk, String kategori) {
+    public ProdukDTO(int id_produk, int stok_ulang, Timestamp last_updated) {
         this.id_produk = id_produk;
-        this.nama_produk = nama_produk;
-        this.kategori = kategori;
+        this.stok_ulang = stok_ulang;
+        this.last_updated = last_updated;
     }
 
     public ProdukDTO(){}
@@ -39,11 +38,10 @@ public class ProdukDTO {
             int harga_penjualan,
             int stok_ulang,
             int stok_total,
-            int stok_gudang,
             int stok_toko,
+            int stok_gudang,
             int terjual,
             String foto_produk,
-            String no_rak_gudang,
             String no_rak_toko,
             String updated_by,
             String status_produk){
@@ -55,11 +53,9 @@ public class ProdukDTO {
         this.harga_penjualan = harga_penjualan;
         this.stok_ulang = stok_ulang;
         this.stok_total = stok_total;
-        this.stok_gudang = stok_gudang;
         this.stok_toko = stok_toko;
         this.terjual = terjual;
         this.foto_produk = foto_produk;
-        this.no_rak_gudang = no_rak_gudang;
         this.no_rak_toko = no_rak_toko;
         this.last_updated = timestamp;
         this.updated_by = updated_by;
@@ -67,40 +63,6 @@ public class ProdukDTO {
         this.created_at = timestamp;
     }
 
-    public ProdukDTO(
-            int id_produk,
-            String nama_produk,
-            int harga_beli,
-            int harga_penjualan,
-            int stok_ulang,
-            int stok_total,
-            int stok_gudang,
-            int stok_toko,
-            int terjual,
-            String foto_produk,
-            String no_rak_gudang,
-            String no_rak_toko,
-            Timestamp last_updated,
-            String updated_by,
-            String status_produk,
-            Timestamp created_at){
-        this.id_produk = id_produk;
-        this.nama_produk = nama_produk;
-        this.harga_beli = harga_beli;
-        this.harga_penjualan = harga_penjualan;
-        this.stok_ulang = stok_ulang;
-        this.stok_total = stok_total;
-        this.stok_gudang = stok_gudang;
-        this.stok_toko = stok_toko;
-        this.foto_produk = foto_produk;
-        this.terjual = terjual;
-        this.no_rak_gudang = no_rak_gudang;
-        this.no_rak_toko = no_rak_toko;
-        this.last_updated = last_updated;
-        this.updated_by = updated_by;
-        this.status_produk = status_produk;
-        this.created_at = created_at;
-    }
 
 
 
@@ -160,14 +122,6 @@ public class ProdukDTO {
         this.stok_total = stok_total;
     }
 
-    public int getStok_gudang() {
-        return stok_gudang;
-    }
-
-    public void setStok_gudang(int stok_gudang) {
-        this.stok_gudang = stok_gudang;
-    }
-
     public int getStok_toko() {
         return stok_toko;
     }
@@ -192,12 +146,12 @@ public class ProdukDTO {
         this.foto_produk = foto_produk;
     }
 
-    public String getNo_rak_gudang() {
-        return no_rak_gudang;
+    public int getStok_gudang() {
+        return stok_gudang;
     }
 
-    public void setNo_rak_gudang(String no_rak_gudang) {
-        this.no_rak_gudang = no_rak_gudang;
+    public void setStok_gudang(int stok_gudang) {
+        this.stok_gudang = stok_gudang;
     }
 
     public String getNo_rak_toko() {

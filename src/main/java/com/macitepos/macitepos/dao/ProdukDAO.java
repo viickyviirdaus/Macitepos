@@ -51,17 +51,17 @@ public class ProdukDAO {
         return  p;
     }
 
-    public List<Produk> findByID(int ID){
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        Query q = em.createNativeQuery("SELECT * FROM Produk p WHERE p.id_produk=:ID", Produk.class);
-        q.setParameter("ID", ID);
-        List<Produk> p = (List<Produk>)q.getResultList();
-        em.close();
-        return  p;
-    }
+//    public List<Produk> findByID(int ID){
+//        EntityManager em = emf.createEntityManager();
+//        em.getTransaction().begin();
+//        Query q = em.createNativeQuery("SELECT * FROM Produk p WHERE p.id_produk=:ID", Produk.class);
+//        q.setParameter("ID", ID);
+//        List<Produk> p = (List<Produk>)q.getResultList();
+//        em.close();
+//        return  p;
+//    }
 
-    public Produk findByIdSingle(int ID){
+    public Produk findById(int ID){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         Produk p = em.find(Produk.class, ID);
