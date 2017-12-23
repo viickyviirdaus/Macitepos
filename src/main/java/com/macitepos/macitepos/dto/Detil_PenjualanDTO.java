@@ -6,6 +6,7 @@ import com.macitepos.macitepos.model.Transaksi_penjualan;
 public class Detil_PenjualanDTO {
 
     private int id_detail_penjualan;
+    private int jumlah_penjualan;
     private Transaksi_penjualan transaksi_penjualan;
     private Produk produk;
 
@@ -16,12 +17,27 @@ public class Detil_PenjualanDTO {
         this.produk = produk;
     }
 
+    public Detil_PenjualanDTO(int id_detail_penjualan, int jumlah_penjualan, Transaksi_penjualan transaksi_penjualan, Produk produk) {
+        this.id_detail_penjualan = id_detail_penjualan;
+        this.jumlah_penjualan = jumlah_penjualan;
+        this.transaksi_penjualan = transaksi_penjualan;
+        this.produk = produk;
+    }
+
     public int getId_detail_penjualan() {
         return id_detail_penjualan;
     }
 
     public void setId_detail_penjualan(int id_detail_penjualan) {
         this.id_detail_penjualan = id_detail_penjualan;
+    }
+
+    public int getJumlah_penjualan() {
+        return jumlah_penjualan;
+    }
+
+    public void setJumlah_penjualan(int jumlah_penjualan) {
+        this.jumlah_penjualan = jumlah_penjualan;
     }
 
     public Transaksi_penjualan getTransaksi_penjualan() {

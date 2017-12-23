@@ -123,11 +123,13 @@ function showCategoryDropDown(){
 
 function categoryDropDown() {
     cat =   '<li><a category id="all">All Product</a></li>' +
-        '<li><a category id="makanan">Makanan</a></li>' +
-        '<li><a category id="minuman">Minuman</a></li>' +
-        '<li><a category id="obat">Obat</a></li>' +
-        '<li role="separator" class="divider"></li>' +
-        '<li><a category id="rumahTangga">Rumah Tangga</a></li>';
+        '<li><a category id="food">Food</a></li>' +
+        '<li><a category id="drink">Drink</a></li>' +
+        '<li><a category id="drug">Drug</a></li>' +
+        // '<li role="separator" class="divider"></li>' +
+        '<li><a category id="cosmetic">Cosmetic</a></li>' +
+        '<li><a category id="office">office</a></li>' +
+        '<li><a category id="household">Household Equipment</a></li>';
     return cat;
 }
 
@@ -326,9 +328,16 @@ function submitToInvoice() {
     recievedAmount = $('#RecievedAmount').val();
     recievedAmount = recievedAmount*1;
     if(recievedAmount > 0 && recievedAmount >= grandTotal){
-        $("#submitButton").attr("data-toggle", "modal");
-        calculateRecievedAmount();
-        calculateCash();
+        if(selectedProducts[0] != null){
+            $("#submitButton").attr("data-toggle", "modal");
+            calculateRecievedAmount();
+            calculateCash();
+        } else {
+            $("#submitButton").attr("data-toggle", "");
+            alert("Tidak Ada Barang Terpilih");
+            $("#RecievedAmount").attr("class", "form-control active");
+        }
+
     } else {
         $("#submitButton").attr("data-toggle", "");
         alert("Pembayaran Belum Diterima / Kurang");
@@ -374,6 +383,7 @@ function calculateCash() {
 $(function(){
     $('#printInvoice').click(function(){
         printInvoiceMethod();
+        PrintToPdf();
     });
 });
 
@@ -441,6 +451,10 @@ function sendData(transaction) {
     resetAll();
 }
 
+function PrintToPdf() {
+    window.open("/kasir-printInvoice");
+}
+
 //HAPUS SEMUANYA YANG ADA DI DASHBOARD
 
 function resetAll() {
@@ -478,7 +492,4 @@ function resetAll() {
     $('#subTotal').attr("placeholder",'Rp. 0');
     $('#discountShow').attr("placeholder",'0%');
     $('#grandTotal').attr("placeholder",'Rp. 0');
-
-
-
 }

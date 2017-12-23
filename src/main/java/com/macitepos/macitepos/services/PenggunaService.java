@@ -54,20 +54,6 @@ public class PenggunaService {
         return null;
     }
 
-    public PenggunaDTO Updated(PenggunaDTO penggunaDTO) throws NoSuchAlgorithmException {
-        Pengguna pengguna = penggunasDAO.findById(penggunaDTO.getId_pengguna());
-        pengguna.setNama_pengguna(penggunaDTO.getNama_pengguna());
-        pengguna.setAlamat_pengguna(penggunaDTO.getAlamat_pengguna());
-        pengguna.setTanggal_lahir(penggunaDTO.getTanggal_lahir());
-        pengguna.setEmail(penggunaDTO.getEmail());
-        pengguna.setPassword(penggunaDTO.getPassword());
-        if (penggunaDTO.getFoto_pengguna() != null){
-        pengguna.setFoto_pengguna(penggunaDTO.getFoto_pengguna());
-        }
-        penggunasDAO.saveOrUpdate(pengguna);
-        return convertToDto(pengguna);
-    }
-
     public Role saveToRole(int id){
 
         System.out.println(penggunaDTO.getId_pengguna()+" ID 4 ");
