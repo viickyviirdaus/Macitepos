@@ -29,7 +29,7 @@ public class DetilPenjualanService {
 
     public void saveOrUpdated(Transaksi_penjualanDTO transaksi_penjualanDTO, RecieverTransaksiPenjualanDTO r){
        Transaksi_penjualan order = ordersDAO.findById(transaksi_penjualanDTO.getId_penjualan());
-       Produk produk = produkDAO.findByIdSingle(r.getId_produk());
+       Produk produk = produkDAO.findById(r.getId_produk());
        Detil_penjualan detil_penjualan = new Detil_penjualan(0 ,order ,produk, r.getCount_product());
        detil_penjualanDAO.saveOrUpdate(detil_penjualan);
 

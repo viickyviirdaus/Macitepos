@@ -32,7 +32,8 @@ $(document).ready (function() {
 });
 
 $(document).ready (function() {
-    var table = $('#productTable').DataTable({
+    var tables = $('#productTable').DataTable({
+        destroy: true,
         "sAjaxSource": "/api/produk",
         "sAjaxDataProp": "",
         "order": [[ 0, "asc" ]],
@@ -50,7 +51,6 @@ $(document).ready (function() {
             { "mData": "stok_ulang" },
             { "mData": "kategori" },
             { "mData": "no_rak_toko" },
-            { "mData": "no_rak_gudang" },
             { "mData": "harga_beli" },
             { "mData": "harga_penjualan" },
             { "mData": "status_produk" },
