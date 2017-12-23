@@ -44,7 +44,7 @@ public class KasirController {
     @Autowired
     PenggunaService penggunaService;
 
-    private static String UPLOADED_FOLDER = "D:\\blibli\\PROJECT\\Macitepos\\src\\main\\resources\\static\\assets\\image\\";
+    private static String UPLOADED_FOLDER = "D:/blibli/PROJECT/Macitepos/src/main/resources/static/assets/upload/";
 
     @RequestMapping(value = "/kasir", method = RequestMethod.GET)
     public String kasir(HttpSession session, Model model) {
@@ -53,6 +53,11 @@ public class KasirController {
         session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
         session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "c_dashboard";
+    }
+
+    @RequestMapping(value = "/kasir-printInvoice")
+    public String printInvoice(){
+        return "invoice";
     }
 
     @RequestMapping(value = "/kasir-product" , method = RequestMethod.GET)
@@ -119,34 +124,33 @@ public class KasirController {
 
     @RequestMapping(value = "/kasir-profile/save", method = RequestMethod.POST)
     public String editAction(@RequestParam("file") MultipartFile file, @Valid PenggunaDTO penggunaDTO, BindingResult bindingResult){
-//        String fileName = file.getOriginalFilename();
+        String fileName = file.getOriginalFilename();
 
         try {
             if(!file.getOriginalFilename().equalsIgnoreCase("")){
                 long name = System.currentTimeMillis();
-//                String extensi = fileName.substring(fileName.lastIndexOf(".")+1);
-//                System.out.println(name+"."+extensi);
-//                fileName = name+"."+extensi;
-                penggunaDTO.setFoto_pengguna(file.getOriginalFilename());
-                String fileName = file.getOriginalFilename();
+                String extensi = fileName.substring(fileName.lastIndexOf(".")+1);
+                System.out.println(name+"."+extensi);
+                fileName = name+"."+extensi;
+                penggunaDTO.setFoto_pengguna(fileName);
+
                 byte[] bytes = file.getBytes();
                 Path path = Paths.get(UPLOADED_FOLDER + fileName);
                 Files.write(path,bytes);
-    //                session.setAttribute("foto", fileName);
-    //                session.setAttribute("nama", penggunaDTO.getNama_pengguna());
                 penggunaService.saveOrUpdated(penggunaDTO);
 
             } else{
-                penggunaService.Updated(penggunaDTO);
+                penggunaService.saveOrUpdated(penggunaDTO);
             }
 
 
 
         } catch (IOException e){
             e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
+//        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
+
         return "redirect:/kasir-profile";
     }
 

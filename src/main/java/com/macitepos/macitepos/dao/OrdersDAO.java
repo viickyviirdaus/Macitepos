@@ -38,6 +38,8 @@ public class OrdersDAO {
         return t;
     }
 
+
+
     public List<Transaksi_penjualan> showOrder(){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -61,6 +63,15 @@ public class OrdersDAO {
         return t;
     }
 
+    public List<Transaksi_penjualan> findLastOrder(){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query q = em.createNativeQuery("SELECT * FROM transaksi_penjualan t ORDER BY t.id_penjualan DESC LIMIT 1");
+        List<Transaksi_penjualan> p = (List<Transaksi_penjualan>) q.getResultList();
+        em.close();
+        return p;
+    }
+
     public Long jumlahOrder(){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -80,4 +91,5 @@ public class OrdersDAO {
         em.close();
         return q;
     }
+
 }

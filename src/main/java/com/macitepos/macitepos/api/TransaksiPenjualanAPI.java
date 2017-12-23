@@ -28,8 +28,6 @@ public class TransaksiPenjualanAPI {
     @Autowired
     private MembersService membersService;
 
-
-
     @RequestMapping(value = "/api/create/transaksiPenjualan", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public void create (@RequestBody String recievedJson){
         Gson gson = new Gson();
@@ -59,13 +57,13 @@ public class TransaksiPenjualanAPI {
 
         //Update Stok Toko dan Stok Total
         for (int i = 0; i<recieverTransaksiPenjualanDTO.length;i++){
-            produkService.updateStokTokodanTotal(recieverTransaksiPenjualanDTO[i].getId_produk(), recieverTransaksiPenjualanDTO[0].getCount_product());
+            produkService.updateStokTokodanTotal(recieverTransaksiPenjualanDTO[i].getId_produk(), recieverTransaksiPenjualanDTO[i].getCount_product());
         }
 
 
         //Update Jumlah Terjual
         for (int i = 0; i<recieverTransaksiPenjualanDTO.length;i++){
-            produkService.updateTerjual(recieverTransaksiPenjualanDTO[i].getId_produk(), recieverTransaksiPenjualanDTO[0].getCount_product());
+            produkService.updateTerjual(recieverTransaksiPenjualanDTO[i].getId_produk(), recieverTransaksiPenjualanDTO[i].getCount_product());
         }
 
     }
