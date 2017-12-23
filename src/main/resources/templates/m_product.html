@@ -19,8 +19,9 @@
         <!-- Search -->
         <form class="form-inline text-center">
             <div class="form-group">
+                <a data-toggle="tab" href="#approved"><button type="button" class="btn btn-success text-center active" aria-haspopup="true" aria-expanded="false">Approved</button></a>
+                <a data-toggle="tab" href="#dissapproved"><button type="button" class="btn btn-warning text-center" aria-haspopup="true" aria-expanded="false" >Disapproved</button></a>
                 <div class="input-group">
-                    <input type="text" style="width: 300px" class="form-control" aria-label="..." placeholder="Search"/>
                     <div class="input-group-btn">
                         <button type="button" class="btn btn-default dropdown-toggle text-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="caret"></span> Category</button>
                         <ul class="dropdown-menu dropdown-menu-right">
@@ -37,23 +38,32 @@
         </form>
     </div>
     <!-- Table -->
-    <div class="container-fluid">
-        <table class="table table-striped " style="margin-top: 20px" id="produkTable">
-            <thead>
-            <tr style="background-color: #FEA72C">
-                <th>Image</th>
-                <th>Code</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Stock</th>
-                <th>Category</th>
-                <th>Last Update</th>
-                <th>Update By</th>
-                <th>Created at</th>
-            </tr>
-            </thead>
-            <!--<tbody>-->
-            <!--<tr>-->
+    <!-- Table -->
+    <div class="tab-content">
+        <div class="container-fluid tab-pane fade in active" id="approved">
+            <table class="table table-striped " style="margin-top: 20px" id="productTableA">
+                <thead>
+                <tr style="background-color: forestgreen">
+                    <th>Image</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Stock in Shop</th>
+                    <th>Stock Total</th>
+                    <th>Re Stock</th>
+                    <th>Category</th>
+                    <th>Number Rack Shop</th>
+                    <th>Price Buy</th>
+                    <th>Price Sell</th>
+                    <th>Status Product</th>
+                    <th>Last Update</th>
+                    <th>Update By</th>
+                    <th>Created at</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <!--<tbody>-->
+                <!--<tr>-->
                 <!--<td><img th:src="@{assets/image/defaultBarang.png}" style="max-height: 30px"/></td>-->
                 <!--<td>081441292838</td>-->
                 <!--<td>Teh Pucuk Harum</td>-->
@@ -63,10 +73,51 @@
                 <!--<td>10/08/2017 <br/>09:45</td>-->
                 <!--<td>Lukman</td>-->
                 <!--<td>01/07/2017 <br/>07:42</td>-->
-            <!--</tr>-->
-            <!--</tbody>-->
-        </table>
+                <!--</tr>-->
+                <!--</tbody>-->
+            </table>
+        </div>
+
+        <!-- Table -->
+        <div class="container-fluid tab-pane fade" id="dissapproved">
+            <table class="table table-striped " style="margin-top: 20px" id="productTableD">
+                <thead>
+                <tr style="background-color: #FEA72C">
+                    <th>Image</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Stock in Shop</th>
+                    <th>Stock Total</th>
+                    <th>Re Stock</th>
+                    <th>Category</th>
+                    <th>Number Rack Shop</th>
+                    <th>Price Buy</th>
+                    <th>Price Sell</th>
+                    <th>Status Product</th>
+                    <th>Last Update</th>
+                    <th>Update By</th>
+                    <th>Created at</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <!--<tbody>-->
+                <!--<tr>-->
+                <!--<td><img th:src="@{assets/image/defaultBarang.png}" style="max-height: 30px"/></td>-->
+                <!--<td>081441292838</td>-->
+                <!--<td>Teh Pucuk Harum</td>-->
+                <!--<td>Rp. 999999</td>-->
+                <!--<td>150</td>-->
+                <!--<td>Drink</td>-->
+                <!--<td>10/08/2017 <br/>09:45</td>-->
+                <!--<td>Lukman</td>-->
+                <!--<td>01/07/2017 <br/>07:42</td>-->
+                <!--</tr>-->
+                <!--</tbody>-->
+            </table>
+        </div>
     </div>
+
 </div>
 </body>
 </html>

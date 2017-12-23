@@ -31,14 +31,32 @@ public class ProdukDAO {
     public List<Produk> showAll(){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Query q = em.createNativeQuery("SELECT * FROM Produk WHERE Produk.stok_toko > 0", Produk.class);
+        Query q = em.createNativeQuery("SELECT * FROM Produk WHERE Produk.stok_toko > 0 ", Produk.class);
         List<Produk> p = (List<Produk>) q.getResultList();
         em.close();
         System.out.println("halo");
         return p;
     }
 
+    public List<Produk> showAllApproved(){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query q = em.createNativeQuery("SELECT * FROM Produk WHERE Produk.stok_toko > 0 and Produk.status_produk='Approved' ", Produk.class);
+        List<Produk> p = (List<Produk>) q.getResultList();
+        em.close();
+        System.out.println("halo");
+        return p;
+    }
 
+    public List<Produk> showAllDissaproved(){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query q = em.createNativeQuery("SELECT * FROM Produk WHERE Produk.stok_toko > 0 and Produk.status_produk='Dissapproved' ", Produk.class);
+        List<Produk> p = (List<Produk>) q.getResultList();
+        em.close();
+        System.out.println("halo");
+        return p;
+    }
 
     public List<Produk> findByCategori(String category){
         System.out.println("parameter category di Produk Dao find by Category" + category);
@@ -50,6 +68,7 @@ public class ProdukDAO {
         em.close();
         return  p;
     }
+
 
 //    public List<Produk> findByID(int ID){
 //        EntityManager em = emf.createEntityManager();
