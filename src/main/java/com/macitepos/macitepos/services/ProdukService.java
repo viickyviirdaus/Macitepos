@@ -69,10 +69,50 @@ public class ProdukService {
         return convertToDtoAPI(p);
     }
 
+    public List<ProdukDTO> showAllApproved(){
+        List<Produk> p  = produkDAO.showAllApproved();
+        if (p.isEmpty()==false){
+            for (Produk pro:p) {
+                System.out.println(pro.getNama_produk());
+                System.out.println(pro.getKategori());
+            }
+        } else if (p.isEmpty()){
+            System.out.println("G Ada data");
+        }
+        return convertToDtoAPI(p);
+    }
+
+    public List<ProdukDTO> showAllDissapproved(){
+        List<Produk> p  = produkDAO.showAllDissaproved();
+        if (p.isEmpty()==false){
+            for (Produk pro:p) {
+                System.out.println(pro.getNama_produk());
+                System.out.println(pro.getKategori());
+            }
+        } else if (p.isEmpty()){
+            System.out.println("G Ada data");
+        }
+        return convertToDtoAPI(p);
+    }
+
     public List<ProdukDTO> findByCategory(String category){
         System.out.println("Parameter Category di product service find " + category);
         List<Produk> p = produkDAO.findByCategori(category);
         return convertToDtoAPI(p);
+    }
+
+    public ProdukDTO findById(int id){
+        System.out.println("Parameter id di product service find " + id);
+        Produk p = produkDAO.findById(id);
+        if (p.getStatus_produk().equalsIgnoreCase("Approved")){
+            System.out.println(p.getStatus_produk());
+            p.setStatus_produk("Dissapproved");
+        }else{
+            p.setStatus_produk("Approved");
+        }
+        produkDAO.saveOrUpdate(p);
+        System.out.println("sukses save "+p.getStatus_produk());
+        return convertToDto(p);
     }
 
     public List<ProdukDTO> search(String key){
@@ -94,6 +134,7 @@ public class ProdukService {
                 produk.getHarga_penjualan(),produk.getStok_ulang(),produk.getStok_total(), produk.getStok_toko(), produk.getStok_gudang(),
                 produk.getTerjual(), produk.getFoto_produk(), produk.getNo_rak_toko(),
                 produk.getUpdated_by(),produk.getStatus_produk());
+        System.out.println(dto.getStatus_produk()+" status");
         return dto;
     }
 
