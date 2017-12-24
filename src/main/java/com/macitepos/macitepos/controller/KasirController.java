@@ -56,7 +56,9 @@ public class KasirController {
     }
 
     @RequestMapping(value = "/kasir-printInvoice")
-    public String printInvoice(){
+    public String printInvoice(HttpSession session, Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
         return "invoice";
     }
 

@@ -23,13 +23,11 @@ public class DetailPenjualanAPI {
 
     @RequestMapping(value ="/api/lastOrder", method = RequestMethod.GET,  produces = {MediaType.APPLICATION_JSON_VALUE})
     public Iterable<Detil_PenjualanDTO> lastOrder(){
-//        System.out.println("jalan");
-//        List<Transaksi_penjualanDTO> tp = ordersService.showOrderDay();
-//        System.out.println("setelah jalan");
-        int id =5;
-//        for (Transaksi_penjualanDTO d: tp) {
-//            id = d.getId_penjualan();
-//        }
+        List<Transaksi_penjualanDTO> tp = ordersService.findLastOrder();
+        int id =0;
+        for (Transaksi_penjualanDTO d: tp) {
+            id = d.getId_penjualan();
+        }
         return detilPenjualanService.findByIdOrder(id);
     }
 

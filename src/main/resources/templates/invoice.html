@@ -20,11 +20,11 @@
                     <h4 style="padding-top: 7px">INVOICE</h4>
                 </div>
                 <div class="col-md-5">
-                    <h5 class="text-center">Cashier : Lukman</h5>
+                    <h5 class="text-center" >Cashier : <span th:text="${nama}"></span></h5>
                     <h5 class="text-center">09:80:38</h5>
                 </div>
                 <div class="panel-body">
-                    <table class="table table-striped" id="InvoiceTable">
+                    <table class="table table-striped" id="PrintInvoiceTable">
                         <thead>
                         <tr>
                             <th>No</th>
@@ -51,19 +51,19 @@
                     <span>Sub Total :</span>
                 </div>
                 <div class="col-sm-3 text-right">
-                    <span id="SubTotalInvoice">Rp. 88888</span>
+                    <span id="SubTotalPrintInvoice">Rp. 88888</span>
                 </div>
                 <div class="col-sm-8 text-right">
                     <span>Discount :</span>
                 </div>
                 <div class="col-sm-3 text-right">
-                    <span id="DiscountInvoice">Rp. 88888</span>
+                    <span id="DiscountPrintInvoice">Rp. 88888</span>
                 </div>
                 <div class="col-sm-8 text-right">
                     <span>Total :</span>
                 </div>
                 <div class="col-sm-3 text-right">
-                    <span id="TotalInvoice">Rp. 88888</span>
+                    <span id="TotalPrintInvoice">Rp. 88888</span>
                 </div>
             </div>
             <hr style="margin-top: 5px; margin-bottom: 5px;"/>
@@ -72,13 +72,13 @@
                     <span>Amount :</span>
                 </div>
                 <div class="col-sm-3 text-right">
-                    <span id="AmountInvoice">Rp. 88888</span>
+                    <span id="AmountPrintInvoice">Rp. 88888</span>
                 </div>
                 <div class="col-sm-8 text-right">
                     <span>Cash :</span>
                 </div>
                 <div class="col-sm-3 text-right">
-                    <span id="CashInvoice">Rp. 88888</span>
+                    <span id="CashPrintInvoice">Rp. 88888</span>
                 </div>
             </div>
         </div>

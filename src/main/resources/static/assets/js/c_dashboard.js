@@ -12,6 +12,7 @@ var totalPerProduk = [];
 var sendJSON=[];
 var idMember = 1;
 var visit_count =0;
+var email ="";
 $(document).ready(function () {
     productList();
 });
@@ -96,7 +97,7 @@ function productListShow(product) {
         '<div class="panel panel-default">' +
         '<div class="panel-body">' +
         '<div>' +
-        '<img style="width: 100%; padding-bottom: 5px;" src="assets/image/'+ product.foto_produk +'"/>' +
+        '<img style="width: 70px; padding-bottom: 5px;" src="assets/image/product/'+ product.foto_produk +'"/>' +
         '</div>'+
         '<div class="text-center">' +
         '<span>'+product.nama_produk+'</span>'+
@@ -259,12 +260,14 @@ function showTableRowInvoice(no,id,name,price,count) {
 }
 
 // Change Diskon By Input ID
-$(function () {
-    $('#searchIdMember').click(function () {
+// $(function () {
+//     $('#searchIdMember').click(function () {
+//
+//     })
+// });
 
-    })
-});
 
+//Search Member By ID
 function searchIdMember() {
     idMember = $('#InputIdMember').val();
     idMember = idMember*1;
@@ -382,10 +385,46 @@ function calculateCash() {
 
 $(function(){
     $('#printInvoice').click(function(){
+        email = $('#emailInvoice').val();
         printInvoiceMethod();
-        PrintToPdf();
+        setTimeout(function () {
+            PrintToPdf();
+        },750);
+        productList();
     });
 });
+
+// $(function(){
+//     $('#sendEmailInvoice').click(function(){
+//         alamatEmail = $('#emailInvoice').val();
+//         statusKirimEmail = $('#emailInvoice').attr("placeholder");
+//         if(alamatEmail == ""){
+//             alert("Isi alamat email terlebih dahulu");
+//         } else {
+//             sendEmailInvoice(alamatEmail);
+//             $('#emailInvoice').val("Sending..... Please Wait...");
+//             setTimeout(function () {
+//                 $('#emailInvoice').val("Success.... Print Now");
+//             },3000);
+//         }
+//     });
+// });
+//
+// function sendEmailInvoice(sendTo) {
+//     $.ajax({
+//         url: "/api/sendMail",
+//         type: 'POST',
+//         contentType: "application/json;charset=utf-8",
+//         data: JSON.stringify(sendTo),
+//         success: function (sendTo) {
+//             // productAddSuccess(sendTo);
+//         }
+//         // ,
+//         // error: function (request, message, error) {
+//         //     handleException(request, message, error);
+//         // }
+//     });
+// }
 
 function printInvoiceMethod() {
     if(visit_count == 0){
@@ -430,6 +469,8 @@ function createJson(v) {
         sendJSON[index].total = grandTotal;
         sendJSON[index].id_member = idMember;
         sendJSON[index].visit_count = v;
+        sendJSON[index].email = email;
+        console.log(sendJSON);
     });
     sendData(sendJSON);
 }

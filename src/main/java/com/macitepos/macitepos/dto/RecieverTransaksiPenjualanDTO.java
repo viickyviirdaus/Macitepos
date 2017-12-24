@@ -13,9 +13,10 @@ public class RecieverTransaksiPenjualanDTO {
     private int total;
     private int id_member;
     private int visit_count;
+    private String email;
 
     public RecieverTransaksiPenjualanDTO(){}
-    public RecieverTransaksiPenjualanDTO(int id_produk, int count_product, int discount, int cash, int recievedAmount, int total, int id_member, int visit_count) {
+    public RecieverTransaksiPenjualanDTO(int id_produk, int count_product, int discount, int cash, int recievedAmount, int total, int id_member, int visit_count, String email) {
         this.id_produk = id_produk;
         this.count_product = count_product;
         this.discount = discount;
@@ -24,6 +25,7 @@ public class RecieverTransaksiPenjualanDTO {
         this.total = total;
         this.id_member = id_member;
         this.visit_count = visit_count;
+        this.email = email;
     }
 
     public RecieverTransaksiPenjualanDTO(RecieverTransaksiPenjualanDTO set){
@@ -92,5 +94,13 @@ public class RecieverTransaksiPenjualanDTO {
 
     public void setVisit_count(int visit_count) {
         this.visit_count = visit_count;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
