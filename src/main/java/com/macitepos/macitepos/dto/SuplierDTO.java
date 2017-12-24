@@ -1,15 +1,11 @@
-package com.macitepos.macitepos.model;
+package com.macitepos.macitepos.dto;
 
-import javax.persistence.*;
-import java.sql.Time;
+import com.macitepos.macitepos.model.Transaksi_pembelian;
+
 import java.sql.Timestamp;
 import java.util.List;
 
-@Entity
-public class Suplier {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class SuplierDTO {
     private int id_suplier;
 
     private String nama_suplier;
@@ -19,15 +15,14 @@ public class Suplier {
     private String created_by;
     private String updated_by;
     private Timestamp created_at;
-
-    @OneToMany(mappedBy = "suplier")
     private List<Transaksi_pembelian> transaksi_pembelians;
 
-    public Suplier(){
+    public SuplierDTO(){
 
-    };
+    }
 
-    public Suplier(String nama_suplier, String alamat_suplier, String no_telepon, String foto_suplier, String created_by, String updated_by, Timestamp created_at) {
+    public SuplierDTO(int id_suplier, String nama_suplier, String alamat_suplier, String no_telepon, String foto_suplier, String created_by, String updated_by, Timestamp created_at) {
+        this.id_suplier = id_suplier;
         this.nama_suplier = nama_suplier;
         this.alamat_suplier = alamat_suplier;
         this.no_telepon = no_telepon;
@@ -109,3 +104,5 @@ public class Suplier {
         this.transaksi_pembelians = transaksi_pembelians;
     }
 }
+
+

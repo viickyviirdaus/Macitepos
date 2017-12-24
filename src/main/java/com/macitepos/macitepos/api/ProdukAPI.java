@@ -16,6 +16,17 @@ public class ProdukAPI {
         return produkService.showAll();
     }
 
+    @RequestMapping(path="/api/produkApproved", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Iterable<ProdukDTO> ProdukApproved(){
+        return produkService.showAllApproved();
+    }
+
+    @RequestMapping(path="/api/produkDissapproved", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Iterable<ProdukDTO> ProdukDissapproved(){
+        return produkService.showAllDissapproved();
+    }
+
+
     @RequestMapping(path="/api/produk/create", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public void ProdukCreate(@RequestBody ProdukDTO produkDTO){
         ProdukDTO pDTO = produkService.saveOrUpdated(produkDTO);
@@ -34,4 +45,12 @@ public class ProdukAPI {
             return produkService.findByCategory(search);
         }
     }
+
+    @RequestMapping(path = "/api/ubahStatus/{search}", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ProdukDTO ubahStatusProduk (@PathVariable Integer search){
+        System.out.println("ini search "+search);
+        return produkService.findById(search);
+    }
+
+
 }
