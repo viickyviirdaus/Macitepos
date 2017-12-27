@@ -8,13 +8,14 @@
 </head>
 <body style="margin: 0; padding: 0;">
 <!-- Body -->
-<div style="width: 590px; min-height: 180px; background-color: #eaeaea; margin-left: 235px; padding-right: 3px; padding-left: 3px; padding-top: 3px;padding-bottom: 3px; border-radius: 10px">
+<div style="width: 590px; min-height: 180px; background-color: #D9D9D9; margin-left: 235px; padding-right: 3px; padding-left: 3px; padding-top: 3px;padding-bottom: 3px; border-radius: 10px">
     <!-- Header -->
     <div style="width: 530px; min-height: 50px; border-radius: 10px; padding-top: 20px; padding-left: 30px; padding-right: 30px; background-color: white;">
         <div>
-            <img  src="cid:logo.png" alt="https://macitepos.com" style="display: block; width: 125px"/>
-            <span style="margin-left: 100px">INVOICE</span>
-            <span style="margin-left: 130px">Cashier : <span th:text="${cashier}"></span><br/><span th:text="${date}"  style="padding-left: 380px">22-12-2008</span></span>
+            <div><span>Order No: #</span><span th:text="${orderNo}"></span></div>
+            <img  src="http://io.orangeslab.com/miniLogo.png" style="width: 150px"/>
+            <span style="margin-left: 90px"><b>INVOICE</b></span>
+            <span style="margin-left: 80px">Cashier : <span th:text="${cashier}"></span><br/><span th:text="${date}"  style="padding-left: 380px">22-12-2008</span></span>
         </div>
     </div>
 

@@ -71,7 +71,7 @@ public class EmailController {
         MimeMessage message = sender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED, StandardCharsets.UTF_8.name());
         Context context = new Context();
-        int subTotal =0, discount , total =0, amount =0, cash = 0, id_lastOrder=0, diskonPersen =0;
+        int subTotal =0, discount , total =0, amount =0, cash = 0, id_lastOrder=0, diskonPersen =0, orderNo =0;
         Date d = new Date();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String nama_pengguna = akunService.findByUsername(authentication.getName()).getNama_pengguna();
@@ -87,10 +87,11 @@ public class EmailController {
             amount = dto.getTransaksi_penjualan().getPembayaran_penjualan();
             cash = dto.getTransaksi_penjualan().getKembalian_penjualan();
             d = dto.getTransaksi_penjualan().getCreated_at();
+            orderNo = dto.getTransaksi_penjualan().getId_penjualan();
         }
         discount = subTotal * diskonPersen /100;
 
-
+        context.setVariable("orderNo",orderNo);
         context.setVariable("cashier", nama_pengguna);
         context.setVariable("subTotal",subTotal);
         context.setVariable("discount",discount);
@@ -99,7 +100,7 @@ public class EmailController {
         context.setVariable("cash",cash);
         context.setVariable("data", dpdto);
         context.setVariable("date",d);
-        helper.addAttachment("logo.png", new ClassPathResource("/static/assets/image/logo.png"));
+//        helper.addAttachment("logo.png", new ClassPathResource("/static/assets/image/logo.png"));
         helper.setTo(email);
         helper.setText(templateEngine.process("email",context),true);
         helper.setSubject("Invoice macitePos.com");
