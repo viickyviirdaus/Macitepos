@@ -27,6 +27,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
 
 @Controller
 
@@ -49,7 +50,9 @@ public class KasirController {
     @RequestMapping(value = "/kasir", method = RequestMethod.GET)
     public String kasir(HttpSession session, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        LocalDate dateToday = LocalDate.now();
         model.addAttribute("dashboardPOS",true);
+        model.addAttribute("dateToday",dateToday);
         model.addAttribute("produk", produkService.showAll());
         model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
         model.addAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
