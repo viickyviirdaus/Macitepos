@@ -22,9 +22,9 @@ public class ProdukService {
 
     public ProdukDTO saveOrUpdated(ProdukDTO produkDTO){
         if (produkDTO.getStatus_produk() == null){
-            produkDTO.setStatus_produk("Dissapproved");
+            produkDTO.setStatus_produk("dissapproved");
         }else{
-            produkDTO.setStatus_produk("Approved");
+            produkDTO.setStatus_produk("approved");
         }
         try{
             Produk produk = new Produk(produkDTO.getId_produk(), produkDTO.getNama_produk(), produkDTO.getKategori(),
@@ -57,7 +57,7 @@ public class ProdukService {
     }
 
     public List<ProdukDTO> showAll(){
-        List<Produk> p  = produkDAO.showAll();
+        List<Produk> p  = produkDAO.showAllApproved();
         if (p.isEmpty()==false){
             for (Produk pro:p) {
                 System.out.println(pro.getNama_produk());
@@ -104,11 +104,11 @@ public class ProdukService {
     public ProdukDTO findById(int id){
         System.out.println("Parameter id di product service find " + id);
         Produk p = produkDAO.findById(id);
-        if (p.getStatus_produk().equalsIgnoreCase("Approved")){
+        if (p.getStatus_produk().equalsIgnoreCase("approved")){
             System.out.println(p.getStatus_produk());
-            p.setStatus_produk("Dissapproved");
+            p.setStatus_produk("dissapproved");
         }else{
-            p.setStatus_produk("Approved");
+            p.setStatus_produk("approved");
         }
         produkDAO.saveOrUpdate(p);
         System.out.println("sukses save "+p.getStatus_produk());

@@ -8,7 +8,7 @@ $(document).ready (function() {
 
             { "mData": "foto_produk",
                 "render": function (mData) {
-                    return '<img style="width: 100%" src="assets/image/product/'+mData+'"/>';
+                    return '<img style="width: 100%" src="image/product/'+mData+'"/>';
                 }},
             { "mData": "id_produk"},
             { "mData": "nama_produk" },
@@ -42,7 +42,7 @@ $(document).ready (function() {
 
             { "mData": "foto_produk",
                 "render": function (mData) {
-                    return '<img style="width: 100%" src="assets/image/product/'+mData+'"/>';
+                    return '<img style="width: 100%" src="image/product/'+mData+'"/>';
                 }},
             { "mData": "id_produk"},
             { "mData": "nama_produk" },
@@ -80,7 +80,7 @@ $(document).ready (function() {
 
             { "mData": "foto_produk",
                  "render": function (mData) {
-                    return '<img style="width: 100%" src="assets/image/product/'+mData+'"/>';
+                    return '<img style="width: 100%" src="image/product/'+mData+'"/>';
                 }},
             { "mData": "id_produk"},
             { "mData": "nama_produk" },
@@ -149,7 +149,7 @@ $(document).ready (function() {
 
             { "mData": "foto_produk",
                 "render": function (mData) {
-                    return '<img style="width: 100%" src="assets/image/product/'+mData+'"/>';
+                    return '<img style="width: 100%" src="image/product/'+mData+'"/>';
                 }},
             { "mData": "id_produk"},
             { "mData": "nama_produk" },
@@ -187,7 +187,7 @@ $(document).ready (function() {
 
             { "mData": "foto_produk",
                 "render": function (mData) {
-                    return '<img style="width: 100%" src="assets/image/product/'+mData+'"/>';
+                    return '<img style="width: 100%" src="image/product/'+mData+'"/>';
                 }},
             { "mData": "id_produk"},
             { "mData": "nama_produk" },

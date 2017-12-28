@@ -42,14 +42,14 @@ public class ManajerController {
     private MembersService membersService;
 
     @RequestMapping(value = "/manajer")
-    public String manajer(HttpSession session) {
+    public String manajer(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
-        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
-        session.setAttribute("jumlahOrder", ordersService.jumlahOrder());
-        session.setAttribute("jumlahPayment", ordersService.jumlahPayment());
-        session.setAttribute("jumlahProduk", produkService.jumlahProduk());
-        session.setAttribute("jumlahMember", membersService.jumlahMember());
+        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        model.addAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        model.addAttribute("jumlahOrder", ordersService.jumlahOrder());
+        model.addAttribute("jumlahPayment", ordersService.jumlahPayment());
+        model.addAttribute("jumlahProduk", produkService.jumlahProduk());
+        model.addAttribute("jumlahMember", membersService.jumlahMember());
         return "m_dashboard";
     }
 
@@ -130,8 +130,8 @@ public class ManajerController {
     @RequestMapping(value = "/user",method = RequestMethod.GET)
     public String User(Model model, HttpSession session){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
-        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        model.addAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
 
         if (penggunaService.showAll().isEmpty()){
             return "m_user";
@@ -143,8 +143,7 @@ public class ManajerController {
         }
     }
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\src\\main\\resources\\static\\assets\\image\\user\\";
-
+    private static String UPLOADED_FOLDER = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\ext-resources\\user\\";
     @PostMapping("/user/create")
     public String buatUser(@RequestParam("file") MultipartFile file, @Valid PenggunaDTO penggunaDTO, BindingResult bindingResult
     ){
@@ -178,11 +177,11 @@ public class ManajerController {
     }
 
     @GetMapping(value = "/edit")
-    public String edit(Model model,  HttpSession session) {
+    public String edit(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("pengguna", akunService.findByUsername(authentication.getName()));
-        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
-        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        model.addAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
 
         return "m_editProfil";
     }
