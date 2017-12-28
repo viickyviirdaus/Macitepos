@@ -68,7 +68,22 @@ $(document).ready (function() {
                     var month = date.getMonth() + 1;
                     return (month.length > 1 ? month : + month) + "/" + date.getMonth() + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds() ;
                 }},
+            {
+                "targets": -1,
+                "data": null,
+                "defaultContent": "<button>Edit</button>"
+            }
         ]
+    });
+
+
+    $('#productTableApp tbody').on( 'click', 'tr', function () {
+
+        var dataa = tables.row(this).data().id_produk;
+        console.log(dataa);
+
+        $('#productTableApp').DataTable().ajax.reload();
+        $('#productTableDiss').DataTable().ajax.reload();
     });
 
     var tables = $('#productTableA').DataTable({
@@ -175,9 +190,23 @@ $(document).ready (function() {
                     var month = date.getMonth() + 1;
                     return (month.length > 1 ? month : + month) + "/" + date.getMonth() + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds() ;
                 }},
+            ,
+            {
+                "targets": -1,
+                "data": null,
+                "defaultContent": "<button>Edit</button>"
+            }
         ]
     });
 
+
+    $('#productTableDis tbody').on( 'click', 'tr', function () {
+
+        var dataa = tables.row(this).data().id_produk;
+        console.log(dataa);
+        $('#productTableApp').DataTable().ajax.reload();
+        $('#productTableDis').DataTable().ajax.reload();
+    });
     var tabled = $('#productTableD').DataTable({
         destroy: true,
         "sAjaxSource": "/api/produkDissapproved",

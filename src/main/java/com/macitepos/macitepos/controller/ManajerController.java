@@ -43,11 +43,11 @@ public class ManajerController {
 
     @RequestMapping(value = "/manajer")
 
-    public String manajer(Model model) {
+    public String manajer(HttpSession session, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("dashboardPOS",true);
-        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
-        model.addAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         model.addAttribute("jumlahOrder", ordersService.jumlahOrder());
         model.addAttribute("jumlahPayment", ordersService.jumlahPayment());
         model.addAttribute("jumlahProduk", produkService.jumlahProduk());
@@ -63,7 +63,7 @@ public class ManajerController {
     }
 
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER_PRODUK = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\src\\main\\resources\\static\\assets\\image\\produk\\";
+    private static String UPLOADED_FOLDER_USER = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\ext-resources\\user\\";
 
     @PostMapping("/product/create")
     public String buatProduk(@RequestParam("file") MultipartFile file, @Valid ProdukDTO produkDTO, BindingResult bindingResult
@@ -83,7 +83,7 @@ public class ManajerController {
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
             System.out.println("filename"+filename);
-            Path path = Paths.get(UPLOADED_FOLDER_PRODUK + filename);
+            Path path = Paths.get(UPLOADED_FOLDER_USER + filename);
             System.out.println(path+" path");
             Files.write(path, bytes);
 
@@ -114,33 +114,18 @@ public class ManajerController {
         return "m_reportProduct";
     }
 
-    @GetMapping(value = "/reportPayment")
-    public String reportPayment(){
-        return "m_reportPayment";
-    }
-
-//    @RequestMapping(value = "/user", method=RequestMethod.GET)
-//    public String user(Model model) {
-//        model.addAttribute("penggunaBaru",new Pengguna() );
-//        model.addAttribute("pengguna", penggunaService.listPengguna());
-//        return "m_user";
-//    }
-//
-//    @RequestMapping(value="/user/create", method=RequestMethod.POST)
-//    public String simpan(Pengguna penggunaa, Model model){
-//        System.out.println("simpan");
-//        Pengguna pengguna = penggunaService.saveOrUpdate(penggunaa);
-//        model.addAttribute("pengguna", penggunaService.listPengguna());
-//        return "redirect:/m_user";
+//    @GetMapping(value = "/reportPayment")
+//    public String reportPayment(){
+//        return "m_reportPayment";
 //    }
 
     @RequestMapping(value = "/user",method = RequestMethod.GET)
-    public String User(Model model){
+    public String User(HttpSession session, Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         model.addAttribute("userPOS",true);
-        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
-        model.addAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
 
         if (penggunaService.showAll().isEmpty()){
             return "m_user";
@@ -186,12 +171,12 @@ public class ManajerController {
     }
 
     @GetMapping(value = "/edit")
-    public String edit(Model model) {
+    public String edit(HttpSession session, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("profilePOS",true);
         model.addAttribute("pengguna", akunService.findByUsername(authentication.getName()));
-        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
-        model.addAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
 
         return "m_editProfil";
     }
@@ -218,4 +203,13 @@ public class ManajerController {
         penggunaService.saveOrUpdated(penggunaDTO);
         return "redirect:/edit";
     }
+
+    @GetMapping(value = "/itemMapping")
+    public String rak(HttpSession session, Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        return "m_rak";
+    }
+
 }

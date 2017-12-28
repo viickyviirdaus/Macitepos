@@ -1,9 +1,7 @@
 package com.macitepos.macitepos.services;
 
 import com.macitepos.macitepos.dao.ProdukDAO;
-import com.macitepos.macitepos.dto.MemberDTO;
 import com.macitepos.macitepos.dto.ProdukDTO;
-import com.macitepos.macitepos.model.Member;
 import com.macitepos.macitepos.model.Produk;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -179,5 +177,18 @@ public class ProdukService {
         }
 
         return null;
+    }
+
+
+    public void itemMapping(){
+        String itemMap [][] ={ {"Food","A1"}, {"Food","A2"}, {"Food","A3"}, {"Food","A4"}, {"Food","A5"},
+                {"Drink","B1"}, {"Drink","B2"}, {"Drink","B3"}, {"Drink","B4"}, {"Drink","B5"},
+                {"Drugs","C1"}, {"Drugs","C2"}, {"Drugs","C3"}, {"Drugs","C4"}, {"Drugs","C5"},
+                {"Cosmetics","D1"}, {"Cosmetics","D2"}, {"Cosmetics","D3"}, {"Cosmetics","D4"}, {"Cosmetics","D5"},
+                {"Office","E1"}, {"Office","E2"}, {"Office","E3"}, {"Office","E4"}, {"Office","E5"},
+                {"Household","F1"}, {"Household","F2"}, {"Household","F3"}, {"Household","F4"}, {"Household","F5"},
+        };
+
+
     }
 }
