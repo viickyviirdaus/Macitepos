@@ -10,7 +10,7 @@ $(document).ready (function() {
             { "mData": "foto_pengguna",
                 "render": function (mData) {
 
-                    return '<img style="width: 100px" src="assets/image/user/'+mData+'"/>';
+                    return '<img style="width: 100px" src="image/user/'+mData+'"/>';
 
                 }},
             { "mData": "id_pengguna"},
