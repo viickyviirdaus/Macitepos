@@ -42,19 +42,23 @@ public class ManajerController {
     private MembersService membersService;
 
     @RequestMapping(value = "/manajer")
-    public String manajer(Model model) {
+
+    public String manajer(HttpSession session, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
-        model.addAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
-        model.addAttribute("jumlahOrder", ordersService.jumlahOrder());
-        model.addAttribute("jumlahPayment", ordersService.jumlahPayment());
-        model.addAttribute("jumlahProduk", produkService.jumlahProduk());
-        model.addAttribute("jumlahMember", membersService.jumlahMember());
+        model.addAttribute("dashboardPOS",true);
+        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        session.setAttribute("jumlahOrder", ordersService.jumlahOrder());
+        session.setAttribute("jumlahPayment", ordersService.jumlahPayment());
+        session.setAttribute("jumlahProduk", produkService.jumlahProduk());
+        session.setAttribute("jumlahMember", membersService.jumlahMember());
+
         return "m_dashboard";
     }
 
     @GetMapping(value = "/product")
-    public String product(ModelMap modelMap){
+    public String product(ModelMap modelMap, Model model){
+        model.addAttribute("productPOS",true);
         return "m_product";
     }
 
@@ -93,17 +97,20 @@ public class ManajerController {
     }
 
     @GetMapping(value = "/order")
-    public String order(){
+    public String order(Model model){
+        model.addAttribute("ordersPOS",true);
         return "m_orders";
     }
 
     @GetMapping(value = "/customer")
-    public String customer(){
+    public String customer(Model model){
+        model.addAttribute("customerPOS", true);
         return "m_customer";
     }
 
     @GetMapping(value = "/reportProduct")
-    public String reportProduct(){
+    public String reportProduct(Model model){
+        model.addAttribute("reportPOS",true);
         return "m_reportProduct";
     }
 
@@ -130,8 +137,10 @@ public class ManajerController {
     @RequestMapping(value = "/user",method = RequestMethod.GET)
     public String User(Model model, HttpSession session){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
-        model.addAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+
+        model.addAttribute("userPOS",true);
+        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
 
         if (penggunaService.showAll().isEmpty()){
             return "m_user";
@@ -179,6 +188,7 @@ public class ManajerController {
     @GetMapping(value = "/edit")
     public String edit(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("profilePOS",true);
         model.addAttribute("pengguna", akunService.findByUsername(authentication.getName()));
         model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
         model.addAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());

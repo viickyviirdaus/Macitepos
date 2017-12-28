@@ -59,8 +59,8 @@ public class Produk {
     @Column(name = "created_at")
     private Timestamp created_at;
 
-    @OneToMany(mappedBy = "produk")
-    private List<Detil_penjualan> detil_penjualans;
+//    @OneToMany(mappedBy = "produk")
+//    private List<Detil_penjualan> detil_penjualans;
 
     @OneToMany(mappedBy = "produk")
     private List<Transaksi_pembelian> transaksi_pembelians;
@@ -253,13 +253,13 @@ public class Produk {
         this.transaksi_pembelians = transaksi_pembelians;
     }
 
-    public List<Detil_penjualan> getDetil_penjualans() {
-        return detil_penjualans;
-    }
-
-    public void setDetil_penjualans(List<Detil_penjualan> detil_penjualans) {
-        this.detil_penjualans = detil_penjualans;
-    }
+//    public List<Detil_penjualan> getDetil_penjualans() {
+//        return detil_penjualans;
+//    }
+//
+//    public void setDetil_penjualans(List<Detil_penjualan> detil_penjualans) {
+//        this.detil_penjualans = detil_penjualans;
+//    }
 
     public String getKategori() {
         return kategori;

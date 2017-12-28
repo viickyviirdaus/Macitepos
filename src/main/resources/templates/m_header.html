@@ -51,44 +51,44 @@
                             </div>
                         </div>
                     </li>
-                    <li class="active">
+                    <li class="" th:classappend="${dashboardPOS}?active:none">
                         <a th:href="@{/manajer}">
                             <i class="fa fa-tachometer fa-fw" aria-hidden="true"></i>
                             Dashboard
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li >
+                    <li class="" th:classappend="${productPOS}?active:none">
                         <a th:href="@{/product}">
                             <i class="fa fa-cubes fa-fw" aria-hidden="true"></i>
                             Products
                         </a>
                     </li>
-                    <li>
+                    <li class="" th:classappend="${ordersPOS}?active:none">
                         <a th:href="@{/order}">
                             <i class="fa fa-shopping-bag fa-fw" aria-hidden="true"></i>
                             Orders
                         </a>
                     </li>
-                    <li>
+                    <li class="" th:classappend="${customerPOS}?active:none">
                         <a th:href="@{/customer}">
                             <i class="fa fa-users fa-fw" aria-hidden="true"></i>
                             Customers
                         </a>
                     </li>
-                    <li>
+                    <li class="" th:classappend="${reportPOS}?active:none">
                         <a th:href="@{/reportProduct}">
                             <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>
                             Report
                         </a>
                     </li>
-                    <li>
+                    <li class="" th:classappend="${userPOS}?active:none">
                         <a th:href="@{/user}">
                             <i class="fa fa-user fa-fw" aria-hidden="true"></i>
                             User
                         </a>
                     </li>
-                    <li>
+                    <li class="" th:classappend="${profilePOS}?active:none">
                         <a th:href="@{/edit}">
                             <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
                             Edit Profile

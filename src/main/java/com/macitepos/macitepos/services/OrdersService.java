@@ -68,9 +68,7 @@ public class OrdersService {
     }
 
     public List<Transaksi_penjualanDTO> findLastOrder(){
-        System.out.println("find jalan");
         List<Transaksi_penjualan> t = ordersDAO.findLastOrder();
-        System.out.println(t);
         return convertToDTOAPI(t);
     }
 

@@ -40,52 +40,53 @@
                             <div class="container-fluid active-user">
                                 <div class="row">
 
-                                    <div class="col-sm-5"><img th:src="@{${'image/user/' + session.foto}}" class="img-circle" style="max-width: 100%"/></div>
+                                    <div class="col-sm-5"><img th:src="@{${'/assets/image/user/' + foto}}" class="img-circle" style="max-width: 100%"/></div>
+
                                     <div class="col-md-7">
-                                        <h5 style="margin-bottom: 0px" th:text="${session.nama}"></h5>
+                                        <h5 style="margin-bottom: 0px" th:text="${nama}"></h5>
                                         <span> <span style="color: #00B900; font-size: 20px;" >&#9679;</span> Online</span>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        <li class="active">
+                        <li class="" th:classappend="${dashboardPOS}?active:none">
                             <a th:href="@{/kasir}">
                                 <i class="fa fa-tachometer fa-fw" aria-hidden="true"></i>
                                 Dashboard
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="" th:classappend="${productPOS}?active:none">
                             <a th:href="@{/kasir-product}">
                                 <i class="fa fa-cubes fa-fw" aria-hidden="true"></i>
                                 Products
                             </a>
                         </li>
-                        <li>
+                        <li class="" th:classappend="${ordersPOS}?active:none">
                             <a th:href="@{/kasir-orders}">
                                 <i class="fa fa-shopping-bag fa-fw" aria-hidden="true"></i>
                                 Orders
                             </a>
                         </li>
-                        <li>
+                        <li class="" th:classappend="${customerPOS}?active:none">
                             <a th:href="@{/kasir-customer}">
                                 <i class="fa fa-users fa-fw" aria-hidden="true"></i>
                                 Customer
                             </a>
                         </li>
-                        <li>
+                        <li class="" th:classappend="${reportPOS}?active:none">
                             <a th:href="@{/kasir-report}">
                                 <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>
                                 Report
                             </a>
                         </li>
-                        <li>
+                        <li class="" th:classappend="${userPOS}?active:none">
                             <a th:href="@{/kasir-user}">
                                 <i class="fa fa-user fa-fw" aria-hidden="true"></i>
                                 User
                             </a>
                         </li>
-                        <li>
+                        <li class="" th:classappend="${profilePOS}?active:none">
                             <a th:href="@{/kasir-profile}">
                                 <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
                                 Edit Profile

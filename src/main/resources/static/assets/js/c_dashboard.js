@@ -1,3 +1,4 @@
+
 var selectedProducts=[];
 var pembeli=[];
 var jumlahBeli = [];
@@ -12,6 +13,7 @@ var totalPerProduk = [];
 var sendJSON=[];
 var idMember = 1;
 var visit_count =0;
+var email ="";
 $(document).ready(function () {
     productList();
 });
@@ -19,7 +21,7 @@ $(document).ready(function () {
 //call produk API
 function productList() {
     $.ajax({
-        url: '/api/produk/',
+        url: '/api/produkApproved/',
         type: 'GET',
         dataType: 'json',
         success: function (products) {
@@ -259,12 +261,14 @@ function showTableRowInvoice(no,id,name,price,count) {
 }
 
 // Change Diskon By Input ID
-$(function () {
-    $('#searchIdMember').click(function () {
+// $(function () {
+//     $('#searchIdMember').click(function () {
+//
+//     })
+// });
 
-    })
-});
 
+//Search Member By ID
 function searchIdMember() {
     idMember = $('#InputIdMember').val();
     idMember = idMember*1;
@@ -382,10 +386,46 @@ function calculateCash() {
 
 $(function(){
     $('#printInvoice').click(function(){
+        email = $('#emailInvoice').val();
         printInvoiceMethod();
-        PrintToPdf();
+        setTimeout(function () {
+            PrintToPdf();
+        },750);
+        productList();
     });
 });
+
+// $(function(){
+//     $('#sendEmailInvoice').click(function(){
+//         alamatEmail = $('#emailInvoice').val();
+//         statusKirimEmail = $('#emailInvoice').attr("placeholder");
+//         if(alamatEmail == ""){
+//             alert("Isi alamat email terlebih dahulu");
+//         } else {
+//             sendEmailInvoice(alamatEmail);
+//             $('#emailInvoice').val("Sending..... Please Wait...");
+//             setTimeout(function () {
+//                 $('#emailInvoice').val("Success.... Print Now");
+//             },3000);
+//         }
+//     });
+// });
+//
+// function sendEmailInvoice(sendTo) {
+//     $.ajax({
+//         url: "/api/sendMail",
+//         type: 'POST',
+//         contentType: "application/json;charset=utf-8",
+//         data: JSON.stringify(sendTo),
+//         success: function (sendTo) {
+//             // productAddSuccess(sendTo);
+//         }
+//         // ,
+//         // error: function (request, message, error) {
+//         //     handleException(request, message, error);
+//         // }
+//     });
+// }
 
 function printInvoiceMethod() {
     if(visit_count == 0){
@@ -430,6 +470,8 @@ function createJson(v) {
         sendJSON[index].total = grandTotal;
         sendJSON[index].id_member = idMember;
         sendJSON[index].visit_count = v;
+        sendJSON[index].email = email;
+        console.log(sendJSON);
     });
     sendData(sendJSON);
 }
@@ -472,7 +514,7 @@ function resetAll() {
     idMember = 1;
     visit_count =0;
 
-            //INVOICE//
+    //INVOICE//
     //Hapus List di Invoice
     $("#InvoiceTable tbody").html('');
     $("#SubTotalInvoice").text("Rp. 88888");
@@ -493,3 +535,6 @@ function resetAll() {
     $('#discountShow').attr("placeholder",'0%');
     $('#grandTotal').attr("placeholder",'Rp. 0');
 }
+
+
+

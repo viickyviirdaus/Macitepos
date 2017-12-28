@@ -21,6 +21,8 @@ public class Member {
     private Date tanggal_lahir;
     @Column(name = "jenis_kelamin")
     private String jenis_kelamin;
+    @Column(name = "email")
+    private String email;
     @Column(name = "diskon")
     private Integer diskon;
     @Column(name = "visit_count")
@@ -40,7 +42,7 @@ public class Member {
 //    private List<Transaksi_penjualan> transaksi_penjualans;
 
     public Member(){}
-    public Member(Integer id_member, String nama_member, String alamat, Date tanggal_lahir, String jenis_kelamin, Integer diskon, Integer visit_count,
+    public Member(Integer id_member, String nama_member, String alamat, Date tanggal_lahir, String jenis_kelamin, String email, Integer diskon, Integer visit_count,
                   String created_by, Integer version) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         this.id_member = id_member;
@@ -48,6 +50,7 @@ public class Member {
         this.alamat = alamat;
         this.tanggal_lahir = tanggal_lahir;
         this.jenis_kelamin = jenis_kelamin;
+        this.email = email;
         this.diskon = diskon;
         this.visit_count = visit_count;
         this.last_visit = timestamp;
@@ -102,6 +105,14 @@ public class Member {
 
     public void setJenis_kelamin(String jenis_kelamin) {
         this.jenis_kelamin = jenis_kelamin;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Integer getDiskon() {

@@ -54,7 +54,6 @@ public class MembersDAO {
 	    q.setParameter("ID", ID);
         List<Member> m = (List<Member>) q.getResultList();
         em.close();
-        System.out.println("Member Service Show All");
         return m;
     }
 

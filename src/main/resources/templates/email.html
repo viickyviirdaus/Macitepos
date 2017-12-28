@@ -1,0 +1,62 @@
+<html  lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Invoice</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+</head>
+<body style="margin: 0; padding: 0;">
+<!-- Body -->
+<div style="width: 590px; min-height: 180px; background-color: #D9D9D9; margin-left: 235px; padding-right: 3px; padding-left: 3px; padding-top: 3px;padding-bottom: 3px; border-radius: 10px">
+    <!-- Header -->
+    <div style="width: 530px; min-height: 50px; border-radius: 10px; padding-top: 20px; padding-left: 30px; padding-right: 30px; background-color: white;">
+        <div>
+            <div><span>Order No: #</span><span th:text="${orderNo}"></span></div>
+            <img  src="http://io.orangeslab.com/miniLogo.png" style="width: 150px"/>
+            <span style="margin-left: 90px"><b>INVOICE</b></span>
+            <span style="margin-left: 80px">Cashier : <span th:text="${cashier}"></span><br/><span th:text="${date}"  style="padding-left: 380px">22-12-2008</span></span>
+        </div>
+    </div>
+
+    <!-- Detail -->
+    <div style="width: 530px; min-height: 50px; margin-top: 3px; border-radius: 10px; padding-top: 20px; padding-left: 30px; padding-right: 30px; background-color: white;">
+        <table align="center" width="530px"  style="border-collapse: collapse;">
+            <thead align="center">
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody align="center">
+            <tr th:each="d : ${data}">
+                <td th:text="${d.produk.nama_produk}">pocari</td>
+                <td th:text="${d.produk.harga_penjualan}">6500</td>
+                <td th:text="${d.jumlah_penjualan}">3</td>
+                <td th:text="${(d.jumlah_penjualan*d.produk.harga_penjualan)}">Rp. <span>19500</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Total -->
+    <div style="width: 530px; min-height: 50px; margin-top: 2px; border-radius: 10px; padding-top: 20px; padding-left: 30px; padding-right: 30px; background-color: white;">
+        <span style="margin-left: 318px">Sub Total<span style="padding-left: 5px">: Rp. <span th:text="${subTotal}"></span></span></span>
+        <br/>
+        <span style="margin-left: 318px">Discount <span style="padding-left: 5px">: Rp. <span th:text="${discount}"></span></span></span>
+        <br/>
+        <span style="margin-left: 318px">Total	  <span style="padding-left: 30px">: Rp. <span th:text="${total}"></span></span></span>
+        <hr/>
+        <span style="margin-left: 318px">Amount	  <span style="padding-left: 10px">: Rp. <span th:text="${amount}"></span></span></span>
+        <br/>
+        <span style="margin-left: 318px">Cash	  <span style="padding-left: 30px">: Rp. <span th:text="${cash}"></span></span></span>
+        <br/>
+        <span style="padding-top: 10px">Terimakasih Telah Berbelanja di Toko Kami,<br/> Kami Tunggu Kehadiran Anda Kembali.</span>
+    </div>
+</div>
+
+</body>
+</html>
+

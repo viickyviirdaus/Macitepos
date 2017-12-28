@@ -27,6 +27,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
 
 @Controller
 
@@ -49,14 +50,19 @@ public class KasirController {
     @RequestMapping(value = "/kasir", method = RequestMethod.GET)
     public String kasir(HttpSession session, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        LocalDate dateToday = LocalDate.now();
+        model.addAttribute("dashboardPOS",true);
+        model.addAttribute("dateToday",dateToday);
         model.addAttribute("produk", produkService.showAll());
-        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
-        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        model.addAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "c_dashboard";
     }
 
     @RequestMapping(value = "/kasir-printInvoice")
-    public String printInvoice(){
+    public String printInvoice(HttpSession session, Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
         return "invoice";
     }
 
@@ -64,16 +70,18 @@ public class KasirController {
     public String product(Model model,HttpSession session){
 //        model.addAttribute("produk",produkService.showAll());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
-        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        model.addAttribute("productPOS",true);
+        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        model.addAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "c_product";
     }
 
     @RequestMapping(value = "/kasir-orders")
-    public String orders(HttpSession session){
+    public String orders(HttpSession session, Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
-        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        model.addAttribute("ordersPOS",true);
+        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        model.addAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "c_orders";
     }
 
@@ -82,8 +90,9 @@ public class KasirController {
         model.addAttribute("memberBaru", new MemberDTO());
         System.out.println("Controller jalan");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
-        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        model.addAttribute("customerPOS", true);
+        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        model.addAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "c_customer";
     }
 
@@ -98,27 +107,30 @@ public class KasirController {
     }
 
     @RequestMapping(value = "/kasir-report")
-    public String report(HttpSession session){
+    public String report(HttpSession session, Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
-        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        model.addAttribute("reportPOS",true);
+        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        model.addAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "c_reportProduct";
     }
 
     @RequestMapping(value = "/kasir-user")
-    public String user(HttpSession session){
+    public String user(HttpSession session, Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
-        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        model.addAttribute("userPOS",true);
+        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        model.addAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "c_user";
     }
 
     @RequestMapping(value = "/kasir-profile", method = RequestMethod.GET)
     public String edit (Model model,HttpSession session){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("profilePOS",true);
         model.addAttribute("pengguna", akunService.findByUsername(authentication.getName()));
-        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
-        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        model.addAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "c_editProfil";
     }
 

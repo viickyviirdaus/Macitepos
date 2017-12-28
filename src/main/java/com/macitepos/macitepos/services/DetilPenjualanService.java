@@ -37,11 +37,6 @@ public class DetilPenjualanService {
 
     public List<Detil_PenjualanDTO> findByIdOrder(int idOrder){
         List<Detil_penjualan> d = detil_penjualanDAO.findbyIiOrder(idOrder);
-        System.out.println("wkwkwk");
-        for (Detil_penjualan D: d
-             ) {
-            System.out.println("idDetildi DTO"+ D.getId_detail_penjualan());
-        }
         return convertToDTOAPI(d);
     }
 

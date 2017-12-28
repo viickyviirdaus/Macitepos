@@ -30,7 +30,7 @@ public class Detil_PenjualanDAO {
     public List<Detil_penjualan> findbyIiOrder(int idOrder){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Query q = em.createNativeQuery("SELECT * FROM Detil_penjualan dt WHERE dt.transaksi_penjualan_id_penjualan=:idOrder");
+        Query q = em.createNativeQuery("SELECT * FROM Detil_penjualan dt WHERE dt.transaksi_penjualan_id_penjualan=:idOrder", Detil_penjualan.class);
         q.setParameter("idOrder", idOrder);
         List<Detil_penjualan> d = (List<Detil_penjualan>) q.getResultList();
         em.close();

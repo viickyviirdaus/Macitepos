@@ -97,8 +97,8 @@
 									<img alt="Brand" th:src="@{assets/image/logo.png}" style="width: 250px;"/>
 								</div>
 								<div class="col-sm-3 col-sm-offset-2">
-									<h5 class="modal-title text-center" th:text="'Cashier : '+${session.nama}"></h5>
-									<h5 class="modal-title text-center">09:80:38</h5>
+									<h5 class="modal-title text-center" th:text="'Cashier : '+${nama}"></h5>
+									<h5 class="modal-title text-center" th:text="${dateToday}"></h5>
 								</div>
 							</div>
 							<hr/>
@@ -161,17 +161,17 @@
 							</div>
 							<hr/>
 							<div class="row">
-								<div class="col-sm-7">
-									<form class="form-inline text-center" style="margin-bottom: 5px">
-										<div class="form-group">
+								<div class="col-sm-7 text-center">
+									<!--<form class="form-inline text-center" style="margin-bottom: 5px">-->
+										<div class="form-group text-center">
 											<div class="input-group">
-												<input type="text" id="emailInvoice" style="width: 200px" class="form-control" aria-label="..." placeholder="example@email.com"/>
-												<div class="input-group-btn">
-													<button type="button" class="btn btn-default text-center" aria-haspopup="true" aria-expanded="false"><i class="fa fa-envelope fa-fw"></i>Send</button>
-												</div><!-- /btn-group -->
+												<input type="text" id="emailInvoice" style="width: 250px" class="form-control" aria-label="..." placeholder="example@email.com"/>
+												<!--<div class="input-group-btn">-->
+													<!--<button type="button" id="sendEmailInvoice" class="btn btn-default text-center" aria-haspopup="true" aria-expanded="false"><i class="fa fa-envelope fa-fw"></i>Send</button>-->
+												<!--</div>&lt;!&ndash; /btn-group &ndash;&gt;-->
 											</div>
 										</div>
-									</form>
+									<!--</form>-->
 								</div>
 								<div class="col-sm-5">
 									<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-arrow-left fa-fw"></i>Cancel</button>

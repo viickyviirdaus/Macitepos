@@ -11,6 +11,7 @@ public class MemberDTO {
     private String alamat;
     private Date tanggal_lahir;
     private String jenis_kelamin;
+    private String email;
     private Integer diskon;
     private Integer visit_count;
     private Timestamp last_visit;
@@ -19,7 +20,7 @@ public class MemberDTO {
     private Integer version;
 
     public MemberDTO(){};
-    public MemberDTO(Integer id_member, String nama_member, String alamat, Date tanggal_lahir, String jenis_kelamin,
+    public MemberDTO(Integer id_member, String nama_member, String alamat, Date tanggal_lahir, String jenis_kelamin, String email,
                      Integer diskon, Integer visit_count, Timestamp last_visit, String created_by, Timestamp created_at,
                      Integer version) {
         this.id_member = id_member;
@@ -27,6 +28,7 @@ public class MemberDTO {
         this.alamat = alamat;
         this.tanggal_lahir = tanggal_lahir;
         this.jenis_kelamin = jenis_kelamin;
+        this.email = email;
         this.diskon = diskon;
         this.visit_count = visit_count;
         this.last_visit = last_visit;
@@ -73,6 +75,14 @@ public class MemberDTO {
 
     public void setJenis_kelamin(String jenis_kelamin) {
         this.jenis_kelamin = jenis_kelamin;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Integer getDiskon() {

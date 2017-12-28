@@ -31,7 +31,7 @@ public class ProdukDAO {
     public List<Produk> showAll(){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Query q = em.createNativeQuery("SELECT * FROM Produk WHERE Produk.stok_toko > 0 ", Produk.class);
+        Query q = em.createNativeQuery("SELECT * FROM Produk", Produk.class);
         List<Produk> p = (List<Produk>) q.getResultList();
         em.close();
         System.out.println("halo");
@@ -41,7 +41,7 @@ public class ProdukDAO {
     public List<Produk> showAllApproved(){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Query q = em.createNativeQuery("SELECT * FROM Produk WHERE Produk.stok_toko > 0 and Produk.status_produk='Approved' ", Produk.class);
+        Query q = em.createNativeQuery("SELECT * FROM Produk WHERE Produk.stok_toko > 0 and Produk.status_produk='approved' ", Produk.class);
         List<Produk> p = (List<Produk>) q.getResultList();
         em.close();
         System.out.println("halo");
@@ -51,7 +51,7 @@ public class ProdukDAO {
     public List<Produk> showAllDissaproved(){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Query q = em.createNativeQuery("SELECT * FROM Produk WHERE Produk.stok_toko > 0 and Produk.status_produk='Dissapproved' ", Produk.class);
+        Query q = em.createNativeQuery("SELECT * FROM Produk WHERE Produk.stok_toko > 0 and Produk.status_produk='dissapproved' ", Produk.class);
         List<Produk> p = (List<Produk>) q.getResultList();
         em.close();
         System.out.println("halo");
@@ -62,7 +62,7 @@ public class ProdukDAO {
         System.out.println("parameter category di Produk Dao find by Category" + category);
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Query q = em.createNativeQuery("SELECT * FROM Produk p WHERE p.stok_toko > 0 AND p.kategori=:category", Produk.class);
+        Query q = em.createNativeQuery("SELECT * FROM Produk p WHERE p.stok_toko > 0 And p.status_produk ='approved' AND p.kategori=:category", Produk.class);
         q.setParameter("category", category);
         List<Produk> p = (List<Produk>)q.getResultList();
         em.close();
@@ -94,7 +94,7 @@ public class ProdukDAO {
         System.out.println("parameter key di ProdukDao findByKey "+keySearch);
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Query q = em.createNativeQuery("SELECT * FROM Produk p WHERE p.nama_produk LIKE :keySearch", Produk.class);
+        Query q = em.createNativeQuery("SELECT * FROM Produk p WHERE p.status_produk ='approved' AND p.nama_produk LIKE :keySearch", Produk.class);
         q.setParameter("keySearch", "%"+ keySearch +"%");
         List<Produk> p = (List<Produk>)q.getResultList();
         em.close();

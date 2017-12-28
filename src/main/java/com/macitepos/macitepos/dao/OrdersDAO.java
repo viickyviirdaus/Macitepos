@@ -66,7 +66,7 @@ public class OrdersDAO {
     public List<Transaksi_penjualan> findLastOrder(){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Query q = em.createNativeQuery("SELECT * FROM transaksi_penjualan t ORDER BY t.id_penjualan DESC LIMIT 1");
+        Query q = em.createNativeQuery("SELECT * FROM Transaksi_penjualan t ORDER BY t.id_penjualan DESC LIMIT 1",Transaksi_penjualan.class);
         List<Transaksi_penjualan> p = (List<Transaksi_penjualan>) q.getResultList();
         em.close();
         return p;

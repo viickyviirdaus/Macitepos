@@ -10,6 +10,7 @@ $(document).ready (function() {
             { "mData": "tanggal_lahir" },
             { "mData": "jenis_kelamin" },
             { "mData": "alamat" },
+            {"mData": "email"},
             { "mData": "visitCount" },
             { "mData": "created_at",
                 "render": function (mData) {

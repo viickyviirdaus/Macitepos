@@ -4,6 +4,7 @@ import com.macitepos.macitepos.dto.ProdukDTO;
 import com.macitepos.macitepos.services.AkunService;
 import com.macitepos.macitepos.services.PenggunaService;
 import com.macitepos.macitepos.services.ProdukService;
+import com.macitepos.macitepos.services.SuplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,6 +33,9 @@ public class WarehouseController {
     @Autowired
     private ProdukService produkService;
 
+    @Autowired
+    private SuplierService suplierService;
+
     @RequestMapping(value = "/warehouse")
     public String warehouse(Model model, HttpSession session) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -39,7 +43,7 @@ public class WarehouseController {
         session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
 
         if (produkService.showAll().isEmpty()) {
-            return "w_product";
+            return "w_dashboard";
         } else {
             model.addAttribute("produk", produkService.showAll());
             model.addAttribute("produkBaru", new ProdukDTO());
@@ -49,7 +53,8 @@ public class WarehouseController {
     }
 
     @RequestMapping(value = "/suplier")
-    public String suplier(){
+    public String suplier(Model model){
+        model.addAttribute("supliers", suplierService.showAll());
         return "w_adminSuplier";
     }
 
@@ -103,6 +108,11 @@ public class WarehouseController {
 
         return "w_editProfile";
     }
-
-
+    @GetMapping(value = "/warehouse-rak")
+    public String rak(HttpSession session, Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        return "w_rak";
+    }
 }
