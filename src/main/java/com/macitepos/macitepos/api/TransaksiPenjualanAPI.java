@@ -1,6 +1,8 @@
 package com.macitepos.macitepos.api;
 
 import com.google.gson.Gson;
+import com.macitepos.macitepos.controller.EmailController;
+import com.macitepos.macitepos.dto.MemberDTO;
 import com.macitepos.macitepos.dto.RecieverTransaksiPenjualanDTO;
 import com.macitepos.macitepos.dto.Transaksi_penjualanDTO;
 import com.macitepos.macitepos.services.*;
@@ -27,9 +29,11 @@ public class TransaksiPenjualanAPI {
     private OrdersService ordersService;
     @Autowired
     private MembersService membersService;
+    @Autowired
+    private EmailController emailController;
 
     @RequestMapping(value = "/api/create/transaksiPenjualan", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public void create (@RequestBody String recievedJson){
+    public void create (@RequestBody String recievedJson) throws Exception {
         Gson gson = new Gson();
         RecieverTransaksiPenjualanDTO recieverTransaksiPenjualanDTO[] = gson.fromJson(recievedJson,RecieverTransaksiPenjualanDTO[].class);
         System.out.println("Data Transaksi Penjualan");
@@ -66,6 +70,19 @@ public class TransaksiPenjualanAPI {
             produkService.updateTerjual(recieverTransaksiPenjualanDTO[i].getId_produk(), recieverTransaksiPenjualanDTO[i].getCount_product());
         }
 
+        //Send Email
+        String email = recieverTransaksiPenjualanDTO[0].getEmail();
+        int idUser = recieverTransaksiPenjualanDTO[0].getId_member();
+        if(!email.equalsIgnoreCase("")){
+            System.out.println("sending email to "+email);
+            emailController.send(email);
+        } else if(idUser>1){
+            System.out.println("sending email to member ID " + idUser);
+            List<MemberDTO> mdto = membersService.findByID(idUser);
+            for (MemberDTO m: mdto) {
+                emailController.send(m.getEmail());
+            }
+        }
     }
 
     @RequestMapping(path="/api/order", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -79,4 +96,8 @@ public class TransaksiPenjualanAPI {
         return  ordersService.showOrderDay();
     }
 
+    @RequestMapping(path = "/api/email", method =RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void o(){
+        emailController.send("habridio88@gmail.com");
+    }
 }

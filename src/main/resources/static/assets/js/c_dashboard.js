@@ -1,3 +1,4 @@
+
 var selectedProducts=[];
 var pembeli=[];
 var jumlahBeli = [];
@@ -20,7 +21,7 @@ $(document).ready(function () {
 //call produk API
 function productList() {
     $.ajax({
-        url: '/api/produk/',
+        url: '/api/produkApproved/',
         type: 'GET',
         dataType: 'json',
         success: function (products) {
@@ -513,7 +514,7 @@ function resetAll() {
     idMember = 1;
     visit_count =0;
 
-            //INVOICE//
+    //INVOICE//
     //Hapus List di Invoice
     $("#InvoiceTable tbody").html('');
     $("#SubTotalInvoice").text("Rp. 88888");
@@ -534,3 +535,6 @@ function resetAll() {
     $('#discountShow').attr("placeholder",'0%');
     $('#grandTotal').attr("placeholder",'Rp. 0');
 }
+
+
+

@@ -20,7 +20,7 @@ public class MembersService {
     public MemberDTO saveOrUpdated(MemberDTO memberDTO){
         try{
             Member member = new Member(memberDTO.getId_member(),memberDTO.getNama_member(),memberDTO.getAlamat()
-                    ,memberDTO.getTanggal_lahir(),memberDTO.getJenis_kelamin(),memberDTO.getDiskon(),memberDTO.getVisitCount(),memberDTO.getCreated_by(),
+                    ,memberDTO.getTanggal_lahir(),memberDTO.getJenis_kelamin(),memberDTO.getEmail(),memberDTO.getDiskon(),memberDTO.getVisitCount(),memberDTO.getCreated_by(),
                     memberDTO.getVersion());
 
             member = membersDAO.saveOrUpdate(member);
@@ -74,7 +74,7 @@ public class MembersService {
     MemberDTO convertToDto(Member member){
 //        System.out.println(member.getVisitCount());
         MemberDTO dto = new MemberDTO(member.getId_member(), member.getNama_member(), member.getAlamat(), member.getTanggal_lahir(),
-                member.getJenis_kelamin(),member.getDiskon(), member.getVisitCount(),member.getLast_visit(), member.getCreated_by(),
+                member.getJenis_kelamin(), member.getEmail(),member.getDiskon(), member.getVisitCount(),member.getLast_visit(), member.getCreated_by(),
                 member.getCreated_at(), member.getVersion());
         return dto;
     }
