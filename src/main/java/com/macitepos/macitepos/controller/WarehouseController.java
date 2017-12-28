@@ -54,7 +54,8 @@ public class WarehouseController {
 
     @RequestMapping(value = "/suplier")
     public String suplier(Model model){
-        model.addAttribute("supliers", suplierService.showAll());
+        suplierService.showAll();
+        model.addAttribute("suplier", suplierService.showAll());
         return "w_adminSuplier";
     }
 
