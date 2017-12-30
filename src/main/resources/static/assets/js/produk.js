@@ -1,5 +1,4 @@
 $(document).ready (function() {
-
     var table = $('#produkTable').DataTable({
         "sAjaxSource": "/api/produk",
         "sAjaxDataProp": "",
@@ -18,15 +17,13 @@ $(document).ready (function() {
             { "mData": "last_updated",
                 "render": function (mData) {
                     var date = new Date(mData);
-                    var month = date.getMonth() + 1;
-                    return (month.length > 1 ? month : + month) + "/" + date.getMonth() + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds();
+                    return date.getDate() + "/" + ( date.getMonth() + 1) + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds();
                 }},
             { "mData": "updated_by"},
             { "mData": "created_at",
                 "render": function (mData) {
-                    var date = new Date(mData);
-                    var month = date.getMonth() + 1;
-                    return (month.length > 1 ? month : + month) + "/" + date.getMonth() + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds() ;
+                    var date1 = new Date(mData);
+                    return date.getDate() + "/" + ( date1.getMonth() + 1) + "/" + date1.getFullYear() +" "+ date1.getHours()+":"+ date1.getMinutes()+":"+ date1.getSeconds() ;
                 }},
         ]
     })
@@ -57,16 +54,14 @@ $(document).ready (function() {
             { "mData": "status_produk" },
             { "mData": "last_updated",
                 "render": function (mData) {
-                    var date = new Date(mData);
-                    var month = date.getMonth() + 1;
-                    return (month.length > 1 ? month : + month) + "/" + date.getMonth() + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds();
+                    var dateapp = new Date(mData);
+                    return dateapp.getDate() + "/" + ( dateapp.getMonth() + 1) + "/" + dateapp.getFullYear() +" "+ dateapp.getHours()+":"+ dateapp.getMinutes()+":"+ dateapp.getSeconds();
                 }},
             { "mData": "updated_by"},
             { "mData": "created_at",
-                "render": function (mData) {
+                "render": functi on (mData) {
                     var date = new Date(mData);
-                    var month = date.getMonth() + 1;
-                    return (month.length > 1 ? month : + month) + "/" + date.getMonth() + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds() ;
+                    return date.getDate() + "/" + ( date.getMonth() + 1) + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds() ;
                 }},
             {
                 "targets": -1,
@@ -79,14 +74,14 @@ $(document).ready (function() {
 
     $('#productTableApp tbody').on( 'click', 'tr', function () {
 
-        var dataa = tables.row(this).data().id_produk;
-        console.log(dataa);
+        var datapp = tableapp.row(this).edit();
+        console.log(datapp);
 
         $('#productTableApp').DataTable().ajax.reload();
         $('#productTableDiss').DataTable().ajax.reload();
     });
 
-    var tables = $('#productTableA').DataTable({
+    var tablea = $('#productTableA').DataTable({
         destroy: true,
         "sAjaxSource": "/api/produkApproved",
         "sAjaxDataProp": "",
@@ -111,15 +106,13 @@ $(document).ready (function() {
             { "mData": "last_updated",
                 "render": function (mData) {
                     var date = new Date(mData);
-                    var month = date.getMonth() + 1;
-                    return (month.length > 1 ? month : + month) + "/" + date.getMonth() + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds();
+                    return date.getDate() + "/" + ( date.getMonth() + 1) + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds();
                 }},
             { "mData": "updated_by"},
             { "mData": "created_at",
                 "render": function (mData) {
                     var date = new Date(mData);
-                    var month = date.getMonth() + 1;
-                    return (month.length > 1 ? month : + month) + "/" + date.getMonth() + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds() ;
+                    return date.getDate() + "/" + ( date.getMonth() + 1) + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds() ;
                 }},
             {
                 "targets": -1,
@@ -131,7 +124,7 @@ $(document).ready (function() {
 
     $('#productTableA tbody').on( 'click', 'tr', function () {
 
-        var dataa = tables.row(this).data().id_produk;
+        var dataa = tablea.row(this).data().id_produk;
         console.log(dataa);
 
         ubahStatus(dataa);
@@ -147,10 +140,6 @@ function ubahStatus(datadis) {
         contentType: "application/json;charset=utf-8",
         data: JSON.stringify(datadis)
     });
-
-
-
-
 }
 
 
@@ -180,17 +169,14 @@ $(document).ready (function() {
             { "mData": "last_updated",
                 "render": function (mData) {
                     var date = new Date(mData);
-                    var month = date.getMonth() + 1;
-                    return (month.length > 1 ? month : + month) + "/" + date.getMonth() + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds();
+                    return date.getDate() + "/" + ( date.getMonth() + 1) + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds();
                 }},
             { "mData": "updated_by"},
             { "mData": "created_at",
                 "render": function (mData) {
                     var date = new Date(mData);
-                    var month = date.getMonth() + 1;
-                    return (month.length > 1 ? month : + month) + "/" + date.getMonth() + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds() ;
+                    return date.getDate() + "/" + ( date.getMonth() + 1) + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds() ;
                 }},
-            ,
             {
                 "targets": -1,
                 "data": null,
@@ -202,11 +188,13 @@ $(document).ready (function() {
 
     $('#productTableDis tbody').on( 'click', 'tr', function () {
 
-        var dataa = tables.row(this).data().id_produk;
-        console.log(dataa);
+        var datadis = tabledis.row(this).data().id_produk;
+        console.log(datadis);
         $('#productTableApp').DataTable().ajax.reload();
         $('#productTableDis').DataTable().ajax.reload();
     });
+
+
     var tabled = $('#productTableD').DataTable({
         destroy: true,
         "sAjaxSource": "/api/produkDissapproved",
@@ -232,15 +220,14 @@ $(document).ready (function() {
             { "mData": "last_updated",
                 "render": function (mData) {
                     var date = new Date(mData);
-                    var month = date.getMonth() + 1;
-                    return (month.length > 1 ? month : + month) + "/" + date.getMonth() + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds();
+                    return date.getDate() + "/" + ( date.getMonth() + 1) + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds();
                 }},
             { "mData": "updated_by"},
             { "mData": "created_at",
                 "render": function (mData) {
                     var date = new Date(mData);
                     var month = date.getMonth() + 1;
-                    return (month.length > 1 ? month : + month) + "/" + date.getMonth() + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds() ;
+                    return date.getDate() + "/" + ( date.getMonth() + 1) + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds() ;
                 }},
             {
                 "targets": -1,

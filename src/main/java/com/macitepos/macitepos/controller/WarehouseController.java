@@ -102,6 +102,16 @@ public class WarehouseController {
         return "redirect:/warehouse";
     }
 
+    @PostMapping("/warehouse-product/manage")
+    public String manage(ProdukDTO produkDTO){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String updated_by = akunService.findByUsername(authentication.getName()).toString();
+        produkDTO.setUpdated_by(updated_by);
+        produkService.manage(produkDTO);
+        return "redirect:/warehouse";
+    }
+
+
     @GetMapping(value = "/warehouse-editProfile")
     public String editProfileWA(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

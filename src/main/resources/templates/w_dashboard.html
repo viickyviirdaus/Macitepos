@@ -21,9 +21,9 @@
                 <button type="button" data-toggle="modal" data-target="#tambahProduk" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus fa-fw" aria-hiden="true"></i>Tambah</button>
                 <button type="button" data-toggle="modal" data-target="#restock" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus fa-fw" aria-hiden="true"></i>Re-Stock</button>
                 <div class="input-group">
-                    <input type="text" style="width: 300px" class="form-control" aria-label="..." placeholder="Search"/>
+                    <button type="button" data-toggle="modal" data-target="#manage" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus fa-fw" aria-hiden="true"></i>Manage Stock</button>
+                    <button type="button" class="btn btn-default dropdown-toggle text-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="caret"></span> Category</button>
                     <div class="input-group-btn">
-                        <button type="button" class="btn btn-default dropdown-toggle text-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="caret"></span> Category</button>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li><a href="#">Food</a></li>
                             <li><a href="#">Drink</a></li>
@@ -106,26 +106,26 @@
                                     </label>
                                 </div>
                                 <div class="form-group">
-                                    <!--<label>Created At</label>-->
-                                    <!--<input type="hidden" name="startdate" id="todayDate" th:field="*{created_at}"/>-->
-                                    <!--<script type="text/javascript">-->
-                                    <!--function getDates()-->
-                                    <!--{-->
-                                    <!--var today = new Date();-->
-                                    <!--var dd = today.getDate();-->
-                                    <!--var mm = today.getMonth()+1; //January is 0!-->
-                                    <!--var yyyy = today.getFullYear();-->
-                                    <!--var hh = today.getHours();-->
-                                    <!--var m = today.getMinutes();-->
-                                    <!--var ss = today.getSeconds();-->
-                                    <!--today = yyyy+"-"+mm+"-"+dd+" "+hh+":"+m+":"+ss;-->
+                                    <label>Created At</label>
+                                    <input type="hidden" name="startdate" id="todayDate" th:field="*{created_at}"/>
+                                    <script type="text/javascript">
+                                    function getDates()
+                                    {
+                                    var today = new Date();
+                                    var dd = today.getDate();
+                                    var mm = today.getMonth()+1; //January is 0!
+                                    var yyyy = today.getFullYear();
+                                    var hh = today.getHours();
+                                    var m = today.getMinutes();
+                                    var ss = today.getSeconds();
+                                    today = yyyy+"-"+mm+"-"+dd+" "+hh+":"+m+":"+ss;
 
-                                    <!--document.getElementById("todayDate").value = today;-->
-                                    <!--}-->
+                                    document.getElementById("todayDate").value = today;
+                                    }
 
-                                    <!--//call getDate() when loading the page-->
-                                    <!--getDates();-->
-                                    <!--</script>-->
+                                    //call getDate() when loading the page
+                                    getDates();
+                                    </script>
                                 </div>
 
                             </div>
@@ -192,12 +192,49 @@
             </div>
         </div>
     </div>
+
+    <!-- MODAL MANAGE -->
+    <div class="modal fade" id="manage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form th:object="${produkBaru}" th:action="@{/warehouse-product/manage}" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Re-Stock</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label >Code Product</label>
+                                    <input type="number" class="form-control"  placeholder="Code Product" th:field="*{id_produk}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label >Stock to Shop</label>
+                                    <input type="text" class="form-control" placeholder="0" th:field="*{stok_ulang}"/>
+                                    <input type="hidden" th:filed="*{updated_by}"/>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Table -->
     <div class="tab-content">
     <div class="container-fluid tab-pane fade in active" id="approved">
-        <table class="table table-striped " style="margin-top: 20px" id="productTableApp">
+        <table class="table table-striped " style="margin-top: 20px;" id="productTableApp">
             <thead>
-            <tr style="background-color: #FEA72C">
+            <tr style="background-color: #00B900">
                 <th>Image</th>
                 <th>Code</th>
                 <th>Name</th>
@@ -252,6 +289,7 @@
                 <th>Last Update</th>
                 <th>Update By</th>
                 <th>Created at</th>
+                <th>Action</th>
             </tr>
             </thead>
             <!--<tbody>-->
