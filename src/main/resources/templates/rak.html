@@ -1,13 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.com">
+<html xmlns:th="http://www.thymeleaf.com" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Warehouse Admin - Product Mapping | MacitePos.com</title>
-    <div th:replace="m_header :: header-css"/>
+    <div sec:authorize="isAuthenticated()">
+        <div sec:authorize="hasRole('ROLE_MANAJER')">
+            <div th:replace="m_header :: header-css"/>
+        </div>
+        <div sec:authorize="hasRole('ROLE_KASIR')">
+            <div th:replace="c_header :: header-css"/>
+        </div>
+    </div>
     <script th:src="@{assets/js/rak.js}"></script>
 </head>
 <body>
 
-<div th:replace="m_header :: header"/>
+<div sec:authorize="isAuthenticated()">
+    <div sec:authorize="hasRole('ROLE_MANAJER')">
+        <div th:replace="m_header :: header"/>
+    </div>
+    <div sec:authorize="hasRole('ROLE_KASIR')">
+        <div th:replace="c_header :: header"/>
+    </div>
+</div>
+
 
 <!-- COntent web -->
 <div class="body">
@@ -15,11 +30,23 @@
         <div class="page-header">
             <h2 class="text-center">RAK TOKO</h2>
         </div>
-        <form class="form-inline text-right">
-            <div class="form-group">
-                <a th:href="@{/product}" ><button type="button" class="btn btn-danger text-center" aria-haspopup="true" aria-expanded="false">Close</button></a>
+        <div sec:authorize="isAuthenticated()">
+            <div sec:authorize="hasRole('ROLE_MANAJER')">
+                <form class="form-inline text-right">
+                    <div class="form-group">
+                        <a th:href="@{/product}" ><button type="button" class="btn btn-danger text-center" aria-haspopup="true" aria-expanded="false">Close</button></a>
+                    </div>
+                </form>
             </div>
-        </form>
+            <div sec:authorize="hasRole('ROLE_KASIR')">
+                <form class="form-inline text-right">
+                    <div class="form-group">
+                        <a th:href="@{/kasir-product}" ><button type="button" class="btn btn-danger text-center" aria-haspopup="true" aria-expanded="false">Close</button></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </div>
     <!--<p id="aku">aku</p>-->
         <!--<script>-->

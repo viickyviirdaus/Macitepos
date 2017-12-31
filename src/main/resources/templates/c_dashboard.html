@@ -97,7 +97,7 @@
 									<img alt="Brand" th:src="@{assets/image/logo.png}" style="width: 250px;"/>
 								</div>
 								<div class="col-sm-3 col-sm-offset-2">
-									<h5 class="modal-title text-center" th:text="'Cashier : '+${nama}"></h5>
+									<h5 class="modal-title text-center" th:text="'Cashier : '+${session.nama}"></h5>
 									<h5 class="modal-title text-center" th:text="${dateToday}"></h5>
 								</div>
 							</div>
@@ -209,23 +209,27 @@
 				<div class="row">
 					<div class="panel panel-default" style="width:548px; height: 300px; overflow: auto;">
 						<div class="panel-body" id="showAvailableProduk">
-							<div class="row" id="showAvailbleProduct">
-								<!--<a th:each="produks : ${produk}" href="">-->
-									<!--<div class="col-sm-3">-->
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="row" id="showAvailbleProduct">
+										<!--<a th:each="produks : ${produk}" href="">-->
+										<!--<div class="col-sm-3">-->
 										<!--<div class="panel panel-default">-->
-											<!--<div class="panel-body">-->
-												<!--<div>-->
-													<!--<img style="width: 100%; padding-bottom: 5px;" th:src="@{assets/image/defaultBarang.png}"/>-->
-												<!--</div>-->
-												<!--<div class="text-center">-->
-													<!--<span th:text="${produks.nama_produk}"></span>-->
-													<!--<br/>-->
-													<!--<span th:text="${produks.harga_penjualan}" style="font-size: 12px">Rp. 999999</span>-->
-												<!--</div>-->
-											<!--</div>-->
+										<!--<div class="panel-body">-->
+										<!--<div>-->
+										<!--<img style="width: 100%; padding-bottom: 5px;" th:src="@{assets/image/defaultBarang.png}"/>-->
 										<!--</div>-->
-									<!--</div>-->
-								<!--</a>-->
+										<!--<div class="text-center">-->
+										<!--<span th:text="${produks.nama_produk}"></span>-->
+										<!--<br/>-->
+										<!--<span th:text="${produks.harga_penjualan}" style="font-size: 12px">Rp. 999999</span>-->
+										<!--</div>-->
+										<!--</div>-->
+										<!--</div>-->
+										<!--</div>-->
+										<!--</a>-->
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

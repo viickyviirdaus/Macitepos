@@ -63,7 +63,7 @@ public class ManajerController {
     }
 
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER_USER = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\ext-resources\\user\\";
+    private static String UPLOADED_FOLDER_USER = "D:\\blibli\\PROJECT\\Macitepos\\ext-resources\\user\\";
 
     @PostMapping("/product/create")
     public String buatProduk(@RequestParam("file") MultipartFile file, @Valid ProdukDTO produkDTO, BindingResult bindingResult

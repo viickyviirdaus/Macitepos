@@ -36,8 +36,9 @@
                     <h4 class="modal-title" id="myModalLabel">Tambah Customer</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
                                 <input type="hidden" th:field="*{id_pengguna}"/>
                                 <div class="form-group">
                                     <label for="fullName">Full Name</label>
@@ -81,43 +82,44 @@
                                         <input  type="radio" value="warehouse" name="inlineRadioOptions" id="inlineRadio2" th:field="*{level}"/> Warehouse Admin
                                     </label>
                                 </div>
+                                <!--<div class="form-group">-->
+                                <!--<label>Created At</label>-->
+                                <!--<input type="hidden" name="startdate" id="todayDate" th:field="*{created_at}"/>-->
+                                <!--<script type="text/javascript">-->
+                                <!--function getDates()-->
+                                <!--{-->
+                                <!--var today = new Date();-->
+                                <!--var dd = today.getDate();-->
+                                <!--var mm = today.getMonth()+1; //January is 0!-->
+                                <!--var yyyy = today.getFullYear();-->
+                                <!--var hh = today.getHours();-->
+                                <!--var m = today.getMinutes();-->
+                                <!--var ss = today.getSeconds();-->
+                                <!--today = yyyy+"-"+mm+"-"+dd+" "+hh+":"+m+":"+ss;-->
+
+                                <!--document.getElementById("todayDate").value = today;-->
+                                <!--}-->
+
+                                <!--//call getDate() when loading the page-->
+                                <!--getDates();-->
+                                <!--</script>-->
+                                <!--</div>-->
+
+                            </div>
+                            <div class="col-md-6" style="padding-left: 30px">
                                 <div class="form-group">
-                                    <label>Created At</label>
-                                    <input type="hidden" name="startdate" id="todayDate" th:field="*{created_at}"/>
-                                    <script type="text/javascript">
-                                        function getDates()
-                                        {
-                                            var today = new Date();
-                                            var dd = today.getDate();
-                                            var mm = today.getMonth()+1; //January is 0!
-                                            var yyyy = today.getFullYear();
-                                            var hh = today.getHours();
-                                            var m = today.getMinutes();
-                                            var ss = today.getSeconds();
-                                            today = yyyy+"-"+mm+"-"+dd+" "+hh+":"+m+":"+ss;
-
-                                            document.getElementById("todayDate").value = today;
-                                        }
-
-                                        //call getDate() when loading the page
-                                        getDates();
+                                    <label >Photo</label>
+                                    <div >
+                                        <img style="width: 200px; margin-bottom:10px;" id="output" alt="Preview Image"/>
+                                    </div>
+                                    <input type="file" name="file" onchange="loadFile(event)"/>
+                                    <script>
+                                        var loadFile = function(event) {
+                                            var output = document.getElementById('output');
+                                            output.src = URL.createObjectURL(event.target.files[0]);
+                                        };
                                     </script>
                                 </div>
-
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label >Photo</label>
-                                <div >
-                                    <img style="width: 200px; margin-bottom:10px;" id="output" alt="Preview Image"/>
-                                </div>
-                                <input type="file" name="file" onchange="loadFile(event)"/>
-                                <script>
-                                    var loadFile = function(event) {
-                                        var output = document.getElementById('output');
-                                        output.src = URL.createObjectURL(event.target.files[0]);
-                                    };
-                                </script>
                             </div>
                         </div>
                     </div>

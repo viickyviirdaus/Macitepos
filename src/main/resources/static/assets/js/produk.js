@@ -23,7 +23,7 @@ $(document).ready (function() {
             { "mData": "created_at",
                 "render": function (mData) {
                     var date1 = new Date(mData);
-                    return date.getDate() + "/" + ( date1.getMonth() + 1) + "/" + date1.getFullYear() +" "+ date1.getHours()+":"+ date1.getMinutes()+":"+ date1.getSeconds() ;
+                    return date1.getDate() + "/" + ( date1.getMonth() + 1) + "/" + date1.getFullYear() +" "+ date1.getHours()+":"+ date1.getMinutes()+":"+ date1.getSeconds() ;
                 }},
         ]
     })
