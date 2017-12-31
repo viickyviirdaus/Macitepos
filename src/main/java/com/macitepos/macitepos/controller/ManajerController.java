@@ -141,23 +141,26 @@ public class ManajerController {
     @PostMapping("/user/create")
     public String buatUser(@RequestParam("file") MultipartFile file, @Valid PenggunaDTO penggunaDTO, BindingResult bindingResult
     ){
-        penggunaDTO.setFoto_pengguna(file.getOriginalFilename());
-        System.out.println("ini "+bindingResult.toString());
-        try {
-            String filename;
-            System.out.println("nama foto" +file.getOriginalFilename().toString());
-            if(file.getOriginalFilename() == null || file.getOriginalFilename().toString().equalsIgnoreCase("")){
-                filename = "defaultProfile.png";
-            }else{
-                filename = file.getOriginalFilename();
-            }
+        String fileName = file.getOriginalFilename();
 
-            // Get the file and save it somewhere
-            byte[] bytes = file.getBytes();
-            System.out.println("filename"+filename);
-            Path path = Paths.get(UPLOADED_FOLDER + filename);
-            System.out.println(path+" path");
-            Files.write(path, bytes);
+        try {
+            if(!file.getOriginalFilename().equalsIgnoreCase("")){
+                long name = System.currentTimeMillis();
+                String extensi = fileName.substring(fileName.lastIndexOf(".")+1);
+                System.out.println(name+"."+extensi);
+                fileName = name+"."+extensi;
+                penggunaDTO.setFoto_pengguna(fileName);
+
+                byte[] bytes = file.getBytes();
+                Path path = Paths.get(UPLOADED_FOLDER + fileName);
+                Files.write(path,bytes);
+                penggunaService.saveOrUpdated(penggunaDTO);
+
+            } else{
+                Pengguna foto = akunService.findByUsername(penggunaDTO.getUsername());
+                penggunaDTO.setFoto_pengguna(foto.getFoto_pengguna());
+                penggunaService.saveOrUpdated(penggunaDTO);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -185,22 +188,30 @@ public class ManajerController {
     public String editUser(@RequestParam("file") MultipartFile file, @Valid PenggunaDTO penggunaDTO
     ){
 
-        penggunaDTO.setFoto_pengguna(file.getOriginalFilename());
+        String fileName = file.getOriginalFilename();
+
         try {
-            String filename;
-            System.out.println("nama foto" +file.getOriginalFilename().toString());
-            if(file.getOriginalFilename() == null || file.getOriginalFilename().toString().equalsIgnoreCase("")){
-                filename = "defaultProfile.png";
-            }else{
-                filename = file.getOriginalFilename();
+            if(!file.getOriginalFilename().equalsIgnoreCase("")){
+                long name = System.currentTimeMillis();
+                String extensi = fileName.substring(fileName.lastIndexOf(".")+1);
+                System.out.println(name+"."+extensi);
+                fileName = name+"."+extensi;
+                penggunaDTO.setFoto_pengguna(fileName);
+
+                byte[] bytes = file.getBytes();
+                Path path = Paths.get(UPLOADED_FOLDER + fileName);
+                Files.write(path,bytes);
+                penggunaService.saveOrUpdated(penggunaDTO);
+
+            } else{
+                Pengguna foto = akunService.findByUsername(penggunaDTO.getUsername());
+                penggunaDTO.setFoto_pengguna(foto.getFoto_pengguna());
+                penggunaService.saveOrUpdated(penggunaDTO);
             }
-            byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOADED_FOLDER + filename);
-            Files.write(path, bytes);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        penggunaService.saveOrUpdated(penggunaDTO);
         return "redirect:/edit";
     }
 
@@ -209,7 +220,7 @@ public class ManajerController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
         session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
-        return "m_rak";
+        return "rak";
     }
 
 }

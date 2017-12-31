@@ -101,11 +101,22 @@ public class OrdersService {
     }
 
     public Long jumlahOrder(){
-        return ordersDAO.jumlahOrder();
+        try {
+            return ordersDAO.jumlahOrder();
+        }catch (Exception e){
+            e.getMessage();
+        }
+
+        return null;
     }
 
     public Long jumlahPayment(){
-        return  ordersDAO.jumlahPayment();
+        try {
+            return ordersDAO.jumlahPayment();
+        }catch (Exception e){
+            e.getMessage();
+        }
+        return  null;
     }
 
 }

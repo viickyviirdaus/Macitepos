@@ -80,7 +80,12 @@ public class MembersService {
     }
 
     public long jumlahMember(){
-        return membersDAO.jumlahMember();
+        try {
+            return membersDAO.jumlahMember();
+        }catch (Exception e){
+            e.getMessage();
+        }
+        return 0;
     }
 
 }

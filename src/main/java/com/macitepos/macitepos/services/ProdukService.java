@@ -144,7 +144,12 @@ public class ProdukService {
     }
 
     public Long jumlahProduk(){
-        return produkDAO.jumlahProduk();
+        try {
+            produkDAO.jumlahProduk();
+        }catch (Exception e){
+            e.getMessage();
+        }
+        return null;
     }
 
     public ProdukDTO restock(ProdukDTO produkDTO){
