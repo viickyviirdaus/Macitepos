@@ -87,29 +87,30 @@
 
         <canvas id="myChart"></canvas>
         <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js}"></script>
-        <script type="text/javascript">
+        <script th:src="@{assets/js/m_dashboard.js}"></script>
+        <!--<script type="text/javascript">-->
+        <!---->
 
+            <!--var ctx = document.getElementById('myChart').getContext('2d');-->
+            <!--var chart = new Chart(ctx, {-->
+                <!--// The type of chart we want to create-->
+                <!--type: 'line',-->
 
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var chart = new Chart(ctx, {
-                // The type of chart we want to create
-                type: 'line',
+                <!--// The data for our dataset-->
+                <!--data: {-->
+                    <!--labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "October", "November", "December"],-->
+                    <!--datasets: [{-->
+                        <!--label: "Statistic Macitepos",-->
+                        <!--backgroundColor: 'rgba(74, 142, 249 , 0.5)',-->
+                        <!--borderColor: 'green',-->
+                        <!--data: [5, 10, 0, 4, 20, 28, 20, 34, 30, 40, 18, 33],-->
+                    <!--}]-->
+                <!--},-->
 
-                // The data for our dataset
-                data: {
-                    labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "October", "November", "December"],
-                    datasets: [{
-                        label: "Statistic Macitepos",
-                        backgroundColor: 'rgba(74, 142, 249 , 0.5)',
-                        borderColor: 'green',
-                        data: [5, 10, 0, 4, 20, 28, 20, 34, 30, 40, 18, 33],
-                    }]
-                },
-
-                // Configuration options go here
-                options: {}
-            });
-        </script>
+                <!--// Configuration options go here-->
+                <!--options: {}-->
+            <!--});-->
+        <!--</script>-->
     </div>
 </div>
 </body>

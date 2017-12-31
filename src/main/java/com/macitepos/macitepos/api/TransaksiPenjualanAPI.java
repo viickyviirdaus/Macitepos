@@ -96,6 +96,26 @@ public class TransaksiPenjualanAPI {
         return  ordersService.showOrderDay();
     }
 
+    @RequestMapping(path = "/api/generalLedgerWeek", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Transaksi_penjualanDTO> generalLedgerWeek(){
+        return ordersService.generalLedger("week","desc");
+    }
+
+    @RequestMapping(path = "/api/generalLedgerMonth", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Transaksi_penjualanDTO> generalLedgerMonth(){
+        return ordersService.generalLedger("month","desc");
+    }
+
+    @RequestMapping(path = "/api/generalLedgerMonthASC", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Transaksi_penjualanDTO> generalLedgerMonthASC(){
+        return ordersService.generalLedger("month","asc");
+    }
+
+    @RequestMapping(path = "/api/generalLedgerYear", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Transaksi_penjualanDTO> generalLedgerYear(){
+        return ordersService.generalLedger("year","desc");
+    }
+
     @RequestMapping(path = "/api/email", method =RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public void o(){
         emailController.send("habridio88@gmail.com");
