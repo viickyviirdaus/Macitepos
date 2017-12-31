@@ -59,7 +59,7 @@ $(document).ready (function() {
                 }},
             { "mData": "updated_by"},
             { "mData": "created_at",
-                "render": functi on (mData) {
+                "render": function (mData) {
                     var date = new Date(mData);
                     return date.getDate() + "/" + ( date.getMonth() + 1) + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds() ;
                 }},
