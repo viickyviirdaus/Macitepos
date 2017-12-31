@@ -21,8 +21,6 @@ public class ProdukService {
     public ProdukDTO saveOrUpdated(ProdukDTO produkDTO){
         if (produkDTO.getStatus_produk() == null){
             produkDTO.setStatus_produk("dissapproved");
-        }else{
-            produkDTO.setStatus_produk("approved");
         }
         try{
             Produk produk = new Produk(produkDTO.getId_produk(), produkDTO.getNama_produk(), produkDTO.getKategori(),
@@ -103,6 +101,12 @@ public class ProdukService {
         }else{
             p.setStatus_produk("approved");
         }
+        produkDAO.saveOrUpdate(p);
+        return convertToDto(p);
+    }
+
+    public ProdukDTO getById(int id){
+        Produk p = produkDAO.findById(id);
         produkDAO.saveOrUpdate(p);
         return convertToDto(p);
     }

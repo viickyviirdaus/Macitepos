@@ -45,9 +45,10 @@ public class WarehouseController {
         if (produkService.showAll().isEmpty()) {
             return "w_dashboard";
         } else {
-            model.addAttribute("produk", produkService.showAll());
+            model.addAttribute("produkApp", produkService.showAllApproved());
+            model.addAttribute("produkDis", produkService.showAllDissapproved());
             model.addAttribute("produkBaru", new ProdukDTO());
-            System.out.println("Controller user jalan");
+            System.out.println("Controller ware jalan");
             return "w_dashboard";
         }
     }
@@ -92,6 +93,13 @@ public class WarehouseController {
         System.out.println("produk create");
         return "redirect:/warehouse";
     }
+
+    @RequestMapping(value = "/warehouse-product/edit/{id}", method = RequestMethod.GET)
+    public String editProduk(@PathVariable Integer id, Model model){
+        model.addAttribute("produk", produkService.getById(id));
+        return "w_formProduk";
+    }
+
 
     @PostMapping("/warehouse-product/restock")
     public String restock(ProdukDTO produkDTO){
