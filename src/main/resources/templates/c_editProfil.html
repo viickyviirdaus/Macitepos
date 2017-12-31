@@ -101,7 +101,7 @@
             </thead>
             <tbody>
             <tr th:each="p : ${pengguna}">
-                <td><img th:src="@{${'/assets/image/user/   ' + p.foto_pengguna}}" style="max-height: 40px"/></td>
+                <td><img th:src="@{${'image/user/' + p.foto_pengguna}}" style="max-height: 40px"/></td>
                 <td th:text="${p.id_pengguna}"></td>
                 <td th:text="${p.nama_pengguna}"></td>
                 <td th:text="${p.alamat_pengguna}"></td>

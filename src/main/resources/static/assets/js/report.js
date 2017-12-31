@@ -39,7 +39,7 @@ function showTableProducts() {
 
             { "mData": "foto_produk",
                 "render": function (mData) {
-                    return '<img style="width: 50px" src="assets/image/'+mData+'"/>';
+                    return '<img style="width: 50px" src="image/product/'+mData+'"/>';
                 }},
             { "mData": "id_produk"},
             { "mData": "nama_produk" },

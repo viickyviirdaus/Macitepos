@@ -54,12 +54,13 @@ public class WarehouseController {
 
     @RequestMapping(value = "/suplier")
     public String suplier(Model model){
-        model.addAttribute("supliers", suplierService.showAll());
+        suplierService.showAll();
+        model.addAttribute("suplier", suplierService.showAll());
         return "w_adminSuplier";
     }
 
         //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER_PRODUK = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\src\\main\\resources\\static\\assets\\image\\product\\";
+    private static String UPLOADED_FOLDER_PRODUK = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\ext-resources\\product\\";
 
     @PostMapping("/warehouse-product/create")
     public String buatProduk(@RequestParam("file") MultipartFile file, @Valid ProdukDTO produkDTO
@@ -100,6 +101,16 @@ public class WarehouseController {
         produkService.restock(produkDTO);
         return "redirect:/warehouse";
     }
+
+    @PostMapping("/warehouse-product/manage")
+    public String manage(ProdukDTO produkDTO){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String updated_by = akunService.findByUsername(authentication.getName()).toString();
+        produkDTO.setUpdated_by(updated_by);
+        produkService.manage(produkDTO);
+        return "redirect:/warehouse";
+    }
+
 
     @GetMapping(value = "/warehouse-editProfile")
     public String editProfileWA(Model model){

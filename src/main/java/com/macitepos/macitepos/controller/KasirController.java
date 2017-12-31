@@ -45,7 +45,7 @@ public class KasirController {
     @Autowired
     PenggunaService penggunaService;
 
-    private static String UPLOADED_FOLDER = "D:/blibli/PROJECT/Macitepos/src/main/resources/static/assets/upload/";
+    private static String UPLOADED_FOLDER = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\ext-resources\\user\\";
 
     @RequestMapping(value = "/kasir", method = RequestMethod.GET)
     public String kasir(HttpSession session, Model model) {
@@ -54,8 +54,8 @@ public class KasirController {
         model.addAttribute("dashboardPOS",true);
         model.addAttribute("dateToday",dateToday);
         model.addAttribute("produk", produkService.showAll());
-        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
-        model.addAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "c_dashboard";
     }
 
@@ -71,8 +71,8 @@ public class KasirController {
 //        model.addAttribute("produk",produkService.showAll());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("productPOS",true);
-        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
-        model.addAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "c_product";
     }
 
@@ -129,8 +129,8 @@ public class KasirController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("profilePOS",true);
         model.addAttribute("pengguna", akunService.findByUsername(authentication.getName()));
-        model.addAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
-        model.addAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "c_editProfil";
     }
 

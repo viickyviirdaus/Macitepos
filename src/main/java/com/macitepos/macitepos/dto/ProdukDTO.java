@@ -43,9 +43,10 @@ public class ProdukDTO {
             int terjual,
             String foto_produk,
             String no_rak_toko,
+            Timestamp last_updated,
             String updated_by,
-            String status_produk){
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            String status_produk,
+            Timestamp created_at){
         this.id_produk = id_produk;
         this.nama_produk = nama_produk;
         this.kategori = kategori;
@@ -54,13 +55,14 @@ public class ProdukDTO {
         this.stok_ulang = stok_ulang;
         this.stok_total = stok_total;
         this.stok_toko = stok_toko;
+        this.stok_gudang = stok_gudang;
         this.terjual = terjual;
         this.foto_produk = foto_produk;
         this.no_rak_toko = no_rak_toko;
-        this.last_updated = timestamp;
+        this.last_updated = last_updated;
         this.updated_by = updated_by;
         this.status_produk = status_produk;
-        this.created_at = timestamp;
+        this.created_at = created_at;
     }
 
 
@@ -167,7 +169,8 @@ public class ProdukDTO {
     }
 
     public void setLast_updated(Timestamp last_updated) {
-        this.last_updated = last_updated;
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        this.last_updated = timestamp;
     }
 
     public String getUpdated_by() {

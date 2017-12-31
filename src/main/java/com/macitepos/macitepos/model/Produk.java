@@ -80,7 +80,9 @@ public class Produk {
              String foto_produk,
              String no_rak_toko,
              String updated_by,
-             String status_produk){
+             String status_produk,
+             Timestamp created_at
+             ){
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         this.id_produk = id_produk;
         this.nama_produk = nama_produk;
@@ -97,7 +99,7 @@ public class Produk {
         this.last_updated = timestamp;
         this.updated_by = updated_by;
         this.status_produk = status_produk;
-        this.created_at = timestamp;
+        this.created_at = created_at;
     }
 
     public Produk(int id_produk,String nama_produk, String kategori) {
@@ -195,14 +197,12 @@ public class Produk {
         this.no_rak_toko = no_rak_toko;
     }
 
-    public Timestamp getLast_updated() {
-        return last_updated;
-    }
 
-    public void setLast_updated() {
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        this.last_updated = timestamp;
-    }
+//
+//    public void setLast_updated() {
+//        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+//        this.last_updated = timestamp;
+//    }
 
     public String getUpdated_by() {
         return updated_by;
@@ -224,9 +224,8 @@ public class Produk {
         return created_at;
     }
 
-    public void setCreated_at() {
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        this.created_at = timestamp;
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
     }
 
     public int getStok_gudang() {
@@ -238,12 +237,14 @@ public class Produk {
     }
 
     public void setLast_updated(Timestamp last_updated) {
-        this.last_updated = last_updated;
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        this.last_updated = timestamp;
     }
 
-    public void setCreated_at(Timestamp created_at) {
-        this.created_at = created_at;
+    public Timestamp getLast_updated() {
+        return last_updated;
     }
+
 
     public List<Transaksi_pembelian> getTransaksi_pembelians() {
         return transaksi_pembelians;

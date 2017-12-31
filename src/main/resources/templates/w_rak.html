@@ -14,12 +14,23 @@
         <div class="page-header">
             <h2 class="text-center">RAK TOKO</h2>
         </div>
-        <form class="form-inline text-right">
-            <div class="form-group">
-                <a href="kasirproduk.html"><button type="button" class="btn btn-danger text-center" aria-haspopup="true" aria-expanded="false">Close</button></a>
-            </div>
-        </form>
     </div>
+    <script>
+        function ambilProduk() {
+            $.ajax({
+                url: 'localhost:8080/api/produk',
+                type: 'GET',
+                dataType: 'json',
+                success: function (produk) {
+                    dataProduk = produk;
+                    console.log(dataProduk);
+                }
+            });
+        }
+
+
+    </script>
+
     <!-- RAK MAPING BARANG -->
     <!--Food-->
     <div class="container-fluid">
