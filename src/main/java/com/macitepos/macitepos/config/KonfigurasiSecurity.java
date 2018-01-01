@@ -49,7 +49,7 @@ public class KonfigurasiSecurity extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/home", "/member").permitAll()
-                .antMatchers("/manajer", "/customer","/edit","/m_header","/order","/product","reportPayment","reportProduct","user")
+                .antMatchers("/manajer", "/customer","/edit","/m_header","/order","/product","reportPayment","/reportProduct","/user","/itemMapping")
                 .hasAnyRole("MANAJER")
                 .antMatchers("/kasir", "kasir-product", "/kasir-orders", "/kasir-customer","/c_header","/kasir-report","/kasir-user","/kasir-profile")
                 .hasAnyRole("KASIR")

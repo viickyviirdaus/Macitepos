@@ -21,19 +21,7 @@
             <div class="form-group">
                 <a data-toggle="tab" href="#approved"><button type="button" class="btn btn-success text-center active" aria-haspopup="true" aria-expanded="false">Approved</button></a>
                 <a data-toggle="tab" href="#dissapproved"><button type="button" class="btn btn-warning text-center" aria-haspopup="true" aria-expanded="false" >Disapproved</button></a>
-                <div class="input-group">
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-default dropdown-toggle text-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="caret"></span> Category</button>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="#">Makanan</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </div><!-- /btn-group -->
-                </div>
-                <a href="kasirprodukmap.html"><button type="button" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false" ><i class="fa fa-map fa-fw" aria-hiden="true"></i>Item Map</button></a>
+                <a th:href="@{/itemMapping}" id="itemMapping"><button type="button" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false" ><i class="fa fa-map fa-fw" aria-hiden="true"></i>Item Map</button></a>
             </div>
         </form>
     </div>
@@ -48,8 +36,8 @@
                     <th>Code</th>
                     <th>Name</th>
                     <th>Price</th>
-                    <th>Stock in Shop</th>
-                    <th>Stock Total</th>
+                    <th>Stock Shop</th>
+                    <th>Stock Ware house</th>
                     <th>Re Stock</th>
                     <th>Category</th>
                     <th>Number Rack Shop</th>
@@ -87,8 +75,8 @@
                     <th>Code</th>
                     <th>Name</th>
                     <th>Price</th>
-                    <th>Stock in Shop</th>
-                    <th>Stock Total</th>
+                    <th>Stock Shop</th>
+                    <th>Stock Ware</th>
                     <th>Re Stock</th>
                     <th>Category</th>
                     <th>Number Rack Shop</th>

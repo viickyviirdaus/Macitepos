@@ -18,6 +18,13 @@
         <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.15/css/jquery.dataTables.min.css" />
 
+        <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+        <!--<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>-->
+        <!--<script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>-->
+        <!--<script src="https://cdn.datatables.net/select/1.2.4/js/dataTables.select.min.js"></script>-->
+        <!--<script src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"></script>-->
+
+
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     </div>
 </head>
@@ -45,7 +52,7 @@
                 <li>
                     <div class="container-fluid active-user">
                         <div class="row">
-                            <div class="col-sm-5"><img th:src="@{${'/assets/image/user/' + session.foto}}" class="img-circle" style="max-width: 100%"/></div>
+                            <div class="col-sm-5"><img th:src="@{${'image/user/' + session.foto}}" class="img-circle" style="max-width: 100%"/></div>
                             <div class="col-md-7">
                                 <h5 style="margin-bottom: 0px"><b th:text="${session.nama}"></b></h5>
                                 <span> <span style="color: #00B900; font-size: 20px;" >&#9679;</span> Online</span>
@@ -53,11 +60,18 @@
                         </div>
                     </div>
                 </li>
-                <li class="active"><a th:href="@{/warehouse}"><i class="fa fa-tachometer fa-fw" aria-hidden="true"></i>
+                <li th:classappend="${warehousePOS}?active:none">
+                    <a th:href="@{/warehouse}"><i class="fa fa-tachometer fa-fw" aria-hidden="true"></i>
                     Dashboard <span class="sr-only">(current)</span></a></li>
+<<<<<<< HEAD
                 <li><a th:href="@{/warehouse-editProfile}"><i class="fa fa-cog fa-fw" aria-hidden="true"></i>
+=======
+                <li th:classappend="${warehouseeditPOS}?active:none">
+                    <a th:href="@{/warehouse-editProfile}"><i class="fa fa-cog fa-fw" aria-hidden="true"></i>
+>>>>>>> 8f029fadad6f0b497e7d8ecd91daf4ebe624e875
                     Edit Profile</a></li>
-                <li><a th:href="@{/warehouse-rak}"><i class="fa fa-th-large fa-fw" aria-hidden="true"></i>
+                <li th:classappend="${rakPOS}?active:none">
+                    <a th:href="@{/warehouse-rak}"><i class="fa fa-th-large fa-fw" aria-hidden="true"></i>
                     Rak</a></li>
                 <li><a th:href="@{/logout}"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>
                     Logout</a></li>

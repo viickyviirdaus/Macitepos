@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Warehouse Admin - Product Mapping | MacitePos.com</title>
+    <div sec:authorize="isAuthenticated()">
+        <div sec:authorize="hasRole('ROLE_MANAJER')">
+            <div th:replace="m_header :: header-css"/>
+        </div>
+        <div sec:authorize="hasRole('ROLE_KASIR')">
+            <div th:replace="c_header :: header-css"/>
+        </div>
+    </div>
+    <script th:src="@{assets/js/rak.js}"></script>
+</head>
+<body>
+
+<div sec:authorize="isAuthenticated()">
+    <div sec:authorize="hasRole('ROLE_MANAJER')">
+        <div th:replace="m_header :: header"/>
+    </div>
+    <div sec:authorize="hasRole('ROLE_KASIR')">
+        <div th:replace="c_header :: header"/>
+    </div>
+</div>
+
+
+<!-- COntent web -->
+<div class="body">
+    <div class="container-fluid">
+        <div class="page-header">
+            <h2 class="text-center">RAK TOKO</h2>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+            <div sec:authorize="hasRole('ROLE_MANAJER')">
+                <form class="form-inline text-right">
+                    <div class="form-group">
+                        <a th:href="@{/product}" ><button type="button" class="btn btn-danger text-center" aria-haspopup="true" aria-expanded="false">Close</button></a>
+                    </div>
+                </form>
+            </div>
+            <div sec:authorize="hasRole('ROLE_KASIR')">
+                <form class="form-inline text-right">
+                    <div class="form-group">
+                        <a th:href="@{/kasir-product}" ><button type="button" class="btn btn-danger text-center" aria-haspopup="true" aria-expanded="false">Close</button></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!--<p id="aku">aku</p>-->
+        <!--<script>-->
+            <!--$(document).ready(function () {-->
+                <!--ambilProduk();-->
+            <!--});-->
+            <!--function ambilProduk() {-->
+                <!--$.ajax({-->
+                    <!--url: 'http://localhost:8080/api/produk',-->
+                    <!--type: 'GET',-->
+                    <!--dataType: 'json',-->
+                    <!--success: function (produk) {-->
+                        <!--dataProduk = produk;-->
+                        <!--console.log(dataProduk);-->
+                        <!--console.log(dataProduk[0].kategori + "-" + dataProduk[0].no_rak_toko);-->
+
+
+                    <!--}-->
+                <!--});-->
+            <!--}-->
+
+
+        <!--</script>-->
+
+    <!-- RAK MAPING BARANG -->
+    <!--Food-->
+    <div class="container-fluid">
+        <div class="row" id="foodRak">
+            <div class="col-md-12">
+                <h2 class="fh5co-uppercase-heading-sm text-center">Food</h2>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            A1
+                        </div>
+                        <div class="panel-body" id="bodyA1" style="min-height: 100px">
+                            <!--<div class="row">-->
+                            <!--<div class="col-md-12">-->
+
+                            <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                        <div class="panel-footer" >
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahA1" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            A2
+                        </div>
+                        <div class="panel-body" id="bodyA2" style="min-height: 100px" >
+                            <!--<div class="row">-->
+                            <!--<div class="col-md-12">-->
+                            <!--<p>Indomie <br/>rasa kasih sayang</p>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahA2" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            A3
+                        </div>
+                        <div class="panel-body"  id="bodyA3" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahA3" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            A4
+                        </div>
+                        <div class="panel-body"  id="bodyA4" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahA4" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            A5
+                        </div>
+                        <div class="panel-body" id="bodyA5" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahA5" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            A6
+                        </div>
+                        <div class="panel-body" id="bodyA6" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahA6" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Drink-->
+            <div class="col-md-12">
+                <h2 class="fh5co-uppercase-heading-sm text-center">Drink</h2>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            B1
+                        </div>
+                        <div class="panel-body" id="bodyB1" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahB1" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            B2
+                        </div>
+                        <div class="panel-body" id="bodyB2" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahB2" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            B3
+                        </div>
+                        <div class="panel-body" id="bodyB3" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahB3" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            B4
+                        </div>
+                        <div class="panel-body" id="bodyB4" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahB4" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            B5
+                        </div>
+                        <div class="panel-body" id="bodyB5" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahB5" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            B6
+                        </div>
+                        <div class="panel-body" id="bodyB6" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahB6" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <!-- Drugs-->
+                <h2 class="fh5co-uppercase-heading-sm text-center">Drugs</h2>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            C1
+                        </div>
+                        <div class="panel-body" id="bodyC1" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahC1" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            C2
+                        </div>
+                        <div class="panel-body" id="bodyC2" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahC2" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            C3
+                        </div>
+                        <div class="panel-body" id="bodyC3" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahC3" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            C4
+                        </div>
+                        <div class="panel-body" id="bodyC4" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahC4" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            C5
+                        </div>
+                        <div class="panel-body" id="bodyC5" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahC5" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            C6
+                        </div>
+                        <div class="panel-body" id="bodyC6" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahC6" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Cosmetic-->
+            <div class="col-md-12">
+
+                <h2 class="fh5co-uppercase-heading-sm text-center">Cosmetics</h2>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            D1
+                        </div>
+                        <div class="panel-body" id="bodyD1" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahD1" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            D2
+                        </div>
+                        <div class="panel-body" id="bodyD2" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahD2" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            D3
+                        </div>
+                        <div class="panel-body" id="bodyD3" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahD3" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            D4
+                        </div>
+                        <div class="panel-body" id="bodyD4" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahD4" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            D5
+                        </div>
+                        <div class="panel-body" id="bodyD5" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahD5" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            D6
+                        </div>
+                        <div class="panel-body" id="bodyD6" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahD6" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Office-->
+            <div class="col-md-12">
+
+                <h2 class="fh5co-uppercase-heading-sm text-center">Office</h2>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            E1
+                        </div>
+                        <div class="panel-body" id="bodyE1" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahE1" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            E2
+                        </div>
+                        <div class="panel-body" id="bodyE2" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahE2" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            E3
+                        </div>
+                        <div class="panel-body" id="bodyE3" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahE3" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            E4
+                        </div>
+                        <div class="panel-body" id="bodyE4" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahE4" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            E5
+                        </div>
+                        <div class="panel-body" id="bodyE5" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahE5" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            E6
+                        </div>
+                        <div class="panel-body" id="bodyE6" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahE6" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Household Equipment-->
+            <div class="col-md-12">
+                <h2 class="fh5co-uppercase-heading-sm text-center">Household Equipment</h2>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            F1
+                        </div>
+                        <div class="panel-body" id="bodyF1" style="min-height: 100px">
+
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-horizontal readonly">
+                                <div class="form-group">
+                                    <input type="text" readonly="" class="form-control" id="jumlahF1" value="0"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-danger">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                F2
+                            </div>
+                            <div class="panel-body" id="bodyF2" style="min-height: 100px">
+
+                            </div>
+                            <div class="panel-footer">
+                                <form class="form-horizontal readonly">
+                                    <div class="form-group">
+                                        <input type="text" readonly="" class="form-control" id="jumlahF2" value="0"/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-danger">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                F3
+                            </div>
+                            <div class="panel-body" id="bodyF3" style="min-height: 100px">
+
+                            </div>
+                            <div class="panel-footer">
+                                <form class="form-horizontal readonly">
+                                    <div class="form-group">
+                                        <input type="text" readonly="" class="form-control" id="jumlahF3" value="0"/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-danger">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                F4
+                            </div>
+                            <div class="panel-body" id="bodyF4" style="min-height: 100px">
+
+                            </div>
+                            <div class="panel-footer">
+                                <form class="form-horizontal readonly">
+                                    <div class="form-group">
+                                        <input type="text" readonly="" class="form-control" id="jumlahF4" value="0"/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-danger">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                F5
+                            </div>
+                            <div class="panel-body" id="bodyF5" style="min-height: 100px">
+
+                            </div>
+                            <div class="panel-footer">
+                                <form class="form-horizontal readonly">
+                                    <div class="form-group">
+                                        <input type="text" readonly="" class="form-control" id="jumlahF5" value="0"/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-danger">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                F6
+                            </div>
+                            <div class="panel-body" id="bodyF6" style="min-height: 100px">
+
+                            </div>
+                            <div class="panel-footer">
+                                <form class="form-horizontal readonly">
+                                    <div class="form-group">
+                                        <input type="text" readonly="" class="form-control" id="jumlahF6" value="0"/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

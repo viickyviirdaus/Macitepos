@@ -9,7 +9,9 @@ $(document).ready (function() {
 
             { "mData": "foto_pengguna",
                 "render": function (mData) {
-                    return '<img style="width: 100px" src="assets/image/user/'+mData+'"/>';
+
+                    return '<img style="width: 100px" src="image/user/'+mData+'"/>';
+
                 }},
             { "mData": "id_pengguna"},
             { "mData": "nama_pengguna" },
@@ -22,14 +24,13 @@ $(document).ready (function() {
             { "mData": "created_at",
                 "render": function (mData) {
                     var date = new Date(mData);
-                    var month = date.getMonth() + 1;
-                    return (month.length > 1 ? month : + month) + "/" + date.getMonth() + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds();
+                    return date.getDate() + "/" + ( date.getMonth() + 1) + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds();
                 }},
             { "mData": "last_modified",
                 "render": function (mData) {
                     var date = new Date(mData);
                     var month = date.getMonth() + 1;
-                    return (month.length > 1 ? month : + month) + "/" + date.getMonth() + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds() ;
+                    return date.getDate() + "/" + ( date.getMonth() + 1) + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds() ;
                 }}
         ]
     })

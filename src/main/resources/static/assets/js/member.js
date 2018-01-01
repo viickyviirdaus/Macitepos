@@ -10,14 +10,15 @@ $(document).ready (function() {
             { "mData": "tanggal_lahir" },
             { "mData": "jenis_kelamin" },
             { "mData": "alamat" },
-            {"mData": "email"},
+            { "mData": "email"},
             { "mData": "visitCount" },
             { "mData": "created_at",
                 "render": function (mData) {
                     var date = new Date(mData);
                     var month = date.getMonth() + 1;
                     return (month.length > 1 ? month : + month) + "/" + date.getMonth() + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds();
-                }}
+                }},
+            { "mData": "created_by" },
         ]
     })
 });

@@ -42,15 +42,17 @@ public class ManajerController {
     private MembersService membersService;
 
     @RequestMapping(value = "/manajer")
+
     public String manajer(HttpSession session, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("dashboardPOS",true);
         session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
         session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
-        session.setAttribute("jumlahOrder", ordersService.jumlahOrder());
-        session.setAttribute("jumlahPayment", ordersService.jumlahPayment());
-        session.setAttribute("jumlahProduk", produkService.jumlahProduk());
-        session.setAttribute("jumlahMember", membersService.jumlahMember());
+        model.addAttribute("jumlahOrder", ordersService.jumlahOrder());
+        model.addAttribute("jumlahPayment", ordersService.jumlahPayment());
+        model.addAttribute("jumlahProduk", produkService.jumlahProduk());
+        model.addAttribute("jumlahMember", membersService.jumlahMember());
+
         return "m_dashboard";
     }
 
@@ -61,7 +63,7 @@ public class ManajerController {
     }
 
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER_PRODUK = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\src\\main\\resources\\static\\assets\\image\\produk\\";
+    private static String UPLOADED_FOLDER_USER = "D:\\blibli\\PROJECT\\Macitepos\\ext-resources\\user\\";
 
     @PostMapping("/product/create")
     public String buatProduk(@RequestParam("file") MultipartFile file, @Valid ProdukDTO produkDTO, BindingResult bindingResult
@@ -81,7 +83,7 @@ public class ManajerController {
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
             System.out.println("filename"+filename);
-            Path path = Paths.get(UPLOADED_FOLDER_PRODUK + filename);
+            Path path = Paths.get(UPLOADED_FOLDER_USER + filename);
             System.out.println(path+" path");
             Files.write(path, bytes);
 
@@ -112,29 +114,15 @@ public class ManajerController {
         return "m_reportProduct";
     }
 
-    @GetMapping(value = "/reportPayment")
-    public String reportPayment(){
-        return "m_reportPayment";
-    }
-
-//    @RequestMapping(value = "/user", method=RequestMethod.GET)
-//    public String user(Model model) {
-//        model.addAttribute("penggunaBaru",new Pengguna() );
-//        model.addAttribute("pengguna", penggunaService.listPengguna());
-//        return "m_user";
-//    }
-//
-//    @RequestMapping(value="/user/create", method=RequestMethod.POST)
-//    public String simpan(Pengguna penggunaa, Model model){
-//        System.out.println("simpan");
-//        Pengguna pengguna = penggunaService.saveOrUpdate(penggunaa);
-//        model.addAttribute("pengguna", penggunaService.listPengguna());
-//        return "redirect:/m_user";
+//    @GetMapping(value = "/reportPayment")
+//    public String reportPayment(){
+//        return "m_reportPayment";
 //    }
 
     @RequestMapping(value = "/user",method = RequestMethod.GET)
-    public String User(Model model, HttpSession session){
+    public String User(HttpSession session, Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
         model.addAttribute("userPOS",true);
         session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
         session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
@@ -149,28 +137,30 @@ public class ManajerController {
         }
     }
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\src\\main\\resources\\static\\assets\\image\\user\\";
-
+    private static String UPLOADED_FOLDER = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\ext-resources\\user\\";
     @PostMapping("/user/create")
     public String buatUser(@RequestParam("file") MultipartFile file, @Valid PenggunaDTO penggunaDTO, BindingResult bindingResult
     ){
-        penggunaDTO.setFoto_pengguna(file.getOriginalFilename());
-        System.out.println("ini "+bindingResult.toString());
-        try {
-            String filename;
-            System.out.println("nama foto" +file.getOriginalFilename().toString());
-            if(file.getOriginalFilename() == null || file.getOriginalFilename().toString().equalsIgnoreCase("")){
-                filename = "defaultProfile.png";
-            }else{
-                filename = file.getOriginalFilename();
-            }
+        String fileName = file.getOriginalFilename();
 
-            // Get the file and save it somewhere
-            byte[] bytes = file.getBytes();
-            System.out.println("filename"+filename);
-            Path path = Paths.get(UPLOADED_FOLDER + filename);
-            System.out.println(path+" path");
-            Files.write(path, bytes);
+        try {
+            if(!file.getOriginalFilename().equalsIgnoreCase("")){
+                long name = System.currentTimeMillis();
+                String extensi = fileName.substring(fileName.lastIndexOf(".")+1);
+                System.out.println(name+"."+extensi);
+                fileName = name+"."+extensi;
+                penggunaDTO.setFoto_pengguna(fileName);
+
+                byte[] bytes = file.getBytes();
+                Path path = Paths.get(UPLOADED_FOLDER + fileName);
+                Files.write(path,bytes);
+                penggunaService.saveOrUpdated(penggunaDTO);
+
+            } else{
+                Pengguna foto = akunService.findByUsername(penggunaDTO.getUsername());
+                penggunaDTO.setFoto_pengguna(foto.getFoto_pengguna());
+                penggunaService.saveOrUpdated(penggunaDTO);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -184,7 +174,7 @@ public class ManajerController {
     }
 
     @GetMapping(value = "/edit")
-    public String edit(Model model,  HttpSession session) {
+    public String edit(HttpSession session, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("profilePOS",true);
         model.addAttribute("pengguna", akunService.findByUsername(authentication.getName()));
@@ -198,22 +188,39 @@ public class ManajerController {
     public String editUser(@RequestParam("file") MultipartFile file, @Valid PenggunaDTO penggunaDTO
     ){
 
-        penggunaDTO.setFoto_pengguna(file.getOriginalFilename());
+        String fileName = file.getOriginalFilename();
+
         try {
-            String filename;
-            System.out.println("nama foto" +file.getOriginalFilename().toString());
-            if(file.getOriginalFilename() == null || file.getOriginalFilename().toString().equalsIgnoreCase("")){
-                filename = "defaultProfile.png";
-            }else{
-                filename = file.getOriginalFilename();
+            if(!file.getOriginalFilename().equalsIgnoreCase("")){
+                long name = System.currentTimeMillis();
+                String extensi = fileName.substring(fileName.lastIndexOf(".")+1);
+                System.out.println(name+"."+extensi);
+                fileName = name+"."+extensi;
+                penggunaDTO.setFoto_pengguna(fileName);
+
+                byte[] bytes = file.getBytes();
+                Path path = Paths.get(UPLOADED_FOLDER + fileName);
+                Files.write(path,bytes);
+                penggunaService.saveOrUpdated(penggunaDTO);
+
+            } else{
+                Pengguna foto = akunService.findByUsername(penggunaDTO.getUsername());
+                penggunaDTO.setFoto_pengguna(foto.getFoto_pengguna());
+                penggunaService.saveOrUpdated(penggunaDTO);
             }
-            byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOADED_FOLDER + filename);
-            Files.write(path, bytes);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        penggunaService.saveOrUpdated(penggunaDTO);
         return "redirect:/edit";
     }
+
+    @GetMapping(value = "/itemMapping")
+    public String rak(HttpSession session, Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        return "rak";
+    }
+
 }

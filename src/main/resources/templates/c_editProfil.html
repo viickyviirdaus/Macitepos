@@ -18,7 +18,7 @@
     <!-- MODAL EDIT PROFILE -->
     <div class="modal fade" id="tambahCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content" >
                 <form class="form-horizontal" th:object="${pengguna}" th:action="@{/kasir-profile/save}" method="post" enctype="multipart/form-data">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -101,7 +101,7 @@
             </thead>
             <tbody>
             <tr th:each="p : ${pengguna}">
-                <td><img th:src="@{${'/assets/image/user/   ' + p.foto_pengguna}}" style="max-height: 40px"/></td>
+                <td><img th:src="@{${'image/user/' + p.foto_pengguna}}" style="max-height: 40px"/></td>
                 <td th:text="${p.id_pengguna}"></td>
                 <td th:text="${p.nama_pengguna}"></td>
                 <td th:text="${p.alamat_pengguna}"></td>

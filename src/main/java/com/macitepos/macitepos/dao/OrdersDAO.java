@@ -1,6 +1,5 @@
 package com.macitepos.macitepos.dao;
 
-import com.macitepos.macitepos.model.Produk;
 import com.macitepos.macitepos.model.Transaksi_penjualan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -70,6 +69,26 @@ public class OrdersDAO {
         List<Transaksi_penjualan> p = (List<Transaksi_penjualan>) q.getResultList();
         em.close();
         return p;
+    }
+
+    public List<Transaksi_penjualan> generalLedger(String waktu){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query q = em.createNativeQuery("SELECT id_penjualan, date_trunc(:waktu, created_at) created_at, diskon, kembalian_penjualan, pembayaran_penjualan, total_penjualan, member_id_member, pengguna_id_pengguna, total_barang_dijual FROM Transaksi_penjualan GROUP BY id_penjualan ORDER BY created_at DESC",Transaksi_penjualan.class);
+        q.setParameter("waktu",waktu);
+        List<Transaksi_penjualan> dto = (List<Transaksi_penjualan>) q.getResultList();
+        em.close();
+        return dto;
+    }
+
+    public List<Transaksi_penjualan> grafik(String waktu){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query q = em.createNativeQuery("SELECT id_penjualan, date_trunc(:waktu, created_at) created_at, diskon, kembalian_penjualan, pembayaran_penjualan, total_penjualan, member_id_member, pengguna_id_pengguna, total_barang_dijual FROM Transaksi_penjualan GROUP BY id_penjualan ORDER BY created_at ASC",Transaksi_penjualan.class);
+        q.setParameter("waktu",waktu);
+        List<Transaksi_penjualan> dto = (List<Transaksi_penjualan>) q.getResultList();
+        em.close();
+        return dto;
     }
 
     public Long jumlahOrder(){

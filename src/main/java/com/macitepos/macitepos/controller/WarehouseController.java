@@ -2,6 +2,8 @@ package com.macitepos.macitepos.controller;
 
 import com.macitepos.macitepos.dto.PenggunaDTO;
 import com.macitepos.macitepos.dto.ProdukDTO;
+import com.macitepos.macitepos.model.Pengguna;
+import com.macitepos.macitepos.model.Produk;
 import com.macitepos.macitepos.services.AkunService;
 import com.macitepos.macitepos.services.PenggunaService;
 import com.macitepos.macitepos.services.ProdukService;
@@ -42,6 +44,7 @@ public class WarehouseController {
 
     @RequestMapping(value = "/warehouse")
     public String warehouse(Model model, HttpSession session) {
+        model.addAttribute("warehousePOS",true);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
         session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
@@ -49,53 +52,61 @@ public class WarehouseController {
         if (produkService.showAll().isEmpty()) {
             return "w_dashboard";
         } else {
-            model.addAttribute("produk", produkService.showAll());
+            model.addAttribute("produkApp", produkService.showAllApproved());
+            model.addAttribute("produkDis", produkService.showAllDissapproved());
             model.addAttribute("produkBaru", new ProdukDTO());
-            System.out.println("Controller user jalan");
+            System.out.println("Controller ware jalan");
             return "w_dashboard";
         }
     }
 
-    @RequestMapping(value = "/suplier")
-    public String suplier(Model model){
-        suplierService.showAll();
-        model.addAttribute("suplier", suplierService.showAll());
-        return "w_adminSuplier";
-    }
 
         //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER_PRODUK = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\src\\main\\resources\\static\\assets\\image\\product\\";
+    private static String UPLOADED_FOLDER_PRODUK = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\ext-resources\\product\\";
 
     @PostMapping("/warehouse-product/create")
     public String buatProduk(@RequestParam("file") MultipartFile file, @Valid ProdukDTO produkDTO
     ){
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         produkDTO.setUpdated_by(authentication.getName());
         produkDTO.setFoto_produk(file.getOriginalFilename());
+        String fileName = file.getOriginalFilename();
+
         try {
-            String filename;
-            System.out.println("nama foto" +file.getOriginalFilename().toString());
-            if(file.getOriginalFilename() == null || file.getOriginalFilename().toString().equalsIgnoreCase("")){
-                filename = "defaultProfile.png";
-            }else{
-                filename = file.getOriginalFilename();
-            }
+            if(!file.getOriginalFilename().equalsIgnoreCase("")) {
+                long name = System.currentTimeMillis();
+                String extensi = fileName.substring(fileName.lastIndexOf(".") + 1);
+                System.out.println(name + "." + extensi);
+                fileName = name + "." + extensi;
+                produkDTO.setFoto_produk(fileName);
 
-            // Get the file and save it somewhere
-            byte[] bytes = file.getBytes();
-            System.out.println("filename"+filename);
-            Path path = Paths.get(UPLOADED_FOLDER_PRODUK + filename);
-            System.out.println(path+" path");
-            Files.write(path, bytes);
 
-        } catch (IOException e) {
+                // Get the file and save it somewhere
+                byte[] bytes = file.getBytes();
+                Path path = Paths.get(UPLOADED_FOLDER_PRODUK + fileName);
+                Files.write(path, bytes);
+                produkService.saveOrUpdated(produkDTO);
+            } else{
+            ProdukDTO foto = produkService.findById(produkDTO.getId_produk());
+            produkDTO.setFoto_produk(foto.getFoto_produk());
+            produkService.saveOrUpdated(produkDTO);
+        }
+
+    } catch (IOException e) {
             e.printStackTrace();
         }
-        produkService.saveOrUpdated(produkDTO);
 
         System.out.println("produk create");
         return "redirect:/warehouse";
     }
+
+    @RequestMapping(value = "/warehouse-product/edit/{id}", method = RequestMethod.GET)
+    public String editProduk(@PathVariable Integer id, Model model){
+        model.addAttribute("produk", produkService.getById(id));
+        return "w_formProduk";
+    }
+
 
     @PostMapping("/warehouse-product/restock")
     public String restock(ProdukDTO produkDTO){
@@ -106,8 +117,19 @@ public class WarehouseController {
         return "redirect:/warehouse";
     }
 
+    @PostMapping("/warehouse-product/manage")
+    public String manage(ProdukDTO produkDTO){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String updated_by = akunService.findByUsername(authentication.getName()).toString();
+        produkDTO.setUpdated_by(updated_by);
+        produkService.manage(produkDTO);
+        return "redirect:/warehouse";
+    }
+
+
     @GetMapping(value = "/warehouse-editProfile")
     public String editProfileWA(Model model){
+        model.addAttribute("warehouseeditPOS",true);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("pengguna", akunService.findByUsername(authentication.getName()));
 //        model.addAttribute("penggunaBaru", new PenggunaDTO());
@@ -115,6 +137,7 @@ public class WarehouseController {
     }
     @GetMapping(value = "/warehouse-rak")
     public String rak(HttpSession session, Model model){
+        model.addAttribute("rakPOS",true);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
         session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());

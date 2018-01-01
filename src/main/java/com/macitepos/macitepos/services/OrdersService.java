@@ -1,6 +1,5 @@
 package com.macitepos.macitepos.services;
 
-import com.macitepos.macitepos.dao.Detil_PenjualanDAO;
 import com.macitepos.macitepos.dao.MembersDAO;
 import com.macitepos.macitepos.dao.OrdersDAO;
 import com.macitepos.macitepos.dao.PenggunasDAO;
@@ -67,6 +66,16 @@ public class OrdersService {
         return convertToDTOAPI(t);
     }
 
+    public List<Transaksi_penjualanDTO> generalLedger(String waktu, String orderBy){
+        if (orderBy.equalsIgnoreCase("desc")){
+            List<Transaksi_penjualan> dto = ordersDAO.generalLedger(waktu);
+            return convertToDTOAPI(dto);
+        } else {
+            List<Transaksi_penjualan> dto = ordersDAO.grafik(waktu);
+            return convertToDTOAPI(dto);
+        }
+    }
+
     public List<Transaksi_penjualanDTO> findLastOrder(){
         List<Transaksi_penjualan> t = ordersDAO.findLastOrder();
         return convertToDTOAPI(t);
@@ -92,11 +101,22 @@ public class OrdersService {
     }
 
     public Long jumlahOrder(){
-        return ordersDAO.jumlahOrder();
+        try {
+            return ordersDAO.jumlahOrder();
+        }catch (Exception e){
+            e.getMessage();
+        }
+
+        return null;
     }
 
     public Long jumlahPayment(){
-        return  ordersDAO.jumlahPayment();
+        try {
+            return ordersDAO.jumlahPayment();
+        }catch (Exception e){
+            e.getMessage();
+        }
+        return  null;
     }
 
 }

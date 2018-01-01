@@ -25,82 +25,84 @@
                         <h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input type="hidden" th:field="*{id_pengguna}"/>
-                                <div class="form-group">
-                                    <label for="fullName">Full Name</label>
-                                    <input type="text" class="form-control" id="fullName" th:field="*{nama_pengguna}" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Username</label>
-                                    <input type="text" class="form-control" th:field="*{username}"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Address">Address</label>
-                                    <input type="text" class="form-control" id="Address" th:field="*{alamat_pengguna}"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="DOB">Date Of Birth</label>
-                                    <input type="date" class="form-control" id="DOB" th:field="*{tanggal_lahir}"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" th:field="*{email}"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <input type="text" class="form-control" th:field="*{password}" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Status Pengguna</label>
-                                    <input type="text" class="form-control" th:field="*{status_pengguna}" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Kategori</label>
-                                    <label class="radio-inline">
-                                        <input  type="radio" value="kasir" name="inlineRadioOptions" id="inlineRadio1" th:field="*{level}"/> Kasir
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input  type="radio" value="warehouse" name="inlineRadioOptions" id="inlineRadio2" th:field="*{level}"/> Warehouse Admin
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label>Created At</label>
-                                    <input type="hidden" name="startdate" id="todayDate" th:field="*{created_at}"/>
-                                    <!--<script type="text/javascript">-->
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="hidden" th:field="*{id_pengguna}"/>
+                                    <div class="form-group">
+                                        <label for="fullName">Full Name</label>
+                                        <input type="text" class="form-control" id="fullName" th:field="*{nama_pengguna}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input type="text" class="form-control" th:field="*{username}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Address">Address</label>
+                                        <input type="text" class="form-control" id="Address" th:field="*{alamat_pengguna}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="DOB">Date Of Birth</label>
+                                        <input type="date" class="form-control" id="DOB" th:field="*{tanggal_lahir}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" th:field="*{email}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input type="text" class="form-control" th:field="*{password}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Status Pengguna</label>
+                                        <input type="text" class="form-control" th:field="*{status_pengguna}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Kategori</label>
+                                        <label class="radio-inline">
+                                            <input  type="radio" value="kasir" name="inlineRadioOptions" id="inlineRadio1" th:field="*{level}"/> Kasir
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input  type="radio" value="warehouse" name="inlineRadioOptions" id="inlineRadio2" th:field="*{level}"/> Warehouse Admin
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Created At</label>
+                                        <input type="hidden" name="startdate" id="todayDate" th:field="*{created_at}"/>
+                                        <!--<script type="text/javascript">-->
                                         <!--function getDates()-->
                                         <!--{-->
-                                            <!--var today = new Date();-->
-                                            <!--var dd = today.getDate();-->
-                                            <!--var mm = today.getMonth()+1; //January is 0!-->
-                                            <!--var yyyy = today.getFullYear();-->
-                                            <!--var hh = today.getHours();-->
-                                            <!--var m = today.getMinutes();-->
-                                            <!--var ss = today.getSeconds();-->
-                                            <!--today = yyyy+"-"+mm+"-"+dd+" "+hh+":"+m+":"+ss;-->
+                                        <!--var today = new Date();-->
+                                        <!--var dd = today.getDate();-->
+                                        <!--var mm = today.getMonth()+1; //January is 0!-->
+                                        <!--var yyyy = today.getFullYear();-->
+                                        <!--var hh = today.getHours();-->
+                                        <!--var m = today.getMinutes();-->
+                                        <!--var ss = today.getSeconds();-->
+                                        <!--today = yyyy+"-"+mm+"-"+dd+" "+hh+":"+m+":"+ss;-->
 
-                                            <!--document.getElementById("todayDate").value = today;-->
+                                        <!--document.getElementById("todayDate").value = today;-->
                                         <!--}-->
 
                                         <!--//call getDate() when loading the page-->
                                         <!--getDates();-->
-                                    <!--</script>-->
-                                </div>
-
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label >Photo</label>
-                                    <div >
-                                        <img style="width: 200px; margin-bottom:10px;" id="output" alt="Preview Image" />
+                                        <!--</script>-->
                                     </div>
-                                    <input type="file" th:name="file" onchange="loadFile(event)"/>                                    <script>
+
+                                </div>
+                                <div class="col-md-6" style="padding-left: 30px">
+                                    <div class="form-group">
+                                        <label >Photo</label>
+                                        <div >
+                                            <img style="width: 200px; margin-bottom:10px;" id="output" alt="Preview Image" />
+                                        </div>
+                                        <input type="file" th:name="file" onchange="loadFile(event)"/>                                    <script>
                                         var loadFile = function(event) {
                                             var output = document.getElementById('output');
                                             output.src = URL.createObjectURL(event.target.files[0]);
                                         };
                                     </script>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -132,7 +134,7 @@
             </thead>
             <tbody>
             <tr th:each="penggunas : ${pengguna}">
-                <td><img th:src="@{${'/assets/image/user/' + penggunas.foto_pengguna}}" style="max-height: 40px"/></td>
+                <td><img th:src="@{${'image/user/'+penggunas.foto_pengguna}}" style="max-height: 40px"/></td>
                 <td th:text="${penggunas.id_pengguna}"></td>
                 <td th:text="${penggunas.nama_pengguna}"></td>
                 <td th:text="${penggunas.alamat_pengguna}"></td>
