@@ -22,31 +22,21 @@
                 <button type="button" data-toggle="modal" data-target="#restock" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus fa-fw" aria-hiden="true"></i>Re-Stock</button>
                 <div class="input-group">
                     <button type="button" data-toggle="modal" data-target="#manage" class="btn btn-primary text-center" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus fa-fw" aria-hiden="true"></i>Manage Stock</button>
-                    <button type="button" class="btn btn-default dropdown-toggle text-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="caret"></span> Category</button>
-                    <div class="input-group-btn">
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="#">Food</a></li>
-                            <li><a href="#">Drink</a></li>
-                            <li><a href="#">Drugs</a></li>
-                            <li><a href="#">Cosmetic</a></li>
-                            <li><a href="#">Office</a></li>
-                            <li><a href="#">Household Equipment</a></li>
-                        </ul>
-                    </div><!-- /btn-group -->
+
                 </div>
                 <a data-toggle="tab" href="#approved"><button type="button" class="btn btn-success text-center active" aria-haspopup="true" aria-expanded="false">Approved</button></a>
                 <a data-toggle="tab" href="#dissapproved"><button type="button" class="btn btn-warning text-center" aria-haspopup="true" aria-expanded="false" >Disapproved</button></a>
             </div>
         </form>
     </div>
-    <!-- MODAL TAMBAH CUSTOMER -->
+    <!-- MODAL TAMBAH PRODUK -->
     <div class="modal fade" id="tambahProduk" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form class="form-horizontal" th:object="${produkBaru}" th:action="@{/warehouse-product/create}" method="post" enctype="multipart/form-data">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Tambah Produk</h4>
+                        <h4 class="modal-title" >Tambah Produk</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -133,12 +123,12 @@
                                 <div class="form-group">
                                     <label >Photo</label>
                                     <div >
-                                        <img style="width: 200px; margin-bottom:10px;" id="output" alt="Preview Image"/>
+                                        <img style="width: 200px; margin-bottom:10px;" id="output2" alt="Preview Image"/>
                                     </div>
                                     <input type="file" name="file" onchange="loadFile(event)"/>
                                     <script>
                                         var loadFile = function(event) {
-                                            var output = document.getElementById('output');
+                                            var output = document.getElementById('output2');
                                             output.src = URL.createObjectURL(event.target.files[0]);
                                         };
                                     </script>
@@ -156,7 +146,6 @@
     </div>
 
 
-
     <!-- MODAL RESTOCK -->
     <div class="modal fade" id="restock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -164,14 +153,14 @@
                 <form th:object="${produkBaru}" th:action="@{/warehouse-product/restock}" method="post">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Re-Stock</h4>
+                    <h4 class="modal-title" >Re-Stock</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Code Product</label>
+                                    <label >Code Product</label>
                                     <input type="number" class="form-control"  placeholder="Code Product" th:field="*{id_produk}"/>
                                 </div>
                                 <div class="form-group">
@@ -200,7 +189,7 @@
                 <form th:object="${produkBaru}" th:action="@{/warehouse-product/manage}" method="post">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Re-Stock</h4>
+                        <h4 class="modal-title" >Manage</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -230,17 +219,17 @@
     </div>
 
     <!-- Table -->
-    <div class="tab-content">
-    <div class="container-fluid tab-pane fade in active" id="approved">
-        <table class="table table-striped " style="margin-top: 20px;" id="productTableApp">
+    <div class="tab-content" >
+    <div class="container-fluid tab-pane fade in active" id="approved" th:if="${not #lists.isEmpty(produkApp)}">
+        <table class="table table-striped " style="margin-top: 20px;" >
             <thead>
             <tr style="background-color: #00B900">
                 <th>Image</th>
                 <th>Code</th>
                 <th>Name</th>
                 <th>Price</th>
-                <th>Stock in Shop</th>
-                <th>Stock Total</th>
+                <th>Stock Shop</th>
+                <th>Stock Ware house</th>
                 <th>Re Stock</th>
                 <th>Category</th>
                 <th>Number Rack Shop</th>
@@ -253,33 +242,43 @@
                 <th>Action</th>
             </tr>
             </thead>
-            <!--<tbody>-->
-            <!--<tr>-->
-            <!--<td><img th:src="@{assets/image/defaultBarang.png}" style="max-height: 30px"/></td>-->
-            <!--<td>081441292838</td>-->
-            <!--<td>Teh Pucuk Harum</td>-->
-            <!--<td>Rp. 999999</td>-->
-            <!--<td>150</td>-->
-            <!--<td>Drink</td>-->
-            <!--<td>10/08/2017 <br/>09:45</td>-->
-            <!--<td>Lukman</td>-->
-            <!--<td>01/07/2017 <br/>07:42</td>-->
-            <!--</tr>-->
-            <!--</tbody>-->
+            <tbody>
+            <tr th:each="pr : ${produkApp}">
+                <td><img th:src="@{${'image/product/'+pr.foto_produk}}" style="max-height: 40px"/></td>
+                <td th:text="${pr.id_produk}"></td>
+                <td th:text="${pr.nama_produk}"></td>
+                <td th:text="${pr.harga_penjualan}"></td>
+                <td th:text="${pr.stok_toko}"></td>
+                <td th:text="${pr.stok_gudang}"></td>
+                <td th:text="${pr.stok_ulang}"></td>
+                <td th:text="${pr.kategori}"></td>
+                <td th:text="${pr.no_rak_toko}"></td>
+                <td th:text="${pr.harga_beli}"></td>
+                <td th:text="${pr.harga_penjualan}"></td>
+                <td th:text="${pr.status_produk}"></td>
+                <td th:text="${pr.last_updated}"></td>
+                <td th:text="${pr.updated_by}"></td>
+                <td th:text="${pr.created_at}"></td>
+                <td>
+                    <a th:href="${'warehouse-product/edit/'+pr.id_produk}">Edit</a>
+                </td>
+            </tr>
+
+            </tbody>
         </table>
     </div>
 
     <!-- Table -->
     <div class="container-fluid tab-pane fade" id="dissapproved">
-        <table class="table table-striped " style="margin-top: 20px" id="productTableDis">
+        <table class="table table-striped " style="margin-top: 20px" >
             <thead>
             <tr style="background-color: #FEA72C">
                 <th>Image</th>
                 <th>Code</th>
                 <th>Name</th>
                 <th>Price</th>
-                <th>Stock in Shop</th>
-                <th>Stock Total</th>
+                <th>Stock Shop</th>
+                <th>Stock Ware house</th>
                 <th>Re Stock</th>
                 <th>Category</th>
                 <th>Number Rack Shop</th>
@@ -292,19 +291,29 @@
                 <th>Action</th>
             </tr>
             </thead>
-            <!--<tbody>-->
-            <!--<tr>-->
-            <!--<td><img th:src="@{assets/image/defaultBarang.png}" style="max-height: 30px"/></td>-->
-            <!--<td>081441292838</td>-->
-            <!--<td>Teh Pucuk Harum</td>-->
-            <!--<td>Rp. 999999</td>-->
-            <!--<td>150</td>-->
-            <!--<td>Drink</td>-->
-            <!--<td>10/08/2017 <br/>09:45</td>-->
-            <!--<td>Lukman</td>-->
-            <!--<td>01/07/2017 <br/>07:42</td>-->
-            <!--</tr>-->
-            <!--</tbody>-->
+            <tbody>
+            <tr th:each="pr : ${produkDis}">
+                <td><img th:src="@{${'image/product/'+pr.foto_produk}}" style="max-height: 40px"/></td>
+                <td th:text="${pr.id_produk}"></td>
+                <td th:text="${pr.nama_produk}"></td>
+                <td th:text="${pr.harga_penjualan}"></td>
+                <td th:text="${pr.stok_toko}"></td>
+                <td th:text="${pr.stok_gudang}"></td>
+                <td th:text="${pr.stok_ulang}"></td>
+                <td th:text="${pr.kategori}"></td>
+                <td th:text="${pr.no_rak_toko}"></td>
+                <td th:text="${pr.harga_beli}"></td>
+                <td th:text="${pr.harga_penjualan}"></td>
+                <td th:text="${pr.status_produk}"></td>
+                <td th:text="${pr.last_updated}"></td>
+                <td th:text="${pr.updated_by}"></td>
+                <td th:text="${pr.created_at}"></td>
+                <td>
+                    <a th:href="${'warehouse-product/edit/'+pr.id_produk}">Edit</a>
+                </td>
+            </tr>
+
+            </tbody>
         </table>
     </div>
     </div>
@@ -321,20 +330,20 @@
                         <div class="col-md-6">
                             <form>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Code Product</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Code Product"/>
+                                    <label >Code Product</label>
+                                    <input type="text" class="form-control"  placeholder="Code Product"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Name Product</label>
-                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Name Product"/>
+                                    <input type="text" class="form-control"  placeholder="Name Product"/>
                                 </div>
                                 <div class="form-group readonly">
                                     <label for="exampleInputPassword1">Stock</label>
-                                    <input type="text" readonly="" class="form-control" id="exampleInputPassword1" placeholder="0"/>
+                                    <input type="text" readonly="" class="form-control"  placeholder="0"/>
                                 </div>
                                 <div class="form-group readonly">
                                     <label for="exampleInputPassword1">Category</label>
-                                    <input type="text" readonly="" class="form-control" id="exampleInputPassword1" placeholder="Category"/>
+                                    <input type="text" readonly="" class="form-control"  placeholder="Category"/>
                                 </div>
                             </form>
                         </div>

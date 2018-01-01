@@ -21,8 +21,6 @@ public class ProdukService {
     public ProdukDTO saveOrUpdated(ProdukDTO produkDTO){
         if (produkDTO.getStatus_produk() == null){
             produkDTO.setStatus_produk("dissapproved");
-        }else{
-            produkDTO.setStatus_produk("approved");
         }
         try{
             Produk produk = new Produk(produkDTO.getId_produk(), produkDTO.getNama_produk(), produkDTO.getKategori(),
@@ -107,6 +105,12 @@ public class ProdukService {
         return convertToDto(p);
     }
 
+    public ProdukDTO getById(int id){
+        Produk p = produkDAO.findById(id);
+        produkDAO.saveOrUpdate(p);
+        return convertToDto(p);
+    }
+
     public List<ProdukDTO> search(String key){
         System.out.println("Parameter Key di product service search " + key);
         List<Produk> p = produkDAO.findByKey(key);
@@ -140,7 +144,12 @@ public class ProdukService {
     }
 
     public Long jumlahProduk(){
-        return produkDAO.jumlahProduk();
+        try {
+            produkDAO.jumlahProduk();
+        }catch (Exception e){
+            e.getMessage();
+        }
+        return null;
     }
 
     public ProdukDTO restock(ProdukDTO produkDTO){

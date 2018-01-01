@@ -45,7 +45,7 @@ $(document).ready (function() {
             { "mData": "nama_produk" },
             { "mData": "harga_penjualan" },
             { "mData": "stok_toko" },
-            { "mData": "stok_total" },
+            { "mData": "stok_gudang" },
             { "mData": "stok_ulang" },
             { "mData": "kategori" },
             { "mData": "no_rak_toko" },
@@ -96,7 +96,7 @@ $(document).ready (function() {
             { "mData": "nama_produk" },
             { "mData": "harga_penjualan" },
             { "mData": "stok_toko" },
-            { "mData": "stok_total" },
+            { "mData": "stok_gudang" },
             { "mData": "stok_ulang" },
             { "mData": "kategori" },
             { "mData": "no_rak_toko" },
@@ -159,7 +159,7 @@ $(document).ready (function() {
             { "mData": "nama_produk" },
             { "mData": "harga_penjualan" },
             { "mData": "stok_toko" },
-            { "mData": "stok_total" },
+            { "mData": "stok_gudang" },
             { "mData": "stok_ulang" },
             { "mData": "kategori" },
             { "mData": "no_rak_toko" },
@@ -210,7 +210,7 @@ $(document).ready (function() {
             { "mData": "nama_produk" },
             { "mData": "harga_penjualan" },
             { "mData": "stok_toko" },
-            { "mData": "stok_total" },
+            { "mData": "stok_gudang" },
             { "mData": "stok_ulang" },
             { "mData": "kategori" },
             { "mData": "no_rak_toko" },
@@ -240,7 +240,7 @@ $(document).ready (function() {
     $('#productTableD tbody').on( 'click', 'tr', function () {
 
         var datad = tabled.row(this).data().id_produk;
-        console.log(datad)
+        console.log(datad);
         ubahStatus(datad);
 
         $('#productTableD').DataTable().ajax.reload();
