@@ -12,14 +12,14 @@
 <div class="body">
     <div class="container-fluid">
         <div class="page-header">
-            <h2 class="text-center">Header<!-- <small>Subtext for header</small> --></h2>
+            <h2 class="text-center">Edit Profile<!-- <small>Subtext for header</small> --></h2>
         </div>
     </div>
     <!-- MODAL EDIT PROFILE -->
     <div class="modal fade" id="tambahCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form class="form-horizontal" th:object="${penggunaBaru}" th:action="@{/user/create}" method="post" enctype="multipart/form-data">
+                <form class="form-horizontal" th:object="${pengguna}" th:action="@{/warehouse-profile/save}" method="post" enctype="multipart/form-data">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Tambah Customer</h4>
@@ -28,13 +28,15 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <input type="hidden" th:field="*{id_pengguna}"/>
+                                <input type="hidden" th:field="*{created_at}"/>
+                                <input type="hidden" th:field="*{last_modified}"/>
+                                <input type="hidden" th:field="*{status_pengguna}"/>
+                                <input type="hidden" th:field="*{level}"/>
+                                <input type="hidden" th:field="*{username}"/>
+
                                 <div class="form-group">
                                     <label for="fullName">Full Name</label>
                                     <input type="text" class="form-control" id="fullName" th:field="*{nama_pengguna}" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Username</label>
-                                    <input type="text" class="form-control" th:field="*{username}"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="Address">Address</label>
@@ -52,41 +54,6 @@
                                     <label>Password</label>
                                     <input type="text" class="form-control" th:field="*{password}" />
                                 </div>
-                                <div class="form-group">
-                                    <label>Status Pengguna</label>
-                                    <input type="text" class="form-control" th:field="*{status_pengguna}" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Kategori</label>
-                                    <label class="radio-inline">
-                                        <input  type="radio" value="kasir" name="inlineRadioOptions" id="inlineRadio1" th:field="*{level}"/> Kasir
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input  type="radio" value="warehouse" name="inlineRadioOptions" id="inlineRadio2" th:field="*{level}"/> Warehouse Admin
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label>Created At</label>
-                                    <input type="hidden" name="startdate" id="todayDate" th:field="*{created_at}"/>
-                                    <script type="text/javascript">
-                                        function getDates()
-                                        {
-                                            var today = new Date();
-                                            var dd = today.getDate();
-                                            var mm = today.getMonth()+1; //January is 0!
-                                            var yyyy = today.getFullYear();
-                                            var hh = today.getHours();
-                                            var m = today.getMinutes();
-                                            var ss = today.getSeconds();
-                                            today = yyyy+"-"+mm+"-"+dd+" "+hh+":"+m+":"+ss;
-
-                                            document.getElementById("todayDate").value = today;
-                                        }
-
-                                        //call getDate() when loading the page
-                                        getDates();
-                                    </script>
-                                </div>
 
                             </div>
                             <div class="col-md-6">
@@ -95,7 +62,7 @@
                                     <div >
                                         <img style="width: 200px; margin-bottom:10px;" id="output" alt="Preview Image"/>
                                     </div>
-                                    <input type="file" name="image"  accept="image/*" onchange="loadFile(event)"  th:field="*{foto_pengguna}"/>
+                                    <input type="file" name="file"  accept="image/*" onchange="loadFile(event)" />
                                     <script>
                                         var loadFile = function(event) {
                                             var output = document.getElementById('output');
@@ -131,20 +98,20 @@
                 <th>Action</th>
             </tr>
             </thead>
-            <!--<tbody>-->
-            <!--<tr>-->
-                <!--<td><img src="assets/image/defaultProfile.png" style="max-height: 40px"/></td>-->
-                <!--<td>1</td>-->
-                <!--<td>Lukman Swiseteger</td>-->
-                <!--<td>Jalan in Aja</td>-->
-                <!--<td>01/07/2017</td>-->
-                <!--<td>lukman@gmail.com</td>-->
-                <!--<td>Kasir</td>-->
-                <!--<td>01/07/2017 <br>07:42</td>-->
-                <!--<td>01/07/2017 <br>07:42</td>-->
-                <!--<td><button type="button" data-toggle="modal" data-target="#tambahCustomer" class="btn btn-info">Edit</button></td>-->
-            <!--</tr>-->
-            <!--</tbody>-->
+            <tbody>
+            <tr th:each="penggunas : ${pengguna}">
+                <td><img th:src="@{${'/assets/image/user/' + penggunas.foto_pengguna}}" style="max-height: 40px"/></td>
+                <td th:text="${penggunas.id_pengguna}"></td>
+                <td th:text="${penggunas.nama_pengguna}"></td>
+                <td th:text="${penggunas.alamat_pengguna}"></td>
+                <td th:text="${penggunas.tanggal_lahir}"></td>
+                <td th:text="${penggunas.email}"></td>
+                <td th:text="${penggunas.level}"></td>
+                <td th:text="${penggunas.created_at}"></td>
+                <td th:text="${penggunas.last_modified}"></td>
+                <td><button type="button" data-toggle="modal" data-target="#tambahCustomer" class="btn btn-info">Edit</button></td>
+            </tr>
+            </tbody>
         </table>
     </div>
 </div>
