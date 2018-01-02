@@ -58,8 +58,8 @@
                                         <input type="number" class="form-control" th:field="*{harga_penjualan}"/>
                                     </div>
                                     <!--<div class="form-group">-->
-                                        <!--<label>Stock in shop</label>-->
-                                        <input type="hidden" class="form-control" th:field="*{stok_toko}"/>
+                                    <!--<label>Stock in shop</label>-->
+                                    <input type="hidden" class="form-control" th:field="*{stok_toko}"/>
                                     <!--</div>-->
                                     <div class="form-group">
                                         <label>Stock in warehouse</label>
@@ -69,8 +69,8 @@
                                     <input type="hidden" class="form-control" th:field="*{stok_total}" />
 
                                     <!--<div class="form-group">-->
-                                        <!--<label>Re Stock</label>-->
-                                        <input type="hidden" class="form-control" th:field="*{stok_total}" />
+                                    <!--<label>Re Stock</label>-->
+                                    <input type="hidden" class="form-control" th:field="*{stok_total}" />
                                     <!--</div>-->
                                     <div class="form-group" id="categoryProduct">
                                         <label>Categori</label>
@@ -101,13 +101,13 @@
                                         <span id="sugestionRak"></span>
                                     </div>
                                     <!--<div class="form-group">-->
-                                        <!--<label>Rak</label>-->
-                                        <!--<br/>-->
-                                        <!--<div id="rakNumber">-->
-                                            <!--&lt;!&ndash;<label class="radio-inline">&ndash;&gt;-->
-                                                <!--&lt;!&ndash;<input type="radio" value="food"  name="inlineRadioOptions" id="A" th:field="*{no_rak_toko}"/> Food&ndash;&gt;-->
-                                            <!--&lt;!&ndash;</label>    &ndash;&gt;-->
-                                        <!--</div>-->
+                                    <!--<label>Rak</label>-->
+                                    <!--<br/>-->
+                                    <!--<div id="rakNumber">-->
+                                    <!--&lt;!&ndash;<label class="radio-inline">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<input type="radio" value="food"  name="inlineRadioOptions" id="A" th:field="*{no_rak_toko}"/> Food&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</label>    &ndash;&gt;-->
+                                    <!--</div>-->
                                     <!--</div>-->
                                     <div class="form-group">
                                         <input type="hidden" name="startdate" id="todayDate" th:field="*{created_at}"/>
@@ -165,13 +165,13 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form th:object="${produkBaru}" th:action="@{/warehouse-product/restock}" method="post">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" >Re-Stock</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" >Re-Stock</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
 
                                 <div class="form-group">
                                     <label >Code Product</label>
@@ -183,14 +183,14 @@
                                     <input type="hidden" th:filed="*{updated_by}"/>
                                 </div>
 
+                            </div>
                         </div>
-                    </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -234,102 +234,102 @@
 
     <!-- Table -->
     <div class="tab-content" >
-    <div class="container-fluid tab-pane fade in active" id="approved" th:if="${not #lists.isEmpty(produkApp)}">
-        <table class="table table-striped " style="margin-top: 20px;" >
-            <thead>
-            <tr style="background-color: #00B900">
-                <th>Image</th>
-                <th>Code</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Stock Shop</th>
-                <th>Stock Ware house</th>
-                <th>Re Stock</th>
-                <th>Category</th>
-                <th>Number Rack Shop</th>
-                <th>Price Buy</th>
-                <th>Price Sell</th>
-                <th>Status Product</th>
-                <th>Last Update</th>
-                <th>Update By</th>
-                <th>Created at</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="pr : ${produkApp}">
-                <td><img th:src="@{${'image/product/'+pr.foto_produk}}" style="max-height: 40px"/></td>
-                <td th:text="${pr.id_produk}"></td>
-                <td th:text="${pr.nama_produk}"></td>
-                <td th:text="${pr.harga_penjualan}"></td>
-                <td th:text="${pr.stok_toko}"></td>
-                <td th:text="${pr.stok_gudang}"></td>
-                <td th:text="${pr.stok_ulang}"></td>
-                <td th:text="${pr.kategori}"></td>
-                <td th:text="${pr.no_rak_toko}"></td>
-                <td th:text="${pr.harga_beli}"></td>
-                <td th:text="${pr.harga_penjualan}"></td>
-                <td th:text="${pr.status_produk}"></td>
-                <td th:text="${pr.last_updated}"></td>
-                <td th:text="${pr.updated_by}"></td>
-                <td th:text="${pr.created_at}"></td>
-                <td>
-                    <a th:href="${'warehouse-product/edit/'+pr.id_produk}">Edit</a>
-                </td>
-            </tr>
+        <div class="container-fluid tab-pane fade in active" id="approved" th:if="${not #lists.isEmpty(produkApp)}">
+            <table class="table table-striped " style="margin-top: 20px;" >
+                <thead>
+                <tr style="background-color: #00B900">
+                    <th>Image</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Stock Shop</th>
+                    <th>Stock Ware house</th>
+                    <th>Re Stock</th>
+                    <th>Category</th>
+                    <th>Number Rack Shop</th>
+                    <th>Price Buy</th>
+                    <th>Price Sell</th>
+                    <th>Status Product</th>
+                    <th>Last Update</th>
+                    <th>Update By</th>
+                    <th>Created at</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="pr : ${produkApp}">
+                    <td><img th:src="@{${'image/product/'+pr.foto_produk}}" style="max-height: 40px"/></td>
+                    <td th:text="${pr.id_produk}"></td>
+                    <td th:text="${pr.nama_produk}"></td>
+                    <td th:text="${pr.harga_penjualan}"></td>
+                    <td th:text="${pr.stok_toko}"></td>
+                    <td th:text="${pr.stok_gudang}"></td>
+                    <td th:text="${pr.stok_ulang}"></td>
+                    <td th:text="${pr.kategori}"></td>
+                    <td th:text="${pr.no_rak_toko}"></td>
+                    <td th:text="${pr.harga_beli}"></td>
+                    <td th:text="${pr.harga_penjualan}"></td>
+                    <td th:text="${pr.status_produk}"></td>
+                    <td th:text="${pr.last_updated}"></td>
+                    <td th:text="${pr.updated_by}"></td>
+                    <td th:text="${pr.created_at}"></td>
+                    <td>
+                        <a th:href="${'warehouse-product/edit/'+pr.id_produk}">Edit</a>
+                    </td>
+                </tr>
 
-            </tbody>
-        </table>
-    </div>
+                </tbody>
+            </table>
+        </div>
 
-    <!-- Table -->
-    <div class="container-fluid tab-pane fade" id="dissapproved">
-        <table class="table table-striped " style="margin-top: 20px" >
-            <thead>
-            <tr style="background-color: #FEA72C">
-                <th>Image</th>
-                <th>Code</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Stock Shop</th>
-                <th>Stock Ware house</th>
-                <th>Re Stock</th>
-                <th>Category</th>
-                <th>Number Rack Shop</th>
-                <th>Price Buy</th>
-                <th>Price Sell</th>
-                <th>Status Product</th>
-                <th>Last Update</th>
-                <th>Update By</th>
-                <th>Created at</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="pr : ${produkDis}">
-                <td><img th:src="@{${'image/product/'+pr.foto_produk}}" style="max-height: 40px"/></td>
-                <td th:text="${pr.id_produk}"></td>
-                <td th:text="${pr.nama_produk}"></td>
-                <td th:text="${pr.harga_penjualan}"></td>
-                <td th:text="${pr.stok_toko}"></td>
-                <td th:text="${pr.stok_gudang}"></td>
-                <td th:text="${pr.stok_ulang}"></td>
-                <td th:text="${pr.kategori}"></td>
-                <td th:text="${pr.no_rak_toko}"></td>
-                <td th:text="${pr.harga_beli}"></td>
-                <td th:text="${pr.harga_penjualan}"></td>
-                <td th:text="${pr.status_produk}"></td>
-                <td th:text="${pr.last_updated}"></td>
-                <td th:text="${pr.updated_by}"></td>
-                <td th:text="${pr.created_at}"></td>
-                <td>
-                    <a th:href="${'warehouse-product/edit/'+pr.id_produk}">Edit</a>
-                </td>
-            </tr>
+        <!-- Table -->
+        <div class="container-fluid tab-pane fade" id="dissapproved">
+            <table class="table table-striped " style="margin-top: 20px" >
+                <thead>
+                <tr style="background-color: #FEA72C">
+                    <th>Image</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Stock Shop</th>
+                    <th>Stock Ware house</th>
+                    <th>Re Stock</th>
+                    <th>Category</th>
+                    <th>Number Rack Shop</th>
+                    <th>Price Buy</th>
+                    <th>Price Sell</th>
+                    <th>Status Product</th>
+                    <th>Last Update</th>
+                    <th>Update By</th>
+                    <th>Created at</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="pr : ${produkDis}">
+                    <td><img th:src="@{${'image/product/'+pr.foto_produk}}" style="max-height: 40px"/></td>
+                    <td th:text="${pr.id_produk}"></td>
+                    <td th:text="${pr.nama_produk}"></td>
+                    <td th:text="${pr.harga_penjualan}"></td>
+                    <td th:text="${pr.stok_toko}"></td>
+                    <td th:text="${pr.stok_gudang}"></td>
+                    <td th:text="${pr.stok_ulang}"></td>
+                    <td th:text="${pr.kategori}"></td>
+                    <td th:text="${pr.no_rak_toko}"></td>
+                    <td th:text="${pr.harga_beli}"></td>
+                    <td th:text="${pr.harga_penjualan}"></td>
+                    <td th:text="${pr.status_produk}"></td>
+                    <td th:text="${pr.last_updated}"></td>
+                    <td th:text="${pr.updated_by}"></td>
+                    <td th:text="${pr.created_at}"></td>
+                    <td>
+                        <a th:href="${'warehouse-product/edit/'+pr.id_produk}">Edit</a>
+                    </td>
+                </tr>
 
-            </tbody>
-        </table>
-    </div>
+                </tbody>
+            </table>
+        </div>
     </div>
     <!-- MODAL EDIT -->
     <div class="modal fade" id="editBarang" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

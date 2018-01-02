@@ -1,5 +1,6 @@
 package com.macitepos.macitepos.controller;
 
+import com.macitepos.macitepos.dto.PenggunaDTO;
 import com.macitepos.macitepos.dto.ProdukDTO;
 import com.macitepos.macitepos.model.Pengguna;
 import com.macitepos.macitepos.model.Produk;
@@ -12,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -37,6 +39,8 @@ public class WarehouseController {
 
     @Autowired
     private SuplierService suplierService;
+
+    private static String UPLOADED_FOLDER = "D:/blibli/PROJECT/Macitepos/src/main/resources/static/assets/upload/";
 
     @RequestMapping(value = "/warehouse")
     public String warehouse(Model model, HttpSession session) {
@@ -134,7 +138,7 @@ public class WarehouseController {
         model.addAttribute("warehouseeditPOS",true);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("pengguna", akunService.findByUsername(authentication.getName()));
-
+//        model.addAttribute("penggunaBaru", new PenggunaDTO());
         return "w_editProfile";
     }
     @GetMapping(value = "/warehouse-rak")
@@ -144,5 +148,46 @@ public class WarehouseController {
         session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
         session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
         return "rak";
+    }
+    @RequestMapping(value = "/warehouse-profile/save", method = RequestMethod.POST)
+    public String editAction(@RequestParam("file") MultipartFile file, @Valid PenggunaDTO penggunaDTO, BindingResult bindingResult){
+        String fileName = file.getOriginalFilename();
+        System.out.println(penggunaDTO.getId_pengguna());
+        System.out.println(penggunaDTO.getLevel());
+        System.out.println(penggunaDTO.getAlamat_pengguna());
+        System.out.println(penggunaDTO.getCreated_at());
+        System.out.println(penggunaDTO.getEmail());
+        System.out.println(penggunaDTO.getFoto_pengguna());
+        System.out.println(penggunaDTO.getNama_pengguna());
+        System.out.println(penggunaDTO.getLast_modified());
+        System.out.println(penggunaDTO.getPassword());
+        System.out.println(penggunaDTO.getTanggal_lahir());
+        System.out.println(penggunaDTO.getUsername());
+        try {
+            if(!file.getOriginalFilename().equalsIgnoreCase("")){
+                long name = System.currentTimeMillis();
+                String extensi = fileName.substring(fileName.lastIndexOf(".")+1);
+                System.out.println(name+"."+extensi);
+                fileName = name+"."+extensi;
+                penggunaDTO.setFoto_pengguna(fileName);
+
+                byte[] bytes = file.getBytes();
+                Path path = Paths.get(UPLOADED_FOLDER + fileName);
+                Files.write(path,bytes);
+                penggunaService.saveOrUpdated(penggunaDTO);
+
+            } else {
+                penggunaService.saveOrUpdated(penggunaDTO);
+            }
+
+
+
+        } catch (IOException e){
+            e.printStackTrace();
+
+
+        }
+
+        return "redirect:/warehouse-editProfile";
     }
 }
