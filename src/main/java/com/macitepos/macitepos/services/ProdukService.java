@@ -75,6 +75,18 @@ public class ProdukService {
         return convertToDtoAPI(p);
     }
 
+    public List<ProdukDTO> showAllApprovedForCashier(){
+        List<Produk> p  = produkDAO.showAllApprovedForCashier();
+        if (p.isEmpty()==false){
+            for (Produk pro:p) {
+                System.out.println(pro.getNama_produk());
+            }
+        } else if (p.isEmpty()){
+            System.out.println("G Ada data");
+        }
+        return convertToDtoAPI(p);
+    }
+
     public List<ProdukDTO> showAllDissapproved(){
         List<Produk> p  = produkDAO.showAllDissaproved();
         if (p.isEmpty()==false){

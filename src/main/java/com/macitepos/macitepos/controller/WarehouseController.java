@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 
 @Controller
@@ -40,7 +41,7 @@ public class WarehouseController {
 //    @Autowired
 //    private SuplierService suplierService;
 
-    private static String UPLOADED_FOLDER = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\ext-resources\\user\\";
+    private static String UPLOADED_FOLDER = "D:\\blibli\\PROJECT\\Macitepos\\ext-resources\\user\\";
 
     @RequestMapping(value = "/warehouse")
     public String warehouse(Model model, HttpSession session) {
@@ -49,19 +50,25 @@ public class WarehouseController {
         session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
         session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
 
-        if (produkService.showAll().isEmpty()) {
-            return "w_dashboard";
-        } else {
+//        if (produkService.showAll().isEmpty()) {
+//            model.addAttribute("produkBaru", new ProdukDTO());
+//            return "w_dashboard";
+//        } else {
             model.addAttribute("produkApp", produkService.showAllApproved());
+            List<ProdukDTO> as = produkService.showAllDissapproved();
+            for (ProdukDTO a:
+                    as) {
+                System.out.println(a.getNama_produk());
+            }
             model.addAttribute("produkDis", produkService.showAllDissapproved());
             model.addAttribute("produkBaru", new ProdukDTO());
             System.out.println("Controller ware jalan");
             return "w_dashboard";
-        }
+//        }
     }
 
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER_PRODUK = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\ext-resources\\product\\";
+    private static String UPLOADED_FOLDER_PRODUK = "D:\\blibli\\PROJECT\\Macitepos\\ext-resources\\product\\";
 
 
     @PostMapping("/warehouse-product/create")

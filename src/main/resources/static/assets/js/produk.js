@@ -12,7 +12,8 @@ $(document).ready (function() {
             { "mData": "id_produk"},
             { "mData": "nama_produk" },
             { "mData": "harga_penjualan" },
-            { "mData": "stok_total" },
+            { "mData": "stok_gudang" },
+            { "mData": "stok_toko" },
             { "mData": "kategori" },
             { "mData": "last_updated",
                 "render": function (mData) {

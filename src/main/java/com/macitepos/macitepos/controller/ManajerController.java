@@ -137,7 +137,7 @@ public class ManajerController {
         }
     }
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\ext-resources\\user\\";
+    private static String UPLOADED_FOLDER = "D:\\blibli\\PROJECT\\Macitepos\\ext-resources\\user\\";
     @PostMapping("/user/create")
     public String buatUser(@RequestParam("file") MultipartFile file, @Valid PenggunaDTO penggunaDTO, BindingResult bindingResult
     ){
@@ -158,10 +158,11 @@ public class ManajerController {
             } else{
                 Pengguna foto = akunService.findByUsername(penggunaDTO.getUsername());
                 penggunaDTO.setFoto_pengguna(foto.getFoto_pengguna());
-                penggunaService.saveOrUpdated(penggunaDTO);
+                    penggunaService.saveOrUpdated(penggunaDTO);
             }
 
         } catch (IOException e) {
+            System.out.println("failed to create user");
             e.printStackTrace();
         }
 //        System.out.println("level contr " + penggunaDTO.getLevel());
@@ -219,6 +220,7 @@ public class ManajerController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
         session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
+        model.addAttribute("productPOS",true);
         return "rak";
     }
 

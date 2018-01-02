@@ -112,6 +112,9 @@ public class KasirController {
         memberDTO.setCreated_by(authentication.getName());
         memberDTO.setDiskon(5);
         memberDTO.setVisitCount(1);
+        if(memberDTO.getNama_member().equalsIgnoreCase("customer")){
+            memberDTO.setDiskon(0);
+        }
         MemberDTO mDTO = membersService.saveOrUpdated(memberDTO);
         return "redirect:/kasir-customer";
     }

@@ -141,10 +141,10 @@ public class PenggunaService {
 
     public PenggunaDTO findById(Integer id){
         Pengguna p = penggunasDAO.findById(id);
-        if (p.getStatus_pengguna() == true){
+        if (p.getStatus_pengguna() == true && !p.getLevel().equalsIgnoreCase("manajer")){
             p.setStatus_pengguna(false);
         }else{
-            p.setStatus_pengguna(false);
+            p.setStatus_pengguna(true);
         }
         penggunasDAO.saveOrUpdate(p);
         return convertToDto(p);

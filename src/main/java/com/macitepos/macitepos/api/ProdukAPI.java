@@ -21,6 +21,11 @@ public class ProdukAPI {
         return produkService.showAllApproved();
     }
 
+    @RequestMapping(path="/api/produkApprovedForCashier", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Iterable<ProdukDTO> ProdukApprovedforCashier(){
+        return produkService.showAllApprovedForCashier();
+    }
+
     @RequestMapping(path="/api/produkDissapproved", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public Iterable<ProdukDTO> ProdukDissapproved(){
         return produkService.showAllDissapproved();

@@ -21,7 +21,7 @@ $(document).ready(function () {
 //call produk API
 function productList() {
     $.ajax({
-        url: '/api/produkApproved/',
+        url: '/api/produkApprovedForCashier/',
         type: 'GET',
         dataType: 'json',
         success: function (products) {
@@ -273,7 +273,7 @@ function searchIdMember() {
     idMember = $('#InputIdMember').val();
     idMember = idMember*1;
     if (idMember == 1){
-        alert("Member tidak ditemukan");
+        // alert("Member tidak ditemukan");
         $.ajax({
             url: '/api/member/'+idMember,
             type: 'GET',
@@ -283,6 +283,9 @@ function searchIdMember() {
                 setDiskon();
                 $.each(pembeli, function (index, p) {
                     visit_count = p.visitCount;
+                    if(p.nama_member == "customer"){
+                        alert("Member tidak ditemukan");
+                    }
                 });
             }
         })
@@ -297,8 +300,13 @@ function searchIdMember() {
                     visit_count = p.visitCount;
                 });
                 if(pembeli.length>0){
-                    alert("Member ditemukan, Nama Member = "+ pembeli[0].nama_member)
-                    setDiskon();
+                    if(pembeli[0].nama_member == "customer"){
+                        alert("Member tidak ditemukan");
+                        setDiskon();
+                    } else {
+                        alert("Member ditemukan, Nama Member = "+ pembeli[0].nama_member);
+                        setDiskon();
+                    }
                 } else {
                     alert("Member tidak ditemukan")
                 }

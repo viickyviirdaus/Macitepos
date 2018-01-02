@@ -43,8 +43,9 @@ $(document).ready (function() {
         console.log(datat);
         ubahStatus(datat);
 
-        $('#userTableFalse').DataTable().ajax.reload();
+
         $('#userTableTrue').DataTable().ajax.reload();
+        $('#userTableFalse').DataTable().ajax.reload();
     } );
 
 

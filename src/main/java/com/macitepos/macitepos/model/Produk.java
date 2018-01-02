@@ -62,8 +62,8 @@ public class Produk {
 //    @OneToMany(mappedBy = "produk")
 //    private List<Detil_penjualan> detil_penjualans;
 
-    @OneToMany(mappedBy = "produk")
-    private List<Transaksi_pembelian> transaksi_pembelians;
+//    @OneToMany(mappedBy = "produk")
+//    private List<Transaksi_pembelian> transaksi_pembelians;
 
     public Produk(){}
     public Produk(
@@ -246,13 +246,13 @@ public class Produk {
     }
 
 
-    public List<Transaksi_pembelian> getTransaksi_pembelians() {
-        return transaksi_pembelians;
-    }
-
-    public void setTransaksi_pembelians(List<Transaksi_pembelian> transaksi_pembelians) {
-        this.transaksi_pembelians = transaksi_pembelians;
-    }
+//    public List<Transaksi_pembelian> getTransaksi_pembelians() {
+//        return transaksi_pembelians;
+//    }
+//
+//    public void setTransaksi_pembelians(List<Transaksi_pembelian> transaksi_pembelians) {
+//        this.transaksi_pembelians = transaksi_pembelians;
+//    }
 
 //    public List<Detil_penjualan> getDetil_penjualans() {
 //        return detil_penjualans;
