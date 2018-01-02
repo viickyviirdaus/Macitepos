@@ -63,8 +63,11 @@ public class PenggunaService {
         if(penggunaDTO.getLevel().equals("kasir")){
             roles = "ROLE_KASIR";
             System.out.println("level s3" + penggunaDTO.getLevel());
-        }else
+        }else if(penggunaDTO.getLevel().equals("manajer")){
+            roles = "ROLE_MANAJER";
+        } else {
             roles = "ROLE_WAREHOUSE";
+        }
 
         try{
             System.out.println(id+"ini id pengguna terakhir dan rolenya "+roles);

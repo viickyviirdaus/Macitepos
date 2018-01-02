@@ -41,7 +41,7 @@ public class ProdukAPI {
     public Iterable<ProdukDTO> ProdukSearch(@PathVariable String search){
         System.out.println("parameter = " +search);
         if (search.equalsIgnoreCase("all")){
-            return  produkService.showAllApproved();
+            return  produkService.showAllApprovedForCashier();
         } else if(produkService.search(search).isEmpty()==false){
             System.out.println("api produk search jalan");
             return produkService.search(search);

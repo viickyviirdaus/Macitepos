@@ -104,7 +104,7 @@ public class ProdukDAO {
         System.out.println("parameter key di ProdukDao findByKey "+keySearch);
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Query q = em.createNativeQuery("SELECT * FROM Produk p WHERE p.status_produk ='approved' AND p.nama_produk LIKE :keySearch", Produk.class);
+        Query q = em.createNativeQuery("SELECT * FROM Produk p WHERE p.stok_toko>0 AND p.status_produk ='approved' AND p.nama_produk LIKE :keySearch", Produk.class);
         q.setParameter("keySearch", "%"+ keySearch +"%");
         List<Produk> p = (List<Produk>)q.getResultList();
         em.close();

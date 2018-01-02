@@ -61,7 +61,7 @@ $(document).on("change","#serachProduk", function () {
         })
     } else {
         $.ajax({
-            url: '/api/produk/',
+            url: '/api/produkApprovedForCashier/',
             type: 'GET',
             dataType: 'json',
             success: function (products) {

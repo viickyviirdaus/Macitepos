@@ -1,5 +1,6 @@
 package com.macitepos.macitepos.dto;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.sql.Date;
 
@@ -19,6 +20,18 @@ public class PenggunaDTO {
     private String level;
 
     public PenggunaDTO(){};
+
+    public PenggunaDTO(String nama_pengguna, String username, String password, boolean status_pengguna, String level) {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+//        this.id_pengguna = id_pengguna;
+        this.nama_pengguna = nama_pengguna;
+        this.username = username;
+        this.password = password;
+        this.status_pengguna = status_pengguna;
+        this.created_at = timestamp;
+        this.level = level;
+    }
+
     public PenggunaDTO(Integer id_pengguna, String nama_pengguna, String username, String alamat_pengguna, Date tanggal_lahir, String email, String password, boolean status_pengguna, String foto_pengguna, Timestamp last_modified, Timestamp created_at, String level) {
         this.id_pengguna = id_pengguna;
         this.nama_pengguna = nama_pengguna;

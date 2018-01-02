@@ -1,7 +1,9 @@
 package com.macitepos.macitepos.controller;
 
+import com.macitepos.macitepos.dto.PenggunaDTO;
 import com.macitepos.macitepos.model.Pengguna;
 import com.macitepos.macitepos.services.AkunService;
+import com.macitepos.macitepos.services.PenggunaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -21,10 +23,18 @@ public class AkunController {
 @Autowired
 AkunService akunService;
 
+@Autowired
+PenggunaService penggunaService;
+
     @RequestMapping("/login")
     public String login(ModelMap modelMap) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(penggunaService.showAll().isEmpty()){
+            PenggunaDTO manajer = new PenggunaDTO("manajer","manajer","manajer",true,"manajer");
+            penggunaService.saveOrUpdated(manajer);
+            System.out.println("create manajer");
 
+        }
         if (!authentication.getPrincipal().equals("anonymousUser")) {
             System.out.println("Nama " + akunService.findByUsername(authentication.getName()).getNama_pengguna());
             return "/home";
@@ -36,7 +46,7 @@ AkunService akunService;
     @GetMapping("/")
     public String login1()
     {
-        return "/login";
+        return "redirect:/login";
     }
 
     @GetMapping("/home")
