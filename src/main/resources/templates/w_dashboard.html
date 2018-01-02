@@ -3,6 +3,8 @@
 <head>
     <title>Warehouse Admin - Dashboard | MacitePos.com</title>
     <div th:replace="w_header :: header-css"/>
+    <script th:src="@{assets/js/w_dashboard.js}"></script>
+
 </head>
 <body>
 
@@ -39,99 +41,111 @@
                         <h4 class="modal-title" >Tambah Produk</h4>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input type="hidden" th:field="*{id_produk}" />
-                                <div class="form-group">
-                                    <label for="fullName">Product Name</label>
-                                    <input type="text" class="form-control" id="fullName" th:field="*{nama_produk}" />
-                                </div>
-                                <div class="form-group">
-                                    <label >Buy Price</label>
-                                    <input type="number" class="form-control" th:field="*{harga_beli}"/>
-                                </div>
-                                <div class="form-group">
-                                    <label >Sell Price</label>
-                                    <input type="number" class="form-control" th:field="*{harga_penjualan}"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>Number Rak Shop</label>
-                                    <input type="text" class="form-control" th:field="*{no_rak_toko}"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>Stock in shop</label>
-                                    <input type="number" class="form-control" th:field="*{stok_toko}"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>Stock in warehouse</label>
-                                    <input type="number" class="form-control" th:field="*{stok_gudang}"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>Stock total</label>
-                                    <input type="number" class="form-control" th:field="*{stok_total}" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Re Stock</label>
-                                    <input type="number" class="form-control" th:field="*{stok_total}" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Categori</label>
-                                    <label class="radio-inline">
-                                        <input type="radio" value="food"  name="inlineRadioOptions" id="inlineRadio1" th:field="*{kategori}"/> Food
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" value="drink"  name="inlineRadioOptions" id="inlineRadio2" th:field="*{kategori}"/> Drink
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" value="drug"  name="inlineRadioOptions" id="inlineRadio3" th:field="*{kategori}"/> Drug
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" value="cosmetic"  name="inlineRadioOptions" id="inlineRadio4" th:field="*{kategori}"/> Cosmetic
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" value="office"  name="inlineRadioOptions" id="inlineRadio5" th:field="*{kategori}"/> Office
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" value="household"  name="inlineRadioOptions" id="inlineRadio6" th:field="*{kategori}"/> Household Equipment
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label>Created At</label>
-                                    <input type="hidden" name="startdate" id="todayDate" th:field="*{created_at}"/>
-                                    <script type="text/javascript">
-                                    function getDates()
-                                    {
-                                    var today = new Date();
-                                    var dd = today.getDate();
-                                    var mm = today.getMonth()+1; //January is 0!
-                                    var yyyy = today.getFullYear();
-                                    var hh = today.getHours();
-                                    var m = today.getMinutes();
-                                    var ss = today.getSeconds();
-                                    today = yyyy+"-"+mm+"-"+dd+" "+hh+":"+m+":"+ss;
-
-                                    document.getElementById("todayDate").value = today;
-                                    }
-
-                                    //call getDate() when loading the page
-                                    getDates();
-                                    </script>
-                                </div>
-
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label >Photo</label>
-                                    <div >
-                                        <img style="width: 200px; margin-bottom:10px;" id="output2" alt="Preview Image"/>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="hidden" th:field="*{id_produk}" />
+                                    <div class="form-group">
+                                        <label for="fullName">Product Name</label>
+                                        <input type="text" class="form-control" id="fullName" th:field="*{nama_produk}" />
                                     </div>
-                                    <input type="file" name="file" onchange="loadFile(event)"/>
-                                    <script>
-                                        var loadFile = function(event) {
-                                            var output = document.getElementById('output2');
-                                            output.src = URL.createObjectURL(event.target.files[0]);
-                                        };
-                                    </script>
+                                    <div class="form-group">
+                                        <label >Buy Price</label>
+                                        <input type="number" class="form-control" th:field="*{harga_beli}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label >Sell Price</label>
+                                        <input type="number" class="form-control" th:field="*{harga_penjualan}"/>
+                                    </div>
+                                    <!--<div class="form-group">-->
+                                        <!--<label>Stock in shop</label>-->
+                                        <input type="hidden" class="form-control" th:field="*{stok_toko}"/>
+                                    <!--</div>-->
+                                    <div class="form-group">
+                                        <label>Stock in warehouse</label>
+                                        <input type="number" class="form-control" th:field="*{stok_gudang}"/>
+                                    </div>
+
+                                    <input type="hidden" class="form-control" th:field="*{stok_total}" />
+
+                                    <!--<div class="form-group">-->
+                                        <!--<label>Re Stock</label>-->
+                                        <input type="hidden" class="form-control" th:field="*{stok_total}" />
+                                    <!--</div>-->
+                                    <div class="form-group" id="categoryProduct">
+                                        <label>Categori</label>
+                                        <br/>
+                                        <label class="radio-inline">
+                                            <input type="radio" value="food"  name="inlineRadioOptions" id="inlineRadio1" th:field="*{kategori}"/> Food
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" value="drink"  name="inlineRadioOptions" id="inlineRadio2" th:field="*{kategori}"/> Drink
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" value="drug"  name="inlineRadioOptions" id="inlineRadio3" th:field="*{kategori}"/> Drug
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" value="cosmetic"  name="inlineRadioOptions" id="inlineRadio4" th:field="*{kategori}"/> Cosmetic
+                                        </label>
+                                        <br/>
+                                        <label class="radio-inline">
+                                            <input type="radio" value="office"  name="inlineRadioOptions" id="inlineRadio5" th:field="*{kategori}"/> Office
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" value="household"  name="inlineRadioOptions" id="inlineRadio6" th:field="*{kategori}"/> Household Equipment
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Number Rak Shop</label>
+                                        <input type="text" class="form-control" th:field="*{no_rak_toko}"/>
+                                        <span id="sugestionRak"></span>
+                                    </div>
+                                    <!--<div class="form-group">-->
+                                        <!--<label>Rak</label>-->
+                                        <!--<br/>-->
+                                        <!--<div id="rakNumber">-->
+                                            <!--&lt;!&ndash;<label class="radio-inline">&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<input type="radio" value="food"  name="inlineRadioOptions" id="A" th:field="*{no_rak_toko}"/> Food&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</label>    &ndash;&gt;-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <div class="form-group">
+                                        <input type="hidden" name="startdate" id="todayDate" th:field="*{created_at}"/>
+                                        <script type="text/javascript">
+                                            function getDates()
+                                            {
+                                                var today = new Date();
+                                                var dd = today.getDate();
+                                                var mm = today.getMonth()+1; //January is 0!
+                                                var yyyy = today.getFullYear();
+                                                var hh = today.getHours();
+                                                var m = today.getMinutes();
+                                                var ss = today.getSeconds();
+                                                today = yyyy+"-"+mm+"-"+dd+" "+hh+":"+m+":"+ss;
+
+                                                document.getElementById("todayDate").value = today;
+                                            }
+
+                                            //call getDate() when loading the page
+                                            getDates();
+                                        </script>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6" style="padding-left: 30px">
+                                    <div class="form-group">
+                                        <label >Photo</label>
+                                        <div >
+                                            <img style="width: 200px; margin-bottom:10px;" id="output2" alt="Preview Image"/>
+                                        </div>
+                                        <input type="file" name="file" onchange="loadFile(event)"/>
+                                        <script>
+                                            var loadFile = function(event) {
+                                                var output = document.getElementById('output2');
+                                                output.src = URL.createObjectURL(event.target.files[0]);
+                                            };
+                                        </script>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -8,6 +8,8 @@
     <link rel="stylesheet" th:href="@{assets/font-awesome-4.7.0/css/font-awesome.min.css}"/>
     <script  th:src="@{assets/js/jquery-3.1.1.min.js}"></script>
     <script  th:src="@{assets/js/bootstrap.min.js}"></script>
+    <script th:src="@{assets/js/w_dashboard.js}"></script>
+
 
 </head>
 <body>
@@ -38,10 +40,7 @@
                                 <label >Sell Price</label>
                                 <input type="number" class="form-control" th:field="*{harga_penjualan}"/>
                             </div>
-                            <div class="form-group">
-                                <label>Number Rak Shop</label>
-                                <input type="text" class="form-control" th:field="*{no_rak_toko}"/>
-                            </div>
+
 
                                 <input type="hidden" class="form-control" th:field="*{stok_toko}"/>
                                 <input type="hidden" class="form-control" th:field="*{stok_gudang}"/>
@@ -49,7 +48,7 @@
                                 <input type="hidden" class="form-control" th:field="*{stok_total}" />
                                 <input type="hidden" class="form-control" th:field="*{status_produk}" />
 
-                            <div class="form-group">
+                            <div class="form-group"  id="categoryProduct">
                                 <label>Categori</label>
                                 <br/>
                                 <label class="radio-inline">
@@ -72,6 +71,11 @@
                                     <input type="radio" value="household"  name="inlineRadioOptions" id="inlineRadio6" th:field="*{kategori}"/> Household Equipment
                                 </label>
                             </div>
+                            <div class="form-group">
+                                <label>Number Rak Shop</label>
+                                <input type="text" class="form-control" th:field="*{no_rak_toko}"/>
+                                <span id="sugestionRak"></span>
+                            </div>
 
                         </div>
                         <div class="col-md-1"></div>
@@ -89,13 +93,15 @@
                                     };
                                 </script>
                             </div>
+
+                            <div >
+                                <button type="button" class="btn btn-default">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
                         </div>
                         <div class="col-md-2"></div>
                     </div>
-                <div >
-                    <button type="button" class="btn btn-default">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
+
             </form>
         </div>
 

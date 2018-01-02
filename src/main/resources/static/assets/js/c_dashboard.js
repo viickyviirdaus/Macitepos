@@ -94,14 +94,14 @@ function productAddList(product) {
 function productListShow(product) {
     productList =
         '<a selected id="'+ product.id_produk +'" >' +
-        '<div class="col-sm-3">' +
+        '<div class="col-sm-3" style="min-height: 180px">' +
         '<div class="panel panel-default">' +
         '<div class="panel-body">' +
         '<div>' +
         '<img style="width: 100%; padding-bottom: 5px;" src="image/product/'+ product.foto_produk +'"/>' +
         '</div>'+
         '<div class="text-center">' +
-        '<span>'+product.nama_produk+'</span>'+
+        '<span>'+product.nama_produk.substring(0,7)+'..</span>'+
         '<br/>' +
         '<span style="font-size: 12px">' + 'Rp '+product.harga_penjualan+'</span>' +
         '</div>' +

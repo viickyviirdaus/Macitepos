@@ -9,6 +9,9 @@
         <div sec:authorize="hasRole('ROLE_KASIR')">
             <div th:replace="c_header :: header-css"/>
         </div>
+        <div sec:authorize="hasRole('ROLE_WAREHOUSE')">
+            <div th:replace="w_header :: header-css"/>
+        </div>
     </div>
     <script th:src="@{assets/js/rak.js}"></script>
 </head>
@@ -20,6 +23,9 @@
     </div>
     <div sec:authorize="hasRole('ROLE_KASIR')">
         <div th:replace="c_header :: header"/>
+    </div>
+    <div sec:authorize="hasRole('ROLE_WAREHOUSE')">
+        <div th:replace="w_header :: header"/>
     </div>
 </div>
 

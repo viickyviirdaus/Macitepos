@@ -144,6 +144,7 @@ public class ManajerController {
         String fileName = file.getOriginalFilename();
 
         try {
+
             if(!file.getOriginalFilename().equalsIgnoreCase("")){
                 long name = System.currentTimeMillis();
                 String extensi = fileName.substring(fileName.lastIndexOf(".")+1);

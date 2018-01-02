@@ -58,17 +58,20 @@ public class WarehouseController {
 
 
         //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER_PRODUK = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\ext-resources\\product\\";
+    private static String UPLOADED_FOLDER_PRODUK = "D:\\blibli\\PROJECT\\Macitepos\\ext-resources\\product\\";
 
     @PostMapping("/warehouse-product/create")
     public String buatProduk(@RequestParam("file") MultipartFile file, @Valid ProdukDTO produkDTO
     ){
+        System.out.println("jalan cak create nya");
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         produkDTO.setUpdated_by(authentication.getName());
         produkDTO.setFoto_produk(file.getOriginalFilename());
         String fileName = file.getOriginalFilename();
-
+        if (produkDTO.getStatus_produk() == null){
+            produkDTO.setStatus_produk("dissapproved");
+        }
         try {
             if(!file.getOriginalFilename().equalsIgnoreCase("")) {
                 long name = System.currentTimeMillis();
@@ -77,12 +80,13 @@ public class WarehouseController {
                 fileName = name + "." + extensi;
                 produkDTO.setFoto_produk(fileName);
 
-
                 // Get the file and save it somewhere
                 byte[] bytes = file.getBytes();
                 Path path = Paths.get(UPLOADED_FOLDER_PRODUK + fileName);
                 Files.write(path, bytes);
-                produkService.saveOrUpdated(produkDTO);
+
+                produkService. saveOrUpdated(produkDTO);
+                System.out.println("produk terbuat");
             } else{
             ProdukDTO foto = produkService.findById(produkDTO.getId_produk());
             produkDTO.setFoto_produk(foto.getFoto_produk());
@@ -111,15 +115,17 @@ public class WarehouseController {
         produkDTO.setUpdated_by(updated_by);
         produkService.restock(produkDTO);
         return "redirect:/warehouse";
+
     }
 
     @PostMapping("/warehouse-product/manage")
     public String manage(ProdukDTO produkDTO){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String updated_by = akunService.findByUsername(authentication.getName()).toString();
-        produkDTO.setUpdated_by(updated_by);
-        produkService.manage(produkDTO);
-        return "redirect:/warehouse";
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String updated_by = akunService.findByUsername(authentication.getName()).toString();
+            produkDTO.setUpdated_by(updated_by);
+            produkService.manage(produkDTO);
+            return "redirect:/warehouse";
+
     }
 
 
@@ -137,6 +143,6 @@ public class WarehouseController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         session.setAttribute("nama", akunService.findByUsername(authentication.getName()).getNama_pengguna());
         session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
-        return "w_rak";
+        return "rak";
     }
 }
