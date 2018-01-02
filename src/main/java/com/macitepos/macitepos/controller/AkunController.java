@@ -29,7 +29,7 @@ AkunService akunService;
             System.out.println("Nama " + akunService.findByUsername(authentication.getName()).getNama_pengguna());
             return "/home";
         }else {
-            return "/login";
+            return "login";
         }
     }
 
