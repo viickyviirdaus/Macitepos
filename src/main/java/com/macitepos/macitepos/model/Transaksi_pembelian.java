@@ -10,8 +10,8 @@ public class Transaksi_pembelian {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id_pembelian;
 
-    @ManyToOne
-    private Suplier suplier;
+//    @ManyToOne
+//    private Suplier suplier;
 
     @ManyToOne
     private Produk produk;
@@ -33,13 +33,13 @@ public class Transaksi_pembelian {
         this.id_pembelian = id_pembelian;
     }
 
-    public Suplier getSuplier() {
-        return suplier;
-    }
-
-    public void setSuplier(Suplier suplier) {
-        this.suplier = suplier;
-    }
+//    public Suplier getSuplier() {
+//        return suplier;
+//    }
+//
+//    public void setSuplier(Suplier suplier) {
+//        this.suplier = suplier;
+//    }
 
     public Produk getProduk() {
         return produk;

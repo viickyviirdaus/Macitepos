@@ -143,6 +143,7 @@ public class ManajerController {
     ){
         String fileName = file.getOriginalFilename();
         try {
+
             if(!file.getOriginalFilename().equalsIgnoreCase("")){
                 long name = System.currentTimeMillis();
                 String extensi = fileName.substring(fileName.lastIndexOf(".")+1);
@@ -163,9 +164,9 @@ public class ManajerController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("level contr " + penggunaDTO.getLevel());
-        System.out.println(penggunaDTO.getId_pengguna()+" ID 1 ");
-        penggunaService.saveOrUpdated(penggunaDTO);
+//        System.out.println("level contr " + penggunaDTO.getLevel());
+//        System.out.println(penggunaDTO.getId_pengguna()+" ID 1 ");
+//        penggunaService.saveOrUpdated(penggunaDTO);
 
         System.out.println("user create");
         return "redirect:/user";

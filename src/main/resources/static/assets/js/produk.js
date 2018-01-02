@@ -7,7 +7,7 @@ $(document).ready (function() {
 
             { "mData": "foto_produk",
                 "render": function (mData) {
-                    return '<img style="width: 100%" src="image/product/'+mData+'"/>';
+                    return '<img style="width: 100px" src="image/product/'+mData+'"/>';
                 }},
             { "mData": "id_produk"},
             { "mData": "nama_produk" },
@@ -27,59 +27,6 @@ $(document).ready (function() {
                 }},
         ]
     })
-});
-
-$(document).ready (function() {
-    var tableapp = $('#productTableApp').DataTable({
-        destroy: true,
-        "sAjaxSource": "/api/produkApproved",
-        "sAjaxDataProp": "",
-        "order": [[ 0, "asc" ]],
-        "columns": [
-
-            { "mData": "foto_produk",
-                "render": function (mData) {
-                    return '<img style="width: 100%" src="image/product/'+mData+'"/>';
-                }},
-            { "mData": "id_produk"},
-            { "mData": "nama_produk" },
-            { "mData": "harga_penjualan" },
-            { "mData": "stok_toko" },
-            { "mData": "stok_gudang" },
-            { "mData": "stok_ulang" },
-            { "mData": "kategori" },
-            { "mData": "no_rak_toko" },
-            { "mData": "harga_beli" },
-            { "mData": "harga_penjualan" },
-            { "mData": "status_produk" },
-            { "mData": "last_updated",
-                "render": function (mData) {
-                    var dateapp = new Date(mData);
-                    return dateapp.getDate() + "/" + ( dateapp.getMonth() + 1) + "/" + dateapp.getFullYear() +" "+ dateapp.getHours()+":"+ dateapp.getMinutes()+":"+ dateapp.getSeconds();
-                }},
-            { "mData": "updated_by"},
-            { "mData": "created_at",
-                "render": function (mData) {
-                    var date = new Date(mData);
-                    return date.getDate() + "/" + ( date.getMonth() + 1) + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds() ;
-                }},
-            {
-                "targets": -1,
-                "data": null,
-                "defaultContent": "<button>Edit</button>"
-            }
-        ]
-    });
-
-
-    $('#productTableApp tbody').on( 'click', 'tr', function () {
-
-        var datapp = tableapp.row(this).edit();
-        console.log(datapp);
-
-        $('#productTableApp').DataTable().ajax.reload();
-        $('#productTableDiss').DataTable().ajax.reload();
-    });
 
     var tablea = $('#productTableA').DataTable({
         destroy: true,
@@ -90,7 +37,7 @@ $(document).ready (function() {
 
             { "mData": "foto_produk",
                  "render": function (mData) {
-                    return '<img style="width: 100%" src="image/product/'+mData+'"/>';
+                    return '<img style="width: 100px" src="image/product/'+mData+'"/>';
                 }},
             { "mData": "id_produk"},
             { "mData": "nama_produk" },
@@ -131,61 +78,8 @@ $(document).ready (function() {
         $('#productTableA').DataTable().ajax.reload();
         $('#productTableD').DataTable().ajax.reload();
     });
-});
 
 
-
-
-$(document).ready (function() {
-    var tabledis = $('#productTableDis').DataTable({
-        destroy: true,
-        "sAjaxSource": "/api/produkDissapproved",
-        "sAjaxDataProp": "",
-        "order": [[ 0, "asc" ]],
-        "columns": [
-
-            { "mData": "foto_produk",
-                "render": function (mData) {
-                    return '<img style="width: 100%" src="image/product/'+mData+'"/>';
-                }},
-            { "mData": "id_produk"},
-            { "mData": "nama_produk" },
-            { "mData": "harga_penjualan" },
-            { "mData": "stok_toko" },
-            { "mData": "stok_gudang" },
-            { "mData": "stok_ulang" },
-            { "mData": "kategori" },
-            { "mData": "no_rak_toko" },
-            { "mData": "harga_beli" },
-            { "mData": "harga_penjualan" },
-            { "mData": "status_produk" },
-            { "mData": "last_updated",
-                "render": function (mData) {
-                    var date = new Date(mData);
-                    return date.getDate() + "/" + ( date.getMonth() + 1) + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds();
-                }},
-            { "mData": "updated_by"},
-            { "mData": "created_at",
-                "render": function (mData) {
-                    var date = new Date(mData);
-                    return date.getDate() + "/" + ( date.getMonth() + 1) + "/" + date.getFullYear() +" "+ date.getHours()+":"+ date.getMinutes()+":"+ date.getSeconds() ;
-                }},
-            {
-                "targets": -1,
-                "data": null,
-                "defaultContent": "<button>Edit</button>"
-            }
-        ]
-    });
-
-
-    $('#productTableDis tbody').on( 'click', 'tr', function () {
-
-        var datadis = tabledis.row(this).data().id_produk;
-        console.log(datadis);
-        $('#productTableApp').DataTable().ajax.reload();
-        $('#productTableDis').DataTable().ajax.reload();
-    });
 
 
     var tabled = $('#productTableD').DataTable({
@@ -197,7 +91,7 @@ $(document).ready (function() {
 
             { "mData": "foto_produk",
                 "render": function (mData) {
-                    return '<img style="width: 100%" src="image/product/'+mData+'"/>';
+                    return '<img style="width: 100px" src="image/product/'+mData+'"/>';
                 }},
             { "mData": "id_produk"},
             { "mData": "nama_produk" },
@@ -250,4 +144,5 @@ $(document).ready (function() {
             data: JSON.stringify(datadis)
         });
     }
+
 });

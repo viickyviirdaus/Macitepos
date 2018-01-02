@@ -7,7 +7,7 @@ import com.macitepos.macitepos.model.Produk;
 import com.macitepos.macitepos.services.AkunService;
 import com.macitepos.macitepos.services.PenggunaService;
 import com.macitepos.macitepos.services.ProdukService;
-import com.macitepos.macitepos.services.SuplierService;
+//import com.macitepos.macitepos.services.SuplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -37,8 +37,8 @@ public class WarehouseController {
     @Autowired
     private ProdukService produkService;
 
-    @Autowired
-    private SuplierService suplierService;
+//    @Autowired
+//    private SuplierService suplierService;
 
     private static String UPLOADED_FOLDER = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\ext-resources\\user\\";
 
@@ -63,15 +63,19 @@ public class WarehouseController {
     //Save the uploaded file to this folder
     private static String UPLOADED_FOLDER_PRODUK = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\ext-resources\\product\\";
 
+
     @PostMapping("/warehouse-product/create")
     public String buatProduk(@RequestParam("file") MultipartFile file, @Valid ProdukDTO produkDTO
     ){
+        System.out.println("jalan cak create nya");
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         produkDTO.setUpdated_by(authentication.getName());
         produkDTO.setFoto_produk(file.getOriginalFilename());
         String fileName = file.getOriginalFilename();
-
+        if (produkDTO.getStatus_produk() == null){
+            produkDTO.setStatus_produk("dissapproved");
+        }
         try {
             if(!file.getOriginalFilename().equalsIgnoreCase("")) {
                 long name = System.currentTimeMillis();
@@ -84,7 +88,9 @@ public class WarehouseController {
                 byte[] bytes = file.getBytes();
                 Path path = Paths.get(UPLOADED_FOLDER_PRODUK + fileName);
                 Files.write(path, bytes);
-                produkService.saveOrUpdated(produkDTO);
+
+                produkService. saveOrUpdated(produkDTO);
+                System.out.println("produk terbuat");
             } else{
             ProdukDTO foto = produkService.findById(produkDTO.getId_produk());
             produkDTO.setFoto_produk(foto.getFoto_produk());
@@ -112,15 +118,17 @@ public class WarehouseController {
         produkDTO.setUpdated_by(updated_by);
         produkService.restock(produkDTO);
         return "redirect:/warehouse";
+
     }
 
     @PostMapping("/warehouse-product/manage")
     public String manage(ProdukDTO produkDTO){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String updated_by = akunService.findByUsername(authentication.getName()).toString();
-        produkDTO.setUpdated_by(updated_by);
-        produkService.manage(produkDTO);
-        return "redirect:/warehouse";
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String updated_by = akunService.findByUsername(authentication.getName()).toString();
+            produkDTO.setUpdated_by(updated_by);
+            produkService.manage(produkDTO);
+            return "redirect:/warehouse";
+
     }
 
     @GetMapping(value = "/warehouse-editProfile")

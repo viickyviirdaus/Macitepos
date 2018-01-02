@@ -41,7 +41,7 @@ public class ProdukDAO {
     public List<Produk> showAllApproved(){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Query q = em.createNativeQuery("SELECT * FROM Produk WHERE Produk.stok_toko > 0 and Produk.status_produk='approved' ", Produk.class);
+        Query q = em.createNativeQuery("SELECT * FROM Produk WHERE Produk.stok_toko > 0 and Produk.status_produk='approved' ORDER BY Produk.id_produk ASC ", Produk.class);
         List<Produk> p = (List<Produk>) q.getResultList();
         em.close();
         System.out.println("halo");
@@ -51,7 +51,7 @@ public class ProdukDAO {
     public List<Produk> showAllDissaproved(){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Query q = em.createNativeQuery("SELECT * FROM Produk WHERE Produk.stok_toko > 0 and Produk.status_produk='dissapproved' ", Produk.class);
+        Query q = em.createNativeQuery("SELECT * FROM Produk WHERE Produk.stok_toko >= 0 and Produk.status_produk='dissapproved' ORDER BY Produk.id_produk ASC", Produk.class);
         List<Produk> p = (List<Produk>) q.getResultList();
         em.close();
         System.out.println("halo");

@@ -19,12 +19,10 @@ public class ProdukService {
     private ProdukDAO produkDAO;
 
     public ProdukDTO saveOrUpdated(ProdukDTO produkDTO){
-        if (produkDTO.getStatus_produk() == null){
-            produkDTO.setStatus_produk("dissapproved");
-        }
+        int stok_total = produkDTO.getStok_gudang() + produkDTO.getStok_toko();
         try{
             Produk produk = new Produk(produkDTO.getId_produk(), produkDTO.getNama_produk(), produkDTO.getKategori(),
-                    produkDTO.getHarga_beli(), produkDTO.getHarga_penjualan(), produkDTO.getStok_ulang(), produkDTO.getStok_total(),
+                    produkDTO.getHarga_beli(), produkDTO.getHarga_penjualan(), produkDTO.getStok_ulang(), stok_total,
                     produkDTO.getStok_toko(), produkDTO.getStok_gudang(),produkDTO.getTerjual(), produkDTO.getFoto_produk(),
                     produkDTO.getNo_rak_toko(), produkDTO.getUpdated_by(),
                     produkDTO.getStatus_produk(), produkDTO.getCreated_at());
@@ -145,7 +143,7 @@ public class ProdukService {
 
     public Long jumlahProduk(){
         try {
-            produkDAO.jumlahProduk();
+            return produkDAO.jumlahProduk();
         }catch (Exception e){
             e.getMessage();
         }
@@ -153,7 +151,7 @@ public class ProdukService {
     }
 
     public ProdukDTO restock(ProdukDTO produkDTO){
-        if (produkDAO.findById(produkDTO.getId_produk()) != null){
+        if (produkDAO.findById(produkDTO.getId_produk()).getStatus_produk().equalsIgnoreCase("approved")){
             try{
                 Produk p = produkDAO.findById(produkDTO.getId_produk());
                 int stok_gudang = p.getStok_gudang() + produkDTO.getStok_ulang();
@@ -179,8 +177,7 @@ public class ProdukService {
     }
 
     public ProdukDTO manage(ProdukDTO produkDTO) {
-
-        if (produkDAO.findById(produkDTO.getId_produk()) != null) {
+        if (produkDAO.findById(produkDTO.getId_produk()).getStatus_produk().equalsIgnoreCase("approved")) {
             try {
                 Produk p = produkDAO.findById(produkDTO.getId_produk());
 
