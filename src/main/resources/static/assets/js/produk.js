@@ -133,14 +133,7 @@ $(document).ready (function() {
     });
 });
 
-function ubahStatus(datadis) {
-    $.ajax({
-        url: "/api/ubahStatus/"+datadis,
-        type: 'POST',
-        contentType: "application/json;charset=utf-8",
-        data: JSON.stringify(datadis)
-    });
-}
+
 
 
 $(document).ready (function() {
@@ -246,4 +239,15 @@ $(document).ready (function() {
         $('#productTableD').DataTable().ajax.reload();
         $('#productTableA').DataTable().ajax.reload();
     } );
+
+
+
+    function ubahStatus(datadis) {
+        $.ajax({
+            url: "/api/ubahStatus/"+datadis,
+            type: 'POST',
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify(datadis)
+        });
+    }
 });

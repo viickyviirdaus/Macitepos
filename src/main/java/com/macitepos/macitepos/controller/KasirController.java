@@ -46,7 +46,7 @@ public class KasirController {
     @Autowired
     PenggunaService penggunaService;
 
-    private static String UPLOADED_FOLDER = "D:\\blibli\\PROJECT\\Macitepos\\ext-resources\\user\\";
+    private static String UPLOADED_FOLDER = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\ext-resources\\user\\";
 
     @RequestMapping(value = "/kasir", method = RequestMethod.GET)
     public String kasir(HttpSession session, Model model) {

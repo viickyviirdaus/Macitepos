@@ -16,13 +16,16 @@ public class PenggunaAPI {
     @Autowired
     PenggunaService penggunaService;
 
-    @RequestMapping(path="/api/pengguna", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<PenggunaDTO> user(){
-        return penggunaService.showAll();
 
 
-//        Iterable<Pengguna> test = akunService.listPengguna();
-//        return test;
+    @RequestMapping(path="/api/penggunaTrue", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<PenggunaDTO> userTrue(){
+        return penggunaService.showAllTrue();
+    }
+
+    @RequestMapping(path="/api/penggunaFalse", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<PenggunaDTO> userFalse(){
+        return penggunaService.showAllFalse();
     }
 
 }

@@ -12,6 +12,7 @@ $(document).ready (function() {
             { "mData": "alamat" },
             { "mData": "email"},
             { "mData": "visitCount" },
+
             { "mData": "created_at",
                 "render": function (mData) {
                     var date = new Date(mData);

@@ -95,6 +95,35 @@ public class PenggunaService {
         return convertToDTOAPI(m);
     }
 
+
+    public List<PenggunaDTO> showAllTrue(){
+        System.out.println("Show All user DAO Jalan");
+        List<Pengguna> m  = penggunasDAO.showAllTrue();
+        if(m.isEmpty()){
+            System.out.println("Kosong user dao");
+        }
+        for (Pengguna ms: m
+                ) {
+            System.out.println("id user di service pengguna");
+            System.out.println(ms.getId_pengguna());
+        }
+        return convertToDTOAPI(m);
+    }
+
+    public List<PenggunaDTO> showAllFalse(){
+        System.out.println("Show All user DAO Jalan");
+        List<Pengguna> m  = penggunasDAO.showAllFalse();
+        if(m.isEmpty()){
+            System.out.println("Kosong user dao");
+        }
+        for (Pengguna ms: m
+                ) {
+            System.out.println("id user di service pengguna");
+            System.out.println(ms.getId_pengguna());
+        }
+        return convertToDTOAPI(m);
+    }
+
     List<PenggunaDTO> convertToDTOAPI(List<Pengguna> penggunas){
         List<PenggunaDTO> dto = new ArrayList<>();
         for(Pengguna pengguna : penggunas){
@@ -108,6 +137,17 @@ public class PenggunaService {
                 pengguna.getAlamat_pengguna(), pengguna.getTanggal_lahir(),  pengguna.getEmail(), pengguna.getPassword(),
                 pengguna.getStatus_pengguna(),pengguna.getFoto_pengguna(), pengguna.getLast_modified(), pengguna.getCreated_at(), pengguna.getLevel());
         return dto;
+    }
+
+    public PenggunaDTO findById(Integer id){
+        Pengguna p = penggunasDAO.findById(id);
+        if (p.getStatus_pengguna() == true){
+            p.setStatus_pengguna(false);
+        }else{
+            p.setStatus_pengguna(false);
+        }
+        penggunasDAO.saveOrUpdate(p);
+        return convertToDto(p);
     }
 
 //    RoleDTO convertRoleToDto(Role role){

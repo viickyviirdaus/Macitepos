@@ -1,18 +1,16 @@
 package com.macitepos.macitepos.api;
 
-import com.macitepos.macitepos.dto.MemberDTO;
 import com.macitepos.macitepos.dto.PenggunaDTO;
-import com.macitepos.macitepos.dto.Transaksi_penjualanDTO;
 import com.macitepos.macitepos.services.AkunService;
 import com.macitepos.macitepos.services.MembersService;
 import com.macitepos.macitepos.services.OrdersService;
 import com.macitepos.macitepos.services.PenggunaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 public class ManajerAPI {
@@ -46,5 +44,11 @@ public class ManajerAPI {
 ////        Iterable<Pengguna> test = akunService.listPengguna();
 ////        return test;
 //    }
+
+    @RequestMapping(path = "/api/ubahStatusUser/{search}", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public PenggunaDTO ubahStatusProduk (@PathVariable Integer search){
+        System.out.println("ini search "+search);
+        return penggunaService.findById(search);
+    }
 
 }

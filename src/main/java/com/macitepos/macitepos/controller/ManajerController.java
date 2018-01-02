@@ -63,7 +63,7 @@ public class ManajerController {
     }
 
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER_USER = "D:\\blibli\\PROJECT\\Macitepos\\ext-resources\\user\\";
+    private static String UPLOADED_FOLDER_USER = "C:\\Users\\Vicky Virdaus\\Documents\\Blibli\\Macitepos\\ext-resources\\user\\";
 
     @PostMapping("/product/create")
     public String buatProduk(@RequestParam("file") MultipartFile file, @Valid ProdukDTO produkDTO, BindingResult bindingResult
@@ -142,7 +142,6 @@ public class ManajerController {
     public String buatUser(@RequestParam("file") MultipartFile file, @Valid PenggunaDTO penggunaDTO, BindingResult bindingResult
     ){
         String fileName = file.getOriginalFilename();
-
         try {
             if(!file.getOriginalFilename().equalsIgnoreCase("")){
                 long name = System.currentTimeMillis();
@@ -155,7 +154,6 @@ public class ManajerController {
                 Path path = Paths.get(UPLOADED_FOLDER + fileName);
                 Files.write(path,bytes);
                 penggunaService.saveOrUpdated(penggunaDTO);
-
             } else{
                 Pengguna foto = akunService.findByUsername(penggunaDTO.getUsername());
                 penggunaDTO.setFoto_pengguna(foto.getFoto_pengguna());

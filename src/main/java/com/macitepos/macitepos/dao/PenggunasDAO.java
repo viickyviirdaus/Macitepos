@@ -42,6 +42,27 @@ public class PenggunasDAO {
         return m;
     }
 
+
+    public List<Pengguna> showAllTrue(){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query q = em.createNativeQuery("SELECT * FROM Pengguna p WHERE p.status_pengguna = TRUE ORDER BY p.id_pengguna ASC ", Pengguna.class);
+        List<Pengguna> m = (List<Pengguna>) q.getResultList();
+        em.close();
+        System.out.println("Pengguna Service Show All");
+        return m;
+    }
+
+    public List<Pengguna> showAllFalse(){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query q = em.createNativeQuery("SELECT * FROM Pengguna  p WHERE p.status_pengguna = FALSE ORDER BY p.id_pengguna ASC ", Pengguna.class);
+        List<Pengguna> m = (List<Pengguna>) q.getResultList();
+        em.close();
+        System.out.println("Pengguna Service Show All");
+        return m;
+    }
+
     public Pengguna findById(int id_pengguna){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
