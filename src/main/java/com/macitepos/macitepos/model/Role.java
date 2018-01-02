@@ -1,7 +1,5 @@
 package com.macitepos.macitepos.model;
 
-import com.sun.deploy.xml.GeneralEntity;
-
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.util.HashSet;
