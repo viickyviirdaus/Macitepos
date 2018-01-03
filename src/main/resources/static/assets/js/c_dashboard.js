@@ -260,14 +260,6 @@ function showTableRowInvoice(no,id,name,price,count) {
     return row;
 }
 
-// Change Diskon By Input ID
-// $(function () {
-//     $('#searchIdMember').click(function () {
-//
-//     })
-// });
-
-
 //Search Member By ID
 function searchIdMember() {
     idMember = $('#InputIdMember').val();

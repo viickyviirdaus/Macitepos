@@ -63,6 +63,15 @@ public class MembersService {
         return convertToDTOAPI(m);
     }
 
+    public List<MemberDTO> findCustomer(){
+        List<Member> m = membersDAO.findCustomer();
+        for (Member member:
+                m) {
+            System.out.println("member service fintById visit count = "+member.getVisitCount());
+        }
+        return convertToDTOAPI(m);
+    }
+
     List<MemberDTO> convertToDTOAPI(List<Member> members){
         List<MemberDTO> dto = new ArrayList<>();
         for(Member member : members){

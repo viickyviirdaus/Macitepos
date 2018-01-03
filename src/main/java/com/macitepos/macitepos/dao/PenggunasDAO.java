@@ -37,7 +37,7 @@ public class PenggunasDAO {
         em.getTransaction().begin();
         Query q = em.createNativeQuery("SELECT * FROM Pengguna", Pengguna.class);
         List<Pengguna> m = (List<Pengguna>) q.getResultList();
-        em.close(); 
+        em.close();
         System.out.println("Pengguna Service Show All");
         return m;
     }

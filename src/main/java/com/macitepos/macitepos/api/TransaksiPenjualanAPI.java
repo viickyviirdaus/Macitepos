@@ -37,11 +37,25 @@ public class TransaksiPenjualanAPI {
         Gson gson = new Gson();
         RecieverTransaksiPenjualanDTO recieverTransaksiPenjualanDTO[] = gson.fromJson(recievedJson,RecieverTransaksiPenjualanDTO[].class);
         System.out.println("Data Transaksi Penjualan");
+        System.out.println("id member di transaksi penjualan api = "+ recieverTransaksiPenjualanDTO[0].getId_member());
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         int id_pengguna = akunService.findByUsername(authentication.getName()).getId_pengguna();
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        if(recieverTransaksiPenjualanDTO[0].getId_member()==1){
+            List<MemberDTO> memberDTO = membersService.findCustomer();
+            int idMember = 0;
+            for (MemberDTO m:
+                    memberDTO) {
+                idMember = m.getId_member();
+            }
+            for (int i =0; i<recieverTransaksiPenjualanDTO.length;i++){
+                recieverTransaksiPenjualanDTO[0].setId_member(idMember);
+            }
+        }
+
+        System.out.println("id member fix = "+recieverTransaksiPenjualanDTO[0].getId_member());
 
         int totalBarangDijual = 0;
         for (int i = 0; i<recieverTransaksiPenjualanDTO.length; i++){

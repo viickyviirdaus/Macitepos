@@ -57,6 +57,15 @@ public class MembersDAO {
         return m;
     }
 
+    public List<Member> findCustomer(){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query q = em.createNativeQuery("SELECT * FROM Member m WHERE m.nama_member = 'customer'", Member.class);
+        List<Member> m = q.getResultList();
+        em.close();
+        return m;
+    }
+
     public Long jumlahMember(){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
