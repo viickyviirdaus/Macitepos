@@ -98,7 +98,7 @@ function productListShow(product) {
         '<div class="panel panel-default">' +
         '<div class="panel-body">' +
         '<div>' +
-        '<img style="width: 100%; padding-bottom: 5px;" src="image/product/'+ product.foto_produk +'"/>' +
+        '<img style="width: 70px; padding-bottom: 5px;" src="image/product/'+ product.foto_produk +'"/>' +
         '</div>'+
         '<div class="text-center">' +
         '<span>'+product.nama_produk.substring(0,7)+'..</span>'+
