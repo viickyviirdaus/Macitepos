@@ -58,15 +58,15 @@ public class PenggunaService {
 
         System.out.println(penggunaDTO.getId_pengguna()+" ID 4 ");
         System.out.println("level s1" + penggunaDTO.getLevel());
-        String roles;
+        String roles = "";
         System.out.println("level s2" + penggunaDTO.getLevel());
         if(penggunaDTO.getLevel().equals("kasir")){
             roles = "ROLE_KASIR";
             System.out.println("level s3" + penggunaDTO.getLevel());
+        }else if(penggunaDTO.getLevel().equals("warehouse")) {
+            roles = "ROLE_WAREHOUSE";
         }else if(penggunaDTO.getLevel().equals("manajer")){
             roles = "ROLE_MANAJER";
-        } else {
-            roles = "ROLE_WAREHOUSE";
         }
 
         try{

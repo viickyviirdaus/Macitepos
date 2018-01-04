@@ -139,10 +139,11 @@ public class WarehouseController {
     }
 
     @GetMapping(value = "/warehouse-editProfile")
-    public String editProfileWA(Model model){
+    public String editProfileWA(Model model, HttpSession session){
         model.addAttribute("warehouseeditPOS",true);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("pengguna", akunService.findByUsername(authentication.getName()));
+        session.setAttribute("foto", akunService.findByUsername(authentication.getName()).getFoto_pengguna());
 //        model.addAttribute("penggunaBaru", new PenggunaDTO());
         return "w_editProfile";
     }
