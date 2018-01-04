@@ -38,7 +38,7 @@ public class WarehouseController {
     @Autowired
     private ProdukService produkService;
 
-//    @Autowired
+//    @Autowired    
 //    private SuplierService suplierService;
 
     private static String UPLOADED_FOLDER = "D:\\blibli\\PROJECT\\Macitepos\\ext-resources\\user\\";
